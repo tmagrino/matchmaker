@@ -18,7 +18,7 @@ public class SQLReadStudents {
    Statement stmt = (Statement) conn.createStatement();
    ResultSet rs;
 
-   rs = stmt.executeQuery("SELECT idstudent,name,gpa FROM Student order by gpa desc");
+   rs = stmt.executeQuery("SELECT * FROM Student order by gpa desc");
    while (rs.next()) {
     Long id = rs.getLong("idstudent");
     String nme = rs.getString("Name");
