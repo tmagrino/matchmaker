@@ -1,0 +1,270 @@
+body,
+html{
+	margin: 0;
+	height: 100%;
+}
+.page{
+	text-align: center;
+}
+
+.wrapper,
+#container{
+	height: 100%;
+	padding-bottom: 15px;
+	text-align: left;
+}
+
+#top-bar{
+	background-color: #ab1a2a;
+	height: 50px;
+	width: 100%;
+	text-align: right;
+}
+
+#top-bar .login-nav,
+#top-bar .login-nav a{
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#top-bar .login-nav{
+	padding-right: 15px;
+}
+
+.login-nav li{
+	padding-left: 5px;
+	display: inline;
+}
+
+.login-nav .login-link{
+	border-left: 1px solid white;
+}
+
+.wrapper{
+	width: 1000px;
+	margin: 10px auto 0;
+}
+
+.notifications{
+	background-color: black;
+	color: white;
+	width: 82px;
+	margin-left: 20px;
+	height: 18px;
+	padding: 1px 10px;
+	text-align: center;
+}
+
+.sidebar{
+	float:left;
+	height: 100%;
+}
+
+#sidenav{
+	background-color: #4F81BD;
+	width: 150px;
+	margin-left: 20px;
+	margin-top: 32px;
+	height: 100%;
+}
+#sidenav ul{
+	margin: 0;
+}
+#sidenav li,
+#sidenav li a{
+	color: white;
+	text-decoration: none;
+}
+#sidenav li{
+	margin-left: 15px;
+}
+#sidenav ul{
+	padding: 0;
+}
+#sidenav .view{
+	padding-top: 50px;
+}
+#sidenav .edit{
+	margin-top: 25px;
+}
+#sidenav .related{
+	text-decoration: underline;
+	margin-top: 100px;
+}
+
+#sidenav .tips{
+	padding-bottom: 50px;
+}
+
+.main{
+	float: right;
+	width: 830px;
+	margin-top: 47px;
+	height: 100%;
+}
+.content{
+	background-color: #ECECEC;
+	padding-left: 20px;
+	height: 100%;
+	width: 811px;
+}
+h2.subheading{
+	margin-left: 30px;
+}
+img.avatar{
+	margin-left: 85px;
+	float: left;
+	margin-right: 20px;
+}
+.photo-info .info{
+	float: right;
+	margin-top: -23px;
+}
+.application-info{
+	margin-left: 84px;
+}
+#sidenav a.selected{
+	color: #f9966b;
+}
+input[type='text']
+{
+	margin-left: 10px;
+}
+
+/* --- Tab styles --- */
+.tabrow {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    line-height: 24px;
+    position: relative;
+    float: right;
+    display: block;
+}
+
+.tabrow li {
+    margin: 0 10px;
+    padding: 0 10px;
+    border: 1px solid #AAA;
+    display: inline;
+    color: white;
+}
+.tabrow li a{
+	color: white;
+	text-decoration: none;
+}
+.tabrow li.selected {
+    background: #ECECEC;
+    color: #000;
+}
+.tabrow li.selected a{
+	color: black;
+}
+.tabrow:after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    border-bottom: 1px solid #AAA;
+    z-index: 1;
+}
+.tabrow:before {
+    z-index: 1;
+}
+.tabrow li {
+    position: relative;
+    z-index: 0;
+}
+.tabrow li.selected {
+    z-index: 2;
+    border-bottom-color: #FFF;
+}
+.tabrow li:before,
+.tabrow li:after {
+    position: absolute;
+    bottom: -1px;
+    width: 6px;
+    height: 6px;
+    content: " ";
+}
+.tabrow li:before {
+    left: -6px;
+}
+.tabrow li:after {
+    right: -6px;
+}
+.tabrow li:after, .tabrow li:before {
+    border: 1px solid #AAA;
+}
+.tabrow li {
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+}
+.tabrow li:before {
+    border-bottom-right-radius: 6px;
+    border-width: 0 1px 1px 0;
+}
+.tabrow li:after {
+    border-bottom-left-radius: 6px;
+    border-width: 0 0 1px 1px;
+}
+.tabrow li:before {
+    box-shadow: 2px 2px 0 red;
+}
+.tabrow li:after {
+    box-shadow: -2px 2px 0 red;
+}
+.tabrow li:before {
+    box-shadow: 2px 2px 0 #696969;
+}
+.tabrow li:after {
+    box-shadow: -2px 2px 0 #696969;
+}
+.tabrow li.selected:before {
+    box-shadow: 2px 2px 0 #ececec;
+}
+.tabrow li.selected:after {
+    box-shadow: -2px 2px 0 #ececec;
+}
+.tabrow li {
+    background:      -o-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+    background:     -ms-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+    background:    -moz-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+    background: -webkit-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+    background: linear-gradient(top, #7e7e7e 50%, #696969 100%);
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+    margin: 0 -5px;
+    padding: 0 20px;
+}
+
+.lt-ie10 .tabrow li{
+	background-color: #7e7e7e;
+}
+/* --- End of tab styles --- */
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+ 
+.clearfix {
+	display: inline-block;
+}
+ 
+html[xmlns] .clearfix {
+	display: block;
+}
+ 
+* html .clearfix {
+	height: 1%;
+}
+
+ul{
+	list-style-type: none;
+}
