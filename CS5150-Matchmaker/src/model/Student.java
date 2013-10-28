@@ -14,6 +14,18 @@ import java.util.List;
  */
 
 /*
+ *   Table: STUDENT
+ *   
+ *   |  ID  |      NAME    |   NETID  |  GPA  |  WEBPAGE            |  YEAR     |
+ *   |  1   | Steve Carell | sc332    | 3.1   | www.stevecarell.com | Senior    |
+ *   |  2   | Jim Carrey   | jc299    | 2.9   | www.jimcarrey.com   | Ph. D     |
+ *   |  3   | Bob Bobson   | bb22     | 3.9   |                     | Graduate  |
+ *   |      |              |          |       |                     |           |
+ *   
+ */
+
+
+/*
  * TODO:
  * Fix getters/setters to for the fields with tables
  * - http://en.wikibooks.org/wiki/Java_Persistence/OneToMany#Getters_and_Setters
@@ -37,7 +49,7 @@ public class Student implements Serializable {
 	private double gpa;
 	@Column(name = "WEBPAGE", nullable = true)
 	private String webpage;
-	@Enumerated(EnumType.STRING)
+	@Embedded
 	@Column(name = "YEAR")
 	private Year year;
 	// COLLEGE

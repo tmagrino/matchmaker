@@ -1,5 +1,16 @@
 package model;
 
+import java.io.Serializable;
+import javax.persistence.*;
+import java.util.List;
+
+/*
+ *  This class represents the year a student
+ *  is currently in.
+ * 
+ */
+
+@Embeddable
 public enum Year {
 	Freshman,
 	Sophomore,
