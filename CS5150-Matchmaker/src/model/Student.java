@@ -18,30 +18,28 @@ import java.util.List;
  * Fix getters/setters to for the fields with tables
  * - http://en.wikibooks.org/wiki/Java_Persistence/OneToMany#Getters_and_Setters
  * Take another look at the constructor(s)
- * Set up the Transcript table (needs to be searchable/filterable)
- * 
  */
-@Entity
+@Entity(name = "STUDENT")
 @NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
 public class Student implements Serializable {
-	@Id @Column(name = "ID")
-	private long id;
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name = "NAME")
-	private String name;
-	@Column(name = "NETID")
-	private String netID;
-	@Column(name = "GPA")
-	private double gpa;
-	@Column(name = "WEBPAGE")
-	private String webpage;
+	// Persistent Fields
+	@Id @Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
 	
-	// YEAR
+	@Column(name = "NAME", nullable = false, length = 75)
+	private String name;
+	@Column(name = "NETID", nullable = false, length = 10)
+	private String netID;
+	@Column(name = "GPA", nullable = false)
+	private double gpa;
+	@Column(name = "WEBPAGE", nullable = true)
+	private String webpage;
 	@Enumerated(EnumType.STRING)
 	@Column(name = "YEAR")
 	private Year year;
-	
 	// COLLEGE
 	@ManyToMany
 	@JoinTable(
@@ -50,7 +48,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="COLLEGE_ID", referencedColumnName="ID")}
 	)
 	private List<College> colleges;
-	
 	// MAJORS
 	@ManyToMany
 	@JoinTable(
@@ -59,7 +56,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="MAJOR_ID", referencedColumnName="ID")}
 	)
 	private List<Major> majors;
-		
 	// MINORS
 	@ManyToMany
 	@JoinTable(
@@ -68,7 +64,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="MINOR_ID", referencedColumnName="ID")}
 	)
 	private List<Minor> minors;
-
 	// SKILLS
 	@ManyToMany
 	@JoinTable(
@@ -77,7 +72,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="SKILL_ID", referencedColumnName="ID")}
 	)
 	private List<Skill> skills;
-	
 	// Prior Experience
 	@OneToMany  
 	@CollectionTable (
@@ -86,7 +80,6 @@ public class Student implements Serializable {
 					name = "OWNER_ID")
 			)
 	private List<Experience> priorExperience;
-	
 	// Interests
 	@ManyToMany
 	@JoinTable(
@@ -95,17 +88,18 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="INTER_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> interests;
-	
-	
-	// TODO
+	// Transcript
+	@Embedded
 	private Transcript transcript;
 	@OneToMany(mappedBy = "studentBean")
 	private List<Application> appliedProjects;
-	
-	//TODO: Low priority
-	//private StudentSettings settings;
+	@Embedded
+	private StudentSettings settings;
 	//private BufferedImage profilePicture;
+	@Version @Column(name = "VERSION")
+	private long version;
 
+	// Constructors:
 	public Student() 
 	{
 		
@@ -153,11 +147,11 @@ public class Student implements Serializable {
 		this.year = year;
 	}
 
-	public List<College> getCollege() {
+	public List<College> getColleges() {
 		return this.colleges;
 	}
 
-	public void setCollege(List<College> colleges) {
+	public void setColleges(List<College> colleges) {
 		this.colleges = colleges;
 	}
 
@@ -232,13 +226,12 @@ public class Student implements Serializable {
 	public void setInterests(List<Interest> interests) {
 		this.interests = interests;
 	}
-	
-	public void addApplication(Application application) {
-		appliedProjects.add(application);
+
+	public StudentSettings getSettings() {
+		return settings;
 	}
 
-	public void removeApplication(Application application) {
-		appliedProjects.remove(application);
-	}
-	
+	public void setSettings(StudentSettings settings) {
+		this.settings = settings;
+	}	
 }

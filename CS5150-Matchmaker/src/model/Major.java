@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity(name = "MAJOR")
 public class Major {
 	@Id @Column(name="ID")
 	private long id;

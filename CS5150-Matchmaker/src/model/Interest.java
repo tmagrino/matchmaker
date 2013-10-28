@@ -8,6 +8,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
+@Entity(name = "INTEREST")
 public class Interest {
 	@Id @Column(name="ID")
 	private long id;
