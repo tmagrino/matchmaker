@@ -37,3 +37,8 @@ Backend Notes
 - Major, Minor, Interest, and College classes are all entities in order to make them extensible by admins users.
 - No SQL lines are needed with JPA (updated with EntityManager)
 	- http://www.javaworld.com/javaworld/jw-01-2008/jw-01-jpa1.html?page=3
+
+Helpful Tutorials
+- JPA
+	- http://www.javaworld.com/javaworld/jw-01-2008/jw-01-jpa1.html?page=1
+	- http://docs.oracle.com/javaee/6/tutorial/doc/bnbqa.html
