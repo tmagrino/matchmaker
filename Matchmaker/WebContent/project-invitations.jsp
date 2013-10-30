@@ -28,42 +28,58 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a href="profile.jsp">View Profile</a></li>
-							<li><a class="selected" href="edit-profile.jsp">Edit Profile</a></li>
+							<li class="first"><a href="student-projects.jsp">Current Projects</a></li>
+							<li><a class="selected" href="project-invitations.jsp">Project Invitations</a></li>
+							<li><a href="new-projects.jsp">Select New Projects</a></li>
 							<li class="related">Related</li>
-							<li><a href="#">Tips on creating a good
-									profile</a></li>
+							<li><a href="#">How to make the most of your research experience!</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="main">
 					<ul class="tabrow">
-						<li class="selected"><a href="profile.jsp">My Profile</a></li>
-						<li><a href="student-projects.jsp">My Projects</a></li>
+						<li><a href="profile.jsp">My Profile</a></li>
+						<li class="selected"><a href="student-projects.jsp">My Projects</a></li>
 						<li><a href="#">Researchers</a></li>
 					</ul>
 					<div class="content">
-						<h1>My Profile</h1>
-						<h2 class="subheading">General Information</h2>
-						<form name="profile-form" action="/">
-							<div class="photo-info clearfix">
-								<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
-								<div class="info">
-									<h2>Jane Doe</h2>
-									<p><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
-									<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
-									<p><label for="major">Year of Graduation</label><input name="major" type="text"></input></p>
-									<p><label for="major">School</label><input name="major" type="text"></input></p>
+						<h1>My Projects</h1>
+						<ul class="project-list">
+							<li class="clearfix">
+								<div class="status">
+									<p class="apply">Apply</p>
 								</div>
-							</div>
-							<h2 class="subheading">Application Information</h2>	
-							<div class="application-info">
-								<p><label for="gpa">GPA</label><input name="gpa" type="text"></input></p>
-								<p><label for="skills">Skills</label><input name="skills" type="text"></input></p>
-								<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
-							</div>
-							<input type="submit" value="Save Changes"></input>
-						</form>
+								<div class="project-info">
+									<div class="delete">X</div>
+									<h3>Project Name</h3>
+									<p><a href="#">Link to Project Webpage</a></p>
+									<p>Researcher Name</p>
+								</div>							
+							</li>
+							<li class="clearfix">
+								<div class="status">
+									<p class="apply">Apply</p>
+								</div>
+								<div class="project-info">
+									<div class="delete">X</div>
+									<h3>Project Name</h3>
+									<p><a href="#">Link to Project Webpage</a></p>
+									<p>Researcher Name</p>
+								</div>							
+							</li>
+							<li class="clearfix">
+								<div class="status">
+									<p class="apply">Apply</p>
+								</div>
+								<div class="project-info">
+									<div class="delete">X</div>
+									<h3>Project Name</h3>
+									<p><a href="#">Link to Project Webpage</a></p>
+									<p>Researcher Name</p>
+								</div>							
+							</li>
+						</ul>
+						
 					</div>				
 				</div>
 			</div>

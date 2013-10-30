@@ -17,7 +17,7 @@
     <!--[if gt IE 9]><!--> <body> <!--<![endif]-->
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
-			<li>Welcome, Jane Doe</li>
+			<li>Welcome, Bob Smith</li>
 			<li class="login-link"><a href="#">sign out</a></li>
 		</ul>
 	</div>
@@ -30,9 +30,6 @@
 						<ul>
 							<li class="first"><a class="selected" href="profile.jsp">View Profile</a></li>
 							<li><a href="edit-profile.jsp">Edit Profile</a></li>
-							<li>Related</li>
-							<li class="tips"><a href="#">Tips on creating a good
-									profile</a></li>
 						</ul>
 					</div>
 				</div>
@@ -40,26 +37,18 @@
 					<ul class="tabrow">
 						<li class="selected"><a href="profile.jsp">My Profile</a></li>
 						<li><a href="student-projects.jsp">My Projects</a></li>
-						<li><a href="#">Researchers</a></li>
+						<li><a href="#">Students</a></li>
 					</ul>
 					<div class="content">
 						<h1>My Profile</h1>
-						<h2 class="subheading">General Information</h2>
 						<div class="photo-info clearfix">
-							<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
+							<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
 							<div class="info">
-								<h2>Jane Doe</h2>
-								<p>Major: Computer Science</p>
-								<p>Minor: Music</p>
-								<p>Year of Graduation: 2015</p>
-								<p>School: College of Engineering</p>
+								<h2>Professor Bob Smith</h2>
+								<p><a href="#">www.cs.cornell.edu/bsmith</a></p>
+								<p>Department of Computer Science</p>
+								<p>Specialization in Machine Learning</p>
 							</div>
-						</div>
-						<h2 class="subheading">Application Information</h2>	
-						<div class="application-info">
-							<p>GPA: 3.5</p>
-							<p>Skills: Java, C++, Python</p>
-							<p>Research Interests: Machine Learning</p>
 						</div>
 					</div>				
 				</div>

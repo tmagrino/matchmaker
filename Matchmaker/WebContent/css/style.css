@@ -3,6 +3,16 @@ html{
 	margin: 0;
 	height: 100%;
 }
+.page,
+.wrapper,
+#container,
+.sidebar,
+#sidenav,
+.main, 
+.content{
+	min-height: 500px;
+}
+
 .page{
 	text-align: center;
 }
@@ -42,7 +52,7 @@ html{
 }
 
 .wrapper{
-	width: 1000px;
+	width: 1050px;
 	margin: 10px auto 0;
 }
 
@@ -63,7 +73,8 @@ html{
 
 #sidenav{
 	background-color: #4F81BD;
-	width: 150px;
+	width: 185px;
+	padding-right: 15px;
 	margin-left: 20px;
 	margin-top: 32px;
 	height: 100%;
@@ -77,24 +88,18 @@ html{
 	text-decoration: none;
 }
 #sidenav li{
+	margin-top: 25px;
 	margin-left: 15px;
 }
 #sidenav ul{
 	padding: 0;
 }
-#sidenav .view{
+#sidenav .first{
 	padding-top: 50px;
-}
-#sidenav .edit{
-	margin-top: 25px;
 }
 #sidenav .related{
 	text-decoration: underline;
 	margin-top: 100px;
-}
-
-#sidenav .tips{
-	padding-bottom: 50px;
 }
 
 .main{
@@ -110,7 +115,7 @@ html{
 	width: 811px;
 }
 h2.subheading{
-	margin-left: 30px;
+	margin-left: 38px;
 }
 img.avatar{
 	margin-left: 85px;
@@ -127,10 +132,66 @@ img.avatar{
 #sidenav a.selected{
 	color: #f9966b;
 }
-input[type='text']
+form[name='profile-form'] input[type='text']
 {
 	margin-left: 10px;
 }
+
+.project-list .status{
+	float: left;
+}
+.project-list .status p{
+	width: 80px;
+	height: 21px;
+	margin-top: 47px;
+	margin-right: 20px;
+	text-align: center;
+	color: white;
+	padding: 10px 5px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; 
+	-khtml-border-radius: 10px;
+}
+.project-list .status a{
+	margin-left: 24px;
+	text-decoration: underline;
+}
+
+.status .pending,
+.status .apply{
+	background-color: #388E8E;
+}
+.status .accepted{
+	background-color: #32CD32;
+}
+.status .rejected{
+	background-color: #FA8072;
+}
+
+.project-list .project-info{
+	float: right;
+	background-color: #F8F8FF;
+	width: 535px;
+	padding-left: 21px;
+}
+
+.project-list li{
+	margin-bottom: 25px;
+}
+
+.project-info .delete{
+	float: right;
+	background-color: #E80000;
+	height: 20px;
+	width: 20px;
+	text-align: center;
+	color: white;
+}
+.filters{
+	margin-left: 38px;
+}
+
 
 /* --- Tab styles --- */
 .tabrow {

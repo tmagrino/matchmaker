@@ -1,8 +1,11 @@
 function initSideHeight()
 {
-	var sidebar = $(".sidebar");
+	var sidebar = $(".sidebar #sidenav");
 	if(sidebar.length == 0) {return; }
-	sidebar.height($(".main .content").height());
+	if($(".main .content").height() > sidebar.height())
+		sidebar.height($(".main .content").height());
+	else
+		$(".main .content").height(sidebar.height());
 }
 
 function initAutosuggest()

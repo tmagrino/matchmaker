@@ -28,39 +28,56 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a class="selected" href="profile.jsp">View Profile</a></li>
-							<li><a href="edit-profile.jsp">Edit Profile</a></li>
-							<li>Related</li>
-							<li class="tips"><a href="#">Tips on creating a good
-									profile</a></li>
+							<li class="first"><a class="selected" href="student-projects.jsp">Current Projects</a></li>
+							<li><a href="project-invitations.jsp">Project Invitations</a></li>
+							<li><a href="new-projects.jsp">Select New Projects</a></li>
+							<li class="related">Related</li>
+							<li><a href="#">How to make the most of your research experience!</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="main">
 					<ul class="tabrow">
-						<li class="selected"><a href="profile.jsp">My Profile</a></li>
-						<li><a href="student-projects.jsp">My Projects</a></li>
+						<li><a href="profile.jsp">My Profile</a></li>
+						<li class="selected"><a href="student-projects.jsp">My Projects</a></li>
 						<li><a href="#">Researchers</a></li>
 					</ul>
 					<div class="content">
-						<h1>My Profile</h1>
-						<h2 class="subheading">General Information</h2>
-						<div class="photo-info clearfix">
-							<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
-							<div class="info">
-								<h2>Jane Doe</h2>
-								<p>Major: Computer Science</p>
-								<p>Minor: Music</p>
-								<p>Year of Graduation: 2015</p>
-								<p>School: College of Engineering</p>
-							</div>
-						</div>
-						<h2 class="subheading">Application Information</h2>	
-						<div class="application-info">
-							<p>GPA: 3.5</p>
-							<p>Skills: Java, C++, Python</p>
-							<p>Research Interests: Machine Learning</p>
-						</div>
+						<h1>My Projects</h1>
+						<ul class="project-list">
+							<li class="clearfix">
+								<div class="status">
+									<p class="rejected">Rejected</p>
+								</div>
+								<div class="project-info">
+									<h3>Project Name</h3>
+									<p><a href="#">Link to Project Webpage</a></p>
+									<p>Researcher Name</p>
+								</div>							
+							</li>
+							<li class="clearfix">
+								<div class="status">
+									<p class="accepted">Accepted</p>
+								</div>
+								<div class="project-info">
+									<h3>Project Name</h3>
+									<p><a href="#">Link to Project Webpage</a></p>
+									<p>Researcher Name</p>
+								</div>							
+							</li>
+							<li class="clearfix">
+								<div class="status">
+									<p class="pending">Pending</p>
+									<a>Cancel</a>
+								</div>
+								<div class="project-info">
+									<h3>Project Name</h3>
+									<p><a href="#">Link to Project Webpage</a></p>
+									<p>Researcher Name</p>
+								</div>							
+							</li>
+						</ul>
+						
 					</div>				
 				</div>
 			</div>
