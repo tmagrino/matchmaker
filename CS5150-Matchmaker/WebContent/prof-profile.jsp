@@ -35,7 +35,7 @@
 				</div>
 				<div class="main">
 					<ul class="tabrow">
-						<li class="selected"><a href="profile.jsp">My Profile</a></li>
+						<li class="selected"><a href="prof-profile.jsp">My Profile</a></li>
 						<li><a href="student-projects.jsp">My Projects</a></li>
 						<li><a href="#">Students</a></li>
 					</ul>
