@@ -40,7 +40,6 @@ public class Student implements Serializable {
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	
 	@Column(name = "NAME", nullable = false, length = 75)
 	private String name;
 	@Column(name = "NETID", nullable = false, length = 10)
@@ -85,7 +84,7 @@ public class Student implements Serializable {
 	)
 	private List<Skill> skills;
 	// Prior Experience
-	@OneToMany  
+	@ElementCollection  
 	@CollectionTable (
 			name = "EXPERIENCES_TABLE",
 			joinColumns = @JoinColumn(
@@ -103,8 +102,8 @@ public class Student implements Serializable {
 	// Transcript
 	@Embedded
 	private Transcript transcript;
-	@OneToMany(mappedBy = "studentBean")
-	private List<Application> appliedProjects;
+	@OneToMany(mappedBy = "studentApplicant")
+	private List<Application> applications;
 	@Embedded
 	private StudentSettings settings;
 	//private BufferedImage profilePicture;
@@ -216,11 +215,11 @@ public class Student implements Serializable {
 	}
 
 	public List<Application> getAppliedProjects() {
-		return appliedProjects;
+		return applications;
 	}
 
 	public void setAppliedProjects(List<Application> appliedProjects) {
-		this.appliedProjects = appliedProjects;
+		this.applications = appliedProjects;
 	}
 
 	public String getWebpage() {

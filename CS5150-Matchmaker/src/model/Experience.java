@@ -8,6 +8,8 @@ import java.util.List;
 /*
  * This class represents a prior experience a student
  * has had
+ * 
+ * http://en.wikibooks.org/wiki/Java_Persistence/ElementCollection
  */
 @Embeddable
 public class Experience {

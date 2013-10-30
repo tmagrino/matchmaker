@@ -1,6 +1,8 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -13,54 +15,76 @@ import javax.persistence.*;
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private int idProject;
-
+	// Persistent Fields
+	@Id @Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	@Column(name = "NAME", nullable = false, length = 75)
 	private String name;
-
-	//bi-directional many-to-one association to Researcher
-	@ManyToOne
-	@JoinColumn(name="researcher")
-	private Researcher researcherBean;
-
-	//bi-directional many-to-one association to Student
-	@ManyToOne
-	@JoinColumn(name="student")
-	private Student studentBean;
-
+	@Column(name = "DESCRIPTION", nullable = false)
+	private String description;
+	@ManyToMany(mappedBy = "projects")
+	private List<Researcher> researchers;
+	@OneToMany(mappedBy = "applicationProject")
+	private List<Application> applications;
+	@Column(name = "OPENINGS", nullable = false)
+	private int openings;
+	//private MinimumRequirements requirements;
+	
 	public Project() {
+		
 	}
 
-	public int getIdProject() {
-		return this.idProject;
+	public long getId() {
+		return id;
 	}
 
-	public void setIdProject(int idProject) {
-		this.idProject = idProject;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public Researcher getResearcherBean() {
-		return this.researcherBean;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setResearcherBean(Researcher researcherBean) {
-		this.researcherBean = researcherBean;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
-	public Student getStudentBean() {
-		return this.studentBean;
+	public List<Researcher> getResearchers() {
+		return researchers;
 	}
 
-	public void setStudentBean(Student studentBean) {
-		this.studentBean = studentBean;
+	public void setResearchers(List<Researcher> researchers) {
+		this.researchers = researchers;
+	}
+
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	public void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
+
+	public int getOpenings() {
+		return openings;
+	}
+
+	public void setOpenings(int openings) {
+		this.openings = openings;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

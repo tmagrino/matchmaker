@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 
@@ -14,58 +16,77 @@ import java.util.List;
 public class Researcher implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	private int idresearcher;
-
+	// Persistent Fields
+	@Id @Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	@Column(name = "NAME", nullable = false, length = 75)
 	private String name;
-
-	private String netid;
-
-	private String researcharea;
-
+	@Column(name = "NETID", nullable = false, length = 10)
+	private String netID;
+	@Column(name = "EMAIL", nullable = false)
+	private String eMail;
+	@Column(name = "AREA", nullable = false)
+	private String researchArea;
+	@Column(name = "WEBPAGE", nullable = true)
 	private String webpage;
-
-	//bi-directional many-to-one association to Project
-	@OneToMany(mappedBy="researcherBean")
+	@ManyToMany
+	@JoinTable(
+			name = "PROJECTS_MAPPING",
+			joinColumns = {@JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")}
+	)
 	private List<Project> projects;
+	
+	//private BufferedImage profilePicture;
+	//private ResearcherSettings settings;
 
 	public Researcher() {
+		
 	}
 
-	public int getIdresearcher() {
-		return this.idresearcher;
+	public int getId() {
+		return id;
 	}
 
-	public void setIdresearcher(int idresearcher) {
-		this.idresearcher = idresearcher;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public String getNetid() {
-		return this.netid;
+	public String getNetID() {
+		return netID;
 	}
 
-	public void setNetid(String netid) {
-		this.netid = netid;
+	public void setNetID(String netID) {
+		this.netID = netID;
+	}
+	
+	public String geteMail() {
+		return eMail;
 	}
 
-	public String getResearcharea() {
-		return this.researcharea;
+	public void seteMail(String eMail) {
+		this.eMail = eMail;
 	}
 
-	public void setResearcharea(String researcharea) {
-		this.researcharea = researcharea;
+	public String getResearchArea() {
+		return researchArea;
+	}
+
+	public void setResearchArea(String researchArea) {
+		this.researchArea = researchArea;
 	}
 
 	public String getWebpage() {
-		return this.webpage;
+		return webpage;
 	}
 
 	public void setWebpage(String webpage) {
@@ -73,25 +94,18 @@ public class Researcher implements Serializable {
 	}
 
 	public List<Project> getProjects() {
-		return this.projects;
+		return projects;
 	}
 
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
 
-	public Project addProject(Project project) {
-		getProjects().add(project);
-		project.setResearcherBean(this);
-
-		return project;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
+	
+	
 
-	public Project removeProject(Project project) {
-		getProjects().remove(project);
-		project.setResearcherBean(null);
-
-		return project;
-	}
 
 }
