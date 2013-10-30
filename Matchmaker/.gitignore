@@ -1,7 +1,0 @@
-/build
-.project
-.metadata
-bin/**
-local.properties
-.classpath
-.settings/
