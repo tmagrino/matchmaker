@@ -28,39 +28,29 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a href="profile.jsp">View Profile</a></li>
-							<li><a class="selected" href="edit-profile.jsp">Edit Profile</a></li>
-							<li class="related">Related</li>
-							<li><a href="#">Tips on creating a good
-									profile</a></li>
+							<li class="first"><a href="prof-profile.jsp">View Profile</a></li>
+							<li><a class="selected" href="edit-prof-profile.jsp">Edit Profile</a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="main">
 					<ul class="tabrow">
-						<li class="selected"><a href="profile.jsp">My Profile</a></li>
-						<li><a href="student-projects.jsp">My Projects</a></li>
+						<li class="selected"><a href="prof-profile.jsp">My Profile</a></li>
+						<li><a href="prof-projects.jsp">My Projects</a></li>
+						<li><a href="prof-students.jsp">Students</a></li>
 					</ul>
 					<div class="content">
 						<h1>My Profile</h1>
-						<h2 class="subheading">General Information</h2>
 						<form name="profile-form" action="/">
 							<div class="photo-info clearfix">
-								<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
+								<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
 								<div class="info">
-									<h2>Jane Doe</h2>
-									<p class="required"><label for="email">Email</label><input name="email" value="jd322@cornell.edu" type="text"></input></p>
-									<p class="required"><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
-									<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
-									<p class="required"><label for="grad-year">Year of Graduation</label><input name="grad-year" type="text"></input></p>
-									<p class="required"><label for="school">School</label><input name="school" type="text"></input></p>
+									<h2>Bob Smith</h2>
+									<p class="required"><label for="email">Email</label><input name="email" value="bcs575@cornell.edu" type="text"></input></p>
+									<p class="required"><label for="url">URL</label><input name="url" value="www.cs.cornell.edu/bsmith" type="text"></input></p>
+									<p class="required"><label for="dept">Department</label><input name="dept" type="text"></input></p>
+									<p><label for="specialization">Specialization</label><input name="specialization" type="text"></input></p>
 								</div>
-							</div>
-							<h2 class="subheading">Application Information</h2>	
-							<div class="application-info">
-								<p class="required"><label for="gpa">GPA</label><input name="gpa" type="text" maxlength="4"></input></p>
-								<p><label for="skills">Skills</label><input name="skills" type="text"></input></p>
-								<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
 							</div>
 							<input type="submit" value="Save Changes"></input>
 						</form>

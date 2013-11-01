@@ -6,7 +6,9 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/autoSuggest.css">
-	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<link rel="stylesheet" href="css/jPages.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript"></script>
+	<script src="js/jPages.min.js"></script>
 	<script src="js/script.js" type="text/javascript"></script>
 	<script src="js/jquery.autoSuggest.minified.js" type="text/javascript"></script>
 	<title>Matchmaker - Student Profile</title>
@@ -32,9 +34,16 @@
 							<li><a href="project-invitations.jsp">Project Invitations</a></li>
 							<li><a class="selected" href="new-projects.jsp">Select New Projects</a></li>
 							<li class="related">Add New Filters</li>
-							<li>Researcher:<input type="text" name="researcher-filter"></li>
-							<li>Research Area:<input type="text" name="research-area-filter"></li>
-							<li>Skills:<input type="text" name="skills-filter"></li>
+							<li>
+								<form id="add-new-filters">
+									<ul>
+										<li>Researcher:<input type="text" name="researcher-filter"></li>
+										<li>Research Area:<input type="text" name="research-area-filter"></li>
+										<li>Skills:<input type="text" name="skills-filter"></li>
+										<li><input type="submit" value="Add Filter"></li>
+									</ul>
+								</form>
+							</li>
 						</ul>
 					</div>
 				</div>
@@ -42,7 +51,6 @@
 					<ul class="tabrow">
 						<li><a href="profile.jsp">My Profile</a></li>
 						<li class="selected"><a href="student-projects.jsp">My Projects</a></li>
-						<li><a href="#">Researchers</a></li>
 					</ul>
 					<div class="content">
 						<h1>My Projects</h1>
@@ -52,42 +60,24 @@
 							<input type="checkbox" name="research-interest">Research Interest
 							<input type="checkbox" name="research-interest">Skills
 						</div>
-						<ul class="project-list">
-							<li class="clearfix">
-								<div class="status">
-									<p class="apply">Apply</p>
-								</div>
-								<div class="project-info">
-									<div class="delete">X</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-								</div>							
-							</li>
-							<li class="clearfix">
-								<div class="status">
-									<p class="apply">Apply</p>
-								</div>
-								<div class="project-info">
-									<div class="delete">X</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-								</div>							
-							</li>
-							<li class="clearfix">
-								<div class="status">
-									<p class="apply">Apply</p>
-								</div>
-								<div class="project-info">
-									<div class="delete">X</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-								</div>							
-							</li>
+						<ul class="project-list" id="project-list-pagination">
+							<% for(int i=1;i<=500;i++)
+							{
+							%>
+								<li class="clearfix">
+									<div class="status">
+										<p class="apply">Apply</p>
+									</div>
+									<div class="project-info">
+										<div class="delete">X</div>
+										<h3>Project Name</h3>
+										<p><a href="#">Link to Project Webpage <%=i %></a></p>
+										<p>Researcher Name</p>
+									</div>							
+								</li>
+							<% } %>
 						</ul>
-						
+						<ul class="holder"></ul>
 					</div>				
 				</div>
 			</div>

@@ -29,7 +29,7 @@
 					<div id="sidenav">
 						<ul>
 							<li class="first"><a class="selected" href="profile.jsp">View Profile</a></li>
-							<li><a href="edit-profile.jsp">Edit Profile</a></li>
+							<li><a href="edit-prof-profile.jsp">Edit Profile</a></li>
 						</ul>
 					</div>
 				</div>
@@ -45,6 +45,7 @@
 							<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
 							<div class="info">
 								<h2>Professor Bob Smith</h2>
+								<p>Email: bcs575@cornell.edu</p>
 								<p><a href="#">www.cs.cornell.edu/bsmith</a></p>
 								<p>Department of Computer Science</p>
 								<p>Specialization in Machine Learning</p>

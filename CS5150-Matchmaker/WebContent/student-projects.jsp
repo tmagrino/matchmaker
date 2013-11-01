@@ -40,7 +40,6 @@
 					<ul class="tabrow">
 						<li><a href="profile.jsp">My Profile</a></li>
 						<li class="selected"><a href="student-projects.jsp">My Projects</a></li>
-						<li><a href="#">Researchers</a></li>
 					</ul>
 					<div class="content">
 						<h1>My Projects</h1>
@@ -50,6 +49,7 @@
 									<p class="rejected">Rejected</p>
 								</div>
 								<div class="project-info">
+									<div class="delete">X</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -60,6 +60,7 @@
 									<p class="accepted">Accepted</p>
 								</div>
 								<div class="project-info">
+									<div class="delete">X</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>

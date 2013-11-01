@@ -40,7 +40,6 @@
 					<ul class="tabrow">
 						<li><a href="profile.jsp">My Profile</a></li>
 						<li class="selected"><a href="student-projects.jsp">My Projects</a></li>
-						<li><a href="#">Researchers</a></li>
 					</ul>
 					<div class="content">
 						<h1>My Projects</h1>
