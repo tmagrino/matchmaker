@@ -17,6 +17,7 @@
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.schema-generation.drop-source" value="script-then-metadata"/>
 			<property name="eclipselink.orm.validate.schema" value="false"/>
+			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 		</properties>
 	</persistence-unit>
 </persistence>

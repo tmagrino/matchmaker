@@ -7,14 +7,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JPAReadStudents {
- public static void main(String args[]) {
-  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-  EntityManager em = emf.createEntityManager();
+	public static void main(String args[]) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManager em = emf.createEntityManager();
 
-  String query = "SELECT s FROM Student s";
-  @SuppressWarnings("unchecked")
-  List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
-  for (Student st : mylist)
-   System.out.println(st);
- }
+		String query = "select o from STUDENT o";
+		@SuppressWarnings("unchecked")
+		List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
+		for (Student st : mylist) {
+			System.out.println(st);
+		}
+	}
 }

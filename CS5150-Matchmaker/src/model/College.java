@@ -40,7 +40,7 @@ import java.util.List;
 public class College {
 	@Id @Column(name="ID")
 	private long id;
-	@Column(name="COLLEGE/SCHOOL")
+	@Column(name="COLLEGE_SCHOOL")
 	private String description;
 	
 	@ManyToMany(mappedBy = "colleges")

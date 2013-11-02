@@ -27,7 +27,7 @@ public class Application implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "OWNER_ID")
+	@JoinColumn
 	private Student studentApplicant;
 	@ManyToOne(fetch = FetchType.LAZY) 
 	@JoinColumn(name = "OWNER_ID")

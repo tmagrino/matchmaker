@@ -9,8 +9,9 @@ public class GetStudentInfo {
 
 	 public static List<Student> get() {
 
-	    
-	    list.add(new Student(15,"Ze", 3.5));
+	    for (int i = 0; i < 5; i++) {
+	    	list.add(new Student("HI"));
+	    }
 	    return list;
 	 }
 }
