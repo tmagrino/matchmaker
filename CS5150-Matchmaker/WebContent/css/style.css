@@ -153,6 +153,7 @@ form[name='profile-form'] input[type='text']
 	border-radius: 10px; 
 	-khtml-border-radius: 10px;
 }
+
 .project-list .status a{
 	margin-left: 24px;
 	text-decoration: underline;
@@ -169,6 +170,9 @@ form[name='profile-form'] input[type='text']
 	background-color: #FA8072;
 }
 
+.status .deleted{
+	background-color: #E23F5F;
+}
 .project-list .project-info{
 	float: right;
 	background-color: #F8F8FF;
@@ -176,6 +180,11 @@ form[name='profile-form'] input[type='text']
 	padding-left: 21px;
 }
 
+.accounts{
+	float: right;
+	width: 535px;
+	padding-left: 21px;
+}
 .project-list li{
 	margin-bottom: 25px;
 }
