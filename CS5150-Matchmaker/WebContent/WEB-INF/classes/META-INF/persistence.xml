@@ -4,6 +4,12 @@
 		<class>model.Project</class>
 		<class>model.Researcher</class>
 		<class>model.Student</class>
+		<class>model.Skill</class>
+		<class>model.Interest</class>
+		<class>model.College</class>
+		<class>model.Major</class>
+		<class>model.Minor</class>
+		<class>model.Application</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>

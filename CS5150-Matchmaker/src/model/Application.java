@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /* 
@@ -35,6 +37,7 @@ public class Application implements Serializable {
 	@Column(name = "STUD_DATA")
 	private String studentResponse;
 	@Column(name = "SUBMITTED")
+	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
 	
 	
