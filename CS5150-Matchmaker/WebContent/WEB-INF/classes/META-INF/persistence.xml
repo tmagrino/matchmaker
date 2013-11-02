@@ -10,6 +10,9 @@
 		<class>model.Major</class>
 		<class>model.Minor</class>
 		<class>model.Application</class>
+		<class>model.Experience</class>
+		<class>model.StudentSettings</class>
+		<class>model.Transcript</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>

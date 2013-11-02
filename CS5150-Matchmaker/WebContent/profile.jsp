@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+ <%@page import="java.util.*,model.Student, javax.persistence.*,model.GetStudentInfo"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -17,7 +18,8 @@
     <!--[if gt IE 9]><!--> <body> <!--<![endif]-->
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
-			<li>Welcome, Jane Doe</li>
+		<%Student s = GetStudentInfo.maxGPA(); %>
+			<li>Welcome, <%=s.getName() %></li>
 			<li class="login-link"><a href="#">sign out</a></li>
 		</ul>
 	</div>
@@ -47,17 +49,18 @@
 						<div class="photo-info clearfix">
 							<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
 							<div class="info">
-								<h2>Jane Doe</h2>
+							
+								<h2><%=s.getName() %></h2>
 								<p>Email: jd322@cornell.edu</p>
 								<p>Major: Computer Science</p>
 								<p>Minor: Music</p>
-								<p>Year of Graduation: 2015</p>
+								<p>Year: <%=s.getYear() %></p>
 								<p>School: College of Engineering</p>
 							</div>
 						</div>
 						<h2 class="subheading">Application Information</h2>	
 						<div class="application-info">
-							<p>GPA: 3.5</p>
+							<p>GPA: <%=s.getGpa() %></p>
 							<p>Skills: Java, C++, Python</p>
 							<p>Research Interests: Machine Learning</p>
 						</div>

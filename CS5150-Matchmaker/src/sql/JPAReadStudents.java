@@ -15,7 +15,7 @@ public class JPAReadStudents {
 		@SuppressWarnings("unchecked")
 		List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
 		for (Student st : mylist) {
-			System.out.println(st);
+			System.out.println(st.getName());
 		}
 	}
 }
