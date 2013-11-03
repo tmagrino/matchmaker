@@ -40,11 +40,20 @@ import java.util.List;
 @Entity(name = "INTEREST")
 public class Interest {
 	@Id @Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(name="INTEREST")
 	private String description;
 	
 	@ManyToMany(mappedBy = "interests")
 	private List<Student> students;
+	
+	public Interest() {
+		
+	}
+	
+	public Interest(String name) {
+		this.description = name;
+	}
 	
 }

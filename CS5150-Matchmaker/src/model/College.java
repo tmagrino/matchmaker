@@ -39,6 +39,7 @@ import java.util.List;
 @Entity(name = "COLLEGE")
 public class College {
 	@Id @Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(name="COLLEGE_SCHOOL")
 	private String description;
@@ -46,17 +47,11 @@ public class College {
 	@ManyToMany(mappedBy = "colleges")
 	private List<Student> students;
 	
+	public College() {
+		
+	}
+	
+	public College(String name) {
+		this.description = name;
+	}
 }
-
-
-/*
-public enum College {
-	College_of_Agriculture_and_Life_Science,
-	College_of_Architecture_Art_and_Planning,
-	College_of_Arts_and_Sciences,
-	College_of_Engineering,
-	School_of_Hotel_Administration,
-	College_of_Human_Ecology,
-	School_of_Industrial_and_Labor_Relations,
-}
-*/
