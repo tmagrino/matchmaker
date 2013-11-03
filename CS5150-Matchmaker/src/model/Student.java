@@ -124,6 +124,15 @@ public class Student implements Serializable {
 		this.year = Year.Junior;
 	}
 	
+	public Student(String name, String netid, double gpa, String webpage, Year year) {
+		this.name = name;
+		this.netID = netid;
+		this.gpa = gpa;
+		this.webpage = webpage;
+		this.version = 1;
+		this.year = year;
+	}
+	
 	public long getId() {
 		return id;
 	}

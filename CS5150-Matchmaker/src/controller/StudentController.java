@@ -71,8 +71,9 @@ public class StudentController {
 	public void RemoveSkill(Student stud, String skil) {
 		
 	}
-	
-	
-	
+
+	public void saveStudent(Student stud) {
+		
+	}
 	
 }
