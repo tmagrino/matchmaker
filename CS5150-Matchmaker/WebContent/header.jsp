@@ -54,7 +54,7 @@
 								<a href="student-projects.jsp">My Projects</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("students")){ %>class="selected"<% } %>>
-								<a href="#">Students</a>
+								<a href="invite-students.jsp">Students</a>
 							</li>
 						<% } %>
 					</ul>
