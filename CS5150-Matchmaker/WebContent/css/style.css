@@ -183,7 +183,8 @@ input[name='gpa']{
 }
 
 .status .pending,
-.status .apply{
+.status .apply,
+.status .invite{
 	background-color: #388E8E;
 }
 .status .accepted{
@@ -207,7 +208,7 @@ input[name='gpa']{
 .project-info .delete{
 	background-color: #E80000;
 	height: 20px;
-	width: 20px;
+	width: 55px;
 	text-align: center;
 	color: white;
 }
