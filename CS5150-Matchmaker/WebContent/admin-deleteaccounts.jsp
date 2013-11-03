@@ -17,7 +17,7 @@
     <!--[if gt IE 9]><!--> <body> <!--<![endif]-->
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
-			<li>Welcome, Bob Smith</li>
+			<li>Welcome, Jane Doe</li>
 			<li class="login-link"><a href="#">sign out</a></li>
 		</ul>
 	</div>
@@ -28,8 +28,8 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a href="admin-addaccounts.jsp" class="selected">Add Account</a></li>
-							<li><a href="admin-deleteaccounts.jsp">Delete Account</a></li>
+							<li class="first"><a href="admin-addaccounts.jsp">Add Account</a></li>
+							<li><a href="admin-deleteaccounts.jsp" class="selected">Delete Account</a></li>
 							<li><a href="admin-updateaccounts.jsp">Update Account</a></li>
 						</ul>
 					</div>
@@ -42,31 +42,35 @@
 					<div class="content">
 					<form>
 						<h1>Accounts</h1>
-						<h3 class="subheading">&nbsp;Add Account</h3>
+						<h3 class="subheading">&nbsp;Delete Account</h3>
 						<ul class="project-list">
 							<li class="clearfix">
 								<div class="accounts">
-								 <table cellspacing=5 cellpadding=5 align=center border=0>
-								 	<tr><th><b><font size="4">Name :</font></b></th>
-								 		<td><input type="text" value="John Doe" size=35/></td>
-									</tr>
-									<tr><th><b><font size="4">Net ID :</font></b></th>
-								 		<td><input type="text" value="jd255" size=35/></td>
+								 <table cellspacing=1 cellpadding=5 align=center border=0>
+								 	<tr><td><font size ="4"><b>Search By Net ID : </b></font><input type="text" value="jd255" size=35/>
+								 	<input type="Submit" value="Search" size=20  style="width: 10em; height:2em"/></td>
 									</tr>
 									<tr>
-									 <th><b><font size="4">Role :</font></b></th>
-									 <td>
-								 		<input type="radio" name="role" value="Student" checked="checked"/>Student &nbsp;&nbsp;
-								 		<input type="radio" name="role" value="Researcher"/>Researcher
-								 	</td>
-									</tr>
+									<td><table cellspacing=5 cellpadding=5>
 									<tr>
-										<td colspan=2 align="center"><input type="Submit" value="Submit" size=20  style="width: 10em; height:2em"/></td>
+										<td>
+											<div class="status">
+												<p class="deleted">Delete</p>
+											</div>
+										<img src="blank.png"/>
+																	
+										
+										</td>
+										<td><p><b>Name : </b>Jonathan Rose</p><p><b>Net ID : </b> jd255</p></td>		
+										</tr>
+									</table>
+
+									</td>
 									</tr>
 								 </table>
-								</div>							
+							</div>
 							</li>
-						</ul>
+							</ul>							
 					</form>
 					</div>				
 				</div>

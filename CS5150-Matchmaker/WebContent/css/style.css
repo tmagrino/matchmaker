@@ -177,6 +177,7 @@ input[name='gpa']{
 	border-radius: 10px; 
 	-khtml-border-radius: 10px;
 }
+
 .project-list .status a{
 	margin-left: 24px;
 	text-decoration: underline;
@@ -194,6 +195,9 @@ input[name='gpa']{
 	background-color: #FA8072;
 }
 
+.status .deleted{
+	background-color: #E23F5F;
+}
 .project-list .project-info{
 	float: right;
 	background-color: #F8F8FF;
@@ -201,6 +205,11 @@ input[name='gpa']{
 	padding-left: 21px;
 }
 
+.accounts{
+	float: right;
+	width: 535px;
+	padding-left: 21px;
+}
 .project-list li{
 	margin-bottom: 25px;
 }

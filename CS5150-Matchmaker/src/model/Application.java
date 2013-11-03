@@ -26,10 +26,10 @@ public class Application implements Serializable {
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn
 	private Student studentApplicant;
-	@ManyToOne(fetch = FetchType.LAZY) 
+	@ManyToOne
 	@JoinColumn(name = "OWNER_ID")
 	private Project applicationProject;
 	@Column(name = "STATUS")
