@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,9 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import model.College;
-import model.Major;
 
 public class CollegeController {
 

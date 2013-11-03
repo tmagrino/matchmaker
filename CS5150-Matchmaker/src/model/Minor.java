@@ -58,4 +58,8 @@ public class Minor {
 	public String getDescription() {
 		return this.description;
 	}
+	
+	void setDescription(String name) {
+		this.description = name;
+	}
 }

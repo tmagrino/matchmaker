@@ -1,4 +1,4 @@
-package controller;
+package model;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -6,8 +6,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-
-import model.Skill;
 
 public class SkillController {
 
@@ -22,7 +20,8 @@ public class SkillController {
 		for (Skill m : skls) {
 			skills.add(m.getDescription());
 		}
-		
+		Student s = new Student();
 		return (String[]) skills.toArray();
+		
 	}
 }
