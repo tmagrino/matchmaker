@@ -73,7 +73,13 @@ public class StudentController {
 	}
 
 	public void saveStudent(Student stud) {
-		
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
+        tx.begin();
+        em.persist(stud);
+        tx.commit();
 	}
 	
 }

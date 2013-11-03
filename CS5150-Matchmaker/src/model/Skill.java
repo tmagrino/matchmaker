@@ -53,4 +53,8 @@ public class Skill {
 	public Skill(String name) {
 		this.description = name;
 	}
+	
+	public String getDescription() {
+		return this.description;
+	}
 }

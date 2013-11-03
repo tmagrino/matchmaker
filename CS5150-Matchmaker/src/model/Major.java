@@ -54,4 +54,8 @@ public class Major {
 	public Major(String name) {
 		this.description = name;
 	}
+	
+	public String getDescription() {
+		return this.description;
+	}
 }
