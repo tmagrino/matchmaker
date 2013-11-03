@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /* 
@@ -24,10 +26,10 @@ public class Application implements Serializable {
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "OWNER_ID")
+	@ManyToOne
+	@JoinColumn
 	private Student studentApplicant;
-	@ManyToOne(fetch = FetchType.LAZY) 
+	@ManyToOne
 	@JoinColumn(name = "OWNER_ID")
 	private Project applicationProject;
 	@Column(name = "STATUS")
@@ -35,6 +37,7 @@ public class Application implements Serializable {
 	@Column(name = "STUD_DATA")
 	private String studentResponse;
 	@Column(name = "SUBMITTED")
+	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
 	
 	

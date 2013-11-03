@@ -32,7 +32,7 @@ import java.util.List;
  * Take another look at the constructor(s)
  */
 @Entity(name = "STUDENT")
-@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
+//@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -48,7 +48,6 @@ public class Student implements Serializable {
 	private double gpa;
 	@Column(name = "WEBPAGE", nullable = true)
 	private String webpage;
-	@Embedded
 	@Column(name = "YEAR")
 	private Year year;
 	// COLLEGE
@@ -94,7 +93,7 @@ public class Student implements Serializable {
 	// Interests
 	@ManyToMany
 	@JoinTable(
-			name = "STUDENTS<->INTERESTS_TABLE",
+			name = "STUDENTS_INTERESTS_TABLE",
 			joinColumns = {@JoinColumn(name="STUD_ID", referencedColumnName="ID")},
 			inverseJoinColumns = {@JoinColumn(name="INTER_ID", referencedColumnName="ID")}
 	)
@@ -116,10 +115,13 @@ public class Student implements Serializable {
 		
 	}
 	
-	public Student(long id, String name, double gpa) {
-		this.id = id;
-		this.name = name;
-		this.gpa = gpa;	
+	public Student(String anything) {
+		this.gpa = 2.0;
+		this.name = "JOE BOB";
+		this.netID = "JB20";
+		this.version = 1;
+		this.webpage = "www.www.com";
+		this.year = Year.Junior;
 	}
 	
 	public long getId() {

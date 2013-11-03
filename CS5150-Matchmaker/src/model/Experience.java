@@ -13,7 +13,9 @@ import java.util.List;
  */
 @Embeddable
 public class Experience {
+	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	private String jobTitle;
 	private String location;

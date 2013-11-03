@@ -4,6 +4,15 @@
 		<class>model.Project</class>
 		<class>model.Researcher</class>
 		<class>model.Student</class>
+		<class>model.Skill</class>
+		<class>model.Interest</class>
+		<class>model.College</class>
+		<class>model.Major</class>
+		<class>model.Minor</class>
+		<class>model.Application</class>
+		<class>model.Experience</class>
+		<class>model.StudentSettings</class>
+		<class>model.Transcript</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>
@@ -11,6 +20,7 @@
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.schema-generation.drop-source" value="script-then-metadata"/>
 			<property name="eclipselink.orm.validate.schema" value="false"/>
+			<property name="javax.persistence.schema-generation.database.action" value="create"/>
 		</properties>
 	</persistence-unit>
 </persistence>
