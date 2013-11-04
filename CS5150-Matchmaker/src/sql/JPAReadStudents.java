@@ -11,7 +11,7 @@ public class JPAReadStudents {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		EntityManager em = emf.createEntityManager();
 
-		String query = "select o from STUDENT o";
+		String query = "select * from STUDENT";
 		@SuppressWarnings("unchecked")
 		List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
 		for (Student st : mylist) {

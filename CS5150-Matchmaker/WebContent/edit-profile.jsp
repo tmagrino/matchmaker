@@ -1,17 +1,20 @@
 <jsp:include page="header.jsp">
-    <jsp:param name="stud_or_prof" value="prof"/>
-    <jsp:param name="sidebar_type" value="prof-profile"/>
-    <jsp:param name="sidebar_selected" value="view"/>
+    <jsp:param name="stud_or_prof" value="stud"/>
+    <jsp:param name="sidebar_type" value="stud-profile"/>
+    <jsp:param name="sidebar_selected" value="edit"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
+<%@page import="java.util.*,model.Student, model.StudentController"%>
 <div class="content">
+	<%StudentController controller = new StudentController();
+	 Student s = controller.getStudentByNetID("jb20"); %>
 	<h1>My Profile</h1>
 		<h2 class="subheading">General Information</h2>
-		<form name="profile-form" action="/">
+		<form name="profile-form" action="savechanges.jsp" method="GET">
 			<div class="photo-info clearfix">
 				<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
 				<div class="info">
-					<h2>Jane Doe</h2>
+					<h2><%=s.getName() %></h2>
 					<p class="required"><label for="email">Email</label><input name="email" value="jd322@cornell.edu" type="text"></input></p>
 					<p class="required"><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
 					<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>

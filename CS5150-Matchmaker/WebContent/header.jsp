@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.*,model.Student, model.StudentController"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +20,10 @@
     <!--[if gt IE 9]><!--> <body> <!--<![endif]-->
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
-			<li>Welcome, Bob Smith</li>
+		
+			<% StudentController controller = new StudentController();
+		 Student s = controller.getStudentByNetID("jb20");%>
+			<li>Welcome, <%=s.getName() %></li>
 			<li class="login-link"><a href="#">sign out</a></li>
 		</ul>
 	</div>

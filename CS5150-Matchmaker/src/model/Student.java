@@ -46,8 +46,8 @@ public class Student implements Serializable {
 	private String netID;
 	@Column(name = "GPA", nullable = false)
 	private double gpa;
-	@Column(name = "WEBPAGE", nullable = true)
-	private String webpage;
+	@Column(name = "email", nullable = false)
+	private String email;
 	@Column(name = "YEAR")
 	private Year year;
 	// COLLEGE
@@ -99,8 +99,14 @@ public class Student implements Serializable {
 	)
 	private List<Interest> interests;
 	// Transcript
+	@ElementCollection  
+	@CollectionTable (
+			name = "CLASSES_TABLE",
+			joinColumns = @JoinColumn(
+					name = "OWNER_ID")
+			)
 	@Embedded
-	private Transcript transcript;
+	private List<Course> transcript;
 	@OneToMany(mappedBy = "studentApplicant")
 	private List<Application> applications;
 	@Embedded
@@ -120,131 +126,253 @@ public class Student implements Serializable {
 		this.name = "JOE BOB";
 		this.netID = "JB20";
 		this.version = 1;
-		this.webpage = "www.www.com";
+		this.email = "billybob@cornell.edu";
 		this.year = Year.Junior;
 	}
-	
+
+	public Student(String name, String netID, double gpa, String email,
+			Year year, List<College> colleges, List<Major> majors,
+			List<Minor> minors, List<Skill> skills,
+			List<Experience> priorExperience, List<Interest> interests,
+			List<Course> transcript) {
+		this.name = name;
+		this.netID = netID;
+		this.gpa = gpa;
+		this.email = email;
+		this.year = year;
+		this.colleges = colleges;
+		this.majors = majors;
+		this.minors = minors;
+		this.skills = skills;
+		this.priorExperience = priorExperience;
+		this.interests = interests;
+		this.transcript = transcript;
+		this.version = 1;
+	}
+
+	/**
+	 * @return the id
+	 */
 	public long getId() {
 		return id;
 	}
-	
-	public void setId(long id) {
-		this.id = id;
-	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
+	/**
+	 * @return the name
+	 */
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
+	/**
+	 * @return the netID
+	 */
 	public String getNetID() {
 		return netID;
 	}
 
-	public void setNetID(String netID) {
-		this.netID = netID;
-	}
-
-	public Year getYear() {
-		return year;
-	}
-
-	public void setYear(Year year) {
-		this.year = year;
-	}
-
-	public List<College> getColleges() {
-		return this.colleges;
-	}
-
-	public void setColleges(List<College> colleges) {
-		this.colleges = colleges;
-	}
-
+	/**
+	 * @return the gpa
+	 */
 	public double getGpa() {
 		return gpa;
 	}
 
-	public void setGpa(double gpa) {
-		this.gpa = gpa;
+	/**
+	 * @return the webpage
+	 */
+	public String getWebpage() {
+		return email;
 	}
 
+	/**
+	 * @return the year
+	 */
+	public Year getYear() {
+		return year;
+	}
+
+	/**
+	 * @return the colleges
+	 */
+	public List<College> getColleges() {
+		return colleges;
+	}
+
+	/**
+	 * @return the majors
+	 */
 	public List<Major> getMajors() {
 		return majors;
 	}
 
-	public void setMajors(List<Major> majors) {
-		this.majors = majors;
-	}
-
+	/**
+	 * @return the minors
+	 */
 	public List<Minor> getMinors() {
 		return minors;
 	}
 
-	public void setMinors(List<Minor> minors) {
-		this.minors = minors;
-	}
-
-	public Transcript getTranscript() {
-		return transcript;
-	}
-
-	public void setTranscript(Transcript transcript) {
-		this.transcript = transcript;
-	}
-
+	/**
+	 * @return the skills
+	 */
 	public List<Skill> getSkills() {
 		return skills;
 	}
 
-	public void setSkills(List<Skill> skills) {
-		this.skills = skills;
-	}
-
+	/**
+	 * @return the priorExperience
+	 */
 	public List<Experience> getPriorExperience() {
 		return priorExperience;
 	}
 
-	public void setPriorExperience(List<Experience> priorExperience) {
-		this.priorExperience = priorExperience;
-	}
-
-	public List<Application> getAppliedProjects() {
-		return applications;
-	}
-
-	public void setAppliedProjects(List<Application> appliedProjects) {
-		this.applications = appliedProjects;
-	}
-
-	public String getWebpage() {
-		return webpage;
-	}
-
-	public void setWebpage(String webpage) {
-		this.webpage = webpage;
-	}
-
+	/**
+	 * @return the interests
+	 */
 	public List<Interest> getInterests() {
 		return interests;
 	}
 
-	public void setInterests(List<Interest> interests) {
-		this.interests = interests;
+	/**
+	 * @return the transcript
+	 */
+	public List<Course> getTranscript() {
+		return transcript;
 	}
 
+	/**
+	 * @return the applications
+	 */
+	public List<Application> getApplications() {
+		return applications;
+	}
+
+	/**
+	 * @return the settings
+	 */
 	public StudentSettings getSettings() {
 		return settings;
 	}
 
-	public void setSettings(StudentSettings settings) {
+	/**
+	 * @return the version
+	 */
+	public long getVersion() {
+		return version;
+	}
+
+	/**
+	 * @param id the id to set
+	 */
+	void setId(long id) {
+		this.id = id;
+	}
+
+	/**
+	 * @param name the name to set
+	 */
+	void setName(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * @param netID the netID to set
+	 */
+	void setNetID(String netID) {
+		this.netID = netID;
+	}
+
+	/**
+	 * @param gpa the gpa to set
+	 */
+	void setGpa(double gpa) {
+		this.gpa = gpa;
+	}
+
+	/**
+	 * @param webpage the webpage to set
+	 */
+	void setWebpage(String webpage) {
+		this.email = webpage;
+	}
+
+	/**
+	 * @param year the year to set
+	 */
+	void setYear(Year year) {
+		this.year = year;
+	}
+
+	/**
+	 * @param colleges the colleges to set
+	 */
+	void setColleges(List<College> colleges) {
+		this.colleges = colleges;
+	}
+
+	/**
+	 * @param majors the majors to set
+	 */
+	void setMajors(List<Major> majors) {
+		this.majors = majors;
+	}
+
+	/**
+	 * @param minors the minors to set
+	 */
+	void setMinors(List<Minor> minors) {
+		this.minors = minors;
+	}
+
+	/**
+	 * @param skills the skills to set
+	 */
+	void setSkills(List<Skill> skills) {
+		this.skills = skills;
+	}
+
+	/**
+	 * @param priorExperience the priorExperience to set
+	 */
+	void setPriorExperience(List<Experience> priorExperience) {
+		this.priorExperience = priorExperience;
+	}
+
+	/**
+	 * @param interests the interests to set
+	 */
+	void setInterests(List<Interest> interests) {
+		this.interests = interests;
+	}
+
+	/**
+	 * @param transcript the transcript to set
+	 */
+	void setTranscript(List<Course> transcript) {
+		this.transcript = transcript;
+	}
+
+	/**
+	 * @param applications the applications to set
+	 */
+	void setApplications(List<Application> applications) {
+		this.applications = applications;
+	}
+
+	/**
+	 * @param settings the settings to set
+	 */
+	void setSettings(StudentSettings settings) {
 		this.settings = settings;
-	}	
+	}
+
+	/**
+	 * @param version the version to set
+	 */
+	void setVersion(long version) {
+		this.version = version;
+	}
+	
+	
 }

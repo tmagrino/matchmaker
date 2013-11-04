@@ -56,4 +56,11 @@ public class Interest {
 		this.description = name;
 	}
 	
+	public String getDescription() {
+		return this.description;
+	}
+	
+	void setDescription(String name) {
+		this.description = name;
+	}
 }
