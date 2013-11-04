@@ -45,7 +45,7 @@
 					</ul>
 					<div class="content">
 						<h1>My Profile</h1>
-						<h2 class="subheading">General Information!!!</h2>
+						<h2 class="subheading">General Information</h2>
 						<div class="photo-info clearfix">
 							<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
 							<div class="info">
