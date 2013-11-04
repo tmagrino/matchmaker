@@ -9,19 +9,23 @@ import javax.persistence.Persistence;
 
 public class YearController {
 
-	public String[] getYears() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-      
-        String query = "select * from year";
-		@SuppressWarnings("unchecked")
-		List<Year> yrs = (List<Year>) em.createQuery(query).getResultList();
-		List<String> years = new LinkedList<String>();
-		for (Year y : yrs) {
-			years.add(y.getDescription());
+	public Year getYear(String name) {
+		String yr = name.toUpperCase();
+		switch (yr) {
+			case "FRESHMAN":
+				return Year.Freshman;
+			case "SOPHOMORE":
+				return Year.Sophomore;
+			case "JUNIOR":
+				return Year.Junior;
+			case "SENIOR":
+				return Year.Senior;
+			case "FIFTH YEAR UNDERGRAD":
+				return Year.Fifth_Year_Undergrad;
+			case "PHD":
+				return Year.PhD;
+			default:
+				return null;
 		}
-		
-		return (String[]) years.toArray();
-		
 	}
 }

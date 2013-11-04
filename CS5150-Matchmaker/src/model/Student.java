@@ -101,7 +101,7 @@ public class Student implements Serializable {
 	// Transcript
 	@ElementCollection  
 	@CollectionTable (
-			name = "EXPERIENCES_TABLE",
+			name = "CLASSES_TABLE",
 			joinColumns = @JoinColumn(
 					name = "OWNER_ID")
 			)
