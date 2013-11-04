@@ -13,7 +13,7 @@
 								<p>Email: bcs575@cornell.edu</p>
 								<p><a href="#">www.cs.cornell.edu/bsmith</a></p>
 								<p>Department of Computer Science</p>
-								<p>Specialization in Machine Learning</p>
+								<p>Research Area in Machine Learning</p>
 							</div>
 						</div>
 					</div>				

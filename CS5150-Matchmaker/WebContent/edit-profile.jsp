@@ -19,7 +19,7 @@
 					<p class="required"><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
 					<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
 					<p class="required"><label for="grad-year">Year of Graduation</label><input name="grad-year" type="text"></input></p>
-					<p class="required"><label for="school">School</label><input name="school" type="text"></input></p>
+					<p class="required"><label for="school">College</label><input name="school" type="text"></input></p>
 				</div>
 			</div>
 			<h2 class="subheading">Application Information</h2>	
