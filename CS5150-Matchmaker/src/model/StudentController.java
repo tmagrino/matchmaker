@@ -9,12 +9,13 @@ import javax.persistence.Persistence;
 
 public class StudentController {
 	
+	
 	public Student getStudentByNetID(String netid) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         
-        String query = "select * from student s where s.netid = \"" + netid +"\"";
+        String query = "select s from STUDENT s where s.netID = \"" + netid +"\"";
         List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
         try {
         	return mylist.get(0);
@@ -29,7 +30,7 @@ public class StudentController {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         
-        String query = "select * from student s where s.netid = \"" + name +"\"";
+        String query = "select s from student s where s.netid = \"" + name +"\"";
         List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
         try {
         	return mylist.get(0);
@@ -63,7 +64,7 @@ public class StudentController {
         EntityTransaction tx = em.getTransaction();
         
         tx.begin();
-        String deleteQuery = "delete from student where id = " + stud.getId();
+        String deleteQuery = "delete from STUDENT where id = " + stud.getId();
         em.createQuery(deleteQuery);
         em.persist(stud);
         tx.commit();
