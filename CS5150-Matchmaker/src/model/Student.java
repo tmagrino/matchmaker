@@ -46,8 +46,8 @@ public class Student implements Serializable {
 	private String netID;
 	@Column(name = "GPA", nullable = false)
 	private double gpa;
-	@Column(name = "WEBPAGE", nullable = true)
-	private String webpage;
+	@Column(name = "email", nullable = false)
+	private String email;
 	@Column(name = "YEAR")
 	private Year year;
 	// COLLEGE
@@ -126,11 +126,11 @@ public class Student implements Serializable {
 		this.name = "JOE BOB";
 		this.netID = "JB20";
 		this.version = 1;
-		this.webpage = "www.www.com";
+		this.email = "billybob@cornell.edu";
 		this.year = Year.Junior;
 	}
 
-	public Student(String name, String netID, double gpa, String webpage,
+	public Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,
 			List<Experience> priorExperience, List<Interest> interests,
@@ -138,7 +138,7 @@ public class Student implements Serializable {
 		this.name = name;
 		this.netID = netID;
 		this.gpa = gpa;
-		this.webpage = webpage;
+		this.email = email;
 		this.year = year;
 		this.colleges = colleges;
 		this.majors = majors;
@@ -182,7 +182,7 @@ public class Student implements Serializable {
 	 * @return the webpage
 	 */
 	public String getWebpage() {
-		return webpage;
+		return email;
 	}
 
 	/**
@@ -294,7 +294,7 @@ public class Student implements Serializable {
 	 * @param webpage the webpage to set
 	 */
 	void setWebpage(String webpage) {
-		this.webpage = webpage;
+		this.email = webpage;
 	}
 
 	/**
