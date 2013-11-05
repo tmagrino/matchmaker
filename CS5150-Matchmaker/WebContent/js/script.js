@@ -38,7 +38,7 @@ function initAutosuggest()
 	
 	
 	if(skillsInput.length){
-		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: ""});
+		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "", asHtmlID: "skills"});
 	}
 	if(researchInput.length){
 		researchInput.autoSuggest(researchData.items, {selectedItemProp: "name", searchObjProps: "name", startText: ""});
@@ -83,11 +83,23 @@ function handleSingleCheckbox(el){
 	});
 }
 
+function handleAddCourse(){
+	var addbtn = $("#add-course");
+	if(addbtn.length == 0) {return;}
+	var courseTable = $("#profile-courses");
+	var tableRowHtml = courseTable.find("tr").html();
+	addbtn.click(function(){
+		courseTable.append("<tr>"+tableRowHtml+"</tr>");
+		initSideHeight();
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	doPagination();
 	handleFilterText();
 	handleFilterCheckboxes();
+	handleAddCourse();
 	initSideHeight();
 });
 

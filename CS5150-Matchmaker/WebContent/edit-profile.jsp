@@ -27,6 +27,44 @@
 				<p class="required"><label for="gpa">GPA</label><input name="gpa" type="text" maxlength="4"></input></p>
 				<p><label for="skills">Skills</label><input name="skills" type="text"></input></p>
 				<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
+				<h3>Courses</h3>
+				<table id="profile-courses">
+					<input type="hidden" name="nvals" value="5"></input>
+					<% for(int i=0;i<5;i++){ %>
+						<tr>
+							<td>
+								<p>
+									<label for="semester-<%=i%>">Semester</label>
+									<select name="semester-<%=i%>">
+										<option value="fall2013">Fall 2013</option>
+										<option value="spring2013">Spring 2013</option>
+										<option value="fall2012">Fall 2012</option>
+										<option value="spring2012">Spring 2012</option>
+									</select>
+								</p>
+							</td>
+							<td>
+								<p>
+									<label for="courseno-<%=i%>">Course Number</label>
+									<input name="courseno-<%=i%>" type="text"></input>
+								</p>
+							</td>
+							<td>
+								<p>
+									<label for="coursename-<%=i%>">Course Name</label>
+									<input name="coursename-<%=i%>" type="text"></input>
+								</p>
+							</td>
+							<td>
+								<p>
+									<label for="grade-<%=i%>">Grade</label>
+									<input name="grade-<%=i%>" type="text"></input>
+								</p>
+							</td>
+						</tr>
+					<% } %>			
+				</table>
+				<button id="add-course" type="button">Add Course</button>	
 			</div>
 			<input type="submit" value="Save Changes"></input>
 		</form>
