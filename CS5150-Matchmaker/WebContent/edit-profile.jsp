@@ -4,10 +4,15 @@
     <jsp:param name="sidebar_selected" value="edit"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.StudentController"%>
+<%@page import="java.util.*,model.*"%>
 <div class="content">
 	<%StudentController controller = new StudentController();
-	 Student s = controller.getStudentByNetID("jb20"); 
+	 Student s = controller.getStudentByNetID("jb20");
+	 List<Minor> minors = MinorController.getMinorList();
+	 List<Major> majors = MajorController.getMajorList();
+	 List<Skill> skills = SkillController.getSkillList();
+	 List<Interest> interests = InterestController.getInterestList();
+	 List<College> colleges = CollegeController.getCollegeList();
 		 %>
 	<h1>My Profile</h1>
 		<h2 class="subheading">General Information</h2>
