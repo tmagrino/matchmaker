@@ -54,9 +54,9 @@ public class StudentController {
 		stud.setMajors(majors);
 		stud.setMinors(minors);
 		stud.setSkills(skills);
-		stud.setPriorExperience(priorExperience);
+		//stud.setPriorExperience(priorExperience);
 		stud.setInterests(interests);
-		stud.setTranscript(transcript);
+		//stud.setTranscript(transcript);
 		stud.setVersion(stud.getVersion() + 1);
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

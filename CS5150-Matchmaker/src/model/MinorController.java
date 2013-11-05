@@ -39,9 +39,9 @@ public class MinorController {
 	}
 	
 	public static List<Minor> parseMinor(String minors){
-		
+		if (minors == "") return new ArrayList<Minor>();
 		String [] minorArray = minors.split(",");
-		List<Minor> minorList = new ArrayList();
+		List<Minor> minorList = new ArrayList<Minor>();
 		for (String m : minorArray){
 			if (m != "") minorList.add(new Minor(m));
 		}
