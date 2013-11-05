@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class CollegeController {
 
 	public static String[] getColleges() {
@@ -50,5 +54,25 @@ public class CollegeController {
 				if (c != "") collegeList.add(new College(c));
 			}
 			return collegeList;
+		}
+	 public static JSONArray getCollegeJson() {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	        EntityManager em = emf.createEntityManager();
+	      
+	        String query = "select c from COLLEGE";
+			@SuppressWarnings("unchecked")
+			List<College> colleges = (List<College>) em.createQuery(query).getResultList();
+			JSONArray jsonArray = new JSONArray();
+			for (College c : colleges){
+				JSONObject jsonObject= new JSONObject();
+				try {
+					jsonObject.put(String.valueOf(c.getId()), c.getDescription());
+					jsonArray.put(jsonObject);
+				} catch (JSONException e) {
+					
+					e.printStackTrace();
+				}
+			}
+			return jsonArray;
 		}
 }
