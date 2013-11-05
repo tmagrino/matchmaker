@@ -13,7 +13,7 @@ public class SkillController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from skill";
+        String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
 		List<String> skills = new LinkedList<String>();
@@ -28,7 +28,7 @@ public class SkillController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from skill";
+        String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
 		return skls;

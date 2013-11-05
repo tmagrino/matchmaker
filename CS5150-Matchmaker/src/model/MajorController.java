@@ -14,7 +14,7 @@ public class MajorController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from major";
+        String query = "select m from MAJOR m";
 		@SuppressWarnings("unchecked")
 		List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
 		List<String> majors = new LinkedList<String>();
@@ -29,7 +29,7 @@ public class MajorController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from major";
+        String query = "select m from MAJOR m";
 		@SuppressWarnings("unchecked")
 		List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
 		
