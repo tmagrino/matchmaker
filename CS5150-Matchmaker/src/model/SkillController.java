@@ -31,8 +31,16 @@ public class SkillController {
         String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
-		return skls;
-
-		
+		return skls;	
+	}
+	
+	public static Skill getSkill(long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select s from SKILL s where s.id = " + id;
+		@SuppressWarnings("unchecked")
+		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
+		return skls.get(0);	
 	}
 }

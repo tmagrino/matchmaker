@@ -33,4 +33,14 @@ public class MinorController {
 		return mins;
 	}
 	
+	public static Minor getMinor(long id){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select m from MINOR m where m.id = " + id;
+		@SuppressWarnings("unchecked")
+		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
+		return mins.get(0);
+	}
+	
 }

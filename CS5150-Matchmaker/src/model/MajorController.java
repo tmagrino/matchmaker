@@ -35,4 +35,15 @@ public class MajorController {
 		
 		return majs;
 	}
+	
+	public static Major getMajor(long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select m from MAJOR m where m.id = " + id;
+		@SuppressWarnings("unchecked")
+		List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
+		
+		return majs.get(0);
+	}
 }

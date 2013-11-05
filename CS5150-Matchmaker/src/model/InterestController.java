@@ -33,4 +33,13 @@ public class InterestController {
 		return ints;
 	}
 	
+	public static Interest getInterest(long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select i from INTEREST i where i.id = " + id;
+		@SuppressWarnings("unchecked")
+		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
+		return ints.get(0);
+	}
 }
