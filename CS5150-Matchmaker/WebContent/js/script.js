@@ -57,11 +57,7 @@ function initAutosuggest()
 		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "minor"});
 	}
 	if(skillsInput.length){
-<<<<<<< HEAD
-		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "", asHtmlID: "skills"});
-=======
 		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "skills"});
->>>>>>> branch 'master' of https://github.com/jkahuja/CS5150-Matchmaker.git
 	}
 	if(researchInput.length){
 		researchInput.autoSuggest(researchData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "research"});

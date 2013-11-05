@@ -18,12 +18,22 @@ List<Minor> minorlist= new ArrayList<Minor>();
 minorlist.add(new model.Minor(request.getParameter("minor")));
 List<Skill> slist= new ArrayList<Skill>();
 slist.add(new Skill(request.getParameter("skill")));
+List<Course> courselist = new ArrayList<Course>();
+int nCourses = Integer.parseInt(request.getParameter("nVals"));
+for(int i = 0; i<nCourses; i++){
+	Course cobj = new Course();
+	cobj.setCoursenum(request.getParameter("coursenum-"+i));
+	cobj.setTitle(request.getParameter("title-"+i));
+	cobj.setGrade(request.getParameter("grade-"+i));
+	cobj.setSemester(request.getParameter("semester-"+i));
+	courselist.add(cobj);
+}
 
 controller.updateStudent(s, request.getParameter("name"), "jb20", 
 		Double.parseDouble(request.getParameter("gpa")),
 		request.getParameter("email"),YearController.getYear(request.getParameter("grad-year")),
 		clist, majorlist,minorlist, slist,new ArrayList<model.Experience>(),
-		new ArrayList<Interest>(),new ArrayList<Course>());
+		new ArrayList<Interest>(),courselist);
 			%>
 
 </body>
