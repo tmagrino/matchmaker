@@ -115,6 +115,46 @@ function handleAddCourse(){
 	});
 }
 
+function IsEmail(email) {
+	  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	  return regex.test(email);
+}
+
+function validateFormSubmit()
+{
+	var formEl = $("form");
+	if(formEl.length == 0){return;}
+	formEl.submit(function(e){
+		var emailEl = $("input[name=email]");
+		if(emailEl.length){
+			if(!IsEmail(emailEl.val())){
+				e.preventDefault();
+				return false;
+			}
+		}
+		var textElReq = $(".required input[type=text]").not($(".as-selections input[type=text]"));
+		var hiddenElReq = $(".required .as-selections input[type=hidden]");
+		if(textElReq.length){
+			textElReq.each(function(index, el){
+				console.log($(el).parent().html());
+				if($(el).val().length == 0){
+					e.preventDefault();
+					return false;
+				}
+			});
+		}
+		if(hiddenElReq.length){
+			hiddenElReq.each(function(index, el){
+				console.log($(el).parent().html());
+				if($(el).val().length == 0){
+					e.preventDefault();
+					return false;
+				}
+			});
+		}
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	doPagination();
@@ -122,5 +162,6 @@ $(document).ready(function(){
 	handleFilterCheckboxes();
 	handleAddCourse();
 	initSideHeight();
+	validateFormSubmit();
 });
 
