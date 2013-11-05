@@ -9,22 +9,20 @@
 </head>
 <body>
 <% Student s = new Student(); 
-StudentController controller = new StudentController();
-List<College> clist= new ArrayList<College>();
-clist.add(new College(request.getParameter("school")));
-List<Major> majorlist= new ArrayList<Major>();
-majorlist.add(new model.Major(request.getParameter("major")));
-List<Minor> minorlist= new ArrayList<Minor>();
-minorlist.add(new model.Minor(request.getParameter("minor")));
-List<Skill> slist= new ArrayList<Skill>();
-slist.add(new Skill(request.getParameter("skill")));
+	
+	List<Skill> skillList = SkillController.parseSkill(request.getParameter("as_values_skills"));
+	List<Interest> interestList = InterestController.parseInterest(request.getParameter("as_values_research"));
+	List<Major> majorList = MajorController.parseMajor(request.getParameter("as_values_major"));
+	List<Minor> minorList = MinorController.parseMinor(request.getParameter("as_values_minor"));
+// StudentController.updateStudent(s, request.getParameter("name"), "jb20", 
+// 		Double.parseDouble(request.getParameter("gpa")),
+// 		request.getParameter("email"),YearController.getYear(request.getParameter("grad-year")),
+// 		clist, majorlist,minorlist, slist,new ArrayList<model.Experience>(),
+// 		new ArrayList<Interest>(),new ArrayList<Course>());
+	for (Interest i : interestList){	%>
+	<li><%=i.getDescription() %></li>
+	<%} %>
 
-controller.updateStudent(s, request.getParameter("name"), "jb20", 
-		Double.parseDouble(request.getParameter("gpa")),
-		request.getParameter("email"),YearController.getYear(request.getParameter("grad-year")),
-		clist, majorlist,minorlist, slist,new ArrayList<model.Experience>(),
-		new ArrayList<Interest>(),new ArrayList<Course>());
-			%>
 
 </body>
 </html>

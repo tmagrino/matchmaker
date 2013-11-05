@@ -55,6 +55,10 @@ public class Major {
 		this.description = name;
 	}
 	
+	long getId(){
+		return id;
+	}
+	
 	public String getDescription() {
 		return this.description;
 	}

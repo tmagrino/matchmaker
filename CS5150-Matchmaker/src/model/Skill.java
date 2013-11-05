@@ -49,7 +49,9 @@ public class Skill {
 	public Skill() {
 		
 	}
-	
+	long getId(){
+		return id;
+	}
 	public Skill(String name) {
 		this.description = name;
 	}

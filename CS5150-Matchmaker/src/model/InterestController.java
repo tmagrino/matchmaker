@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -32,5 +33,23 @@ public class InterestController {
 		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
 		return ints;
 	}
-	
+    public static List<Interest> parseInterest(String interests){
+		
+		String [] interestArray = interests.split(",");
+		List<Interest> interestList = new ArrayList();
+		for (String i : interestArray){
+			if (i != "") interestList.add(new Interest(i));
+		}
+		return interestList;
+	}
+    public static Interest getInterest(long id) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+
+        String query = "select i from INTEREST i where i.id = " + id;
+        @SuppressWarnings("unchecked")
+        List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
+        return ints.get(0);
+    }
 }
+
