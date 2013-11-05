@@ -24,13 +24,13 @@
 					<p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
 					<p class="required"><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
 					<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
-					<p class="required"><label for="grad-year">Year of Graduation</label><input name="grad-year" type="text"></input></p>
+					<p class="required"><label for="grad-year">Year</label><input name="grad-year" value="<%=s.getYear() %>" type="text"></input></p>
 					<p class="required"><label for="school">College</label><input name="school" type="text"></input></p>
 				</div>
 			</div>
 			<h2 class="subheading">Application Information</h2>	
 			<div class="application-info">
-				<p class="required"><label for="gpa">GPA</label><input name="gpa" type="text" maxlength="4"></input></p>
+				<p class="required"><label for="gpa">GPA</label><input name="gpa" value="<%=s.getGpa() %>"type="text" maxlength="4"></input></p>
 				<p><label for="skills">Skills</label><input name="skills" type="text"></input></p>
 				<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
 				<h3>Courses</h3>

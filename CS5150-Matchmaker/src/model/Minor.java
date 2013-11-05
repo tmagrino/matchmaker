@@ -51,6 +51,10 @@ public class Minor {
 		
 	}
 	
+	long getId(){
+		return id;
+	}
+	
 	public Minor(String name) {
 		this.description = name;
 	}

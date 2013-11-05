@@ -28,4 +28,14 @@ public class YearController {
 				return null;
 		}
 	}
+	
+	public static Year getYear(long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select s from Interest s where s.id = " + id;
+		@SuppressWarnings("unchecked")
+		List<Year> skls = (List<Year>) em.createQuery(query).getResultList();
+		return skls.get(0);
+	}
 }

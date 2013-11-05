@@ -28,13 +28,21 @@ for(int i = 0; i<nCourses; i++){
 	cobj.setSemester(request.getParameter("semester-"+i));
 	courselist.add(cobj);
 }
+	
+	List<Skill> skillList = SkillController.parseSkill(request.getParameter("as_values_skills"));
+	List<Interest> interestList = InterestController.parseInterest(request.getParameter("as_values_research"));
+	List<Major> majorList = MajorController.parseMajor(request.getParameter("as_values_major"));
+	List<Minor> minorList = MinorController.parseMinor(request.getParameter("as_values_minor"));
+// StudentController.updateStudent(s, request.getParameter("name"), "jb20", 
+// 		Double.parseDouble(request.getParameter("gpa")),
+// 		request.getParameter("email"),YearController.getYear(request.getParameter("grad-year")),
+// 		clist, majorlist,minorlist, slist,new ArrayList<model.Experience>(),
+// 		new ArrayList<Interest>(),courselist);
+	for (Interest i : interestList){	%>
+	<li><%=i.getDescription() %></li>
+	<%} %>
 
-controller.updateStudent(s, request.getParameter("name"), "jb20", 
-		Double.parseDouble(request.getParameter("gpa")),
-		request.getParameter("email"),YearController.getYear(request.getParameter("grad-year")),
-		clist, majorlist,minorlist, slist,new ArrayList<model.Experience>(),
-		new ArrayList<Interest>(),courselist);
-			%>
+
 
 </body>
 </html>
