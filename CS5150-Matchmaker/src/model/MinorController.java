@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MinorController {
 
 	public static String[] getMinors() {
@@ -53,4 +57,25 @@ public class MinorController {
         List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
         return mins.get(0);
     }
+    
+    public static JSONArray getMinorJson() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select m from MINOR m";
+		@SuppressWarnings("unchecked")
+		List<Minor> minors = (List<Minor>) em.createQuery(query).getResultList();
+		JSONArray jsonArray = new JSONArray();
+		for (Minor m : minors){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put(String.valueOf(m.getId()), m.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		return jsonArray;
+	}
 }

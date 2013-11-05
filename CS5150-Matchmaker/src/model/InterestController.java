@@ -8,6 +8,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class InterestController {
 
 	public static String[] getInterests() {
@@ -51,5 +55,25 @@ public class InterestController {
         List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
         return ints.get(0);
     }
+	public static JSONArray getInterestJson() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select i from INTEREST";
+		@SuppressWarnings("unchecked")
+		List<Interest> interests = (List<Interest>) em.createQuery(query).getResultList();
+		JSONArray jsonArray = new JSONArray();
+		for (Interest i : interests){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put(String.valueOf(i.getId()), i.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		return jsonArray;
+	}
 }
 
