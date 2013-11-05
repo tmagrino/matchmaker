@@ -13,7 +13,7 @@ public class MinorController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from minor";
+        String query = "select m from MINOR m";
 		@SuppressWarnings("unchecked")
 		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
 		List<String> Minors = new LinkedList<String>();
@@ -27,7 +27,7 @@ public class MinorController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from minor";
+        String query = "select m from MINOR m";
 		@SuppressWarnings("unchecked")
 		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
 		return mins;

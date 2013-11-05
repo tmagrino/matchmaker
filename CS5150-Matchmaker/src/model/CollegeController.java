@@ -13,7 +13,7 @@ public class CollegeController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from college";
+        String query = "select c from COLLEGE c";
 		@SuppressWarnings("unchecked")
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
 		List<String> colleges = new LinkedList<String>();
@@ -27,7 +27,7 @@ public class CollegeController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from college";
+        String query = "select c from COLLEGE c";
 		@SuppressWarnings("unchecked")
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
 		return cols;

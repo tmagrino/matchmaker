@@ -13,7 +13,7 @@ public class InterestController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from interest";
+        String query = "select i from INTEREST i";
 		@SuppressWarnings("unchecked")
 		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
 		List<String> interests = new LinkedList<String>();
@@ -27,7 +27,7 @@ public class InterestController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from interest";
+        String query = "select i from INTEREST i";
 		@SuppressWarnings("unchecked")
 		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
 		return ints;
