@@ -23,5 +23,14 @@ public class InterestController {
 		
 		return (String[]) interests.toArray();
 	}
+	public static List<Interest> getInterestList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select * from interest";
+		@SuppressWarnings("unchecked")
+		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
+		return ints;
+	}
 	
 }

@@ -23,5 +23,13 @@ public class CollegeController {
 		
 		return (String[]) colleges.toArray();
 	}
-	
+	public static List<College> getCollegeList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select * from college";
+		@SuppressWarnings("unchecked")
+		List<College> cols = (List<College>) em.createQuery(query).getResultList();
+		return cols;
+	}
 }

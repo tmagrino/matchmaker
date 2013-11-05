@@ -23,5 +23,14 @@ public class MinorController {
 		
 		return (String[]) Minors.toArray();
 	}
+	public static List<Minor> getMinorList(){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select * from minor";
+		@SuppressWarnings("unchecked")
+		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
+		return mins;
+	}
 	
 }

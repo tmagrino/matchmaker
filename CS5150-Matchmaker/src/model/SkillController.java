@@ -24,4 +24,15 @@ public class SkillController {
 		return (String[]) skills.toArray();
 		
 	}
+	public static List<Skill> getSkillList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select * from skill";
+		@SuppressWarnings("unchecked")
+		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
+		return skls;
+
+		
+	}
 }
