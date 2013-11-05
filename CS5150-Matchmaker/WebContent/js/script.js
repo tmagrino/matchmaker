@@ -42,13 +42,7 @@ function initAutosuggest()
 		                		{value: "1", name: "College of Engineering"},
 		                		
 		                	]};
-	var skillsData = {items: [
-	                  		{value: "C", name: "C"},
-	                		{value: "C++", name: "C++"},
-	                		{value: "Java", name: "Java"},
-	                		{value: "Javascript", name: "Javascript"},
-	                		{value: "Python", name: "Python"}
-	                	]};
+	var skillsData = $("input[name=skills]").data("skills");
 	var researchData = {items: [
 		                  		{value: "ml", name: "Machine Learning"},
 		                		{value: "ai", name: "Artificial Intelligence"},

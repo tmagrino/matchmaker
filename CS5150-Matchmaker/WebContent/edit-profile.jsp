@@ -4,11 +4,11 @@
     <jsp:param name="sidebar_selected" value="edit"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
-<%@page import="java.util.*,model.*"%>
+<%@page import="java.util.*,model.*, org.json.JSONObject"%>
 <div class="content">
 	<%
 	 Student s = StudentController.getStudentByNetID("jb20");
-
+	JSONObject jsonSkills = SkillController.getSkillJson();
 		 %>
 	<h1>My Profile</h1>
 		<h2 class="subheading">General Information</h2>
@@ -27,7 +27,7 @@
 			<h2 class="subheading">Application Information</h2>	
 			<div class="application-info">
 				<p class="required"><label for="gpa">GPA</label><input name="gpa" value="<%=s.getGpa() %>"type="text" maxlength="4"></input></p>
-				<p><label for="skills">Skills</label><input name="skills" value="<%=s.getSkillString() %>" type="text"></input></p>
+				<p><label for="skills">Skills</label><input name="skills"  data-skills=<%= jsonSkills %> value="<%=s.getSkillString() %>" type="text"></input></p>
 				<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
 				<h3>Courses</h3>
 				<table id="profile-courses">

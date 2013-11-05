@@ -38,7 +38,7 @@ public class SkillController {
 		return skls;
 	}
 	
-	public static JSONArray getSkillJson() {
+	public static JSONObject getSkillJson() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
@@ -49,14 +49,21 @@ public class SkillController {
 		for (Skill s : skls){
 			JSONObject jsonObject= new JSONObject();
 			try {
-				jsonObject.put(String.valueOf(s.getId()), s.getDescription());
+				jsonObject.put("value", String.valueOf(s.getId()));
+				jsonObject.put("name", s.getDescription());
 				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				
 				e.printStackTrace();
 			}
 		}
-		return jsonArray;
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
 	}
 	
 	public static List<Skill> parseSkill(String skills){
