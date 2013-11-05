@@ -12,7 +12,7 @@
 									<p class="apply">Apply</p>
 								</div>
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Hide</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -23,7 +23,7 @@
 									<p class="apply">Apply</p>
 								</div>
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Hide</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -34,7 +34,7 @@
 									<p class="apply">Apply</p>
 								</div>
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Hide</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
