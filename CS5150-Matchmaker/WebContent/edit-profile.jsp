@@ -27,6 +27,15 @@
 				<p class="required"><label for="gpa">GPA</label><input name="gpa" type="text" maxlength="4"></input></p>
 				<p><label for="skills">Skills</label><input name="skills" type="text"></input></p>
 				<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
+				<table>
+				<tr>
+					<th>Course Number</th>
+					<th>Course Name</th>
+					<th>Semester</th>
+					<th>Grade</th>
+				</tr>
+				
+				</table>
 			</div>
 			<input type="submit" value="Save Changes"></input>
 		</form>
