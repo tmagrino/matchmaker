@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class SkillController {
 
-	public String[] getSkills() {
+	public static String[] getSkills() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
@@ -22,6 +22,17 @@ public class SkillController {
 		}
 		Student s = new Student();
 		return (String[]) skills.toArray();
+		
+	}
+	public static List<Skill> getSkillList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select * from skill";
+		@SuppressWarnings("unchecked")
+		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
+		return skls;
+
 		
 	}
 }

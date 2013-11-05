@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 public class MajorController {
 
-	public String[] getMajors() {
+	public static String[] getMajors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
@@ -23,5 +23,16 @@ public class MajorController {
 		}
 		
 		return (String[]) majors.toArray();
+	}
+	
+	public static List<Major> getMajorList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select * from major";
+		@SuppressWarnings("unchecked")
+		List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
+		
+		return majs;
 	}
 }

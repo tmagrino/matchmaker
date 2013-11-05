@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class YearController {
 
-	public Year getYear(String name) {
+	public static Year getYear(String name) {
 		String yr = name.toUpperCase();
 		switch (yr) {
 			case "FRESHMAN":
