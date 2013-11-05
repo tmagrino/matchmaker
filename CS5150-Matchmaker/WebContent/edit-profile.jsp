@@ -7,7 +7,8 @@
 <%@page import="java.util.*,model.Student, model.StudentController"%>
 <div class="content">
 	<%StudentController controller = new StudentController();
-	 Student s = controller.getStudentByNetID("jb20"); %>
+	 Student s = controller.getStudentByNetID("jb20"); 
+	 %>
 	<h1>My Profile</h1>
 		<h2 class="subheading">General Information</h2>
 		<form name="profile-form" action="savechanges.jsp" method="GET">

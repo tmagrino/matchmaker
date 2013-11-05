@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class InterestController {
 
-	public String[] getInterests() {
+	public static String[] getInterests() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       

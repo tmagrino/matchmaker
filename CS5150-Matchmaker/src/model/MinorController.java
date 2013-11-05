@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class MinorController {
 
-	public String[] getMinors() {
+	public static String[] getMinors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       

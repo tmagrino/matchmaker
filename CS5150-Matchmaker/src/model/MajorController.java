@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 
 public class MajorController {
 
-	public String[] getMajors() {
+	public static String[] getMajors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       

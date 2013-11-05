@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class CollegeController {
 
-	public String[] getColleges() {
+	public static String[] getColleges() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       

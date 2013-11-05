@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class SkillController {
 
-	public String[] getSkills() {
+	public static String[] getSkills() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
