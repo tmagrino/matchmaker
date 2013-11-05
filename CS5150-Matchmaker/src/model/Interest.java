@@ -52,6 +52,10 @@ public class Interest {
 		
 	}
 	
+	long getId(){
+		return id;
+	}
+	
 	public Interest(String name) {
 		this.description = name;
 	}

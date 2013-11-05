@@ -32,4 +32,13 @@ public class CollegeController {
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
 		return cols;
 	}
+	 public static College getCollege(long id) {
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+         EntityManager em = emf.createEntityManager();
+
+         String query = "select c from COLLEGE c where c.id = " + id;
+         @SuppressWarnings("unchecked")
+         List<College> cols = (List<College>) em.createQuery(query).getResultList();
+         return cols.get(0);        
+ }
 }
