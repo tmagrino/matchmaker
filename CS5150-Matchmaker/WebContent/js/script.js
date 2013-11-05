@@ -18,17 +18,36 @@ function doPagination() {
 }
 
 function initAutosuggest()
-{
+{	
+	var majorInput = $(".info input[name='major']");
+	var minorInput = $(".info input[name='minor']");
+	var collegeInput = $(".info input[name='school']");
 	var skillsInput = $(".application-info input[name='skills']");
 	var researchInput = $(".application-info input[name='research-interest']");
 	
 	if(skillsInput.length == 0 && researchInput.length == 0) {return;}
+	
+	var majorData = {items: [
+		                  		{value: "0", name: "CS"},
+		                		{value: "1", name: "Medice"},
+
+		                	]};
+	var minorData = {items: [
+			                  		{value: "0", name: "Music"},
+			                		{value: "1", name: "Statistics"},
+			                		
+			                	]};
+	var collegeData = {items: [
+		                  		{value: "0", name: "Arts & Sciences"},
+		                		{value: "1", name: "College of Engineering"},
+		                		
+		                	]};
 	var skillsData = {items: [
-	                  		{value: "0", name: "C"},
-	                		{value: "1", name: "C++"},
-	                		{value: "2", name: "Java"},
-	                		{value: "3", name: "Javascript"},
-	                		{value: "4", name: "Python"}
+	                  		{value: "C", name: "C"},
+	                		{value: "C++", name: "C++"},
+	                		{value: "Java", name: "Java"},
+	                		{value: "Javascript", name: "Javascript"},
+	                		{value: "Python", name: "Python"}
 	                	]};
 	var researchData = {items: [
 		                  		{value: "ml", name: "Machine Learning"},
@@ -36,12 +55,20 @@ function initAutosuggest()
 		                		{value: "nlp", name: "Natural Language Processing"}
 		                	]};
 	
-	
+	if(majorInput.length){
+		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "major"});
+	}
+	if(minorInput.length){
+		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "minor"});
+	}
+	if(collegeInput.length){
+		collegeInput.autoSuggest(collegeData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "college"});
+	}
 	if(skillsInput.length){
-		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: ""});
+		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "skills"});
 	}
 	if(researchInput.length){
-		researchInput.autoSuggest(researchData.items, {selectedItemProp: "name", searchObjProps: "name", startText: ""});
+		researchInput.autoSuggest(researchData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "research"});
 	}
 	
 }

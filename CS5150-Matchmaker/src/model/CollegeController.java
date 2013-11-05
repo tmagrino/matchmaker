@@ -9,11 +9,11 @@ import javax.persistence.Persistence;
 
 public class CollegeController {
 
-	public String[] getColleges() {
+	public static String[] getColleges() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select * from college";
+        String query = "select c from COLLEGE c";
 		@SuppressWarnings("unchecked")
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
 		List<String> colleges = new LinkedList<String>();
@@ -23,5 +23,22 @@ public class CollegeController {
 		
 		return (String[]) colleges.toArray();
 	}
-	
+	public static List<College> getCollegeList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select c from COLLEGE c";
+		@SuppressWarnings("unchecked")
+		List<College> cols = (List<College>) em.createQuery(query).getResultList();
+		return cols;
+	}
+	 public static College getCollege(long id) {
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+         EntityManager em = emf.createEntityManager();
+
+         String query = "select c from COLLEGE c where c.id = " + id;
+         @SuppressWarnings("unchecked")
+         List<College> cols = (List<College>) em.createQuery(query).getResultList();
+         return cols.get(0);        
+ }
 }

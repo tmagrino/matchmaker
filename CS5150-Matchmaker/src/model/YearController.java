@@ -9,7 +9,7 @@ import javax.persistence.Persistence;
 
 public class YearController {
 
-	public Year getYear(String name) {
+	public static Year getYear(String name) {
 		String yr = name.toUpperCase();
 		switch (yr) {
 			case "FRESHMAN":
@@ -27,5 +27,15 @@ public class YearController {
 			default:
 				return null;
 		}
+	}
+	
+	public static Year getYear(long id) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select s from Interest s where s.id = " + id;
+		@SuppressWarnings("unchecked")
+		List<Year> skls = (List<Year>) em.createQuery(query).getResultList();
+		return skls.get(0);
 	}
 }

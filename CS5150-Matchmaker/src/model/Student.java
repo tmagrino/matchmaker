@@ -181,7 +181,7 @@ public class Student implements Serializable {
 	/**
 	 * @return the webpage
 	 */
-	public String getWebpage() {
+	public String getEmail() {
 		return email;
 	}
 
@@ -293,8 +293,8 @@ public class Student implements Serializable {
 	/**
 	 * @param webpage the webpage to set
 	 */
-	void setWebpage(String webpage) {
-		this.email = webpage;
+	void setEmail(String email) {
+		this.email = email;
 	}
 
 	/**

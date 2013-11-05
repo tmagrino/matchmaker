@@ -40,7 +40,7 @@ public class StudentController {
         }
 	}
 	
-	public void updateStudent(Student stud, String name, String netID, double gpa, String webpage,
+	public void updateStudent(Student stud, String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,
 			List<Experience> priorExperience, List<Interest> interests,
@@ -48,7 +48,7 @@ public class StudentController {
 		stud.setName(name);
 		stud.setNetID(netID);
 		stud.setGpa(gpa);
-		stud.setWebpage(webpage);
+		stud.setEmail(email);
 		stud.setYear(year);
 		stud.setColleges(colleges);
 		stud.setMajors(majors);

@@ -4,10 +4,16 @@
     <jsp:param name="sidebar_selected" value="edit"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.StudentController"%>
+<%@page import="java.util.*,model.*"%>
 <div class="content">
 	<%StudentController controller = new StudentController();
-	 Student s = controller.getStudentByNetID("jb20"); %>
+	 Student s = controller.getStudentByNetID("jb20");
+	 List<Minor> minors = MinorController.getMinorList();
+	 List<Major> majors = MajorController.getMajorList();
+	 List<Skill> skills = SkillController.getSkillList();
+	 List<Interest> interests = InterestController.getInterestList();
+	 List<College> colleges = CollegeController.getCollegeList();
+		 %>
 	<h1>My Profile</h1>
 		<h2 class="subheading">General Information</h2>
 		<form name="profile-form" action="savechanges.jsp" method="GET">
@@ -15,16 +21,16 @@
 				<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
 				<div class="info">
 					<h2><%=s.getName() %></h2>
-					<p class="required"><label for="email">Email</label><input name="email" value="jd322@cornell.edu" type="text"></input></p>
+					<p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
 					<p class="required"><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
 					<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
-					<p class="required"><label for="grad-year">Year of Graduation</label><input name="grad-year" type="text"></input></p>
+					<p class="required"><label for="grad-year">Year</label><input name="grad-year" value="<%=s.getYear() %>" type="text"></input></p>
 					<p class="required"><label for="school">College</label><input name="school" type="text"></input></p>
 				</div>
 			</div>
 			<h2 class="subheading">Application Information</h2>	
 			<div class="application-info">
-				<p class="required"><label for="gpa">GPA</label><input name="gpa" type="text" maxlength="4"></input></p>
+				<p class="required"><label for="gpa">GPA</label><input name="gpa" value="<%=s.getGpa() %>"type="text" maxlength="4"></input></p>
 				<p><label for="skills">Skills</label><input name="skills" type="text"></input></p>
 				<p><label for="research-interest">Research Interests</label><input name="research-interest" type="text"></input></p>
 				<table>
