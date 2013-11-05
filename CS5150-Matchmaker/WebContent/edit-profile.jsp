@@ -21,7 +21,7 @@
 				<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
 				<div class="info">
 					<h2><%=s.getName() %></h2>
-					<p class="required"><label for="email">Email</label><input name="email" value="jd322@cornell.edu" type="text"></input></p>
+					<p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
 					<p class="required"><label for="major">Major</label><input name="major" value="Computer Science" type="text"></input></p>
 					<p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
 					<p class="required"><label for="grad-year">Year of Graduation</label><input name="grad-year" type="text"></input></p>
