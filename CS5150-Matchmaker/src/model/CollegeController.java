@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -41,4 +42,13 @@ public class CollegeController {
          List<College> cols = (List<College>) em.createQuery(query).getResultList();
          return cols.get(0);        
  }
+	 public static List<College> parseCollege(String colleges){
+			
+			String [] collegeArray = colleges.split(",");
+			List<College> collegeList = new ArrayList();
+			for (String c : collegeArray){
+				if (c != "") collegeList.add(new College(c));
+			}
+			return collegeList;
+		}
 }

@@ -21,8 +21,7 @@
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
 		
-			<% StudentController controller = new StudentController();
-		 Student s = controller.getStudentByNetID("jb20");%>
+			<% Student s = StudentController.getStudentByNetID("jb20");%>
 			<li>Welcome, <%=s.getName() %></li>
 			<li class="login-link"><a href="#">sign out</a></li>
 		</ul>

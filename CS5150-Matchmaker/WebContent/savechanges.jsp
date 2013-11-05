@@ -8,7 +8,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% Student s = new Student(); 
+<% StudentController.updateStudent(new Student(), request.getParameter("name"), "jb20",
+		Double.parseDouble(request.getParameter("gpa")), request.getParameter("email"),
+		YearController.getYear(request.getParameter("grad-year")), CollegeController.parseCollege(colleges), majors, minors, skills, priorExperience, interests, transcript)
+
+
 StudentController controller = new StudentController();
 List<College> clist= new ArrayList<College>();
 clist.add(new College(request.getParameter("school")));
