@@ -55,24 +55,31 @@ public class CollegeController {
 			}
 			return collegeList;
 		}
-	 public static JSONArray getCollegeJson() {
+	 public static JSONObject getCollegeJson() {
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	        EntityManager em = emf.createEntityManager();
 	      
-	        String query = "select c from COLLEGE";
+	        String query = "select c from COLLEGE c";
 			@SuppressWarnings("unchecked")
 			List<College> colleges = (List<College>) em.createQuery(query).getResultList();
 			JSONArray jsonArray = new JSONArray();
 			for (College c : colleges){
 				JSONObject jsonObject= new JSONObject();
 				try {
-					jsonObject.put(String.valueOf(c.getId()), c.getDescription());
+					jsonObject.put("value", String.valueOf(c.getId()));
+					jsonObject.put("name", c.getDescription());
 					jsonArray.put(jsonObject);
 				} catch (JSONException e) {
 					
 					e.printStackTrace();
 				}
 			}
-			return jsonArray;
+			JSONObject items_obj = new JSONObject();
+			try {
+				items_obj.put("items", jsonArray);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return items_obj;
 		}
-}
+	}

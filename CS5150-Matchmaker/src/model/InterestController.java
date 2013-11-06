@@ -55,25 +55,31 @@ public class InterestController {
         List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
         return ints.get(0);
     }
-	public static JSONArray getInterestJson() {
+	public static JSONObject getInterestJson() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
-        String query = "select i from INTEREST";
+        String query = "select i from INTEREST i";
 		@SuppressWarnings("unchecked")
 		List<Interest> interests = (List<Interest>) em.createQuery(query).getResultList();
 		JSONArray jsonArray = new JSONArray();
 		for (Interest i : interests){
 			JSONObject jsonObject= new JSONObject();
 			try {
-				jsonObject.put(String.valueOf(i.getId()), i.getDescription());
+				jsonObject.put("value", String.valueOf(i.getId()));
+				jsonObject.put("name", i.getDescription());
 				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				
 				e.printStackTrace();
 			}
 		}
-		return jsonArray;
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
 	}
 }
-

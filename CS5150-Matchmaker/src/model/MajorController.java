@@ -60,7 +60,7 @@ public class MajorController {
         
         return majs.get(0);
 	}
-	public static JSONArray getMajorJson() {
+	public static JSONObject getMajorJson() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
@@ -71,14 +71,20 @@ public class MajorController {
 		for (Major m : majors){
 			JSONObject jsonObject= new JSONObject();
 			try {
-				jsonObject.put(String.valueOf(m.getId()), m.getDescription());
+				jsonObject.put("value", String.valueOf(m.getId()));
+				jsonObject.put("name", m.getDescription());
 				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				
 				e.printStackTrace();
 			}
 		}
-		return jsonArray;
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
 	}
-
 }
