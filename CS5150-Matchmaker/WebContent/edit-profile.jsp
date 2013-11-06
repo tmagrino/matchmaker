@@ -8,9 +8,21 @@
 <div class="content">
         <%
         Student s = StudentController.getStudentByNetID("jb20");
-        JSONObject jsonSkills = SkillController.getSkillJson();
         JSONObject jsonMajor = MajorController.getMajorJson();
-                 %>
+        JSONObject jsonMinor = MinorController.getMinorJson();
+        JSONObject jsonCollege = CollegeController.getCollegeJson();
+        JSONObject jsonSkills = SkillController.getSkillJson();
+        JSONObject jsonInterest = InterestController.getInterestJson();
+        
+                 
+         %>
+        <script type="text/javascript">
+        	var majorData = <%= jsonMajor %>;
+        	var minorData = <%= jsonMinor %>;
+        	var collegeData = <%= jsonCollege %>;
+        	var skillsData = <%= jsonSkills %>;
+        	var interestData = <%= jsonInterest %>;
+        </script>
         <h1>My Profile</h1>
                 <h2 class="subheading">General Information</h2>
                 <form name="profile-form" action="savechanges.jsp" method="GET">
@@ -19,7 +31,7 @@
                                 <div class="info">
                                         <h2><%=s.getName() %></h2>
                                         <p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
-                                        <p class="required"><label for="major">Major</label><input name="major" data-major <%=jsonMajor %> value="<%=s.getMajorString() %>" type="text"></input></p>
+                                        <p class="required"><label for="major">Major</label><input name="major" data-major=<%=jsonMajor %> value="<%=s.getMajorString() %>" type="text"></input></p>
                                         <p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
                                         <p class="required"><label for="grad-year">Year</label><input name="grad-year" value="<%=s.getYear() %>" type="text"></input></p>
                                         <p class="required"><label for="school">College</label><input name="school" type="text"></input></p>
