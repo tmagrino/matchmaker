@@ -8,21 +8,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-<% Student s = new Student(); 
-	
-	List<Skill> skillList = SkillController.parseSkill(request.getParameter("as_values_skills"));
-	List<Interest> interestList = InterestController.parseInterest(request.getParameter("as_values_research"));
-	List<Major> majorList = MajorController.parseMajor(request.getParameter("as_values_major"));
-	List<Minor> minorList = MinorController.parseMinor(request.getParameter("as_values_minor"));
-// StudentController.updateStudent(s, request.getParameter("name"), "jb20", 
-// 		Double.parseDouble(request.getParameter("gpa")),
-// 		request.getParameter("email"),YearController.getYear(request.getParameter("grad-year")),
-// 		clist, majorlist,minorlist, slist,new ArrayList<model.Experience>(),
-// 		new ArrayList<Interest>(),new ArrayList<Course>());
-	for (Interest i : interestList){	%>
-	<li><%=i.getDescription() %></li>
-	<%} %>
+<% StudentController.updateStudent(new Student(),request.getParameter("name"), "jb20",
+		Double.parseDouble(request.getParameter("gpa")),request.getParameter("email"),
+		YearController.getYear(request.getParameter("grad-year")), 
+		CollegeController.parseCollege(request.getParameter("as_values_college")),
+		MajorController.parseMajor(request.getParameter("as_values_major")),
+		MinorController.parseMinor(request.getParameter("as_values_minor")),
+		SkillController.parseSkill(request.getParameter("as_values_skills")),
+		null, InterestController.parseInterest(request.getParameter("as_values_research")),
+		null);
+%>
 
+
+<%
+// int nCourses = Integer.parseInt(request.getParameter("nVals"));
+// for(int i = 0; i<nCourses; i++){
+// 	Course cobj = new Course();
+// 	cobj.setCoursenum(request.getParameter("coursenum-"+i));
+// 	cobj.setTitle(request.getParameter("title-"+i));
+// 	cobj.setGrade(request.getParameter("grade-"+i));
+// 	cobj.setSemester(request.getParameter("semester-"+i));
+// 	courselist.add(cobj);
+// }
+
+
+%>
 
 </body>
 </html>

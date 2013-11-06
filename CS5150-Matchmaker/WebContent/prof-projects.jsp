@@ -1,7 +1,7 @@
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="prof"/>
     <jsp:param name="sidebar_type" value="prof-project"/>
-    <jsp:param name="sidebar_selected" value="view"/>
+    <jsp:param name="sidebar_selected" value="current"/>
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 					<div class="content">
@@ -9,7 +9,11 @@
 						<ul class="project-list">
 							<li class="clearfix">
 								<div class="project-info">
+<<<<<<< HEAD
 									<div class="delete">Delete</div>
+=======
+									<div class="delete">Cancel</div>
+>>>>>>> branch 'master' of https://github.com/jkahuja/CS5150-Matchmaker.git
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -18,7 +22,11 @@
 							</li>
 							<li class="clearfix">
 								<div class="project-info">
+<<<<<<< HEAD
 									<div class="delete">Delete</div>
+=======
+									<div class="delete">Cancel</div>
+>>>>>>> branch 'master' of https://github.com/jkahuja/CS5150-Matchmaker.git
 									<h3>Project Name</h3>
 									<p>This is a project description instead of a URL.  This is a project description instead of
 									a URL.  This is a project description instead of a URL.</p>

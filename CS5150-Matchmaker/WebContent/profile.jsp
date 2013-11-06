@@ -5,8 +5,8 @@
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
 <%@page import="java.util.*,model.Student, model.StudentController"%>
-<%StudentController controller = new StudentController();
-	 Student s = controller.getStudentByNetID("jb20"); %>
+<%
+	 Student s = StudentController.getStudentByNetID("jb20"); %>
 					<div class="content">
 						<h1>My Profile</h1>
 						<h2 class="subheading">General Information</h2>
@@ -15,18 +15,18 @@
 							<div class="info">
 							
 								<h2><%=s.getName() %></h2>
-								<p>Email: jd322@cornell.edu</p>
-								<p>Major: Computer Science</p>
-								<p>Minor: Music</p>
+								<p>Email: <%=s.getEmail() %></p>
+								<p>Major: <%=s.getMajorString() %></p>
+								<p>Minor: <%=s.getMinorString() %></p>
 								<p>Year: <%=s.getYear() %></p>
-								<p>College: College of Engineering</p>
+								<p>College: <%=s.getCollegeString() %></p>
 							</div>
 						</div>
 						<h2 class="subheading">Application Information</h2>	
 						<div class="application-info">
 							<p>GPA: <%=s.getGpa() %></p>
-							<p>Skills: Java, C++, Python</p>
-							<p>Research Interests: Machine Learning</p>
+							<p>Skills: <%=s.getSkillString() %></p>
+							<p>Research Interests: <%=s.getInterestString() %></p>
 						</div>
 					</div>				
 				</div>

@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 public class StudentController {
 	
 	
-	public Student getStudentByNetID(String netid) {
+	public static Student getStudentByNetID(String netid) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -25,7 +25,7 @@ public class StudentController {
         }
 	}
 	
-	public Student getStudentByName(String name) {
+	public static Student getStudentByName(String name) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -40,7 +40,7 @@ public class StudentController {
         }
 	}
 	
-	public void updateStudent(Student stud, String name, String netID, double gpa, String email,
+	public static void updateStudent(Student stud, String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,
 			List<Experience> priorExperience, List<Interest> interests,
@@ -54,9 +54,9 @@ public class StudentController {
 		stud.setMajors(majors);
 		stud.setMinors(minors);
 		stud.setSkills(skills);
-		stud.setPriorExperience(priorExperience);
+		//stud.setPriorExperience(priorExperience);
 		stud.setInterests(interests);
-		stud.setTranscript(transcript);
+		//stud.setTranscript(transcript);
 		stud.setVersion(stud.getVersion() + 1);
 		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

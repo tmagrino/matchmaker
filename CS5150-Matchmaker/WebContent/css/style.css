@@ -220,6 +220,7 @@ input[name='gpa']{
 	width: 55px;
 	text-align: center;
 	color: white;
+	cursor: pointer;
 }
 .project-info .edit,
 .project-info .delete{

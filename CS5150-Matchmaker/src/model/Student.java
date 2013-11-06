@@ -261,7 +261,77 @@ public class Student implements Serializable {
 	public long getVersion() {
 		return version;
 	}
-
+	/**
+	 * @return a string with all skills separated by ','
+	 */
+	public String getSkillString(){
+		if (skills.size() > 0){
+		StringBuilder builder = new StringBuilder();
+		for (Skill s : skills){
+			builder.append(s.getDescription()+",");
+		}
+		builder.deleteCharAt(builder.length() -1);
+		return builder.toString();
+		}
+		return "";
+	}
+	/**
+	 * @return a string with all Interest separated by ','
+	 */
+	public String getInterestString(){
+		if (interests.size() > 0){
+		StringBuilder builder = new StringBuilder();
+		for (Interest i : interests){
+			builder.append(i.getDescription()+",");
+		}
+		builder.deleteCharAt(builder.length() -1);
+		return builder.toString();
+		}
+		return "";
+	}
+	/**
+	 * @return a string with all Majors separated by ','
+	 */
+	public String getMajorString(){
+		if (majors.size() > 0){
+		StringBuilder builder = new StringBuilder();
+		for (Major m : majors){
+			builder.append(m.getDescription()+",");
+		}
+		builder.deleteCharAt(builder.length() -1);
+		return builder.toString();
+		}
+		return "";
+	}
+	
+	/**
+	 * @return a string with all Minors separated by ','
+	 */
+	public String getMinorString(){
+		if (minors.size() > 0){
+		StringBuilder builder = new StringBuilder();
+		for (Minor m : minors){
+			builder.append(m.getDescription()+",");
+		}
+		builder.deleteCharAt(builder.length() -1);
+		return builder.toString();
+		}
+		return "";
+	}
+	/**
+	 * @return a string with all Colleges separated by ','
+	 */
+	public String getCollegeString(){
+		if (colleges.size() > 0){
+		StringBuilder builder = new StringBuilder();
+		for (College c : colleges){
+			builder.append(c.getDescription()+",");
+		}
+		builder.deleteCharAt(builder.length() -1);
+		return builder.toString();
+		}
+		return "";
+	}
 	/**
 	 * @param id the id to set
 	 */
@@ -373,6 +443,7 @@ public class Student implements Serializable {
 	void setVersion(long version) {
 		this.version = version;
 	}
+	
 	
 	
 }

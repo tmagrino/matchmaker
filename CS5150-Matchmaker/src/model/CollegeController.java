@@ -1,11 +1,16 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CollegeController {
 
@@ -41,4 +46,40 @@ public class CollegeController {
          List<College> cols = (List<College>) em.createQuery(query).getResultList();
          return cols.get(0);        
  }
-}
+	 public static List<College> parseCollege(String colleges){
+			
+			String [] collegeArray = colleges.split(",");
+			List<College> collegeList = new ArrayList();
+			for (String c : collegeArray){
+				if (c != "") collegeList.add(new College(c));
+			}
+			return collegeList;
+		}
+	 public static JSONObject getCollegeJson() {
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	        EntityManager em = emf.createEntityManager();
+	      
+	        String query = "select c from COLLEGE c";
+			@SuppressWarnings("unchecked")
+			List<College> colleges = (List<College>) em.createQuery(query).getResultList();
+			JSONArray jsonArray = new JSONArray();
+			for (College c : colleges){
+				JSONObject jsonObject= new JSONObject();
+				try {
+					jsonObject.put("value", String.valueOf(c.getId()));
+					jsonObject.put("name", c.getDescription());
+					jsonArray.put(jsonObject);
+				} catch (JSONException e) {
+					
+					e.printStackTrace();
+				}
+			}
+			JSONObject items_obj = new JSONObject();
+			try {
+				items_obj.put("items", jsonArray);
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			return items_obj;
+		}
+	}

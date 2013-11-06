@@ -21,8 +21,7 @@
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
 		
-			<% StudentController controller = new StudentController();
-		 Student s = controller.getStudentByNetID("jb20");%>
+			<% Student s = StudentController.getStudentByNetID("jb20");%>
 			<li>Welcome, <%=s.getName() %></li>
 			<li class="login-link"><a href="#">sign out</a></li>
 		</ul>
@@ -55,7 +54,7 @@
 								<a href="prof-profile.jsp">My Profile</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("project")){ %>class="selected"<% } %>>
-								<a href="student-projects.jsp">My Projects</a>
+								<a href="prof-projects.jsp">My Projects</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("students")){ %>class="selected"<% } %>>
 								<a href="invite-students.jsp">Students</a>

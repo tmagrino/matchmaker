@@ -9,6 +9,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MajorController {
 
 	public static String[] getMajors() {
@@ -55,5 +59,32 @@ public class MajorController {
         List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
         
         return majs.get(0);
+	}
+	public static JSONObject getMajorJson() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select m from MAJOR m";
+		@SuppressWarnings("unchecked")
+		List<Major> majors = (List<Major>) em.createQuery(query).getResultList();
+		JSONArray jsonArray = new JSONArray();
+		for (Major m : majors){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(m.getId()));
+				jsonObject.put("name", m.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
 	}
 }
