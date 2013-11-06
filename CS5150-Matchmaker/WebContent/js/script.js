@@ -77,7 +77,7 @@ function handleFilterText(){
 		inputFields.each(function(index, el){
 			if($(el).val().length != 0 && filters.length != 0){
 				filters.append('<input type="checkbox" name="' + $(el).attr("name") + '">' + $(el).val());
-				handleSingleCheckbox(filters.last());
+				filters.last().click(handleSingleCheckbox);
 				$(el).val('');
 			}
 		});
@@ -89,19 +89,20 @@ function handleFilterCheckboxes(){
 	var checkboxes = $(".filters input[type=checkbox]");
 	if(checkboxes.length == 0) {return;}
 	checkboxes.each(function(index, el){
-		handleSingleCheckbox($(el));
+		$(el).click(handleSingleCheckbox);
 	});
 }
 
-function handleSingleCheckbox(el){
+function handleSingleCheckbox(){
 	var items = $(".project-list li");
-	el.click(function(){
-		items.hide();
-		var rand1 = Math.floor((Math.random()*500)+1);
-		var rand2 = Math.floor((Math.random()*500)+rand1);
-		items.slice(rand1, rand2).show();
-		doPagination();
-	});
+	console.log("hiding " + items.length + " items");
+	items.hide();
+	var rand1 = Math.floor((Math.random()*500)+1);
+	var rand2 = Math.floor((Math.random()*500)+rand1);
+	console.log("rand1=" + rand1 + " rand2=" + rand2);
+	items.slice(rand1, rand2).show();
+	doPagination();
+	initSideHeight();
 }
 
 function handleAddCourse(){
@@ -155,6 +156,33 @@ function validateFormSubmit()
 	});
 }
 
+function hideProject()
+{
+	var delButton = $(".project-info .delete");
+	if(delButton.length == 0) {return;}
+	delButton.click(function(){
+		$(this).parent().parent().animate({
+		    opacity: 0,
+		    height: 'toggle'
+		  }, 1000);
+		doPagination();
+		initSideHeight();
+	});
+}
+
+function filterAll()
+{
+	var filterLink = $(".filters .filter-all");
+	if(filterLink.length == 0){return;}
+	var checkboxes = $(".filters input[type=checkbox]");
+	filterLink.click(function(){
+		checkboxes.each(function(idx, el){
+			$(el).prop("checked", true);
+		});
+		handleSingleCheckbox();
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	doPagination();
@@ -163,5 +191,7 @@ $(document).ready(function(){
 	handleAddCourse();
 	initSideHeight();
 	validateFormSubmit();
+	hideProject();
+	filterAll();
 });
 

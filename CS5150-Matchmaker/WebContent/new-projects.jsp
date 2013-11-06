@@ -8,7 +8,7 @@
 						<h1>My Projects</h1>
 						<h2 class="subheading">Filters</h2>
 						<div class="filters">
-							<input type="checkbox" name="all-profile">All Profile Info
+							<a class="filter-all" href="#">Filter by all profile info</a>
 							<input type="checkbox" name="research-interest">Research Interest
 							<input type="checkbox" name="research-interest">Skills
 						</div>

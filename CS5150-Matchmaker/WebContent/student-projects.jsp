@@ -12,7 +12,7 @@
 									<p class="rejected">Rejected</p>
 								</div>
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Hide</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -23,7 +23,7 @@
 									<p class="accepted">Accepted</p>
 								</div>
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Hide</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -35,6 +35,7 @@
 									<a>Cancel</a>
 								</div>
 								<div class="project-info">
+									<div class="delete">Hide</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>

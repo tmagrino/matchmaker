@@ -9,7 +9,7 @@
 						<ul class="project-list">
 							<li class="clearfix">
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Cancel</div>
 									<h3>Project Name</h3>
 									<p><a href="#">Link to Project Webpage</a></p>
 									<p>Researcher Name</p>
@@ -18,7 +18,7 @@
 							</li>
 							<li class="clearfix">
 								<div class="project-info">
-									<div class="delete">X</div>
+									<div class="delete">Cancel</div>
 									<h3>Project Name</h3>
 									<p>This is a project description instead of a URL.  This is a project description instead of
 									a URL.  This is a project description instead of a URL.</p>
