@@ -25,16 +25,24 @@
     <jsp:param name="sidebar_selected" value="<%= proj_sidebar %>"/>
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
+<%@page import="java.util.*,model.*, org.json.JSONObject"%>
+<%
+JSONObject jsonSkills = SkillController.getSkillJson();
+JSONObject jsonInterest = InterestController.getInterestJson();        
+ %>
+ <script type="text/javascript">
+	var skillsData = <%= jsonSkills %>;
+    var interestData = <%= jsonInterest %>;
+</script>
 					<div class="content">
 						<h1>My Projects</h1>
 						<form name="profile-form" action="/">
-							<div class="photo-info clearfix">
+							<div class="photo-info project-info clearfix">
 								<div class="info">
 									<h2>Bob Smith</h2>
 									<p class="required"><label for="title">Title</label><input name="title" value="<%= proj_title %>" type="text"></input></p>
-									<p class="required"><label for="dept">Department</label><input name="dept" type="text"></input></p>
-									<p><label for="specialization">Specialization</label><input name="specialization" type="text"></input></p>
-									<p><label for="req-skills">Required Skills</label><input name="req-skills" type="text"></input></p>
+									<p><label for="research-area">Research Area</label><input name="research-area" type="text"></input></p>
+									<p><label for="skills">Required Skills</label><input name="skills" type="text"></input></p>
 									<p><label for="url">Project URL</label><input name="url" type="text"></input></p>
 									<p><label for="description">Project Description</label><textarea name="description"></textarea></p>
 								</div>

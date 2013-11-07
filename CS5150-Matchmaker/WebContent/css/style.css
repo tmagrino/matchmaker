@@ -140,6 +140,14 @@ form[name='profile-form'] textarea{
 	width: 382px;
 	height: 157px;
 }
+.photo-info.project-info input[type=text],
+ul.as-selections li.as-original input[type=text]
+{
+	width: 518px;
+}
+form[name=profile-form] .project-info textarea{
+	width:510px;
+}
 .photo-info input[type='text']
 {
 	float: right;

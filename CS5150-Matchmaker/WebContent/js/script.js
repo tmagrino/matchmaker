@@ -22,8 +22,8 @@ function initAutosuggest()
 	var majorInput = $(".info input[name=major]");
 	var minorInput = $(".info input[name=minor]");
 	var collegeInput = $(".info input[name=school]");
-	var skillsInput = $(".application-info input[name=skills]");
-	var researchInput = $(".application-info input[name=research-interest]");
+	var skillsInput = $(".application-info input[name=skills], .info input[name=skills]");
+	var researchInput = $(".application-info input[name=research-area], .info input[name=research-area]");
 	
 	if(majorInput.length){
 		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "major"});

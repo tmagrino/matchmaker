@@ -51,10 +51,10 @@
 							</li>
 						<% } else if(request.getParameter("stud_or_prof").equals("prof")){ %>
 							<li <% if(request.getParameter("top_selected").equals("profile")){ %>class="selected"<% } %>>
-								<a href="prof-profile.jsp">My Profile</a>
+								<a href="researcher-profile.jsp">My Profile</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("project")){ %>class="selected"<% } %>>
-								<a href="prof-projects.jsp">My Projects</a>
+								<a href="researcher-projects.jsp">My Projects</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("students")){ %>class="selected"<% } %>>
 								<a href="invite-students.jsp">Students</a>
