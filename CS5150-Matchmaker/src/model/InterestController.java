@@ -41,6 +41,16 @@ public class InterestController {
         	return new ArrayList<Interest>(0);
         }
 	}
+	public static Interest getInterestByDescription(String description){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select i from INTEREST i where i.description = \""+description+"\"";
+		@SuppressWarnings("unchecked")
+		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
+		
+		return ints.get(0);
+	}
     public static List<Interest> parseInterest(String interests){
 		
 		String [] interestArray = interests.split(",");

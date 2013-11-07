@@ -139,6 +139,12 @@ public class Student implements Serializable {
 		this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
 		this.skills = Arrays.asList(SkillController.getSkillByDescription("Java"),
 				SkillController.getSkillByDescription("C"));
+		this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
+				"College of Arts and Sciences"));
+		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
+		this.interests = Arrays.asList(InterestController.getInterestByDescription(
+				"Machine Learning"),(InterestController.getInterestByDescription(
+						"Software Engineering")));
 	}
 	public Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,

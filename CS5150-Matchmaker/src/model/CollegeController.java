@@ -25,8 +25,18 @@ public class CollegeController {
 		for (College c : cols) {
 			colleges.add(c.getDescription());
 		}
-		
+	
 		return (String[]) colleges.toArray();
+	}
+	public static College getCollegeByDescription(String description){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select c from COLLEGE c where c.description = \""+description+"\"";
+		@SuppressWarnings("unchecked")
+		List<College> cols = (List<College>) em.createQuery(query).getResultList();
+		
+		return cols.get(0);
 	}
 	public static List<College> getCollegeList() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
