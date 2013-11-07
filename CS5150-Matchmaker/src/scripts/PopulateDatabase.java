@@ -127,5 +127,22 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
+		try {
+			File myfile = new File("ResearcherList");
+			in = new Scanner(new FileReader(myfile));
+			tx.begin();
+		    while (in.hasNextLine()) {
+		    	String str = in.nextLine();
+		    	System.out.println(str);
+		    	String [] researcherStrings = str.split(",");
+		    	Researcher r = new Researcher(researcherStrings[0],researcherStrings[1],
+		    			researcherStrings[2]);
+		    	em.persist(r);
+		    }
+			tx.commit();
+		}
+		catch (Exception e) {
+			System.out.println("Error: "+e);
+		}
 	}
 }
