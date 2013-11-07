@@ -238,6 +238,32 @@ input[name='gpa']{
 	margin-left: 38px;
 }
 
+/* -- Results table styles -- */
+.project-list{
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+}
+.project-list td, 
+.project-list th{
+	text-align: center;
+	width: 180px;
+	height: 50px;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.project-list th{
+	color: #0000EE;
+	text-decoration: underline;
+	cursor: pointer;
+}
+#pager{
+	margin-top: 20px;
+}
+form .arrow{
+	cursor: pointer;
+}
+
+/* -- End of results table styles -- */
 
 /* --- Tab styles from http://css-tricks.com/better-tabs-with-round-out-borders/ --- */
 .tabrow {

@@ -14,7 +14,7 @@
 </jsp:include>
 					<div class="content">
 						<h1>Students</h1>
-						<table class="project-list" id="project-list-pagination">
+						<table class="project-list">
 							<thead>
 								<tr>
 									<th>Name</th>
@@ -48,11 +48,11 @@
 						</table>
 						<div id="pager" class="pager">
 							<form>
-								<img src="../addons/pager/icons/first.png" class="first"/>
-								<img src="../addons/pager/icons/prev.png" class="prev"/>
+								<img src="images/first.png" class="first arrow"/>
+								<img src="images/prev.png" class="prev arrow"/>
 								<input type="text" class="pagedisplay"/>
-								<img src="../addons/pager/icons/next.png" class="next"/>
-								<img src="../addons/pager/icons/last.png" class="last"/>
+								<img src="images/next.png" class="next arrow"/>
+								<img src="images/last.png" class="last arrow"/>
 								<select class="pagesize">
 									<option selected="selected"  value="10">10</option>
 									<option value="20">20</option>

@@ -42,7 +42,7 @@
                                 <p class="required"><label for="gpa">GPA</label><input name="gpa" value="<%=s.getGpa() %>"type="text" maxlength="4"></input></p>
                                 <p><label for="skills">Skills</label><input name="skills" value="<%=s.getSkillString() %>" type="text"></input></p>
                                 <p><label for="research-area">Research Interests</label><input name="research-area" type="text"></input></p>
-                                <h3>Courses</h3>
+                                <h3>Relevant Courses</h3>
                                 <table id="profile-courses">
                                         <input type="hidden" name="nvals" value="5"></input>
                                         <% for(int i=0;i<2;i++){ %>

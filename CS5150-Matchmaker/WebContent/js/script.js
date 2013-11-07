@@ -159,15 +159,22 @@ function filterAll()
 	});
 }
 
+function sortTable()
+{
+	$(".project-list").tablesorter()
+	.tablesorterPager({container: $("#pager")});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	doPagination();
 	handleFilterText();
 	handleFilterCheckboxes();
 	handleAddCourse();
-	initSideHeight();
+	sortTable();
 	validateFormSubmit();
 	hideProject();
 	filterAll();
+	initSideHeight();
 });
 
