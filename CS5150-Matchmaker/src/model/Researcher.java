@@ -26,6 +26,8 @@ public class Researcher implements Serializable {
 	private String netID;
 	@Column(name = "EMAIL", nullable = false)
 	private String eMail;
+	@Column(name = "DEPARTMENT", nullable = false)
+	private String department;
 	@Column(name = "AREA", nullable = false)
 	private String researchArea;
 	@Column(name = "WEBPAGE", nullable = true)
@@ -75,6 +77,14 @@ public class Researcher implements Serializable {
 
 	public void seteMail(String eMail) {
 		this.eMail = eMail;
+	}
+	
+	public String getDepartment() {
+		return department;
+	}
+
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
 	public String getResearchArea() {
