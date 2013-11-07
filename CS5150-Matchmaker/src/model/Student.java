@@ -127,7 +127,12 @@ public class Student implements Serializable {
 		this.email = "billybob@cornell.edu";
 		this.year = Year.Junior;
 	}
-
+	public Student (String name, String netID, double gpa, String email){
+		this.name = name;
+		this.gpa = gpa;
+		this.netID=netID;
+		this.email = email;
+	}
 	public Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,

@@ -109,6 +109,23 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
+	
+		try {
+			File myfile = new File("StudentList");
+			in = new Scanner(new FileReader(myfile));
+			tx.begin();
+		    while (in.hasNextLine()) {
+		    	String str = in.nextLine();
+		    	System.out.println(str);
+		    	String [] studentStrings = str.split(",");
+		    	Student s = new Student(studentStrings[0],studentStrings[1],
+		    			Double.parseDouble(studentStrings[2]),studentStrings[3]);
+		    	em.persist(s);
+		    }
+			tx.commit();
+		}
+		catch (Exception e) {
+			System.out.println("Error: "+e);
+		}
 	}
-
 }

@@ -25,7 +25,7 @@ public class Researcher implements Serializable {
 	@Column(name = "NETID", nullable = false, length = 10)
 	private String netID;
 	@Column(name = "EMAIL", nullable = false)
-	private String eMail;
+	private String email;
 	@Column(name = "DEPARTMENT", nullable = false)
 	private String department;
 	@Column(name = "AREA", nullable = false)
@@ -45,6 +45,11 @@ public class Researcher implements Serializable {
 
 	public Researcher() {
 		
+	}
+	public Researcher(String name,String netID,String email){
+		this.name = name;
+		this.netID = netID;
+		this.email = email;
 	}
 
 	public int getId() {
@@ -72,11 +77,11 @@ public class Researcher implements Serializable {
 	}
 	
 	public String geteMail() {
-		return eMail;
+		return email;
 	}
 
 	public void seteMail(String eMail) {
-		this.eMail = eMail;
+		this.email = eMail;
 	}
 	
 	public String getDepartment() {

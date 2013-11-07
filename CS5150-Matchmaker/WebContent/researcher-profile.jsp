@@ -4,6 +4,8 @@
     <jsp:param name="sidebar_selected" value="view"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
+		<%@page import="java.util.*,model.*"%>
+			<%Researcher p = ResearcherController.getResearcherByNetID("js123"); %>
 					<div class="content">
 						<h1>My Profile</h1>
 						<div class="photo-info clearfix">
