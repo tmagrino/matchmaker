@@ -12,6 +12,7 @@
     <jsp:param name="sidebar_selected" value="<%= proj_sidebar %>"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
+<%@page import="java.util.*,model.Student, model.StudentController"%>
 					<div class="content">
 						<h1>Students</h1>
 						<table class="project-list">
@@ -26,24 +27,30 @@
 								</tr>
 							</thead>
 							<tbody>
-								<% for(int i=1;i<=500;i+=2) { %>
+							
+								<% 
+								List<Student> studentList = StudentController.getAllStudents();
+								
+								for(int i=1;i<=100;i+=2) { 
+									for(Student s: studentList)
+								{%>
 									<tr class="odd">
-										<td>Student <%=i %></td>
-										<td>Computer Science</td>
-										<td></td>
-										<td>1st Year</td>
-										<td>Python</td>
-										<td>Machine Learning</td>
+										<td><%=s.getName() %></td>
+										<td><%=s.getMajorString() %></td>
+										<td><%=s.getMinorString() %></td>
+										<td><%=s.getYear() %></td>
+										<td><%=s.getSkillString() %></td>
+										<td><%=s.getInterestString() %></td>
 									</tr>
-									<tr class="even">
-										<td>Student <%=i+1 %></td>
-										<td>Art History</td>
-										<td>Music</td>
-										<td>4th Year</td>
-										<td>Java</td>
-										<td>Natural Language Processing</td>
-									</tr>
-								<% } %>
+<!-- 									<tr class="even"> -->
+<%-- 										<td>Student <%=i+1 %></td> --%>
+<!-- 										<td>Art History</td> -->
+<!-- 										<td>Music</td> -->
+<!-- 										<td>4th Year</td> -->
+<!-- 										<td>Java</td> -->
+<!-- 										<td>Natural Language Processing</td> -->
+<!-- 									</tr> -->
+								<% }} %>
 							</tbody>
 						</table>
 						<div id="pager" class="pager">
