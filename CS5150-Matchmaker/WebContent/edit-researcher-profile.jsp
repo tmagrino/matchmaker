@@ -14,7 +14,7 @@
 									<p class="required"><label for="email">Email</label><input name="email" value="bcs575@cornell.edu" type="text"></input></p>
 									<p class="required"><label for="url">URL</label><input name="url" value="www.cs.cornell.edu/bsmith" type="text"></input></p>
 									<p class="required"><label for="dept">Department</label><input name="dept" type="text"></input></p>
-									<p><label for="specialization">Specialization</label><input name="specialization" type="text"></input></p>
+									<p><label for="specialization">Research Area</label><input name="specialization" type="text"></input></p>
 								</div>
 							</div>
 							<input type="submit" value="Save Changes"></input>
