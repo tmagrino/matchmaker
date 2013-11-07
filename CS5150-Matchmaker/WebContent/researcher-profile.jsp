@@ -11,7 +11,7 @@
 						<div class="photo-info clearfix">
 							<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
 							<div class="info">
-								<h2>Professor <%=r.getName()%></h2>
+								<h2>Researcher <%=r.getName()%></h2>
 								<p>Email: <%=r.getEmail() %></p>
 								<p><a href="#"><%=r.getWebpage() %></a></p>
 								<p><%=r.getDepartment() %></p>
