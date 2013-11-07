@@ -17,7 +17,7 @@ public class CollegeController {
 	public static String[] getColleges() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
-      
+        
         String query = "select c from COLLEGE c";
 		@SuppressWarnings("unchecked")
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
@@ -31,11 +31,15 @@ public class CollegeController {
 	public static List<College> getCollegeList() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
-      
-        String query = "select c from COLLEGE c";
-		@SuppressWarnings("unchecked")
-		List<College> cols = (List<College>) em.createQuery(query).getResultList();
-		return cols;
+        try{
+	        String query = "select c from COLLEGE c";
+			@SuppressWarnings("unchecked")
+			List<College> cols = (List<College>) em.createQuery(query).getResultList();
+			return cols;
+        }
+        catch (Exception e){
+        	return new ArrayList<College>();
+        }
 	}
 	 public static College getCollege(long id) {
          EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

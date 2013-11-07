@@ -31,11 +31,15 @@ public class InterestController {
 	public static List<Interest> getInterestList() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
-      
-        String query = "select i from INTEREST i";
-		@SuppressWarnings("unchecked")
-		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
-		return ints;
+        try{
+	        String query = "select i from INTEREST i";
+			@SuppressWarnings("unchecked")
+			List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
+			return ints;
+        }
+        catch (Exception e){
+        	return new ArrayList<Interest>(0);
+        }
 	}
     public static List<Interest> parseInterest(String interests){
 		

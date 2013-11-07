@@ -27,15 +27,28 @@ public class SkillController {
 		return (String[]) skills.toArray();
 		
 	}
-	
-	public static List<Skill> getSkillList() {
+	public static Skill getSkillByDescription(String description){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
       
+        String query = "select s from SKILL s where s.description = \""+description+"\"";
+		@SuppressWarnings("unchecked")
+		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
+		
+		return skls.get(0);
+	}
+	public static List<Skill> getSkillList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+       try{
         String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
 		return skls;
+       }
+       catch (Exception e){
+    	   return new ArrayList<Skill>();
+       }
 	}
 	
 	public static JSONObject getSkillJson() {

@@ -33,12 +33,26 @@ public class MajorController {
 	public static List<Major> getMajorList() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
-      
+       try{
         String query = "select m from MAJOR m";
 		@SuppressWarnings("unchecked")
 		List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
 		
 		return majs;
+       }
+       catch (Exception e){
+    	   return  new ArrayList<Major>();
+       }
+	}
+	public static Major getMajorByDescription(String description){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select m from MAJOR m where m.description = \""+description+"\"";
+		@SuppressWarnings("unchecked")
+		List<Major> majs = (List<Major>) em.createQuery(query).getResultList();
+		
+		return majs.get(0);
 	}
 	public static List<Major> parseMajor(String majors){
 		

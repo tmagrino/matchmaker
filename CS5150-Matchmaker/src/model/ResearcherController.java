@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -21,6 +22,20 @@ public class ResearcherController {
         }
         catch (Exception e) {
         	return null;
+        }
+	}
+	public static List<Researcher> getResearcherList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+        String query = "select r from Researcher r";
+        List<Researcher> mylist = (List<Researcher>) em.createQuery(query).getResultList();
+        
+        	return mylist;
+        }
+        catch (Exception e) {
+        	return new ArrayList<Researcher>();
         }
 	}
 

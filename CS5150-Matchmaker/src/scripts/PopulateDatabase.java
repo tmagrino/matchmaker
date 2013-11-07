@@ -25,19 +25,12 @@ public class PopulateDatabase {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
-        em.createNativeQuery("DELETE FROM MAJOR").executeUpdate();
-        em.createNativeQuery("DELETE FROM MINOR").executeUpdate();
-        em.createNativeQuery("DELETE FROM INTEREST").executeUpdate();
-        em.createNativeQuery("DELETE FROM SKILL").executeUpdate();
-        em.createNativeQuery("DELETE FROM COLLEGE").executeUpdate();
-        em.createNativeQuery("DELETE FROM STUDENT").executeUpdate();
-        em.createNativeQuery("DELETE FROM RESEARCHER").executeUpdate();
-        tx.commit();
         
         
         // Majors
+        if (MajorController.getMajorList().size() == 0){
 		try {
+			
 			File myfile = new File("MajorsList");
 			in = new Scanner(new FileReader(myfile));
 			tx.begin();
@@ -52,8 +45,9 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
-		
+        }
 		// Minors
+        if (MinorController.getMinorList().size() == 0){
 		try {
 			File myfile = new File("MinorsList");
 			in = new Scanner(new FileReader(myfile));
@@ -69,8 +63,9 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
-		
+        }
 		// Colleges
+        if (CollegeController.getCollegeList().size()==0){
 		try {
 			File myfile = new File("CollegesList");
 			in = new Scanner(new FileReader(myfile));
@@ -86,8 +81,9 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
-		
+        }
 		// Interests
+        if (InterestController.getInterestList().size() == 0){
 		try {
 			File myfile = new File("InterestsList");
 			in = new Scanner(new FileReader(myfile));
@@ -103,8 +99,10 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
-		
+        }
 		// Skills
+        if (SkillController.getSkillList().size() == 0){
+  
 		try {
 			File myfile = new File("SkillsList");
 			in = new Scanner(new FileReader(myfile));
@@ -120,7 +118,8 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
-	
+        }
+        if (StudentController.getAllStudents().size()==0){
 		try {
 			File myfile = new File("StudentList");
 			in = new Scanner(new FileReader(myfile));
@@ -138,7 +137,10 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
+        }
+        if (ResearcherController.getResearcherList().size()==0){
 		try {
+			
 			File myfile = new File("ResearcherList");
 			in = new Scanner(new FileReader(myfile));
 			tx.begin();
@@ -155,5 +157,6 @@ public class PopulateDatabase {
 		catch (Exception e) {
 			System.out.println("Error: "+e);
 		}
+	}
 	}
 }

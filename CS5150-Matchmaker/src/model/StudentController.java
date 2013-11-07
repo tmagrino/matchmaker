@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -42,9 +43,13 @@ public class StudentController {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        
+        try{
         String query = "select s from STUDENT s";
         return (List<Student>) em.createQuery(query).getResultList();
+        }
+        catch (Exception e){
+        	return new ArrayList<Student>();
+        }
       
 	}
 	public static Student getStudentByNetID(String netid) {
