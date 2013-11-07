@@ -15,6 +15,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+
 import model.*;
 
 public class PopulateDatabase {
@@ -24,7 +25,17 @@ public class PopulateDatabase {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-		
+        tx.begin();
+        em.createNativeQuery("DELETE FROM MAJOR").executeUpdate();
+        em.createNativeQuery("DELETE FROM MINOR").executeUpdate();
+        em.createNativeQuery("DELETE FROM INTEREST").executeUpdate();
+        em.createNativeQuery("DELETE FROM SKILL").executeUpdate();
+        em.createNativeQuery("DELETE FROM COLLEGE").executeUpdate();
+        em.createNativeQuery("DELETE FROM STUDENT").executeUpdate();
+        em.createNativeQuery("DELETE FROM RESEARCHER").executeUpdate();
+        tx.commit();
+        
+        
         // Majors
 		try {
 			File myfile = new File("MajorsList");

@@ -38,7 +38,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "INTEREST")
-public class Interest {
+public class Interest implements Comparable<Interest>{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -66,5 +66,10 @@ public class Interest {
 	
 	void setDescription(String name) {
 		this.description = name;
+	}
+
+	@Override
+	public int compareTo(Interest o) {
+		return getDescription().compareTo(o.getDescription());
 	}
 }

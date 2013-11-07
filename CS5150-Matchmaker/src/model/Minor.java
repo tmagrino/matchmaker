@@ -37,7 +37,7 @@ import java.util.List;
  */
 
 @Entity(name = "MINOR")
-public class Minor {
+public class Minor implements Comparable<Minor>{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -65,5 +65,11 @@ public class Minor {
 	
 	void setDescription(String name) {
 		this.description = name;
+	}
+
+	@Override
+	public int compareTo(Minor o) {
+		
+		return getDescription().compareTo(o.getDescription());
 	}
 }

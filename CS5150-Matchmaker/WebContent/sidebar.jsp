@@ -1,4 +1,4 @@
-<% if(request.getParameter("sidebar_type").equals("prof-profile")){ %>
+<% if(request.getParameter("sidebar_type").equals("researcher-profile")){ %>
 	<li class="first">
 		<a <% if(request.getParameter("sidebar_selected").equals("view")){ %>class="selected"<% } %> href="researcher-profile.jsp">View Profile</a>
 	</li>
@@ -14,7 +14,7 @@
 		<a <% if(request.getParameter("sidebar_selected").equals("edit")){ %>class="selected"<% } %> href="edit-profile.jsp">Edit Profile</a>
 	</li>
 <% } %>
-<% if(request.getParameter("sidebar_type").equals("prof-project")){ %>
+<% if(request.getParameter("sidebar_type").equals("researcher-project")){ %>
 	<li class="first">
 		<a <% if(request.getParameter("sidebar_selected").equals("current")){ %>class="selected"<% } %> href="researcher-projects.jsp">Current Projects</a>
 	</li>
@@ -55,7 +55,7 @@
 	
 	
 <% } %>
-<% if(request.getParameter("sidebar_type").equals("prof-students")){ %>
+<% if(request.getParameter("sidebar_type").equals("researcher-students")){ %>
 	<li class="first">
 		<a <% if(request.getParameter("sidebar_selected").equals("invite")){ %>class="selected"<% } %> href="invite-students.jsp">Invite Students</a>
 	</li>
