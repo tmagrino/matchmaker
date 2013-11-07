@@ -14,32 +14,53 @@
 </jsp:include>
 					<div class="content">
 						<h1>Students</h1>
-						<h2 class="subheading">Filters</h2>
-						<div class="filters">
-							<input type="checkbox" name="all-profile">All Profile Info
-							<input type="checkbox" name="research-interest">Research Interest
-							<input type="checkbox" name="research-interest">Skills
+						<table class="project-list" id="project-list-pagination">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Major</th>
+									<th>Minor</th>
+									<th>Class Year</th>
+									<th>Skills</th>
+									<th>Research Area</th>
+								</tr>
+							</thead>
+							<tbody>
+								<% for(int i=1;i<=500;i+=2) { %>
+									<tr class="odd">
+										<td>Student <%=i %></td>
+										<td>Computer Science</td>
+										<td></td>
+										<td>1st Year</td>
+										<td>Python</td>
+										<td>Machine Learning</td>
+									</tr>
+									<tr class="even">
+										<td>Student <%=i+1 %></td>
+										<td>Art History</td>
+										<td>Music</td>
+										<td>4th Year</td>
+										<td>Java</td>
+										<td>Natural Language Processing</td>
+									</tr>
+								<% } %>
+							</tbody>
+						</table>
+						<div id="pager" class="pager">
+							<form>
+								<img src="../addons/pager/icons/first.png" class="first"/>
+								<img src="../addons/pager/icons/prev.png" class="prev"/>
+								<input type="text" class="pagedisplay"/>
+								<img src="../addons/pager/icons/next.png" class="next"/>
+								<img src="../addons/pager/icons/last.png" class="last"/>
+								<select class="pagesize">
+									<option selected="selected"  value="10">10</option>
+									<option value="20">20</option>
+									<option value="30">30</option>
+									<option  value="40">40</option>
+								</select>
+							</form>
 						</div>
-						<ul class="project-list" id="project-list-pagination">
-							<% for(int i=1;i<=500;i++)
-							{
-							%>
-								<li class="clearfix">
-									<div class="status">
-										<p class="invite">Invite</p>
-									</div>
-									<div class="project-info">
-										<div class="delete">Hide</div>
-										<h3>Student Name <%=i %></h3>
-										<p>Student's Major, Student's College</p>
-										<p>Graduation Year</p>
-										<p>Skills</p>
-										<p>Research Area</p>
-									</div>							
-								</li>
-							<% } %>
-						</ul>
-						<ul class="holder"></ul>
 					</div>				
 				</div>
 			</div>

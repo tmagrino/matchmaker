@@ -9,7 +9,10 @@
 	<link rel="stylesheet" type="text/css" href="css/jPages.css">
 	<link rel="stylesheet" type="text/css" href="css/autoSuggest.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 	<script src="js/script.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
 	<script src="js/jPages.min.js" type="text/javascript"></script>
 	<script src="js/jquery.autoSuggest.minified.js" type="text/javascript"></script>
 	<title>Matchmaker - Student Profile</title>
