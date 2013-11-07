@@ -7,7 +7,7 @@
 <%@page import="java.util.*,model.*, org.json.JSONObject"%>
 <div class="content">
         <%
-        Student s = StudentController.getStudentByNetID("jb20");
+        Student s = StudentController.getStudentByNetID("lr437");
         JSONObject jsonMajor = MajorController.getMajorJson();
         JSONObject jsonMinor = MinorController.getMinorJson();
         JSONObject jsonCollege = CollegeController.getCollegeJson();
@@ -45,7 +45,7 @@
                                 <h3>Courses</h3>
                                 <table id="profile-courses">
                                         <input type="hidden" name="nvals" value="5"></input>
-                                        <% for(int i=0;i<5;i++){ %>
+                                        <% for(int i=0;i<2;i++){ %>
                                                 <tr>
                                                         <td>
                                                                 <p>

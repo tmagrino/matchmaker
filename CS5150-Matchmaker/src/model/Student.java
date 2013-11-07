@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -132,6 +133,8 @@ public class Student implements Serializable {
 		this.gpa = gpa;
 		this.netID=netID;
 		this.email = email;
+		this.version = 1;
+		this.majors = Arrays.asList(new Major("Computer Science"));
 	}
 	public Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
@@ -265,58 +268,58 @@ public class Student implements Serializable {
 		return version;
 	}
 	/**
-	 * @return a string with all skills separated by ','
+	 * @return a string with all skills separated by ', '
 	 */
 	public String getSkillString(){
 		if (skills.size() > 0){
 		StringBuilder builder = new StringBuilder();
 		for (Skill s : skills){
-			builder.append(s.getDescription()+",");
+			builder.append(s.getDescription()+", ");
 		}
-		builder.deleteCharAt(builder.length() -1);
+		builder.deleteCharAt(builder.length() -2);
 		return builder.toString();
 		}
 		return "";
 	}
 	/**
-	 * @return a string with all Interest separated by ','
+	 * @return a string with all Interest separated by ', '
 	 */
 	public String getInterestString(){
 		if (interests.size() > 0){
 		StringBuilder builder = new StringBuilder();
 		for (Interest i : interests){
-			builder.append(i.getDescription()+",");
+			builder.append(i.getDescription()+", ");
 		}
-		builder.deleteCharAt(builder.length() -1);
+		builder.deleteCharAt(builder.length() -2);
 		return builder.toString();
 		}
 		return "";
 	}
 	/**
-	 * @return a string with all Majors separated by ','
+	 * @return a string with all Majors separated by ', '
 	 */
 	public String getMajorString(){
 		if (majors.size() > 0){
 		StringBuilder builder = new StringBuilder();
 		for (Major m : majors){
-			builder.append(m.getDescription()+",");
+			builder.append(m.getDescription()+", ");
 		}
-		builder.deleteCharAt(builder.length() -1);
+		builder.deleteCharAt(builder.length() -2);
 		return builder.toString();
 		}
 		return "";
 	}
 	
 	/**
-	 * @return a string with all Minors separated by ','
+	 * @return a string with all Minors separated by ', '
 	 */
 	public String getMinorString(){
 		if (minors.size() > 0){
 		StringBuilder builder = new StringBuilder();
 		for (Minor m : minors){
-			builder.append(m.getDescription()+",");
+			builder.append(m.getDescription()+", ");
 		}
-		builder.deleteCharAt(builder.length() -1);
+		builder.deleteCharAt(builder.length() -2);
 		return builder.toString();
 		}
 		return "";
@@ -328,9 +331,9 @@ public class Student implements Serializable {
 		if (colleges.size() > 0){
 		StringBuilder builder = new StringBuilder();
 		for (College c : colleges){
-			builder.append(c.getDescription()+",");
+			builder.append(c.getDescription()+", ");
 		}
-		builder.deleteCharAt(builder.length() -1);
+		builder.deleteCharAt(builder.length() -2);
 		return builder.toString();
 		}
 		return "";

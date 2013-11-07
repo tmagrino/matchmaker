@@ -9,7 +9,15 @@ import javax.persistence.Persistence;
 
 public class StudentController {
 	
-	
+	public static List<Student> getAllStudents() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
+        String query = "select s from STUDENT s";
+        return (List<Student>) em.createQuery(query).getResultList();
+      
+	}
 	public static Student getStudentByNetID(String netid) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
