@@ -1,6 +1,6 @@
 <jsp:include page="header.jsp">
-    <jsp:param name="stud_or_prof" value="prof"/>
-    <jsp:param name="sidebar_type" value="prof-students"/>
+    <jsp:param name="stud_or_prof" value="researcher"/>
+    <jsp:param name="sidebar_type" value="researcher-students"/>
     <jsp:param name="sidebar_selected" value="invite"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>

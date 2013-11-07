@@ -31,11 +31,25 @@ public class InterestController {
 	public static List<Interest> getInterestList() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
+        try{
+	        String query = "select i from INTEREST i";
+			@SuppressWarnings("unchecked")
+			List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
+			return ints;
+        }
+        catch (Exception e){
+        	return new ArrayList<Interest>(0);
+        }
+	}
+	public static Interest getInterestByDescription(String description){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
       
-        String query = "select i from INTEREST i";
+        String query = "select i from INTEREST i where i.description = \""+description+"\"";
 		@SuppressWarnings("unchecked")
 		List<Interest> ints = (List<Interest>) em.createQuery(query).getResultList();
-		return ints;
+		
+		return ints.get(0);
 	}
     public static List<Interest> parseInterest(String interests){
 		

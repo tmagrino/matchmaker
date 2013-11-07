@@ -52,7 +52,7 @@
 							<li <% if(request.getParameter("top_selected").equals("project")){ %>class="selected"<% } %>>
 								<a href="student-projects.jsp">My Projects</a>
 							</li>
-						<% } else if(request.getParameter("stud_or_prof").equals("prof")){ %>
+						<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 							<li <% if(request.getParameter("top_selected").equals("profile")){ %>class="selected"<% } %>>
 								<a href="researcher-profile.jsp">My Profile</a>
 							</li>

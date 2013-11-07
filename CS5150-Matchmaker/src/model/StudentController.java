@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -9,13 +11,45 @@ import javax.persistence.Persistence;
 
 public class StudentController {
 	
+	public static final Comparator<Student> MAJOR_ORDER = new Comparator<Student>(){
+		public int compare(Student s1, Student s2) {
+            return s2.getMajorString().compareTo(s1.getMajorString());
+		}
+	};
+	public static final Comparator<Student> MINOR_ORDER = new Comparator<Student>(){
+		public int compare(Student s1, Student s2) {
+            return s2.getMinorString().compareTo(s1.getMinorString());
+		}
+	};
+	public static final Comparator<Student> SKILL_ORDER = new Comparator<Student>(){
+		public int compare(Student s1, Student s2) {
+            return s2.getSkillString().compareTo(s1.getSkillString());
+		}
+	};
+	public static final Comparator<Student> INTEREST_ORDER = new Comparator<Student>(){
+		public int compare(Student s1, Student s2) {
+            return s2.getInterestString().compareTo(s1.getInterestString());
+		}
+	};
+	public static final Comparator<Student> COLLEGE_ORDER = new Comparator<Student>(){
+		public int compare(Student s1, Student s2) {
+            return s2.getCollegeString().compareTo(s1.getCollegeString());
+		}
+	};
+	
+	
+	
 	public static List<Student> getAllStudents() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        
+        try{
         String query = "select s from STUDENT s";
         return (List<Student>) em.createQuery(query).getResultList();
+        }
+        catch (Exception e){
+        	return new ArrayList<Student>();
+        }
       
 	}
 	public static Student getStudentByNetID(String netid) {

@@ -31,11 +31,25 @@ public class MinorController {
 	public static List<Minor> getMinorList(){
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
-      
+        try{
         String query = "select m from MINOR m";
 		@SuppressWarnings("unchecked")
 		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
 		return mins;
+        }
+        catch (Exception e){
+        	return new ArrayList<Minor>();
+        }
+	}
+	public static Minor getMinorByDescription(String description){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+      
+        String query = "select m from MINOR m where m.description = \""+description+"\"";
+		@SuppressWarnings("unchecked")
+		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
+		
+		return mins.get(0);
 	}
 	
 	public static List<Minor> parseMinor(String minors){

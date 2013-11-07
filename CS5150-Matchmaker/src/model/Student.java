@@ -6,6 +6,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -133,8 +134,17 @@ public class Student implements Serializable {
 		this.gpa = gpa;
 		this.netID=netID;
 		this.email = email;
+		this.year = Year.Senior;
 		this.version = 1;
-		this.majors = Arrays.asList(new Major("Computer Science"));
+		this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
+		this.skills = Arrays.asList(SkillController.getSkillByDescription("Java"),
+				SkillController.getSkillByDescription("C"));
+		this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
+				"College of Arts and Sciences"));
+		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
+		this.interests = Arrays.asList(InterestController.getInterestByDescription(
+				"Machine Learning"),(InterestController.getInterestByDescription(
+						"Software Engineering")));
 	}
 	public Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
@@ -272,6 +282,7 @@ public class Student implements Serializable {
 	 */
 	public String getSkillString(){
 		if (skills.size() > 0){
+			Collections.sort(skills);
 		StringBuilder builder = new StringBuilder();
 		for (Skill s : skills){
 			builder.append(s.getDescription()+", ");
@@ -286,6 +297,7 @@ public class Student implements Serializable {
 	 */
 	public String getInterestString(){
 		if (interests.size() > 0){
+			Collections.sort(interests);
 		StringBuilder builder = new StringBuilder();
 		for (Interest i : interests){
 			builder.append(i.getDescription()+", ");
@@ -300,6 +312,7 @@ public class Student implements Serializable {
 	 */
 	public String getMajorString(){
 		if (majors.size() > 0){
+			Collections.sort(majors);
 		StringBuilder builder = new StringBuilder();
 		for (Major m : majors){
 			builder.append(m.getDescription()+", ");
@@ -315,6 +328,7 @@ public class Student implements Serializable {
 	 */
 	public String getMinorString(){
 		if (minors.size() > 0){
+	    Collections.sort(minors);
 		StringBuilder builder = new StringBuilder();
 		for (Minor m : minors){
 			builder.append(m.getDescription()+", ");
@@ -329,6 +343,7 @@ public class Student implements Serializable {
 	 */
 	public String getCollegeString(){
 		if (colleges.size() > 0){
+			Collections.sort(colleges);
 		StringBuilder builder = new StringBuilder();
 		for (College c : colleges){
 			builder.append(c.getDescription()+", ");

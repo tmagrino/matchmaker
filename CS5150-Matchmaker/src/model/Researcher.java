@@ -79,12 +79,12 @@ public class Researcher implements Serializable {
 		this.netID = netID;
 	}
 	
-	public String geteMail() {
+	public String getEmail() {
 		return email;
 	}
 
-	public void seteMail(String eMail) {
-		this.email = eMail;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public String getDepartment() {

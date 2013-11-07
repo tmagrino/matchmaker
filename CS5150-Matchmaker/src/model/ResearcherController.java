@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -14,13 +15,27 @@ public class ResearcherController {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         
-        String query = "select s from RESEARCHER s where s.netID = \"" + netid +"\"";
+        String query = "select s from Researcher s where s.netID = \"" + netid +"\"";
         List<Researcher> mylist = (List<Researcher>) em.createQuery(query).getResultList();
         try {
         	return mylist.get(0);
         }
         catch (Exception e) {
         	return null;
+        }
+	}
+	public static List<Researcher> getResearcherList() {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+        String query = "select r from Researcher r";
+        List<Researcher> mylist = (List<Researcher>) em.createQuery(query).getResultList();
+        
+        	return mylist;
+        }
+        catch (Exception e) {
+        	return new ArrayList<Researcher>();
         }
 	}
 
@@ -43,7 +58,7 @@ public class ResearcherController {
 			String department, String researchArea, String webpage) {
 		researcher.setName(name);
 		researcher.setNetID(netID);
-		researcher.seteMail(email);
+		researcher.setEmail(email);
 		researcher.setDepartment(department);
 		researcher.setResearchArea(researchArea);
 		researcher.setWebpage(webpage);
