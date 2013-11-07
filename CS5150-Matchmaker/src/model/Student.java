@@ -102,10 +102,8 @@ public class Student implements Serializable {
 	@ElementCollection  
 	@CollectionTable (
 			name = "CLASSES_TABLE",
-			joinColumns = @JoinColumn(
-					name = "OWNER_ID")
-			)
-	@Embedded
+			joinColumns = @JoinColumn(name = "OWNER_ID")
+		)
 	private List<Course> transcript;
 	@OneToMany(mappedBy = "studentApplicant")
 	private List<Application> applications;
@@ -379,6 +377,7 @@ public class Student implements Serializable {
 	 */
 	void setColleges(List<College> colleges) {
 		this.colleges = colleges;
+		
 	}
 
 	/**

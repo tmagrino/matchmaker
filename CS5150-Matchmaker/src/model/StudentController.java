@@ -64,9 +64,7 @@ public class StudentController {
         EntityTransaction tx = em.getTransaction();
         
         tx.begin();
-        String deleteQuery = "delete from STUDENT where id = " + stud.getId();
-        em.createQuery(deleteQuery);
-        em.persist(stud);
+        em.merge(stud);
         tx.commit();
 	}
 }
