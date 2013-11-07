@@ -50,6 +50,9 @@ public class Researcher implements Serializable {
 		this.name = name;
 		this.netID = netID;
 		this.email = email;
+		this.department = "Computer Science Department";
+		this.webpage = "www.cs.cornell.edu";
+		this.researchArea = "Computer Science";
 	}
 
 	public int getId() {

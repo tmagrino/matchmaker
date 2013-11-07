@@ -6,7 +6,7 @@
 </jsp:include>
 <%@page import="java.util.*,model.Student, model.StudentController"%>
 <%
-	 Student s = StudentController.getStudentByNetID("jb20"); %>
+	 Student s = StudentController.getStudentByNetID("lr437"); %>
 					<div class="content">
 						<h1>My Profile</h1>
 						<h2 class="subheading">General Information</h2>

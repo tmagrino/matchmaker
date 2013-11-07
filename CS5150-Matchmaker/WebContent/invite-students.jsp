@@ -4,6 +4,7 @@
     <jsp:param name="sidebar_selected" value="invite"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
+<%@page import="java.util.*,model.Student, model.StudentController"%>
 					<div class="content">
 						<h1>Students</h1>
 						<h2 class="subheading">Filters</h2>
@@ -13,7 +14,8 @@
 							<input type="checkbox" name="research-interest">Skills
 						</div>
 						<ul class="project-list" id="project-list-pagination">
-							<% for(int i=1;i<=500;i++)
+						<%List<Student> studentList = StudentController.getAllStudents(); 
+							for(Student s: studentList)
 							{
 							%>
 								<li class="clearfix">
@@ -22,11 +24,11 @@
 									</div>
 									<div class="project-info">
 										<div class="delete">Hide</div>
-										<h3>Student Name <%=i %></h3>
-										<p>Student's Major, Student's College</p>
-										<p>Graduation Year</p>
-										<p>Skills</p>
-										<p>Research Area</p>
+										<h3><%=s.getName() %></h3>
+										<p>Major: <%=s.getMajorString() %>, College: <%=s.getCollegeString() %></p>
+										<p>Year: <%=s.getYear() %></p>
+										<p>Skills: <%=s.getSkillString() %></p>
+										<p>Research Interests: <%=s.getInterestString() %></p>
 									</div>							
 								</li>
 							<% } %>
