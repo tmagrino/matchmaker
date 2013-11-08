@@ -74,7 +74,7 @@
 								 	</td>
 									</tr>
 									<tr>
-										<td colspan=2 align="center"><input type="button" value="Save" size=20  style="width: 10em; height:2em" onClick="alert('Role(s) have been updated!')"/></td>
+										<td colspan=2 align="center"><input type="button" value="Save Changes" size=20  style="width: 10em; height:2em" onClick="alert('Role(s) have been updated!')"/></td>
 									</tr>
 								 </table>
 								</div>							
