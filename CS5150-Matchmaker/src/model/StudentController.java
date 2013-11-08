@@ -42,21 +42,21 @@ public class StudentController {
         		if (major != "") query.append(" join s.majors m");
         		if (skill != "") query.append(" join s.skills sk");
         		if (interest != "") query.append(" join s.interest i");
-        		query.append(" where s.name like :name and "+
-        				"s.gpa between :firstgpa and :secondgpa");
+        		query.append(" where s.name like '"+ name + "%' and "+
+        				"s.gpa between "+ gpaRange[0]+ " and " +gpaRange[1]);
         		if (year != "") query.append(" and s.year = :year");
         				
                 		
         		if (major != "") query.append(" m.description like '%"+major+"'");
         		if (skill != "") query.append(" sk.description like '%"+skill+"'");
         		if (interest != "") query.append(" i.description like '%"+interest+"'");
-        		Query q = em.createQuery(query.toString());
-        		q.setParameter("name", "%'"+name+"'");
-        		q.setParameter("firstgpa", Double.parseDouble(gpaRange[0]));
-        		q.setParameter("secondgpa",Double.parseDouble(gpaRange[1]));
-        		if (year != "") q.setParameter("year",YearController.getYear(year));
+//        		Query q = em.createQuery(query.toString());
+//        		q.setParameter("name", "%'"+name+"'");
+//        		q.setParameter("firstgpa", Double.parseDouble(gpaRange[0]));
+//        		q.setParameter("secondgpa",Double.parseDouble(gpaRange[1]));
+//        		if (year != "") q.setParameter("year",YearController.getYear(year));
         		
-        		return (List<Student>) q.getResultList();
+        		return (List<Student>) em.createQuery(query.toString()).getResultList();
         		
         }
         catch (Exception e){

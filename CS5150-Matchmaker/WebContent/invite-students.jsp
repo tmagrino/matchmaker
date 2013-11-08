@@ -21,7 +21,15 @@
 							<input type="submit" value="Filter"/>
 							<table class="project-list">
 								<jsp:include page="stud-filters.jsp"/>
-								<%List<Student> studentList = StudentController.getAllStudents(); 
+								<%List<Student> studentList = new ArrayList<Student>();
+								
+								if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
+									studentList = StudentController.getStudentByFilter(
+											"", "", "", "","","");
+								}
+								//List<Student> studentList = StudentController.getAllStudents();
+								else{studentList = StudentController.getStudentByFilter(
+										request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","",""); 
 									for(Student s: studentList)
 									{
 									%>
@@ -37,7 +45,7 @@
 											<td><%=s.getSkillString() %></td>
 											<td><%=s.getInterestString() %></td>
 										</tr>
-								<% } %>
+								<%}} %>
 								</tbody>
 							</table>
 						</form>

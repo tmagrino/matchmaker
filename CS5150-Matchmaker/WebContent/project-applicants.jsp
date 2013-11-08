@@ -30,8 +30,16 @@
 							<table class="project-list">
 									<jsp:include page="stud-filters.jsp"/>
 									<% 
-									List<Student> studentList = StudentController.getAllStudents();
+									List<Student> studentList = new ArrayList<Student>();
 									
+									if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
+										studentList = StudentController.getStudentByFilter(
+												"", "", "", "","","");
+									}
+									//List<Student> studentList = StudentController.getAllStudents();
+									else{studentList = StudentController.getStudentByFilter(
+											request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");
+									}
 									for(int i=1;i<=100;i+=2) { 
 										for(Student s: studentList)
 									{
@@ -39,10 +47,11 @@
 									List<Interest> ints = s.getInterests();
 									List<Skill> skls = s.getSkills();
 									%>
-										<tr class = "name-<%=s.getId()%> gpa-<%=s.getId()%> <%for(Major m : maj)
-												%>major-<%=m.getId()%> year-<%=s.getYear()%> <%for(Interest in : ints)
-												%>interest-<%=in.getId()%> <%for(Skill sk : skls)
-												%>skill-<%=sk.getId()%> "> 
+<%-- 									class = "name-<%=s.getId()%> gpa-<%=s.getId()%> <%for(Major m : maj) --%>
+<%-- 												%>major-<%=m.getId()%> year-<%=s.getYear()%> <%for(Interest in : ints) --%>
+<%-- 												%>interest-<%=in.getId()%> <%for(Skill sk : skls) --%>
+<%-- 												%>skill-<%=sk.getId()%> " --%>
+										<tr > 
 											<td>
 												<p><a href="#">Accept</a></p>
 												<p><a href="#">Reject</a></p>
