@@ -137,26 +137,23 @@ public class Student implements Serializable {
 		
 		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
 		
-			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
+			
 		
 		this.interests = Arrays.asList(InterestController.getInterestByDescription(
 				"Machine Learning"),(InterestController.getInterestByDescription(
 						"Software Engineering")));
 		}
 		else{
-			this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
+			this.majors = Arrays.asList(MajorController.getMajorByDescription("Information Science"));
 			this.skills = Arrays.asList(SkillController.getSkillByDescription("Python"),
 					SkillController.getSkillByDescription("Scrum"));
 			this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
 					"College of Arts and Sciences"));
-			
-			this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
-			
-				this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
+			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
 			
 			this.interests = Arrays.asList(InterestController.getInterestByDescription(
-					"Machine Learning"),(InterestController.getInterestByDescription(
-							"Software Engineering")));
+					"Functional Programming"),(InterestController.getInterestByDescription(
+							"Computer Vision")));
 			
 		}
 	}

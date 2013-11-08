@@ -27,7 +27,7 @@
                 <h2 class="subheading">General Information</h2>
                 <form name="profile-form" action="savechanges.jsp" method="GET">
                         <div class="photo-info clearfix">
-                                <img class="avatar" src="avatar-female.jpg" alt="avatar"/>
+                                <img class="avatar" src="image/avatar-female.jpg" alt="avatar"/>
                                 <div class="info">
                                         <h2><%=s.getName() %></h2>
                                         <p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
