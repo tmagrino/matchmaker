@@ -162,16 +162,13 @@ function filterAll()
 function sortTable()
 {
 	$(".project-list").tablesorter()
-	.tablesorterPager({container: $("#pager")});
+	.tablesorterPager({container: $("#pager"), positionFixed: false});
 }
 
 $(document).ready(function(){
 	initAutosuggest();
-	doPagination();
-	handleFilterText();
-	handleFilterCheckboxes();
-	handleAddCourse();
 	sortTable();
+	handleAddCourse();
 	validateFormSubmit();
 	hideProject();
 	filterAll();

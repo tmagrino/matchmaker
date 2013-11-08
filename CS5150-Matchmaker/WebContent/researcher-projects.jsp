@@ -6,27 +6,33 @@
 </jsp:include>
 					<div class="content">
 						<h1>My Projects</h1>
-						<ul class="project-list">
-							<li class="clearfix">
-								<div class="project-info">
-									<div class="delete">Delete</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-									<a class="edit" href="edit-project.jsp">Edit</a>
-								</div>							
-							</li>
-							<li class="clearfix">
-								<div class="project-info">
-									<div class="delete">Delete</div>
-									<h3>Project Name</h3>
-									<p>This is a project description instead of a URL.  This is a project description instead of
-									a URL.  This is a project description instead of a URL.</p>
-									<p>Researcher Name</p>
-									<a class="edit" href="edit-project.jsp">Edit</a>
-								</div>							
-							</li>
-						</ul>
+						<table class="project-list">
+							<thead>
+								<tr>
+									<th>Project Name</th>
+									<th>Project URL</th>
+									<th>Description</th>
+									<th>Research Area</th>
+									<th>Required Skills</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Project Name</td>
+									<td><a href="#">Link to Project Webpage</a></td>
+									<td></td>
+									<td>Programming Languages</td>
+									<td>Java</td>
+								</tr>
+								<tr>
+									<td>Project Name</td>
+									<td></td>
+									<td>This is a description of Project 2.  This is a...</td>
+									<td>Systems</td>
+									<td>Python</td>
+								</tr>
+							</tbody>
+						</table>
 						
 					</div>				
 				</div>
