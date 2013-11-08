@@ -4,8 +4,8 @@
     <jsp:param name="sidebar_selected" value="current"/>
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 					<div class="content">
-						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 						<%
 				        JSONObject jsonMajor = MajorController.getMajorJson();
 				        JSONObject jsonSkills = SkillController.getSkillJson();
@@ -60,6 +60,7 @@
 								</tbody>
 							</table>
 						</form>
+						<jsp:include page="pager.jsp"/>
 					</div>
 				</div>
 			</div>

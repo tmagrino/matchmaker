@@ -42,8 +42,7 @@
 							</tbody>
 							</table>
 						</form>
-						
-						
+						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>

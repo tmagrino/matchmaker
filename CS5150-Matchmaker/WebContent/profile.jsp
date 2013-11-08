@@ -11,7 +11,7 @@
 						<h1>My Profile</h1>
 						<h2 class="subheading">General Information</h2>
 						<div class="photo-info clearfix">
-							<img class="avatar" src="avatar-female.jpg" alt="avatar"/>
+							<img class="avatar" src="images/avatar-male.jpg" alt="avatar"/>
 							<div class="info">
 							
 								<h2><%=s.getName() %></h2>

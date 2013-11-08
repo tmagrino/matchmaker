@@ -8,8 +8,6 @@
 		<th>Skills</th>
 		<th>Research Area</th>
 	</tr>
-</thead>
-<tbody>
 	<tr>
 		<td></td>
 		<td><input type="text" name="filter-name"></td>
@@ -38,3 +36,6 @@
 		<td><input type="text" name="filter-interest"></td>
 		
 	</tr>
+</thead>
+<tbody>
+	

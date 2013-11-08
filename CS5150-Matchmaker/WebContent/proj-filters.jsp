@@ -8,14 +8,14 @@
 		<th>Research Area</th>
 		<th>Required Skills</th>
 	</tr>
+	<tr>
+		<td></td>
+		<td><input type="text" name="filter-proj-name"></td>
+		<td><input type="text" name="filter-researcher-name"></td>
+		<td></td>
+		<td></td>
+		<td><input type="text" name="filter-interests"></td>
+		<td><input type="text" name="filter-skills"></td>
+	</tr>
 </thead>
 <tbody>
-<tr>
-	<td></td>
-	<td><input type="text" name="filter-proj-name"></td>
-	<td><input type="text" name="filter-researcher-name"></td>
-	<td></td>
-	<td></td>
-	<td><input type="text" name="filter-interests"></td>
-	<td><input type="text" name="filter-skills"></td>
-</tr>

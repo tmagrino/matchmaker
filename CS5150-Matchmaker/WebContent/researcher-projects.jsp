@@ -4,8 +4,8 @@
     <jsp:param name="sidebar_selected" value="current"/>
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 					<div class="content">
-						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 						<%
 				        JSONObject jsonMajor = MajorController.getMajorJson();
 				        JSONObject jsonSkills = SkillController.getSkillJson();
@@ -29,8 +29,6 @@
 										<th>Research Area</th>
 										<th>Required Skills</th>
 									</tr>
-								</thead>
-								<tbody>
 									<tr>
 										<td></td>
 										<td><input type="text" name="filter-proj-name"></td>
@@ -39,7 +37,9 @@
 										<td><input type="text" name="filter-interest"></td>
 										<td><input type="text" name="filter-skill"></td>
 									</tr>
-									<tr>
+								</thead>
+								<tbody>
+								<tr>
 										<td><a href="#">Remove</a></td>
 										<td>Project Name</td>
 										<td><a href="#">Link to Project Webpage</a></td>
@@ -58,6 +58,7 @@
 								</tbody>
 							</table>
 						</form>
+						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>
