@@ -67,7 +67,7 @@
 					</ul>	
 
 					<div class="content">
-						<h1>Administrator Profile :  User tm123</h1>
+						<h2>Administrator Profile :  Act as User tm123</h2>
 						<form name="profile-form" action="/">
 							<div class="photo-info clearfix">
 								<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
@@ -81,7 +81,7 @@
 									<p><label for="specialization">Research Area</label><input name="specialization" type="text"></input></p>
 ======= -->
 
-									<h2><%=r.getName() %></h2>
+									<h3><%=r.getName() %></h3>
 									<p class="required"><label for="email">Email</label><input name="email" value="<%=r.getEmail() %>" type="text"></input></p>
 									<p class="required"><label for="url">URL</label><input name="url" value="<%=r.getWebpage() %>" type="text"></input></p>
 									<p class="required"><label for="dept">Department</label><input name="dept" value="<%=r.getDepartment() %>" type="text"></input></p>

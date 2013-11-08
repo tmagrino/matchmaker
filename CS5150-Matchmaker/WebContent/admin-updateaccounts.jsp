@@ -83,7 +83,7 @@
 										<tr>
 											<td colspan="2" align="center">
 											<div class="status">
-												<input type="Submit" value="View Profile" size=20  style="width: 10em; height:2em"/>
+												<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
 											</div>
 										</td>
 										</tr>
