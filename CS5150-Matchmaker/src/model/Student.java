@@ -121,30 +121,44 @@ public class Student implements Serializable {
 		
 	}
 	
-	public Student(String anything) {
-		this.gpa = 2.0;
-		this.name = "JOE BOB";
-		this.netID = "JB20";
-		this.version = 1;
-		this.email = "billybob@cornell.edu";
-		this.year = Year.Junior;
-	}
-	public Student (String name, String netID, double gpa, String email){
+	public Student (String name, String netID, double gpa, String email,int random){
 		this.name = name;
 		this.gpa = gpa;
 		this.netID=netID;
 		this.email = email;
 		this.year = Year.Senior;
 		this.version = 1;
+		if (random == 1){
 		this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
 		this.skills = Arrays.asList(SkillController.getSkillByDescription("Java"),
 				SkillController.getSkillByDescription("C"));
 		this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
 				"College of Arts and Sciences"));
+		
 		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
+		
+			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
+		
 		this.interests = Arrays.asList(InterestController.getInterestByDescription(
 				"Machine Learning"),(InterestController.getInterestByDescription(
 						"Software Engineering")));
+		}
+		else{
+			this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
+			this.skills = Arrays.asList(SkillController.getSkillByDescription("Python"),
+					SkillController.getSkillByDescription("Scrum"));
+			this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
+					"College of Arts and Sciences"));
+			
+			this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
+			
+				this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
+			
+			this.interests = Arrays.asList(InterestController.getInterestByDescription(
+					"Machine Learning"),(InterestController.getInterestByDescription(
+							"Software Engineering")));
+			
+		}
 	}
 	public Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
