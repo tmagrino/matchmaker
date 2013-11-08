@@ -43,8 +43,8 @@
 										<td><%=s.getMinorString() %></td>
 										<td><%=s.getCollegeString() %></td>
 										<td><%=s.getYear() %></td>
-										<td><%=s.getSkillString() %></td>
-										<td><%=s.getInterestString() %></td>
+										<td><%=s.getTruncatedSkillString() %></td>
+										<td><%=s.getTruncatedInterestString() %></td>
 									</tr>
 								<% }} %>
 							</tbody>

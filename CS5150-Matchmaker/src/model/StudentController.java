@@ -37,7 +37,7 @@ public class StudentController {
 		}
 	};
 	
-	
+	//public static List<Student> getStudentByFilter(String name, String  )
 	
 	public static List<Student> getAllStudents() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

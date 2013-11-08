@@ -137,26 +137,23 @@ public class Student implements Serializable {
 		
 		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
 		
-			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
+			
 		
 		this.interests = Arrays.asList(InterestController.getInterestByDescription(
 				"Machine Learning"),(InterestController.getInterestByDescription(
 						"Software Engineering")));
 		}
 		else{
-			this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
+			this.majors = Arrays.asList(MajorController.getMajorByDescription("Information Science"));
 			this.skills = Arrays.asList(SkillController.getSkillByDescription("Python"),
 					SkillController.getSkillByDescription("Scrum"));
 			this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
 					"College of Arts and Sciences"));
-			
-			this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
-			
-				this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
+			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
 			
 			this.interests = Arrays.asList(InterestController.getInterestByDescription(
-					"Machine Learning"),(InterestController.getInterestByDescription(
-							"Software Engineering")));
+					"Functional Programming"),(InterestController.getInterestByDescription(
+							"Computer Vision")));
 			
 		}
 	}
@@ -307,6 +304,25 @@ public class Student implements Serializable {
 		return "";
 	}
 	/**
+	 * @return a string with all Skills separated by ', '. If it's bigger than 15 chars,
+	 * return the first 15 chars + '...'
+	 */
+	public String getTruncatedSkillString(){
+		if (skills.size() > 0){
+			Collections.sort(skills);
+		StringBuilder builder = new StringBuilder();
+		for (Skill s : skills){
+			builder.append(s.getDescription()+", ");
+		}
+		if (builder.length() > 17){
+			return builder.toString().subSequence(0, 16) +"...";
+		}
+		builder.deleteCharAt(builder.length() -2);
+		return builder.toString();
+		}
+		return "";
+	}
+	/**
 	 * @return a string with all Interest separated by ', '
 	 */
 	public String getInterestString(){
@@ -321,6 +337,25 @@ public class Student implements Serializable {
 		}
 		return "";
 	}
+	/**
+	 * @return a string with all Interest separated by ', '
+	 */
+	public String getTruncatedInterestString(){
+		if (interests.size() > 0){
+			Collections.sort(interests);
+		StringBuilder builder = new StringBuilder();
+		for (Interest i : interests){
+			builder.append(i.getDescription()+", ");
+		}
+		if (builder.length() > 17){
+			return builder.toString().subSequence(0, 16) +"...";
+		}
+		builder.deleteCharAt(builder.length() -2);
+		return builder.toString();
+		}
+		return "";
+	}
+	
 	/**
 	 * @return a string with all Majors separated by ', '
 	 */
