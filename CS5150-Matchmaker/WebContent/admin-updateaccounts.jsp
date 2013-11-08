@@ -28,54 +28,62 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a href="admin-addaccounts.jsp">Add Account</a></li>
-							<li><a href="admin-deleteaccounts.jsp">Delete Account</a></li>
-							<li><a href="admin-updateaccounts.jsp" class="selected">Update Account</a></li>
+							<li class="first"><a href="admin-addaccounts.jsp">Add Role</a></li>
+							
 						</ul>
 					</div>
 				</div>
 				<div class="main">
-					<ul class="tabrow">
-						<li><a href="profile.jsp">Accounts</a></li>
-						<li class="selected"><a href="student-projects.jsp">Requests</a></li>
+				<ul class="tabrow">
+							<li>
+								<a href="profile.jsp">My Profile</a>
+							</li>
+							<li>
+								<a href="student-projects.jsp">My Projects</a>
+							</li>
+							<li>
+								<a href="admin-act-as-edit-researcher-profile.jsp">User Profile</a>
+							</li>
+							<li>
+								<a href="researcher-projects.jsp">User Projects</a>
+							</li>
+							<li  class="selected">
+								<a href="admin-updateaccounts.jsp">Change User</a>
+							</li>
 					</ul>
+				
 					<div class="content">
-					<form>
+					<form action="http://localhost/CS5150-Matchmaker/admin-act-as-edit-researcher-profile.jsp">
 						<h1>Accounts</h1>
-						<h3 class="subheading">&nbsp;Update Account</h3>
+						<h3 class="subheading">&nbsp;Search User</h3>
 						<ul class="project-list">
 							<li class="clearfix">
 								<div class="accounts">
-								 <table cellspacing=1 cellpadding=5 align=center border=0>
-								 	<tr><td><font size ="4"><b>Search By Net ID : </b></font><input type="text" value="jd255" size=35/>
+								 
+								 	<font size ="4"><b>Search By Net ID : </b></font><input type="text" value="tm123" size=35/>
 								 	<input type="Submit" value="Search" size=20  style="width: 10em; height:2em"/></td>
-									</tr>
+									<br><br>
+									<table cellspacing=5 cellpadding=10 border=0>
 									<tr>
-									<td><table cellspacing=5 cellpadding=5 border=0>
-									<tr>
-										<td valign="top"><img src="blank.png"/></td>
+										<td valign="top"><img src="blank.png" height=150 width=150/></td>
 										<td>
-								 		<table cellspacing=5 cellpadding=5 align=center border=0>
-								 		<tr><th><b><font size="4">Name :</font></b></th>
-								 		<td><input type="text" value="John Doe" size=35/></td>
+								 		<table cellspacing=10 cellpadding=10 align=center style="b">
+								 		<tr><td><h3>Name:</h3></td>
+								 		<td><input type="text" value="Tom Magrino" size=35/></td>
 										</tr>
-										<tr><th><b><font size="4">Net ID :</font></b></th>
-									 		<td><input type="text" value="jd255" size=35/></td>
+										<tr><td><h3>NetID:</h3></td>
+									 		<td><input type="text" value="tm123" size=35/></td>
 										</tr>
-										<tr><th><b><font size="4">GPA :</font></b></th>
-									 		<td><input type="text" value="3.9" size=35/></td>
-										</tr>
-										<tr>
-										 <th><b><font size="4">Role :</font></b></th>
+									    <tr><td><h3>Role:</h3></td>
 										 <td>
-									 		<input type="radio" name="role" value="Student" checked="checked"/>Student &nbsp;&nbsp;
-									 		<input type="radio" name="role" value="Researcher"/>Researcher
+									 		<input type="radio" name="role" value="Student"/>Student &nbsp;&nbsp;
+									 		<input type="radio" name="role" value="Researcher"  checked="checked"/>Researcher
 									 	</td>
 										</tr>
 										<tr>
 											<td colspan="2" align="center">
 											<div class="status">
-												<p class="deleted">Update</p>
+												<input type="Submit" value="View Profile" size=20  style="width: 10em; height:2em"/>
 											</div>
 										</td>
 										</tr>
@@ -83,9 +91,8 @@
 									</td>
 									</tr>
 									</table>
-									</td>
-									</tr>
-								 </table>
+									
+
 							</div>
 							</li>
 							</ul>							
