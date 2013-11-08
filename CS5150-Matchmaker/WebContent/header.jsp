@@ -13,7 +13,6 @@
 	<script src="js/script.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 	<script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
-	<script src="js/jPages.min.js" type="text/javascript"></script>
 	<script src="js/jquery.autoSuggest.js" type="text/javascript"></script>
 	<title>Matchmaker - Student Profile</title>
 </head>
@@ -50,7 +49,7 @@
 								<a href="profile.jsp">My Profile</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("project")){ %>class="selected"<% } %>>
-								<a href="student-projects.jsp">My Projects</a>
+								<a href="student-projects.jsp">Projects</a>
 							</li>
 						<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 							<li <% if(request.getParameter("top_selected").equals("profile")){ %>class="selected"<% } %>>

@@ -7,33 +7,39 @@
 <%@page import="java.util.*,model.Student, model.StudentController"%>
 					<div class="content">
 						<h1>Students</h1>
-						<h2 class="subheading">Filters</h2>
-						<div class="filters">
-							<input type="checkbox" name="all-profile">All Profile Info
-							<input type="checkbox" name="research-interest">Research Interest
-							<input type="checkbox" name="research-interest">Skills
-						</div>
-						<ul class="project-list" id="project-list-pagination">
+						<table class="project-list">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>GPA</th>
+									<th>Major</th>
+									<th>Minor</th>
+									<th>College</th>
+									<th>Class Year</th>
+									<th>Skills</th>
+									<th>Research Area</th>
+								</tr>
+							</thead>
+							<tbody>
 						<%List<Student> studentList = StudentController.getAllStudents(); 
 							for(Student s: studentList)
 							{
 							%>
-								<li class="clearfix">
-									<div class="status">
-										<p class="invite">Invite</p>
-									</div>
-									<div class="project-info">
-										<div class="delete">Hide</div>
-										<h3><%=s.getName() %></h3>
-										<p>Major: <%=s.getMajorString() %>, College: <%=s.getCollegeString() %></p>
-										<p>Year: <%=s.getYear() %></p>
-										<p>Skills: <%=s.getSkillString() %></p>
-										<p>Research Interests: <%=s.getInterestString() %></p>
-									</div>							
-								</li>
+								
+									<tr>
+										<td><%=s.getName() %></td>
+										<td><%=s.getGpa() %></td>
+										<td><%=s.getMajorString() %></td>
+										<td><%=s.getMinorString() %></td>
+										<td><%=s.getCollegeString() %></td>
+										<td><%=s.getYear() %></td>
+										<td><%=s.getSkillString() %></td>
+										<td><%=s.getInterestString() %></td>
+									</tr>
 							<% } %>
-						</ul>
-						<ul class="holder"></ul>
+							</tbody>
+						</table>
+						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>
