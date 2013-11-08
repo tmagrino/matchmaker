@@ -304,6 +304,25 @@ public class Student implements Serializable {
 		return "";
 	}
 	/**
+	 * @return a string with all Skills separated by ', '. If it's bigger than 15 chars,
+	 * return the first 15 chars + '...'
+	 */
+	public String getTruncatedSkillString(){
+		if (skills.size() > 0){
+			Collections.sort(skills);
+		StringBuilder builder = new StringBuilder();
+		for (Skill s : skills){
+			builder.append(s.getDescription()+", ");
+		}
+		if (builder.length() > 17){
+			return builder.toString().subSequence(0, 16) +"...";
+		}
+		builder.deleteCharAt(builder.length() -2);
+		return builder.toString();
+		}
+		return "";
+	}
+	/**
 	 * @return a string with all Interest separated by ', '
 	 */
 	public String getInterestString(){
@@ -318,6 +337,25 @@ public class Student implements Serializable {
 		}
 		return "";
 	}
+	/**
+	 * @return a string with all Interest separated by ', '
+	 */
+	public String getTruncatedInterestString(){
+		if (interests.size() > 0){
+			Collections.sort(interests);
+		StringBuilder builder = new StringBuilder();
+		for (Interest i : interests){
+			builder.append(i.getDescription()+", ");
+		}
+		if (builder.length() > 17){
+			return builder.toString().subSequence(0, 16) +"...";
+		}
+		builder.deleteCharAt(builder.length() -2);
+		return builder.toString();
+		}
+		return "";
+	}
+	
 	/**
 	 * @return a string with all Majors separated by ', '
 	 */

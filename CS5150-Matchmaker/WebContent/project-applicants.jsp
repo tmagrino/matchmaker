@@ -39,8 +39,8 @@
 										<td><%=s.getMajorString() %></td>
 										<td><%=s.getMinorString() %></td>
 										<td><%=s.getYear() %></td>
-										<td><%=s.getSkillString() %></td>
-										<td><%=s.getInterestString() %></td>
+										<td><%=s.getTruncatedSkillString() %></td>
+										<td><%=s.getTruncatedInterestString() %></td>
 									</tr>
 <!-- 									<tr class="even"> -->
 <%-- 										<td>Student <%=i+1 %></td> --%>
