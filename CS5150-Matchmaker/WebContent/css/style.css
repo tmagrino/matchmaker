@@ -52,7 +52,7 @@ html{
 }
 
 .wrapper{
-	width: 1050px;
+	width: 1300px;
 	margin: 10px auto 0;
 }
 
@@ -104,7 +104,7 @@ html{
 
 .main{
 	float: right;
-	width: 830px;
+	width: 1000px;
 	margin-top: 47px;
 	height: 100%;
 }
@@ -112,7 +112,7 @@ html{
 	background-color: #ECECEC;
 	padding-left: 20px;
 	height: 100%;
-	width: 811px;
+	width: 985px;
 }
 h2.subheading{
 	margin-left: 38px;

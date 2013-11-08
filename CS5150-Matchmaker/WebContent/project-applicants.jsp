@@ -19,9 +19,11 @@
 							<thead>
 								<tr>
 									<th>Name</th>
+									<th>GPA</th>
 									<th>Major</th>
 									<th>Minor</th>
-									<th>Class Year</th>
+									<th>College</th>
+									<th>Year</th>
 									<th>Skills</th>
 									<th>Research Area</th>
 								</tr>
@@ -34,22 +36,16 @@
 								for(int i=1;i<=100;i+=2) { 
 									for(Student s: studentList)
 								{%>
-									<tr class="odd">
+									<tr>
 										<td><%=s.getName() %></td>
+										<td><%=s.getGpa() %></td>
 										<td><%=s.getMajorString() %></td>
 										<td><%=s.getMinorString() %></td>
+										<td><%=s.getCollegeString() %></td>
 										<td><%=s.getYear() %></td>
 										<td><%=s.getSkillString() %></td>
 										<td><%=s.getInterestString() %></td>
 									</tr>
-<!-- 									<tr class="even"> -->
-<%-- 										<td>Student <%=i+1 %></td> --%>
-<!-- 										<td>Art History</td> -->
-<!-- 										<td>Music</td> -->
-<!-- 										<td>4th Year</td> -->
-<!-- 										<td>Java</td> -->
-<!-- 										<td>Natural Language Processing</td> -->
-<!-- 									</tr> -->
 								<% }} %>
 							</tbody>
 						</table>
