@@ -34,8 +34,15 @@
 									
 									for(int i=1;i<=100;i+=2) { 
 										for(Student s: studentList)
-									{%>
-										<tr>
+									{
+									List<Major> maj = s.getMajors();
+									List<Interest> ints = s.getInterests();
+									List<Skill> skls = s.getSkills();
+									%>
+										<tr class = "name-<%=s.getId()%> gpa-<%=s.getId()%> <%for(Major m : maj)
+												%>major-<%=m.getId()%> year-<%=s.getYear()%> <%for(Interest in : ints)
+												%>interest-<%=in.getId()%> <%for(Skill sk : skls)
+												%>skill-<%=sk.getId()%> "> 
 											<td>
 												<p><a href="#">Accept</a></p>
 												<p><a href="#">Reject</a></p>

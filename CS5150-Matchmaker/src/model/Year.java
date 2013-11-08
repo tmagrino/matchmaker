@@ -16,7 +16,5 @@ public enum Year {
 	private Year(String value){
 		yearValue = value;
 	}
-	 public String toString(){
-	       return yearValue;
-	    }
+
 }

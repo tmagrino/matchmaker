@@ -55,7 +55,7 @@ public class Major implements Comparable<Major>{
 		this.description = name;
 	}
 	
-	long getId(){
+	public long getId(){
 		return id;
 	}
 	

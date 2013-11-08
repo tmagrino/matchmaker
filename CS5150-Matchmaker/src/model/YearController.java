@@ -12,15 +12,15 @@ public class YearController {
 	public static Year getYear(String name) {
 		String yr = name.toUpperCase();
 		switch (yr) {
-			case "FRESHMAN":
+			case "1":
 				return Year.Freshman;
-			case "SOPHOMORE":
+			case "2":
 				return Year.Sophomore;
-			case "JUNIOR":
+			case "3":
 				return Year.Junior;
-			case "SENIOR":
+			case "4":
 				return Year.Senior;
-			case "GRADUATE":
+			case "5+":
 				return Year.Graduate;
 			default:
 				return null;
