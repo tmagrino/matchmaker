@@ -39,7 +39,7 @@ JSONObject jsonInterest = InterestController.getInterestJson();
 						<form name="profile-form" action="/">
 							<div class="photo-info project-info clearfix">
 								<div class="info">
-									<h2>Bob Smith</h2>
+									<h2>Tom Magrino</h2>
 									<p class="required"><label for="title">Title</label><input name="title" value="<%= proj_title %>" type="text"></input></p>
 									<p><label for="research-area">Research Area</label><input name="research-area" type="text"></input></p>
 									<p><label for="skills">Required Skills</label><input name="skills" type="text"></input></p>
