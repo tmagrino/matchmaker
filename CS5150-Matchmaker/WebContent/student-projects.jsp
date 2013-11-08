@@ -22,6 +22,10 @@
 							<table class="project-list">
 									<jsp:include page="proj-filters.jsp"/>
 									<tr>
+										<td>
+											<p>Accepted</p>
+											<p><a href="#">Hide</a></p>
+										</td>
 										<td>Project Name</td>
 										<td>Andrew Myers</td>
 										<td><a href="#">Link to Project Webpage</a></td>
@@ -30,10 +34,26 @@
 										<td>Java</td>
 									</tr>
 									<tr>
+										<td>
+											<p>Rejected</p>
+											<p><a href="#">Hide</a></p>
+										</td>
 										<td>Project Name</td>
 										<td>Tom Magrino</td>
 										<td></td>
 										<td>This is a description of Project 2.  This is a...</td>
+										<td>Systems</td>
+										<td>Python</td>
+									</tr>
+									<tr>
+										<td>
+											<p>Pending</p>
+											<p><a href="#">Hide</a></p>
+										</td>
+										<td>Project Name</td>
+										<td>Tom Magrino</td>
+										<td></td>
+										<td>This is a description of Project 3.  This is a...</td>
 										<td>Systems</td>
 										<td>Python</td>
 									</tr>

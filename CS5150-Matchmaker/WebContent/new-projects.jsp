@@ -25,6 +25,7 @@
 							{
 							%>
 								<tr>
+									<td><a href="#">Apply</a></td>
 									<td>Project Name <%=i %></td>
 									<td>Andrew Myers</td>
 									<td><a href="#">Link to Project Webpage <%=i %></a></td>
@@ -33,6 +34,7 @@
 									<td>Java</td>
 								</tr>
 								<tr>
+									<td><a href="#">Apply</a></td>
 									<td>Project Name <%=i+1 %></td>
 									<td>Tom Magrino</td>
 									<td></td>

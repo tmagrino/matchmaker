@@ -26,6 +26,10 @@
 									{
 									%>
 										<tr>
+											<td>
+												<p><a href="#">Invite</a></p>
+												<p><a href="#">Hide</a></p>
+											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
 											<td><%=s.getMajorString() %></td>

@@ -22,6 +22,7 @@
 							<table class="project-list">
 								<thead>
 									<tr>
+										<th></th>
 										<th>Project Name</th>
 										<th>Project URL</th>
 										<th>Description</th>
@@ -31,6 +32,7 @@
 								</thead>
 								<tbody>
 									<tr>
+										<td></td>
 										<td><input type="text" name="filter-proj-name"></td>
 										<td></td>
 										<td></td>
@@ -38,6 +40,7 @@
 										<td><input type="text" name="filter-skill"></td>
 									</tr>
 									<tr>
+										<td><a href="#">Remove</a></td>
 										<td>Project Name</td>
 										<td><a href="#">Link to Project Webpage</a></td>
 										<td></td>
@@ -45,6 +48,7 @@
 										<td>Java</td>
 									</tr>
 									<tr>
+										<td><a href="#">Remove</a></td>
 										<td>Project Name</td>
 										<td></td>
 										<td>This is a description of Project 2.  This is a...</td>

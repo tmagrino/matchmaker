@@ -22,6 +22,7 @@
 							<table class="project-list">
 								<jsp:include page="proj-filters.jsp"/>
 								<tr>
+									<td><a href="#">Apply</a></td>
 									<td>Project Name</td>
 									<td>Andrew Myers</td>
 									<td><a href="#">Link to Project Webpage</a></td>
@@ -30,6 +31,7 @@
 									<td>Java</td>
 								</tr>
 								<tr>
+									<td><a href="#">Apply</a></td>
 									<td>Project Name</td>
 									<td>Tom Magrino</td>
 									<td></td>

@@ -1,5 +1,6 @@
 <thead>
 	<tr>
+		<th></th>
 		<th>Project Name</th>
 		<th>Researcher Name</th>
 		<th>Project URL</th>
@@ -10,6 +11,7 @@
 </thead>
 <tbody>
 <tr>
+	<td></td>
 	<td><input type="text" name="filter-proj-name"></td>
 	<td><input type="text" name="filter-researcher-name"></td>
 	<td></td>

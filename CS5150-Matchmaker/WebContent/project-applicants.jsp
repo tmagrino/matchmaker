@@ -36,6 +36,10 @@
 										for(Student s: studentList)
 									{%>
 										<tr>
+											<td>
+												<p><a href="#">Accept</a></p>
+												<p><a href="#">Reject</a></p>
+											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
 											<td><%=s.getMajorString() %></td>

@@ -1,5 +1,6 @@
 <thead>
 	<tr>
+		<th></th>
 		<th>Name</th>
 		<th>GPA</th>
 		<th>Major</th>
@@ -10,7 +11,8 @@
 </thead>
 <tbody>
 	<tr>
-			<td><input type="text" name="filter-name"></td>
+		<td></td>
+		<td><input type="text" name="filter-name"></td>
 		<td>
 			<select name="filter-gpa">
 				<option value="">---</option>
