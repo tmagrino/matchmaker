@@ -10,7 +10,7 @@
 						<h1>My Profile</h1>
 						<form name="profile-form" action="/">
 							<div class="photo-info clearfix">
-								<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
+								<img class="avatar" src="images/avatar-male.jpg" alt="avatar"/>
 								<div class="info">
 <!-- <<<<<<< HEAD
 									<h2>Bob Smith</h2>
