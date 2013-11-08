@@ -9,7 +9,7 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	<script src="js/script.js" type="text/javascript"></script>
 	<script src="js/jquery.autoSuggest.minified.js" type="text/javascript"></script>
-	<title>Matchmaker - Add Role</title>
+	<title>Matchmaker - Update Role</title>
 </head>
     <!--[if IE 7]>         <body class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
     <!--[if IE 8]>         <body class="lt-ie10 lt-ie9"> <![endif]-->
@@ -54,7 +54,7 @@
 					<div class="content">
 					<form>
 						<h1>Accounts</h1>
-						<h3 class="subheading">&nbsp;Add Role</h3>
+						<h3 class="subheading">&nbsp;Update Role</h3>
 						<ul class="project-list">
 							<li class="clearfix">
 								<div class="accounts">
@@ -68,12 +68,13 @@
 									<tr>
 									 <td><h3>Role :</h3></td>
 									 <td>
-								 		<input type="radio" name="role" value="Student"/>Student &nbsp;&nbsp;
-								 		<input type="radio" name="role" value="Researcher" checked="checked"/>Researcher
+								 		<p><input type="checkbox" name="role" value="Student"/>Student &nbsp;&nbsp;</li>
+								 		<p><input type="checkbox" name="role" value="Researcher" checked="checked"/>Researcher</li>
+								 		<p><input type="checkbox" name="role" value="Admin"/>Administrator</li>
 								 	</td>
 									</tr>
 									<tr>
-										<td colspan=2 align="center"><input type="button" value="Add Role" size=20  style="width: 10em; height:2em" onClick="alert('Role has been added!')"/></td>
+										<td colspan=2 align="center"><input type="button" value="Save" size=20  style="width: 10em; height:2em" onClick="alert('Role(s) have been updated!')"/></td>
 									</tr>
 								 </table>
 								</div>							
