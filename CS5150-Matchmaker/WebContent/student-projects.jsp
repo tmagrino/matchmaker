@@ -5,37 +5,41 @@
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 					<div class="content">
+						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
 						<h1>Projects</h1>
-						<table class="project-list">
-							<thead>
-								<tr>
-									<th>Project Name</th>
-									<th>Researcher Name</th>
-									<th>Project URL</th>
-									<th>Description</th>
-									<th>Research Area</th>
-									<th>Required Skills</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>Project Name</td>
-									<td>Andrew Myers</td>
-									<td><a href="#">Link to Project Webpage</a></td>
-									<td></td>
-									<td>Programming Languages</td>
-									<td>Java</td>
-								</tr>
-								<tr>
-									<td>Project Name</td>
-									<td>Tom Magrino</td>
-									<td></td>
-									<td>This is a description of Project 2.  This is a...</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
-							</tbody>
-						</table>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+									<jsp:include page="proj-filters.jsp"/>
+									<tr>
+										<td>Project Name</td>
+										<td>Andrew Myers</td>
+										<td><a href="#">Link to Project Webpage</a></td>
+										<td></td>
+										<td>Programming Languages</td>
+										<td>Java</td>
+									</tr>
+									<tr>
+										<td>Project Name</td>
+										<td>Tom Magrino</td>
+										<td></td>
+										<td>This is a description of Project 2.  This is a...</td>
+										<td>Systems</td>
+										<td>Python</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
 					</div>
 				</div>
 			</div>

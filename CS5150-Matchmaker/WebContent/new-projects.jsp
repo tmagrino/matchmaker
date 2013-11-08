@@ -5,19 +5,22 @@
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 					<div class="content">
+						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
 						<h1>Projects</h1>
-						<table class="project-list">
-							<thead>
-								<tr>
-									<th>Project Name</th>
-									<th>Researcher Name</th>
-									<th>Project URL</th>
-									<th>Description</th>
-									<th>Research Area</th>
-									<th>Required Skills</th>
-								</tr>
-							</thead>
-							<tbody>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+							<jsp:include page="proj-filters.jsp"/>
 							<% for(int i=1;i<=500;i+=2)
 							{
 							%>
@@ -39,7 +42,8 @@
 								</tr>
 							<% } %>
 							</tbody>
-						</table>
+							</table>
+						</form>
 						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>

@@ -12,43 +12,41 @@
     <jsp:param name="sidebar_selected" value="<%= proj_sidebar %>"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.StudentController"%>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 					<div class="content">
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
 						<h1>Students</h1>
-						<table class="project-list">
-							<thead>
-								<tr>
-									<th>Name</th>
-									<th>GPA</th>
-									<th>Major</th>
-									<th>Minor</th>
-									<th>College</th>
-									<th>Year</th>
-									<th>Skills</th>
-									<th>Research Area</th>
-								</tr>
-							</thead>
-							<tbody>
-							
-								<% 
-								List<Student> studentList = StudentController.getAllStudents();
-								
-								for(int i=1;i<=100;i+=2) { 
-									for(Student s: studentList)
-								{%>
-									<tr>
-										<td><%=s.getName() %></td>
-										<td><%=s.getGpa() %></td>
-										<td><%=s.getMajorString() %></td>
-										<td><%=s.getMinorString() %></td>
-										<td><%=s.getCollegeString() %></td>
-										<td><%=s.getYear() %></td>
-										<td><%=s.getTruncatedSkillString() %></td>
-										<td><%=s.getTruncatedInterestString() %></td>
-									</tr>
-								<% }} %>
-							</tbody>
-						</table>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+									<jsp:include page="stud-filters.jsp"/>
+									<% 
+									List<Student> studentList = StudentController.getAllStudents();
+									
+									for(int i=1;i<=100;i+=2) { 
+										for(Student s: studentList)
+									{%>
+										<tr>
+											<td><%=s.getName() %></td>
+											<td><%=s.getGpa() %></td>
+											<td><%=s.getMajorString() %></td>
+											<td><%=s.getYear() %></td>
+											<td><%=s.getTruncatedSkillString() %></td>
+											<td><%=s.getTruncatedInterestString() %></td>
+										</tr>
+									<% }} %>
+								</tbody>
+							</table>
+						</form>
 						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>

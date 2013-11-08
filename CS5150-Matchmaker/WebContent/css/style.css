@@ -145,6 +145,9 @@ ul.as-selections li.as-original input[type=text]
 {
 	width: 518px;
 }
+#filter-list ul.as-selections li.as-original input[type=text]{
+	width: 153px;
+}
 form[name=profile-form] .project-info textarea{
 	width:510px;
 }
