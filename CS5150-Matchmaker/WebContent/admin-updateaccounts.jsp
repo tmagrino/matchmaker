@@ -28,7 +28,7 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a href="admin-addaccounts.jsp">Add Role</a></li>
+							<li class="first"><a href="admin-addaccounts.jsp">Update Role</a></li>
 							
 						</ul>
 					</div>

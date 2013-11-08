@@ -35,7 +35,7 @@
 					<p class="notifications">Notifications</p>
 					<div id="sidenav">
 						<ul>
-							<li class="first"><a href="admin-addaccounts.jsp">Add Role</a></li>
+							<li class="first"><a href="admin-addaccounts.jsp">Update Role</a></li>
 							<li><a href="admin-deleteaccounts.jsp">My Profile</a></li>
 							<li><a href="admin-deleteaccounts.jsp">My Projects</a></li>
 							<li><a href=""><u>Project A</u></a>
