@@ -4,36 +4,44 @@
     <jsp:param name="sidebar_selected" value="invite"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.StudentController"%>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 					<div class="content">
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
 						<h1>Students</h1>
-						<h2 class="subheading">Filters</h2>
-						<div class="filters">
-							<input type="checkbox" name="all-profile">All Profile Info
-							<input type="checkbox" name="research-interest">Research Interest
-							<input type="checkbox" name="research-interest">Skills
-						</div>
-						<ul class="project-list" id="project-list-pagination">
-						<%List<Student> studentList = StudentController.getAllStudents(); 
-							for(Student s: studentList)
-							{
-							%>
-								<li class="clearfix">
-									<div class="status">
-										<p class="invite">Invite</p>
-									</div>
-									<div class="project-info">
-										<div class="delete">Hide</div>
-										<h3><%=s.getName() %></h3>
-										<p>Major: <%=s.getMajorString() %>, College: <%=s.getCollegeString() %></p>
-										<p>Year: <%=s.getYear() %></p>
-										<p>Skills: <%=s.getSkillString() %></p>
-										<p>Research Interests: <%=s.getInterestString() %></p>
-									</div>							
-								</li>
-							<% } %>
-						</ul>
-						<ul class="holder"></ul>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+								<jsp:include page="stud-filters.jsp"/>
+								<%List<Student> studentList = StudentController.getAllStudents(); 
+									for(Student s: studentList)
+									{
+									%>
+										<tr>
+											<td>
+												<p><a href="#">Invite</a></p>
+												<p><a href="#">Hide</a></p>
+											</td>
+											<td><%=s.getName() %></td>
+											<td><%=s.getGpa() %></td>
+											<td><%=s.getMajorString() %></td>
+											<td><%=s.getYear() %></td>
+											<td><%=s.getSkillString() %></td>
+											<td><%=s.getInterestString() %></td>
+										</tr>
+								<% } %>
+								</tbody>
+							</table>
+						</form>
+						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>

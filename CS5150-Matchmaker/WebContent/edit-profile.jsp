@@ -27,7 +27,7 @@
                 <h2 class="subheading">General Information</h2>
                 <form name="profile-form" action="savechanges.jsp" method="GET">
                         <div class="photo-info clearfix">
-                                <img class="avatar" src="avatar-female.jpg" alt="avatar"/>
+                                <img class="avatar" src="image/avatar-female.jpg" alt="avatar"/>
                                 <div class="info">
                                         <h2><%=s.getName() %></h2>
                                         <p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
@@ -42,7 +42,7 @@
                                 <p class="required"><label for="gpa">GPA</label><input name="gpa" value="<%=s.getGpa() %>"type="text" maxlength="4"></input></p>
                                 <p><label for="skills">Skills</label><input name="skills" value="<%=s.getSkillString() %>" type="text"></input></p>
                                 <p><label for="research-area">Research Interests</label><input name="research-area" type="text"></input></p>
-                                <h3>Courses</h3>
+                                <h3>Relevant Courses</h3>
                                 <table id="profile-courses">
                                         <input type="hidden" name="nvals" value="5"></input>
                                         <% for(int i=0;i<2;i++){ %>

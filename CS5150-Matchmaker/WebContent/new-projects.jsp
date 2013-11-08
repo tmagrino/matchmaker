@@ -5,31 +5,48 @@
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 					<div class="content">
-						<h1>My Projects</h1>
-						<h2 class="subheading">Filters</h2>
-						<div class="filters">
-							<a class="filter-all" href="#">Filter by all profile info</a>
-							<input type="checkbox" name="research-interest">Research Interest
-							<input type="checkbox" name="research-interest">Skills
-						</div>
-						<ul class="project-list" id="project-list-pagination">
-							<% for(int i=1;i<=500;i++)
+						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
+						<h1>Projects</h1>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+							<jsp:include page="proj-filters.jsp"/>
+							<% for(int i=1;i<=500;i+=2)
 							{
 							%>
-								<li class="clearfix">
-									<div class="status">
-										<p class="apply">Apply</p>
-									</div>
-									<div class="project-info">
-										<div class="delete">Hide</div>
-										<h3>Project Name</h3>
-										<p><a href="#">Link to Project Webpage <%=i %></a></p>
-										<p>Researcher Name</p>
-									</div>							
-								</li>
+								<tr>
+									<td><a href="#">Apply</a></td>
+									<td>Project Name <%=i %></td>
+									<td>Andrew Myers</td>
+									<td><a href="#">Link to Project Webpage <%=i %></a></td>
+									<td></td>
+									<td>Programming Languages</td>
+									<td>Java</td>
+								</tr>
+								<tr>
+									<td><a href="#">Apply</a></td>
+									<td>Project Name <%=i+1 %></td>
+									<td>Tom Magrino</td>
+									<td></td>
+									<td>This is a description of Project <%=i+1 %>.  This is a...</td>
+									<td>Systems</td>
+									<td>Python</td>
+								</tr>
 							<% } %>
-						</ul>
-						<ul class="holder"></ul>
+							</tbody>
+							</table>
+						</form>
+						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>

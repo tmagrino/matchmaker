@@ -49,7 +49,7 @@ public class Skill implements Comparable<Skill>{
 	public Skill() {
 		
 	}
-	long getId(){
+	public long getId(){
 		return id;
 	}
 	public Skill(String name) {

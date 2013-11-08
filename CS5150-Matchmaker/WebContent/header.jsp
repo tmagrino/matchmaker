@@ -9,9 +9,11 @@
 	<link rel="stylesheet" type="text/css" href="css/jPages.css">
 	<link rel="stylesheet" type="text/css" href="css/autoSuggest.css">
 	<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 	<script src="js/script.js" type="text/javascript"></script>
-	<script src="js/jPages.min.js" type="text/javascript"></script>
-	<script src="js/jquery.autoSuggest.minified.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
+	<script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
+	<script src="js/jquery.autoSuggest.js" type="text/javascript"></script>
 	<title>Matchmaker - Student Profile</title>
 </head>
     <!--[if IE 7]>         <body class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
@@ -47,7 +49,7 @@
 								<a href="profile.jsp">My Profile</a>
 							</li>
 							<li <% if(request.getParameter("top_selected").equals("project")){ %>class="selected"<% } %>>
-								<a href="student-projects.jsp">My Projects</a>
+								<a href="student-projects.jsp">Projects</a>
 							</li>
 						<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 							<li <% if(request.getParameter("top_selected").equals("profile")){ %>class="selected"<% } %>>

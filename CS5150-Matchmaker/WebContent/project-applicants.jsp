@@ -12,34 +12,53 @@
     <jsp:param name="sidebar_selected" value="<%= proj_sidebar %>"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
 					<div class="content">
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
 						<h1>Students</h1>
-						<h2 class="subheading">Filters</h2>
-						<div class="filters">
-							<input type="checkbox" name="all-profile">All Profile Info
-							<input type="checkbox" name="research-interest">Research Interest
-							<input type="checkbox" name="research-interest">Skills
-						</div>
-						<ul class="project-list" id="project-list-pagination">
-							<% for(int i=1;i<=500;i++)
-							{
-							%>
-								<li class="clearfix">
-									<div class="status">
-										<p class="invite">Invite</p>
-									</div>
-									<div class="project-info">
-										<div class="delete">Hide</div>
-										<h3>Student Name <%=i %></h3>
-										<p>Student's Major, Student's College</p>
-										<p>Graduation Year</p>
-										<p>Skills</p>
-										<p>Research Area</p>
-									</div>							
-								</li>
-							<% } %>
-						</ul>
-						<ul class="holder"></ul>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+									<jsp:include page="stud-filters.jsp"/>
+									<% 
+									List<Student> studentList = StudentController.getAllStudents();
+									
+									for(int i=1;i<=100;i+=2) { 
+										for(Student s: studentList)
+									{
+									List<Major> maj = s.getMajors();
+									List<Interest> ints = s.getInterests();
+									List<Skill> skls = s.getSkills();
+									%>
+										<tr class = "name-<%=s.getId()%> gpa-<%=s.getId()%> <%for(Major m : maj)
+												%>major-<%=m.getId()%> year-<%=s.getYear()%> <%for(Interest in : ints)
+												%>interest-<%=in.getId()%> <%for(Skill sk : skls)
+												%>skill-<%=sk.getId()%> "> 
+											<td>
+												<p><a href="#">Accept</a></p>
+												<p><a href="#">Reject</a></p>
+											</td>
+											<td><%=s.getName() %></td>
+											<td><%=s.getGpa() %></td>
+											<td><%=s.getMajorString() %></td>
+											<td><%=s.getYear() %></td>
+											<td><%=s.getTruncatedSkillString() %></td>
+											<td><%=s.getTruncatedInterestString() %></td>
+										</tr>
+									<% }} %>
+								</tbody>
+							</table>
+						</form>
+						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>

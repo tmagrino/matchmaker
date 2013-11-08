@@ -8,35 +8,64 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class StudentController {
+		
+	public static String[] calculateGpaRange(String gpa){
+		switch(gpa){
+		case "gt4":
+			return new String[]{"4.0","4.5"};
+		case "35to4":
+			return new String[]{"3.5","4.0"};
+		case "3to35":
+			return new String[]{"3.0","3.5"};
+		case "25to3":
+			return new String[]{"2.5","3.0"};
+		case "lt25":
+			return new String[]{"0.0","2.5"};
+		default:
+			return new String[]{"0.0","4.5"};
+		
+		}
+	}
 	
-	public static final Comparator<Student> MAJOR_ORDER = new Comparator<Student>(){
-		public int compare(Student s1, Student s2) {
-            return s2.getMajorString().compareTo(s1.getMajorString());
-		}
-	};
-	public static final Comparator<Student> MINOR_ORDER = new Comparator<Student>(){
-		public int compare(Student s1, Student s2) {
-            return s2.getMinorString().compareTo(s1.getMinorString());
-		}
-	};
-	public static final Comparator<Student> SKILL_ORDER = new Comparator<Student>(){
-		public int compare(Student s1, Student s2) {
-            return s2.getSkillString().compareTo(s1.getSkillString());
-		}
-	};
-	public static final Comparator<Student> INTEREST_ORDER = new Comparator<Student>(){
-		public int compare(Student s1, Student s2) {
-            return s2.getInterestString().compareTo(s1.getInterestString());
-		}
-	};
-	public static final Comparator<Student> COLLEGE_ORDER = new Comparator<Student>(){
-		public int compare(Student s1, Student s2) {
-            return s2.getCollegeString().compareTo(s1.getCollegeString());
-		}
-	};
-	
+	public static List<Student> getStudentByFilter(String name, String gpa, String year,
+			String major, String skill, String interest){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        String [] gpaRange = calculateGpaRange(gpa);
+        
+        try{	StringBuilder query = new StringBuilder();  
+        	query.append("select s from STUDENT s");
+        		if (major != "") query.append(" join s.majors m");
+        		if (skill != "") query.append(" join s.skills sk");
+        		if (interest != "") query.append(" join s.interest i");
+        		query.append(" where s.name like :name and "+
+        				"s.gpa between :firstgpa and :secondgpa");
+        		if (year != "") query.append(" and s.year = :year");
+        				
+                		
+        		if (major != "") query.append(" m.description like '%"+major+"'");
+        		if (skill != "") query.append(" sk.description like '%"+skill+"'");
+        		if (interest != "") query.append(" i.description like '%"+interest+"'");
+        		Query q = em.createQuery(query.toString());
+        		q.setParameter("name", "%'"+name+"'");
+        		q.setParameter("firstgpa", Double.parseDouble(gpaRange[0]));
+        		q.setParameter("secondgpa",Double.parseDouble(gpaRange[1]));
+        		if (year != "") q.setParameter("year",YearController.getYear(year));
+        		
+        		return (List<Student>) q.getResultList();
+        		
+        }
+        catch (Exception e){
+        	System.out.println(e.getMessage());
+        	
+        }
+		return null;
+		
+	}
 	
 	
 	public static List<Student> getAllStudents() {

@@ -19,11 +19,11 @@ function doPagination() {
 
 function initAutosuggest()
 {	
-	var majorInput = $(".info input[name=major]");
+	var majorInput = $(".info input[name=major], #filter-list input[name=filter-major]");
 	var minorInput = $(".info input[name=minor]");
 	var collegeInput = $(".info input[name=school]");
-	var skillsInput = $(".application-info input[name=skills], .info input[name=skills]");
-	var researchInput = $(".application-info input[name=research-area], .info input[name=research-area]");
+	var skillsInput = $(".application-info input[name=skills], .info input[name=skills], #filter-list input[name=filter-skill]");
+	var researchInput = $(".application-info input[name=research-area], .info input[name=research-area], #filter-list input[name=filter-interest]");
 	
 	if(majorInput.length){
 		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "major"});
@@ -159,15 +159,19 @@ function filterAll()
 	});
 }
 
+function sortTable()
+{
+	$(".project-list").tablesorter()
+	.tablesorterPager({container: $("#pager"), positionFixed: false});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
-	doPagination();
-	handleFilterText();
-	handleFilterCheckboxes();
+	sortTable();
 	handleAddCourse();
-	initSideHeight();
 	validateFormSubmit();
 	hideProject();
 	filterAll();
+	initSideHeight();
 });
 

@@ -52,7 +52,7 @@ public class Interest implements Comparable<Interest>{
 		
 	}
 	
-	long getId(){
+	public long getId(){
 		return id;
 	}
 	

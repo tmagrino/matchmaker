@@ -12,30 +12,20 @@ public class YearController {
 	public static Year getYear(String name) {
 		String yr = name.toUpperCase();
 		switch (yr) {
-			case "FRESHMAN":
+			case "1":
 				return Year.Freshman;
-			case "SOPHOMORE":
+			case "2":
 				return Year.Sophomore;
-			case "JUNIOR":
+			case "3":
 				return Year.Junior;
-			case "SENIOR":
+			case "4":
 				return Year.Senior;
-			case "FIFTH YEAR UNDERGRAD":
-				return Year.Fifth_Year_Undergrad;
-			case "PHD":
-				return Year.PhD;
+			case "5+":
+				return Year.Graduate;
 			default:
 				return null;
 		}
 	}
 	
-	public static Year getYear(long id) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-      
-        String query = "select s from Interest s where s.id = " + id;
-		@SuppressWarnings("unchecked")
-		List<Year> skls = (List<Year>) em.createQuery(query).getResultList();
-		return skls.get(0);
-	}
+	
 }

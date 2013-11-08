@@ -52,7 +52,7 @@ html{
 }
 
 .wrapper{
-	width: 1050px;
+	width: 1300px;
 	margin: 10px auto 0;
 }
 
@@ -104,7 +104,7 @@ html{
 
 .main{
 	float: right;
-	width: 830px;
+	width: 1070px;
 	margin-top: 47px;
 	height: 100%;
 }
@@ -112,7 +112,7 @@ html{
 	background-color: #ECECEC;
 	padding-left: 20px;
 	height: 100%;
-	width: 811px;
+	width: 1053px;
 }
 h2.subheading{
 	margin-left: 38px;
@@ -144,6 +144,9 @@ form[name='profile-form'] textarea{
 ul.as-selections li.as-original input[type=text]
 {
 	width: 518px;
+}
+#filter-list ul.as-selections li.as-original input[type=text]{
+	width: 153px;
 }
 form[name=profile-form] .project-info textarea{
 	width:510px;
@@ -238,6 +241,32 @@ input[name='gpa']{
 	margin-left: 38px;
 }
 
+/* -- Results table styles -- */
+.project-list{
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+}
+.project-list td, 
+.project-list th{
+	text-align: center;
+	width: 180px;
+	height: 50px;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.project-list th{
+	color: #0000EE;
+	text-decoration: underline;
+	cursor: pointer;
+}
+#pager{
+	margin-top: 20px;
+}
+form .arrow{
+	cursor: pointer;
+}
+
+/* -- End of results table styles -- */
 
 /* --- Tab styles from http://css-tricks.com/better-tabs-with-round-out-borders/ --- */
 .tabrow {

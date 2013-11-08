@@ -5,45 +5,62 @@
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 					<div class="content">
-						<h1>My Projects</h1>
-						<ul class="project-list">
-							<li class="clearfix">
-								<div class="status">
-									<p class="rejected">Rejected</p>
-								</div>
-								<div class="project-info">
-									<div class="delete">Hide</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-								</div>							
-							</li>
-							<li class="clearfix">
-								<div class="status">
-									<p class="accepted">Accepted</p>
-								</div>
-								<div class="project-info">
-									<div class="delete">Hide</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-								</div>							
-							</li>
-							<li class="clearfix">
-								<div class="status">
-									<p class="pending">Pending</p>
-									<a>Cancel</a>
-								</div>
-								<div class="project-info">
-									<div class="delete">Hide</div>
-									<h3>Project Name</h3>
-									<p><a href="#">Link to Project Webpage</a></p>
-									<p>Researcher Name</p>
-								</div>							
-							</li>
-						</ul>
-						
-					</div>				
+						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+						<%
+				        JSONObject jsonMajor = MajorController.getMajorJson();
+				        JSONObject jsonSkills = SkillController.getSkillJson();
+				        JSONObject jsonInterest = InterestController.getInterestJson();
+				         %>
+				        <script type="text/javascript">
+				        	var majorData = <%= jsonMajor %>;
+				        	var skillsData = <%= jsonSkills %>;
+				        	var interestData = <%= jsonInterest %>;
+				        </script>
+						<h1>Projects</h1>
+						<form name="filter-list" id="filter-list">
+							<input type="submit" value="Filter"/>
+							<table class="project-list">
+									<jsp:include page="proj-filters.jsp"/>
+									<tr>
+										<td>
+											<p>Accepted</p>
+											<p><a href="#">Hide</a></p>
+										</td>
+										<td>Project Name</td>
+										<td>Andrew Myers</td>
+										<td><a href="#">Link to Project Webpage</a></td>
+										<td></td>
+										<td>Programming Languages</td>
+										<td>Java</td>
+									</tr>
+									<tr>
+										<td>
+											<p>Rejected</p>
+											<p><a href="#">Hide</a></p>
+										</td>
+										<td>Project Name</td>
+										<td>Tom Magrino</td>
+										<td></td>
+										<td>This is a description of Project 2.  This is a...</td>
+										<td>Systems</td>
+										<td>Python</td>
+									</tr>
+									<tr>
+										<td>
+											<p>Pending</p>
+											<p><a href="#">Hide</a></p>
+										</td>
+										<td>Project Name</td>
+										<td>Tom Magrino</td>
+										<td></td>
+										<td>This is a description of Project 3.  This is a...</td>
+										<td>Systems</td>
+										<td>Python</td>
+									</tr>
+								</tbody>
+							</table>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>

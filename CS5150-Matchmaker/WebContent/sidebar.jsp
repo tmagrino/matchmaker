@@ -34,25 +34,11 @@
 	<li>
 		<a <% if(request.getParameter("sidebar_selected").equals("new")){ %>class="selected"<% } %>href="new-projects.jsp">Select New Projects</a>
 	</li>
-	<% if(request.getParameter("sidebar_selected").equals("new")){ %>
-		<li class="related">Add New Filters</li>
-	    <li>
-	      <form id="add-new-filters">
-	        <ul>
-	          <li>Researcher:<input type="text" name="researcher-filter"></li>
-	          <li>Research Area:<input type="text" name="research-area-filter"></li>
-	          <li>Skills:<input type="text" name="skills-filter"></li>
-	          <li><input type="submit" value="Add Filter"></li>
-	        </ul>
-	      </form>
-	    </li>
-    <% } else{ %>
-		<li class="related">Related</li>
-		<li>
-			<a href="#">How to make the most of your research experience!</a>
-		</li>
-	<% } %>
-	
+	<li class="related">Related</li>
+	<li>
+		<a href="#">How to make the most of your research experience!</a>
+	</li>
+
 	
 <% } %>
 <% if(request.getParameter("sidebar_type").equals("researcher-students")){ %>
@@ -62,24 +48,6 @@
 	<li class="related">Project Applicants</li>
 	<li><a <% if(request.getParameter("sidebar_selected").equals("0")){ %>class="selected"<% } %> href="project-applicants.jsp?proj_id=0">Project A</a></li>
 	<li><a <% if(request.getParameter("sidebar_selected").equals("1")){ %>class="selected"<% } %> href="project-applicants.jsp?proj_id=1">Project B</a></li>
-	<% if(request.getParameter("sidebar_selected").equals("invite")){ %>
-		<li class="related">Add New Filters</li>
-	    <li>
-	      <form id="add-new-filters">
-	        <ul>
-	          <li>Researcher:<input type="text" name="researcher-filter"></li>
-	          <li>Research Area:<input type="text" name="research-area-filter"></li>
-	          <li>Skills:<input type="text" name="skills-filter"></li>
-	          <li><input type="submit" value="Add Filter"></li>
-	        </ul>
-	      </form>
-	    </li>
-    <% } else{ %>
-		<li class="related">Related</li>
-		<li>
-			<a href="#">How to make the most of your research experience!</a>
-		</li>
-	<% } %>
 	
 	
 <% } %>
