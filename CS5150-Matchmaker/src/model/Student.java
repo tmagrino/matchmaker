@@ -176,6 +176,31 @@ public class Student implements Serializable {
 		this.transcript = transcript;
 		this.version = 1;
 	}
+	
+	public String getAttribute(String attr){
+		if(attr.equals("name"))
+			return name;
+		if(attr.equals("netid"))
+			return netID;
+		if(attr.equals("Email"))
+			return email;
+		if(attr.equals("GPA"))
+			return Double.toString(gpa);
+		if(attr.equals("Year"))
+			return year.toString();
+		if(attr.equals("College"))
+			return getCollegeString();
+		if(attr.equals("Major"))
+			return getMajorString();
+		if(attr.equals("Minor"))
+			return getMinorString();
+		if(attr.equals("Skills"))
+			return getSkillString();
+		if(attr.equals("Research Interests"))
+			return getInterestString();
+		return null;
+	}
+		
 
 	/**
 	 * @return the id
