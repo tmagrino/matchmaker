@@ -9,7 +9,7 @@
 					<div class="content">
 						<h1>My Profile</h1>
 						<div class="photo-info clearfix">
-							<img class="avatar" src="avatar-male.jpg" alt="avatar"/>
+							<img class="avatar" src="images/avatar-male.jpg" alt="avatar"/>
 							<div class="info">
 								<h2>Researcher <%=r.getName()%></h2>
 								<p>Email: <%=r.getEmail() %></p>

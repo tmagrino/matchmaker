@@ -18,7 +18,7 @@
 								<p>Email: <%=s.getEmail() %></p>
 								<p>Major: <%=s.getMajorString() %></p>
 								<p>Minor: <%=s.getMinorString() %></p>
-								<p>Year: <%=s.getYear() %></p>
+								<p>Year: <%=s.getYear().toString() %></p>
 								<p>College: <%=s.getCollegeString() %></p>
 							</div>
 						</div>

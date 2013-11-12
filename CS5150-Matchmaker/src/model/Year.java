@@ -11,10 +11,14 @@ public enum Year {
 	Sophomore("2"),
 	Junior("3"),
 	Senior("4"),
-	Graduate("5");
+	Graduate("5+");
 	private final String yearValue; 
 	private Year(String value){
 		yearValue = value;
+	}
+	@Override
+	public String toString(){
+		return yearValue;
 	}
 
 }

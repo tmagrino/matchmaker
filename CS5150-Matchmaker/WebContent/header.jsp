@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.*,model.Student, model.StudentController"%>
+<%@page import="java.util.*,model.Student, model.StudentController,model.Researcher,model.ResearcherController"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,11 +22,24 @@
     <!--[if gt IE 9]><!--> <body> <!--<![endif]-->
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
-		
-			<% Student s = StudentController.getStudentByNetID("lr437");%>
-			<li>Welcome, <%=s.getName() %></li>
-			<li class="login-link"><a href="#">sign out</a></li>
-		</ul>
+
+		<% if(request.getParameter("stud_or_prof").equals("stud")){ 
+
+				Student s = StudentController.getStudentByNetID("lr437");%>
+
+					<li>Welcome, <%=s.getName() %></li>
+
+		<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
+
+		<%Researcher r = ResearcherController.getResearcherByNetID("tm123"); %>
+
+<li>Welcome, <%=r.getName() %></li>
+
+<% } %>
+
+<li class="login-link"><a href="#">sign out</a></li>
+
+</ul>
 	</div>
 	<div class="page">
 		<div class="wrapper">
