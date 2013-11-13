@@ -26,16 +26,17 @@ public class PopulateDatabase {
 
 	public static void main(String[] args) {
 		Scanner in;
-
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManager em = emf.createEntityManager();
 		// Majors
-		if (MajorController.getMajorList().size() == 0) {
+		if (MajorController.getMajorList(em).size() == 0) {
 			try {
 				File myfile = new File("MajorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					MajorController.createMajor(str);
+					MajorController.createMajor(em, str);
 				}
 			}
 			catch (Exception e) {
@@ -43,14 +44,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Minors
-		if (MinorController.getMinorList().size() == 0) {
+		if (MinorController.getMinorList(em).size() == 0) {
 			try {
 				File myfile = new File("MinorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					MinorController.createMinor(str);
+					MinorController.createMinor(em, str);
 				}
 			}
 			catch (Exception e) {
@@ -58,14 +59,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Colleges
-		if (CollegeController.getCollegeList().size()==0){
+		if (CollegeController.getCollegeList(em).size()==0){
 			try {
 				File myfile = new File("CollegesList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					CollegeController.createCollege(str);
+					CollegeController.createCollege(em, str);
 				}
 			}
 			catch (Exception e) {
@@ -73,14 +74,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Interests
-		if (InterestController.getInterestList().size() == 0){
+		if (InterestController.getInterestList(em).size() == 0){
 			try {
 				File myfile = new File("InterestsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					InterestController.createInterest(str);
+					InterestController.createInterest(em, str);
 				}
 			}
 			catch (Exception e) {
@@ -88,21 +89,21 @@ public class PopulateDatabase {
 			}
 		}
 		// Skills
-		if (SkillController.getSkillList().size() == 0) {
+		if (SkillController.getSkillList(em).size() == 0) {
 			try {
 				File myfile = new File("SkillsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					SkillController.createSkill(str);
+					SkillController.createSkill(em,str);
 				}
 			}
 			catch (Exception e) {
 				System.out.println("Error: "+e);
 			}
 		}
-		if (StudentController.getAllStudents().size()==0){
+		if (StudentController.getAllStudents(em).size()==0){
 			try {
 				File myfile = new File("StudentList");
 				in = new Scanner(new FileReader(myfile));
@@ -115,44 +116,44 @@ public class PopulateDatabase {
 					String netid = studentStrings[1];
 					Double gpa = Double.valueOf(studentStrings[2]);
 					String email = studentStrings[3];
-					Year year = Year.valueOf(studentStrings[4]);
+					Year year = YearController.getYear(studentStrings[4]);
 					// Colleges
 					String[] cols = studentStrings[5].split(";");
 					LinkedList<College> colleges = new LinkedList<College>();
 					for (String s : cols) {
-						colleges.add(CollegeController.getCollege(s));
+						colleges.add(CollegeController.getCollege(em,s));
 					}
 					// Majors
 					String[] majs = studentStrings[6].split(";");
 					LinkedList<Major> majors = new LinkedList<Major>();
 					for (String s : majs) {
-						majors.add(MajorController.getMajorByDescription(s));
+						majors.add(MajorController.getMajorByDescription(em,s));
 					}
 					// Minors
 					String[] mins = studentStrings[7].split(";");
 					LinkedList<Minor> minors = new LinkedList<Minor>();
 					for (String s : mins) {
-						minors.add(MinorController.getMinorByDescription(s));
+						minors.add(MinorController.getMinorByDescription(em,s));
 					}
 					// Skills
 					String[] skls = studentStrings[8].split(";");
 					LinkedList<Skill> skills = new LinkedList<Skill>();
 					for (String s : skls) {
-						skills.add(SkillController.getSkillByDescription(s));
+						skills.add(SkillController.getSkillByDescription(em,s));
 					}
 					// Interests
 					String[] ints = studentStrings[9].split(";");
 					LinkedList<Interest> interests = new LinkedList<Interest>();
 					for (String s : ints) {
-						interests.add(InterestController.getInterestByDescription(s));
+						interests.add(InterestController.getInterestByDescription(em,s));
 					}
 					// Prior Experience TODO:
 					LinkedList<Experience> priorExperience= new LinkedList<Experience>();
 					// Transcript TODO:
 					LinkedList<Course> transcript = new LinkedList<Course>();
 					
-					User user = UserController.createUser(name, email, netid);
-					Student s = StudentController.createStudent(name, netid, gpa, 
+					User user = UserController.createUser(em, name, email, netid);
+					Student s = StudentController.createStudent(em,name, netid, gpa, 
 							email, year, colleges, majors, minors, skills, 
 							priorExperience, interests, transcript, user);
 				}
@@ -161,7 +162,7 @@ public class PopulateDatabase {
 				System.out.println("Error: "+e);
 			}
 		}
-		if (ResearcherController.getResearcherList().size()==0){
+		if (ResearcherController.getResearcherList(em).size()==0){
 			try {
 
 				File myfile = new File("ResearcherList");
@@ -177,8 +178,8 @@ public class PopulateDatabase {
 					String webpage = researcherStrings[4];
 					String researchArea = researcherStrings[5];
 					
-					User user = UserController.createUser(name, email, netID);
-					Researcher r = ResearcherController.createResearcher(name, netID, 
+					User user = UserController.createUser(em, name, email, netID);
+					Researcher r = ResearcherController.createResearcher(em,name, netID, 
 							email, department, webpage, researchArea, user);
 				}
 			}
@@ -186,5 +187,7 @@ public class PopulateDatabase {
 				System.out.println("Error: "+e);
 			}
 		}
+		em.close();
+		emf.close();
 	}
 }

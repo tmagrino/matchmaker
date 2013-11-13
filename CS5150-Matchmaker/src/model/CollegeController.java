@@ -15,9 +15,7 @@ import org.json.JSONObject;
 
 public class CollegeController {
 
-	public static College createCollege(String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
+	public static College createCollege(EntityManager em, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -25,14 +23,10 @@ public class CollegeController {
 		em.persist(c);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 		return c;
 	}
 
-	public static void deleteCollege(College c) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
+	public static void deleteCollege(EntityManager em, College c) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -42,53 +36,36 @@ public class CollegeController {
 		}
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void renameCollege(College c, String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
+	public static void renameCollege(EntityManager em, College c, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.setDescription(description);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addStudent(College c, Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
+	public static void addStudent(EntityManager em, College c, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.addStudent(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeStudent(College c, Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeStudent(EntityManager em, College c, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.removeStudent(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 
-	public static College getCollege(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
-
+	public static College getCollege(EntityManager em, String description){
 		String query = "select c from COLLEGE c where c.description = \""+description+"\"";
 		@SuppressWarnings("unchecked")
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
@@ -100,10 +77,7 @@ public class CollegeController {
 		}
 	}
 
-	public static String[] getColleges() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
-
+	public static String[] getColleges(EntityManager em) {
 		String query = "select c from COLLEGE c";
 		@SuppressWarnings("unchecked")
 		List<College> cols = (List<College>) em.createQuery(query).getResultList();
@@ -115,9 +89,7 @@ public class CollegeController {
 		return (String[]) colleges.toArray();
 	}
 	
-	public static List<College> getCollegeList() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
+	public static List<College> getCollegeList(EntityManager em) {
 		try{
 			String query = "select c from COLLEGE c";
 			@SuppressWarnings("unchecked")
@@ -138,10 +110,7 @@ public class CollegeController {
 		return collegeList;
 	}
 	
-	public static JSONObject getCollegeJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
-		EntityManager em = emf.createEntityManager();
-
+	public static JSONObject getCollegeJson(EntityManager em) {
 		String query = "select c from COLLEGE c";
 		@SuppressWarnings("unchecked")
 		List<College> colleges = (List<College>) em.createQuery(query).getResultList();

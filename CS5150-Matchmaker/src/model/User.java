@@ -2,6 +2,7 @@ package model;
 
 import javax.persistence.*;
 
+@Entity (name = "USER")
 public class User {
 
 	// Persistent Fields
@@ -13,11 +14,15 @@ public class User {
 	private String netid;
 	boolean isAdmin;
 	@OneToOne
-	@Column(nullable = true)
+	@JoinColumn(nullable = true)
 	private Student student;
 	@OneToOne
-	@Column(nullable = true)
+	@JoinColumn(nullable = true)
 	private Researcher researcher;
+	
+	public User() {
+		
+	}
 	
 	User(String name, String email, String netid) {
 		this.name = name;

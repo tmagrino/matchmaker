@@ -13,13 +13,11 @@ import javax.persistence.Query;
 
 public class StudentController {
 	
-	public static Student createStudent(String name, String netID, double gpa, String email,
+	public static Student createStudent(EntityManager em, String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,
 			List<Experience> priorExperience, List<Interest> interests,
 			List<Course> transcript, User user) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -29,14 +27,10 @@ public class StudentController {
 		em.persist(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 		return s;
 	}
 	
-	public static void removeStudent(Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeStudent(EntityManager em, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -60,13 +54,9 @@ public class StudentController {
 		}
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static Student getStudentByNetID(String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-        EntityManager em = emf.createEntityManager();
+	public static Student getStudentByNetID(EntityManager em, String netid) {
         EntityTransaction tx = em.getTransaction();
         
         String query = "select s from STUDENT s where s.netID = \"" + netid +"\"";
@@ -79,9 +69,7 @@ public class StudentController {
         }
 	}
 	
-	public static Student getStudentByName(String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-        EntityManager em = emf.createEntityManager();
+	public static Student getStudentByName(EntityManager em, String name) {
         EntityTransaction tx = em.getTransaction();
         
         String query = "select s from student s where s.netid = \"" + name +"\"";
@@ -94,192 +82,134 @@ public class StudentController {
         }
 	}
 	
-	public static void editName(Student s, String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editName(EntityManager em, Student s, String name) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.setName(name);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editEmail(Student s, String email) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editEmail(EntityManager em, Student s, String email) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.setEmail(email);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editGPA(Student s, double gpa) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editGPA(EntityManager em, Student s, double gpa) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.setGpa(gpa);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editYear(Student s, Year year) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editYear(EntityManager em, Student s, Year year) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.setYear(year);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addCollege(Student s, College c) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void addCollege(EntityManager em, Student s, College c) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.addCollege(c);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeCollege(Student s, College c) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeCollege(EntityManager em, Student s, College c) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeCollege(c);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addMajor(Student s, Major m) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void addMajor(EntityManager em, Student s, Major m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.addMajor(m);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeMajor(Student s, Major m) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeMajor(EntityManager em, Student s, Major m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeMajor(m);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addMinor(Student s, Minor m) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void addMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.addMinor(m);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeMinor(Student s, Minor m) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeMinor(m);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addSkill(Student s, Skill sk) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void addSkill(EntityManager em, Student s, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.addSkill(sk);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeSkill(Student s, Skill sk) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeSkill(EntityManager em, Student s, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeSkill(sk);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addInterest(Student s, Interest i) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void addInterest(EntityManager em, Student s, Interest i) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.addInterest(i);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeInterest(Student s, Interest i) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeInterest(EntityManager em, Student s, Interest i) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeInterest(i);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static Experience createExperience(Student s, Date startDate, Date endDate, String jobTitle, String location,
+	public static Experience createExperience(EntityManager em, Student s, Date startDate, Date endDate, String jobTitle, String location,
 			String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -288,165 +218,115 @@ public class StudentController {
 		s.addExperience(exp);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 		return exp;
 	}
 	
-	public void removeExperience(Student s, Experience e) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public void removeExperience(EntityManager em, Student s, Experience e) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeExperience(e);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editExperienceStartDate(Experience e, Date startDate) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editExperienceStartDate(EntityManager em, Experience e, Date startDate) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		e.setStartDate(startDate);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editExperienceEndDate(Experience e, Date endDate) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editExperienceEndDate(EntityManager em, Experience e, Date endDate) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		e.setStartDate(endDate);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editExperienceJobTitle(Experience e, String jobTitle) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editExperienceJobTitle(EntityManager em, Experience e, String jobTitle) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		e.setJobTitle(jobTitle);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editExperienceLocation(Experience e, String location) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editExperienceLocation(EntityManager em, Experience e, String location) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		e.setLocation(location);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editExperienceDescription(Experience e, String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editExperienceDescription(EntityManager em, Experience e, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		e.setDescription(description);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editCourseNum(Course c, String coursenum) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editCourseNum(EntityManager em, Course c, String coursenum) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.setCoursenum(coursenum);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editCourseTitle(Course c, String title) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editCourseTitle(EntityManager em, Course c, String title) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.setTitle(title);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editCourseGrade(Course c, String grade) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editCourseGrade(EntityManager em, Course c, String grade) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.setGrade(grade);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editCourseSemester(Course c, String semester) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void editCourseSemester(EntityManager em, Course c, String semester) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		c.setSemester(semester);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addApplication(Student s, Application a) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void addApplication(EntityManager em, Student s, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.addApplication(a);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeApplication(Student s, Application a) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeApplication(EntityManager em, Student s, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		s.removeApplication(a);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
 	public static String[] calculateGpaRange(String gpa){
@@ -467,10 +347,8 @@ public class StudentController {
 		}
 	}
 	
-	public static List<Student> getStudentByFilter(String name, String gpa, String year,
+	public static List<Student> getStudentByFilter(EntityManager em, String name, String gpa, String year,
 			String major, String skill, String interest){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-        EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         String [] gpaRange = calculateGpaRange(gpa);
         
@@ -505,44 +383,14 @@ public class StudentController {
 	}
 	
 	
-	public static List<Student> getAllStudents() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-        EntityManager em = emf.createEntityManager();
+	public static List<Student> getAllStudents(EntityManager em) {
         EntityTransaction tx = em.getTransaction();
-        try{
+        try {
         String query = "select s from STUDENT s";
         return (List<Student>) em.createQuery(query).getResultList();
         }
         catch (Exception e){
         	return new ArrayList<Student>();
         } 
-	}
-	
-	public static void updaStudentControllerudent(Student stud, String name, String netID, double gpa, String email,
-			Year year, List<College> colleges, List<Major> majors,
-			List<Minor> minors, List<Skill> skills,
-			List<Experience> priorExperience, List<Interest> interests,
-			List<Course> transcript) {
-		stud.setName(name);
-		stud.setNetID(netID);
-		stud.setGpa(gpa);
-		stud.setEmail(email);
-		stud.setYear(year);
-		stud.setColleges(colleges);
-		stud.setMajors(majors);
-		stud.setMinors(minors);
-		stud.setSkills(skills);
-		//stud.setPriorExperience(priorExperience);
-		stud.setInterests(interests);
-		//stud.setTranscript(transcript);
-		stud.setVersion(stud.getVersion() + 1);
-		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("StudentController");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        
-        tx.begin();
-        em.merge(stud);
-        tx.commit();
 	}
 }

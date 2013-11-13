@@ -13,9 +13,7 @@ import javax.persistence.Persistence;
 
 public class SkillController {
 
-	public static Skill createSkill(String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
-		EntityManager em = emf.createEntityManager();
+	public static Skill createSkill(EntityManager em, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -23,14 +21,10 @@ public class SkillController {
 		em.persist(sk);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 		return sk;
 	}
 
-	public static void deleteSkill(Skill sk) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
-		EntityManager em = emf.createEntityManager();
+	public static void deleteSkill(EntityManager em, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -40,53 +34,36 @@ public class SkillController {
 		}
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void renameSkill(Skill sk, String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
-		EntityManager em = emf.createEntityManager();
+	public static void renameSkill(EntityManager em, Skill sk, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		sk.setDescription(description);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addStudent(Skill sk, Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
-		EntityManager em = emf.createEntityManager();
+	public static void addStudent(EntityManager em, Skill sk, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		sk.addStudent(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeStudent(Skill sk, Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeStudent(EntityManager em, Skill sk, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		sk.removeStudent(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static String[] getSkills() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-      
+	public static String[] getSkills(EntityManager em) {
         String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
@@ -98,19 +75,14 @@ public class SkillController {
 		return (String[]) skills.toArray();
 		
 	}
-	public static Skill getSkillByDescription(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-      
+	public static Skill getSkillByDescription(EntityManager em, String description) {
         String query = "select s from SKILL s where s.description = \""+description+"\"";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
 		
 		return skls.get(0);
 	}
-	public static List<Skill> getSkillList() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+	public static List<Skill> getSkillList(EntityManager em) {
        try{
         String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
@@ -122,10 +94,7 @@ public class SkillController {
        }
 	}
 	
-	public static JSONObject getSkillJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-      
+	public static JSONObject getSkillJson(EntityManager em) {
         String query = "select s from SKILL s";
 		@SuppressWarnings("unchecked")
 		List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();
@@ -160,10 +129,7 @@ public class SkillController {
 		return skillList;
 	}
 	
-	public static Skill getSkill(long id) {
-         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-         EntityManager em = emf.createEntityManager();
-
+	public static Skill getSkill(EntityManager em, long id) {
          String query = "select s from SKILL s where s.id = " + id;
          @SuppressWarnings("unchecked")
          List<Skill> skls = (List<Skill>) em.createQuery(query).getResultList();

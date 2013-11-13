@@ -15,9 +15,7 @@ import org.json.JSONObject;
 
 public class MinorController {
 
-	public static Minor createMinor(String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-		EntityManager em = emf.createEntityManager();
+	public static Minor createMinor(EntityManager em, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -25,14 +23,10 @@ public class MinorController {
 		em.persist(m);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 		return m;
 	}
 
-	public static void deleteMinor(Minor m) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-		EntityManager em = emf.createEntityManager();
+	public static void deleteMinor(EntityManager em, Minor m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -42,53 +36,36 @@ public class MinorController {
 		}
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void renameMinor(Minor m, String description) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-		EntityManager em = emf.createEntityManager();
+	public static void renameMinor(EntityManager em, Minor m, String description) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		m.setDescription(description);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void addStudent(Minor m, Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-		EntityManager em = emf.createEntityManager();
+	public static void addStudent(EntityManager em, Minor m, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		m.addStudent(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeStudent(Minor m, Student s) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-		EntityManager em = emf.createEntityManager();
+	public static void removeStudent(EntityManager em, Minor m, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		m.removeStudent(s);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static String[] getMinors() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-        EntityManager em = emf.createEntityManager();
-      
+	public static String[] getMinors(EntityManager em) {
         String query = "select m from MINOR m";
 		@SuppressWarnings("unchecked")
 		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
@@ -99,10 +76,8 @@ public class MinorController {
 		
 		return (String[]) Minors.toArray();
 	}
-	public static List<Minor> getMinorList(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-        EntityManager em = emf.createEntityManager();
-        try{
+	public static List<Minor> getMinorList(EntityManager em){
+        try {
         String query = "select m from MINOR m";
 		@SuppressWarnings("unchecked")
 		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
@@ -112,10 +87,7 @@ public class MinorController {
         	return new ArrayList<Minor>();
         }
 	}
-	public static Minor getMinorByDescription(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-        EntityManager em = emf.createEntityManager();
-      
+	public static Minor getMinorByDescription(EntityManager em, String description){
         String query = "select m from MINOR m where m.description = \""+description+"\"";
 		@SuppressWarnings("unchecked")
 		List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
@@ -133,20 +105,14 @@ public class MinorController {
 		return minorList;
 	}
 	
-    public static Minor getMinor(long id){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-        EntityManager em = emf.createEntityManager();
-
+    public static Minor getMinor(EntityManager em,long id){
         String query = "select m from MINOR m where m.id = " + id;
         @SuppressWarnings("unchecked")
         List<Minor> mins = (List<Minor>) em.createQuery(query).getResultList();
         return mins.get(0);
     }
     
-    public static JSONObject getMinorJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
-        EntityManager em = emf.createEntityManager();
-      
+    public static JSONObject getMinorJson(EntityManager em) {
         String query = "select m from MINOR m";
 		@SuppressWarnings("unchecked")
 		List<Minor> minors = (List<Minor>) em.createQuery(query).getResultList();
