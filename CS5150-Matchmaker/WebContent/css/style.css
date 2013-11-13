@@ -140,10 +140,24 @@ form[name='profile-form'] textarea{
 	width: 382px;
 	height: 157px;
 }
-.photo-info.project-info input[type=text],
-ul.as-selections li.as-original input[type=text]
-{
-	width: 518px;
+.info td.field{
+	width: 525px;
+	height: 52px;
+}
+.info tr{
+	height: 52px;
+}
+.field p{
+	margin: 0;
+	position: relative;
+}
+.edit-btn{
+	position: absolute;
+	top: -18px;
+}
+form[name=profile]{
+	float: right;
+	width: 720px;
 }
 #filter-list ul.as-selections li.as-original input[type=text]{
 	width: 153px;
@@ -153,19 +167,12 @@ form[name=profile-form] .project-info textarea{
 }
 .photo-info input[type='text']
 {
-	float: right;
-	width: 360px;
+	width: 494px;
+	padding: 10px;
 }
-input[name='gpa']{
-	margin-left: 10px;
-	width: 30px;
-}
-.photo-info p{
-	height: 43px;
-	display: table;
-}
-.photo-info label{
-	display: table-row;
+.info ul.as-selections{
+	width: 512px;
+	height: 28px;
 }
 .required label:after{
 	content: " *";
@@ -402,4 +409,15 @@ html[xmlns] .clearfix {
 
 ul{
 	list-style-type: none;
+}
+.editable{
+	display: none;
+}
+#wrapper table, 
+#wrapper tr, 
+#wrapper td{
+	margin: 0;
+	padding: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
 }

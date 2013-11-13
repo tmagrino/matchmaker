@@ -23,7 +23,7 @@ function initAutosuggest()
 	var minorInput = $(".info input[name=minor]");
 	var collegeInput = $(".info input[name=school]");
 	var skillsInput = $(".application-info input[name=skills], .info input[name=skills], #filter-list input[name=filter-skill]");
-	var researchInput = $(".application-info input[name=research-area], .info input[name=research-area], #filter-list input[name=filter-interest]");
+	var researchInput = $(".application-info input[name=research-area], .info input[name=research_interests], #filter-list input[name=filter-interest]");
 	
 	if(majorInput.length){
 		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "major"});
@@ -41,6 +41,19 @@ function initAutosuggest()
 		researchInput.autoSuggest(interestData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "research"});
 	}
 	
+}
+
+function EditField()
+{
+	var edit_btn = $("a.edit-btn");
+	if(edit_btn.length == 0) { return; }
+	edit_btn.click(function(){
+		$(this).parent().fadeOut("slow", function(){
+			$(this).next().fadeIn();
+		});
+		
+		return false;
+	});
 }
 
 function handleFilterText(){
@@ -168,6 +181,7 @@ function sortTable()
 $(document).ready(function(){
 	initAutosuggest();
 	sortTable();
+	EditField();
 	handleAddCourse();
 	validateFormSubmit();
 	hideProject();

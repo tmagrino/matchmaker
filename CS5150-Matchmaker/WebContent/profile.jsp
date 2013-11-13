@@ -4,29 +4,51 @@
     <jsp:param name="sidebar_selected" value="view"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.StudentController"%>
+<%@page import="java.util.*,model.*, org.json.JSONObject"%>
 <%
-	 Student s = StudentController.getStudentByNetID("lr437"); %>
+	 Student s = StudentController.getStudentByNetID("lr437"); 
+	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
+	 JSONObject jsonMajor = MajorController.getMajorJson();
+     JSONObject jsonMinor = MinorController.getMinorJson();
+     JSONObject jsonCollege = CollegeController.getCollegeJson();
+     JSONObject jsonSkills = SkillController.getSkillJson();
+     JSONObject jsonInterest = InterestController.getInterestJson();
+%>
+ <script type="text/javascript">
+ 	var majorData = <%= jsonMajor %>;
+ 	var minorData = <%= jsonMinor %>;
+ 	var collegeData = <%= jsonCollege %>;
+ 	var skillsData = <%= jsonSkills %>;
+ 	var interestData = <%= jsonInterest %>;
+ </script>
 					<div class="content">
 						<h1>My Profile</h1>
-						<h2 class="subheading">General Information</h2>
 						<div class="photo-info clearfix">
 							<img class="avatar" src="images/avatar-male.jpg" alt="avatar"/>
-							<div class="info">
-							
-								<h2><%=s.getName() %></h2>
-								<p>Email: <%=s.getEmail() %></p>
-								<p>Major: <%=s.getMajorString() %></p>
-								<p>Minor: <%=s.getMinorString() %></p>
-								<p>Year: <%=s.getYear().toString() %></p>
-								<p>College: <%=s.getCollegeString() %></p>
-							</div>
-						</div>
-						<h2 class="subheading">Application Information</h2>	
-						<div class="application-info">
-							<p>GPA: <%=s.getGpa() %></p>
-							<p>Skills: <%=s.getSkillString() %></p>
-							<p>Research Interests: <%=s.getInterestString() %></p>
+							<form name="profile">
+								<table class="info">
+									<tr>
+										<td><h2><%=s.getName() %></h2></td>
+										<td></td>
+									</tr>
+									<% for(String attr: attributes){ %>
+										<tr>
+											<td><%=attr %>:</td>
+											<td class="field">
+												<p class="read-only">
+													<%=s.getAttribute(attr) %>
+													<a class="edit-btn" href="#">
+														<img src="images/pencil_small.png" alt="edit"/>
+													</a>
+												</p>
+												<p class="editable"><input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>" 
+													value="<%=s.getAttribute(attr) %>" type="text"/>
+											</td>
+										</tr>
+									<% } %>
+								</table>
+								<input type="submit" value="Save Changes"/>
+							</form>
 						</div>
 					</div>				
 				</div>

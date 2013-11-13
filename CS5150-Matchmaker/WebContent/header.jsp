@@ -46,14 +46,6 @@
 			<div id="container" class="clearfix">
 				<div class="sidebar">
 					<p class="notifications">Notifications</p>
-					<div id="sidenav">
-						<ul>
-							<jsp:include page="sidebar.jsp">
-								<jsp:param name="sidebar_type" value="<%= request.getParameter(\"sidebar_type\") %>" />
-							    <jsp:param name="sidebar_selected" value="<%= request.getParameter(\"sidebar_selected\") %>" />
-							</jsp:include>
-						</ul>
-					</div>
 				</div>
 				<div class="main">
 					<ul class="tabrow">
