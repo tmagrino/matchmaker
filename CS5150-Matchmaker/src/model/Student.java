@@ -52,6 +52,8 @@ public class Student implements Serializable {
 	private String email;
 	@Column(name = "YEAR")
 	private Year year;
+	@OneToOne (mappedBy = "student")
+	private User user;
 	// COLLEGE
 	@ManyToMany
 	@JoinTable(
@@ -242,6 +244,20 @@ public class Student implements Serializable {
 	 */
 	public Year getYear() {
 		return year;
+	}
+
+	/**
+	 * @return the serialversionuid
+	 */
+	static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
+	 * @return the user
+	 */
+	User getUser() {
+		return user;
 	}
 
 	/**
@@ -467,6 +483,25 @@ public class Student implements Serializable {
 	 */
 	void setYear(Year year) {
 		this.year = year;
+	}
+
+	/**
+	 * @param user the user to set
+	 */
+	void setUser(User user) {
+		if (user == null) {
+			if (this.user != null) {
+				if (this.user.getStudent() != null) {
+					User u = this.user;
+					this.user = null;
+					u.setStudent(null);
+				}
+			}
+		}
+		this.user = user;
+		if (user.getStudent() != this) {
+			user.setStudent(this);
+		}
 	}
 
 	/**

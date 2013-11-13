@@ -115,15 +115,47 @@ public class User {
 	/**
 	 * @param student the student to set
 	 */
-	void setStudent(Student student) {
-		this.student = student;
+	Student setStudent(Student student) {
+		if (student == null) {
+			if (this.student != null) {
+				if (this.student.getUser() != null) {
+					Student s = this.student;
+					this.student = null;
+					s.setUser(null);
+					return s;
+				}
+			}
+		}
+		else {
+			this.student = student;
+			if (student.getUser() != this) {
+				student.setUser(this);
+			}
+		}
+		return null;
 	}
-
+	
 	/**
 	 * @param researcher the researcher to set
 	 */
-	void setResearcher(Researcher researcher) {
-		this.researcher = researcher;
+	Researcher setResearcher(Researcher researcher) {
+		if (researcher == null) {
+			if (this.researcher != null) {
+				if (this.researcher.getUser() != null) {
+					Researcher r = this.researcher;
+					this.researcher = null;
+					r.setUser(null);
+					return r;
+				}
+			}
+		}
+		else {
+			this.researcher = researcher;
+			if (researcher.getUser() != this) {
+				researcher.setUser(this);
+			}
+		}
+		return null;
 	}
 	
 	
