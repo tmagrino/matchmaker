@@ -7,10 +7,8 @@ import javax.persistence.Persistence;
 
 public class ApplicationController {
 
-	public static Application createApplication(Student s, Project p, 
+	public static Application createApplication(EntityManager em, Student s, Project p, 
 			String studentResponse) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ApplicationController");
-		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -19,14 +17,10 @@ public class ApplicationController {
 		em.persist(a);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 		return a;
 	}
 
-	public static void deleteApplication(Application a) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ApplicationController");
-		EntityManager em = emf.createEntityManager();
+	public static void deleteApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
@@ -39,47 +33,32 @@ public class ApplicationController {
 		}
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void approveApplication(Application a) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ApplicationController");
-		EntityManager em = emf.createEntityManager();
+	public static void approveApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		a.setStatus(ApplicationStatus.Accepted);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void DeclineApplication(Application a) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ApplicationController");
-		EntityManager em = emf.createEntityManager();
+	public static void DeclineApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		a.setStatus(ApplicationStatus.Declined);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void editStudentResponse(Application a, String response) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("ApplicationController");
-		EntityManager em = emf.createEntityManager();
+	public static void editStudentResponse(EntityManager em, Application a, String response) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		a.setStudentResponse(response);
 		
 		tx.commit();
-		em.close();
-		emf.close();
 	}
-	
 }

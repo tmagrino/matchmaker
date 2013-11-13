@@ -111,6 +111,7 @@ public class Student implements Serializable {
 		
 	}
 	
+	/*
 	public Student (String name, String netID, double gpa, String email,int random){
 		this.name = name;
 		this.gpa = gpa;
@@ -146,6 +147,7 @@ public class Student implements Serializable {
 			
 		}
 	}
+	*/
 	
 	/*
 	 * Formal constructor: no initial applications or settings

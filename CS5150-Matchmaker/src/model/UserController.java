@@ -9,22 +9,16 @@ import javax.persistence.Persistence;
 
 public class UserController {
 
-	public static User createUser(String name, String email, String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static User createUser(EntityManager em, String name, String email, String netid) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		User u = new User(name, email, netid);
 		em.persist(u);
 		tx.commit();
-		em.close();
-		emf.close();
 		return u;
 	}
 	
-	public static void deleteUser(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void deleteUser(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		if (u != null) {
@@ -33,18 +27,12 @@ public class UserController {
 			em.remove(u);
 		}
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static User findUser(String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static User findUser(EntityManager em, String netid) {
 	    String query = "select s from USER s where s.netID = \"" + netid +"\"";
         List<User> mylist = (List<User>) em.createQuery(query).getResultList();
-        em.close();
-        emf.close();
         try {
         	return mylist.get(0);
         }
@@ -53,83 +41,54 @@ public class UserController {
         }
 	}
 	
-	public static void setName(User u, String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void setName(EntityManager em, User u, String name) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		u.setName(name);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void setEmail(User u, String email) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void setEmail(EntityManager em, User u, String email) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		u.setEmail(email);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void setAdmin(User u, boolean makeAdmin) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void setAdmin(EntityManager em, User u, boolean makeAdmin) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		u.setAdmin(makeAdmin);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void setStudent(User u, Student stud) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void setStudent(EntityManager em, User u, Student stud) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		u.setStudent(stud);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void setResearcher(User u, Researcher r) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void setResearcher(EntityManager em, User u, Researcher r) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		u.setResearcher(r);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeStudent(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void removeStudent(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		Student s = u.setStudent(null);
 		em.remove(s);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
 	
-	public static void removeResearcher(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
-	    EntityManager em = emf.createEntityManager();
+	public static void removeResearcher(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		Researcher r = u.setResearcher(null);
 		em.remove(r);
 		tx.commit();
-		em.close();
-		emf.close();
 	}
-	
 }

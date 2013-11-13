@@ -21,6 +21,10 @@ public class Experience {
 	private String location;
 	private String description;
 	
+	public Experience() {
+		
+	}
+	
 	Experience(Date startDate, Date endDate, String jobTitle, String location,
 			String description) {
 		this.startDate = startDate;

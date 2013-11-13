@@ -10,19 +10,17 @@ import javax.persistence.Persistence;
 
 public class ResearcherController {
 
-	public static Researcher createResearcher(String name,String netID,String email, String department,
+	public static Researcher createResearcher(EntityManager em, String name,String netID,String email, String department,
 			String webpage, String researchArea, User user) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-		
+		tx.begin();
+        
         Researcher r = new Researcher(name, netID, email, department,
         				webpage, researchArea);
         user.setResearcher(r);
+        em.persist(r);
         
 		tx.commit();
-		em.close();
-		emf.close();
 		return r;
 	}
 	
@@ -30,9 +28,7 @@ public class ResearcherController {
 		//TODO:
 	}
 	
-	public static Researcher getResearcherByNetID(String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+	public static Researcher getResearcherByNetID(EntityManager em, String netid) {
         EntityTransaction tx = em.getTransaction();
         
         String query = "select s from Researcher s where s.netID = \"" + netid +"\"";
@@ -44,9 +40,7 @@ public class ResearcherController {
         	return null;
         }
 	}
-	public static List<Researcher> getResearcherList() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+	public static List<Researcher> getResearcherList(EntityManager em) {
         EntityTransaction tx = em.getTransaction();
         try {
         String query = "select r from Researcher r";
@@ -59,9 +53,7 @@ public class ResearcherController {
         }
 	}
 
-	public static Researcher getResearcherByName(String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
+	public static Researcher getResearcherByName(EntityManager em, String name) {
         EntityTransaction tx = em.getTransaction();
         
         String query = "select s from RESEARCHER s where s.name = \"" + name +"\"";
@@ -74,7 +66,7 @@ public class ResearcherController {
         }
 	}
 	
-	public static void updateResearcher(Researcher researcher, String name, String netID, String email,
+	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
 			String department, String researchArea, String webpage) {
 		researcher.setName(name);
 		researcher.setNetID(netID);
@@ -83,8 +75,6 @@ public class ResearcherController {
 		researcher.setResearchArea(researchArea);
 		researcher.setWebpage(webpage);
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
         
         tx.begin();
