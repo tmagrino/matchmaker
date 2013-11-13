@@ -14,6 +14,76 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MajorController {
+	
+	public Major createMajor(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Major m = new Major(description);
+		em.persist(m);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return m;
+	}
+
+	public void deleteMajor(Major m) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (m != null) {
+			m.removeStudents();
+			em.remove(m);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void renameMajor(Major m, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void addStudent(Major m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void removeStudent(Major m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
 
 	public static String[] getMajors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

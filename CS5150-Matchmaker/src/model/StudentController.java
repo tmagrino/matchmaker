@@ -11,6 +11,60 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 
 public class StudentController {
+	
+	public Student createStudent(String name, String netID, double gpa, String email,
+			Year year, List<College> colleges, List<Major> majors,
+			List<Minor> minors, List<Skill> skills,
+			List<Experience> priorExperience, List<Interest> interests,
+			List<Course> transcript, User user) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Student s = new Student(name, netID, gpa, email, year, colleges, majors,
+				minors, skills, priorExperience, interests, transcript, user);
+		em.persist(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return s;
+	}
+	
+	public void removeStudent() {
+		//TODO:
+	}
+	
+	public static Student getStudentByNetID(String netid) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
+        String query = "select s from STUDENT s where s.netID = \"" + netid +"\"";
+        List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
+        try {
+        	return mylist.get(0);
+        }
+        catch (Exception e) {
+        	return null;
+        }
+	}
+	
+	public static Student getStudentByName(String name) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        
+        String query = "select s from student s where s.netid = \"" + name +"\"";
+        List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
+        try {
+        	return mylist.get(0);
+        }
+        catch (Exception e) {
+        	return null;
+        }
+	}
 		
 	public static String[] calculateGpaRange(String gpa){
 		switch(gpa){
@@ -78,41 +132,7 @@ public class StudentController {
         }
         catch (Exception e){
         	return new ArrayList<Student>();
-        }
-      
-	}
-	public static Student getStudentByNetID(String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        
-        String query = "select s from STUDENT s where s.netID = \"" + netid +"\"";
-        List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
-        try {
-        	return mylist.get(0);
-        }
-        catch (Exception e) {
-        	return null;
-        }
-	}
-	
-	public static Student getStudentByName(String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-        EntityManager em = emf.createEntityManager();
-        EntityTransaction tx = em.getTransaction();
-        
-        String query = "select s from student s where s.netid = \"" + name +"\"";
-        List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
-        try {
-        	return mylist.get(0);
-        }
-        catch (Exception e) {
-        	return null;
-        }
-	}
-	
-	public static void saveStudent(Student stud) {
-		
+        } 
 	}
 	
 	public static void updateStudent(Student stud, String name, String netID, double gpa, String email,

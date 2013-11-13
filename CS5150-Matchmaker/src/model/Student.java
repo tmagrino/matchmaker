@@ -514,6 +514,60 @@ public class Student implements Serializable {
 		}
 	}
 	
+	void removeColleges() {
+		for (College c : colleges) {
+			removeCollege(c);
+		}
+	}
+	
+	void addMajor(Major major) {
+		
+	}
+	
+	void removeMajor(Major major) {
+		
+	}
+	
+	void removeMajors() {
+		
+	}
+	
+	void addMinor(Minor minor) {
+		
+	}
+	
+	void removeMinor(Minor minor) {
+		
+	}
+	
+	void removeMinors() {
+		
+	}
+	
+	void addSkill(Skill skill) {
+		
+	}
+	
+	void removeSkill(Skill skill) {
+		
+	}
+	
+	void removeSkills() {
+		
+	}
+	
+	void addInterest(Interest interest) {
+		
+	}
+	
+	void removeInterest(Interest interest) {
+		
+	}
+	
+	void removeInterests() {
+		
+	}
+	
 	/**
 	 * @param majors the majors to set
 	 */

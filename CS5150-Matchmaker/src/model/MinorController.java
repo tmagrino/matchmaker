@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.json.JSONArray;
@@ -14,6 +15,76 @@ import org.json.JSONObject;
 
 public class MinorController {
 
+	public Minor createMinor(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Minor m = new Minor(description);
+		em.persist(m);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return m;
+	}
+
+	public void deleteMinor(Minor m) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (m != null) {
+			m.removeStudents();
+			em.remove(m);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void renameMinor(Minor m, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void addStudent(Minor m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void removeStudent(Minor m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
 	public static String[] getMinors() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();

@@ -22,7 +22,7 @@ public class UserController {
 		return u;
 	}
 	
-	public void removeUser(User u) {
+	public void deleteUser(User u) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();

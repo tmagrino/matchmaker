@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.json.JSONArray;
@@ -14,6 +15,76 @@ import org.json.JSONObject;
 
 public class InterestController {
 
+	public Interest createInterest(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Interest i = new Interest(description);
+		em.persist(i);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return i;
+	}
+
+	public void deleteInterest(Interest i) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (i != null) {
+			i.removeStudents();
+			em.remove(i);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void renameInterest(Interest i, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		i.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void addStudent(Interest i, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		i.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public void removeStudent(Interest i, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		i.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
 	public static String[] getInterests() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();

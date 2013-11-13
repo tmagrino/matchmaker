@@ -27,11 +27,10 @@ public class CollegeController {
 		tx.commit();
 		em.close();
 		emf.close();
-
 		return c;
 	}
 
-	public void removeCollege(College c) {
+	public void deleteCollege(College c) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
