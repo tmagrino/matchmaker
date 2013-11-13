@@ -49,13 +49,18 @@ public class Researcher implements Serializable {
 	public Researcher() {
 		
 	}
-	public Researcher(String name,String netID,String email){
+	
+	public Researcher(String name,String netID,String email, String department,
+			String webpage, String researchArea) {
 		this.name = name;
 		this.netID = netID;
 		this.email = email;
-		this.department = "Computer Science Department";
-		this.webpage = "www.cs.cornell.edu";
-		this.researchArea = "Computer Science";
+		this.department = department;
+		this.webpage = webpage;
+		this.researchArea = researchArea;
+		//this.department = "Computer Science Department";
+		//this.webpage = "www.cs.cornell.edu";
+		//this.researchArea = "Computer Science";
 	}
 
 	public int getId() {

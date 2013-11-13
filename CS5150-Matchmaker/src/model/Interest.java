@@ -54,7 +54,7 @@ public class Interest implements Comparable<Interest>{
 		
 	}
 	
-	public Interest(String name) {
+	Interest(String name) {
 		this.description = name;
 	}
 	

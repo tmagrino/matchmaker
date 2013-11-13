@@ -10,6 +10,26 @@ import javax.persistence.Persistence;
 
 public class ResearcherController {
 
+	public static Researcher createResearcher(String name,String netID,String email, String department,
+			String webpage, String researchArea, User user) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+		
+        Researcher r = new Researcher(name, netID, email, department,
+        				webpage, researchArea);
+        user.setResearcher(r);
+        
+		tx.commit();
+		em.close();
+		emf.close();
+		return r;
+	}
+	
+	public static void deleteResearcher(Researcher r) {
+		//TODO:
+	}
+	
 	public static Researcher getResearcherByNetID(String netid) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
