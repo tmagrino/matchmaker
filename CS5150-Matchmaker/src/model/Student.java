@@ -82,12 +82,10 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="SKILL_ID", referencedColumnName="ID")}
 	)
 	private List<Skill> skills;
-	@ElementCollection  
-	@CollectionTable (
-			name = "EXPERIENCES_TABLE",
-			joinColumns = @JoinColumn(
-					name = "OWNER_ID")
-			)
+	@ElementCollection
+	@CollectionTable(name = "EXPERIENCES",
+					 joinColumns = {@JoinColumn(name="STUD_ID")}
+					)
 	private List<Experience> priorExperience;
 	@ManyToMany
 	@JoinTable(
@@ -491,9 +489,11 @@ public class Student implements Serializable {
 				}
 			}
 		}
-		this.user = user;
-		if (user.getStudent() != this) {
-			user.setStudent(this);
+		else {
+			this.user = user;
+			if (user.getStudent() != this) {
+				user.setStudent(this);
+			}
 		}
 	}
 
@@ -521,100 +521,146 @@ public class Student implements Serializable {
 	}
 	
 	void addMajor(Major major) {
-		
+		if (!this.majors.contains(major)) {
+			this.majors.add(major);
+			if (!major.getStudents().contains(this)) {
+				major.addStudent(this);
+			}
+		}
 	}
 	
 	void removeMajor(Major major) {
-		
+		if (this.majors.remove(major)) {
+			if (major.getStudents().contains(this)) {
+				major.removeStudent(this);
+			}
+		}
 	}
 	
 	void removeMajors() {
-		
+		for (Major m : majors) {
+			removeMajor(m);
+		}
 	}
 	
 	void addMinor(Minor minor) {
-		
+		if (!this.minors.contains(minor)) {
+			this.minors.add(minor);
+			if (!minor.getStudents().contains(this)) {
+				minor.addStudent(this);
+			}
+		}
 	}
 	
 	void removeMinor(Minor minor) {
-		
+		if (this.minors.remove(minor)) {
+			if (minor.getStudents().contains(this)) {
+				minor.removeStudent(this);
+			}
+		}
 	}
 	
 	void removeMinors() {
-		
+		for (Minor m : minors) {
+			removeMinor(m);
+		}
 	}
 	
 	void addSkill(Skill skill) {
-		
+		if (!this.skills.contains(skill)) {
+			this.skills.add(skill);
+			if (!skill.getStudents().contains(this)) {
+				skill.addStudent(this);
+			}
+		}
 	}
 	
 	void removeSkill(Skill skill) {
-		
+		if (this.skills.remove(skill)) {
+			if (skill.getStudents().contains(this)) {
+				skill.removeStudent(this);
+			}
+		}
 	}
 	
 	void removeSkills() {
-		
+		for (Skill s : skills) {
+			removeSkill(s);
+		}
 	}
 	
 	void addInterest(Interest interest) {
-		
+		if (!this.interests.contains(interest)) {
+			this.interests.add(interest);
+			if (!interest.getStudents().contains(this)) {
+				interest.addStudent(this);
+			}
+		}
 	}
 	
 	void removeInterest(Interest interest) {
-		
+		if (this.interests.remove(interest)) {
+			if (interest.getStudents().contains(this)) {
+				interest.removeStudent(this);
+			}
+		}
 	}
 	
 	void removeInterests() {
-		
+		for (Interest i : interests) {
+			removeInterest(i);
+		}
 	}
 	
-	/**
-	 * @param majors the majors to set
-	 */
-	void setMajors(List<Major> majors) {
-		this.majors = majors;
+	void addExperience(Experience exp) {
+		priorExperience.add(exp);
 	}
-
-	/**
-	 * @param minors the minors to set
-	 */
-	void setMinors(List<Minor> minors) {
-		this.minors = minors;
+	
+	void removeExperience(Experience exp) {
+		priorExperience.remove(exp);
 	}
-
-	/**
-	 * @param skills the skills to set
-	 */
-	void setSkills(List<Skill> skills) {
-		this.skills = skills;
+	
+	void removeExperiences() {
+		for (Experience e: priorExperience) {
+			removeExperience(e);
+		}
 	}
-
-	/**
-	 * @param priorExperience the priorExperience to set
-	 */
-	void setPriorExperience(List<Experience> priorExperience) {
-		this.priorExperience = priorExperience;
+	
+	void addCourse(Course c) {
+		transcript.add(c);
 	}
-
-	/**
-	 * @param interests the interests to set
-	 */
-	void setInterests(List<Interest> interests) {
-		this.interests = interests;
+	
+	void removeCourse(Course c) {
+		transcript.remove(c);
 	}
-
-	/**
-	 * @param transcript the transcript to set
-	 */
-	void setTranscript(List<Course> transcript) {
-		this.transcript = transcript;
+	
+	void removeCourses() {
+		for (Course c : transcript) {
+			removeCourse(c);
+		}
 	}
-
-	/**
-	 * @param applications the applications to set
-	 */
-	void setApplications(List<Application> applications) {
-		this.applications = applications;
+	
+	void addApplication(Application app) {
+		if (!this.applications.contains(app)) {
+			this.applications.add(app);
+			if (app.getStudentApplicant() != this) {
+				app.setStudentApplicant(this);
+			}
+		}
+	}
+	
+	void removeApplication(Application app) {
+		if (this.applications.remove(app)) {
+			if (app.getStudentApplicant() == this) {
+				app.setStudentApplicant(null);
+			}
+		}
+	}
+	
+	void removeApplications() {
+		for (Application app : applications) {
+			removeApplication(app);
+		}
 	}
 
 	/**
@@ -622,9 +668,5 @@ public class Student implements Serializable {
 	 */
 	void setSettings(StudentSettings settings) {
 		this.settings = settings;
-	}
-
-	
-	
-	
+	}	
 }

@@ -63,23 +63,41 @@ public class Project implements Serializable {
 		return researchers;
 	}
 
-	public void setResearchers(List<Researcher> researchers) {
-		this.researchers = researchers;
+	void addResearcher(Researcher res) {
+		
+	}
+	
+	void removeResearcher(Researcher res) {
+		
+	}
+	
+	void removeResearchers() {
+		for (Researcher r : researchers) {
+			removeResearcher(r);
+		}
 	}
 
+	void addApplication(Application app) {
+		
+	}
+	
+	void removeApplication(Application app) {
+		
+	}
+	
+	void removeApplications() {
+		
+	}
+	
 	public List<Application> getApplications() {
 		return applications;
-	}
-
-	public void setApplications(List<Application> applications) {
-		this.applications = applications;
 	}
 
 	public int getOpenings() {
 		return openings;
 	}
 
-	public void setOpenings(int openings) {
+	void setOpenings(int openings) {
 		this.openings = openings;
 	}
 

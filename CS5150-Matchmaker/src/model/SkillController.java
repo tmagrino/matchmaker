@@ -13,7 +13,7 @@ import javax.persistence.Persistence;
 
 public class SkillController {
 
-	public Skill createSkill(String description) {
+	public static Skill createSkill(String description) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -28,7 +28,7 @@ public class SkillController {
 		return sk;
 	}
 
-	public void deleteSkill(Skill sk) {
+	public static void deleteSkill(Skill sk) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -44,7 +44,7 @@ public class SkillController {
 		emf.close();
 	}
 	
-	public void renameSkill(Skill sk, String description) {
+	public static void renameSkill(Skill sk, String description) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -57,7 +57,7 @@ public class SkillController {
 		emf.close();
 	}
 	
-	public void addStudent(Skill sk, Student s) {
+	public static void addStudent(Skill sk, Student s) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -70,7 +70,7 @@ public class SkillController {
 		emf.close();
 	}
 	
-	public void removeStudent(Skill sk, Student s) {
+	public static void removeStudent(Skill sk, Student s) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();

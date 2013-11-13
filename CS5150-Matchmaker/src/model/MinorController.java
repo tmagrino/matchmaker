@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class MinorController {
 
-	public Minor createMinor(String description) {
+	public static Minor createMinor(String description) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -30,7 +30,7 @@ public class MinorController {
 		return m;
 	}
 
-	public void deleteMinor(Minor m) {
+	public static void deleteMinor(Minor m) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -46,7 +46,7 @@ public class MinorController {
 		emf.close();
 	}
 	
-	public void renameMinor(Minor m, String description) {
+	public static void renameMinor(Minor m, String description) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -59,7 +59,7 @@ public class MinorController {
 		emf.close();
 	}
 	
-	public void addStudent(Minor m, Student s) {
+	public static void addStudent(Minor m, Student s) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -72,7 +72,7 @@ public class MinorController {
 		emf.close();
 	}
 	
-	public void removeStudent(Minor m, Student s) {
+	public static void removeStudent(Minor m, Student s) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -86,7 +86,7 @@ public class MinorController {
 	}
 	
 	public static String[] getMinors() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MINOR m";
@@ -100,7 +100,7 @@ public class MinorController {
 		return (String[]) Minors.toArray();
 	}
 	public static List<Minor> getMinorList(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
         try{
         String query = "select m from MINOR m";
@@ -113,7 +113,7 @@ public class MinorController {
         }
 	}
 	public static Minor getMinorByDescription(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MINOR m where m.description = \""+description+"\"";
@@ -134,7 +134,7 @@ public class MinorController {
 	}
 	
     public static Minor getMinor(long id){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
 
         String query = "select m from MINOR m where m.id = " + id;
@@ -144,7 +144,7 @@ public class MinorController {
     }
     
     public static JSONObject getMinorJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MINOR m";

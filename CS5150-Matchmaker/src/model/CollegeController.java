@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 public class CollegeController {
 
-	public College createCollege(String description) {
+	public static College createCollege(String description) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -30,7 +30,7 @@ public class CollegeController {
 		return c;
 	}
 
-	public void deleteCollege(College c) {
+	public static void deleteCollege(College c) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -46,7 +46,7 @@ public class CollegeController {
 		emf.close();
 	}
 	
-	public void renameCollege(College c, String description) {
+	public static void renameCollege(College c, String description) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -59,7 +59,7 @@ public class CollegeController {
 		emf.close();
 	}
 	
-	public void addStudent(College c, Student s) {
+	public static void addStudent(College c, Student s) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
@@ -72,7 +72,7 @@ public class CollegeController {
 		emf.close();
 	}
 	
-	public void removeStudent(College c, Student s) {
+	public static void removeStudent(College c, Student s) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("CollegeController");
 		EntityManager em = emf.createEntityManager();
 		EntityTransaction tx = em.getTransaction();
