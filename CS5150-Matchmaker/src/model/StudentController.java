@@ -111,6 +111,10 @@ public class StudentController {
         }
 	}
 	
+	public static void saveStudent(Student stud) {
+		
+	}
+	
 	public static void updateStudent(Student stud, String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,

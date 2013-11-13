@@ -32,6 +32,8 @@ public class Researcher implements Serializable {
 	private String researchArea;
 	@Column(name = "WEBPAGE", nullable = true)
 	private String webpage;
+	@OneToOne (mappedBy = "researcher")
+	private User user;
 	@ManyToMany
 	@JoinTable(
 			name = "PROJECTS_MAPPING",
@@ -43,6 +45,7 @@ public class Researcher implements Serializable {
 	//private BufferedImage profilePicture;
 	//private ResearcherSettings settings;
 
+	
 	public Researcher() {
 		
 	}
@@ -122,8 +125,29 @@ public class Researcher implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
 	
-	
-
-
+	/**
+	 * @param user the user to set
+	 */
+	void setUser(User user) {
+		if (user == null) {
+			if (this.user != null) {
+				if (this.user.getResearcher() != null) {
+					User u = this.user;
+					this.user = null;
+					u.setResearcher(null);
+				}
+			}
+		}
+		this.user = user;
+		if (user.getResearcher() != this) {
+			user.setResearcher(this);
+		}
+	}
 }
