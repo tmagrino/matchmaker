@@ -54,7 +54,6 @@ public class Student implements Serializable {
 	private Year year;
 	@OneToOne (mappedBy = "student")
 	private User user;
-	// COLLEGE
 	@ManyToMany
 	@JoinTable(
 			name = "COLLEGES_TABLE",
@@ -62,7 +61,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="COLLEGE_ID", referencedColumnName="ID")}
 	)
 	private List<College> colleges;
-	// MAJORS
 	@ManyToMany
 	@JoinTable(
 			name = "MAJORS_TABLE",
@@ -70,7 +68,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="MAJOR_ID", referencedColumnName="ID")}
 	)
 	private List<Major> majors;
-	// MINORS
 	@ManyToMany
 	@JoinTable(
 			name = "MINORS_TABLE",
@@ -78,7 +75,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="MINOR_ID", referencedColumnName="ID")}
 	)
 	private List<Minor> minors;
-	// SKILLS
 	@ManyToMany
 	@JoinTable(
 			name = "SKILLS_TABLE",
@@ -86,7 +82,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="SKILL_ID", referencedColumnName="ID")}
 	)
 	private List<Skill> skills;
-	// Prior Experience
 	@ElementCollection  
 	@CollectionTable (
 			name = "EXPERIENCES_TABLE",
@@ -94,7 +89,6 @@ public class Student implements Serializable {
 					name = "OWNER_ID")
 			)
 	private List<Experience> priorExperience;
-	// Interests
 	@ManyToMany
 	@JoinTable(
 			name = "STUDENTS_INTERESTS_TABLE",
@@ -102,7 +96,6 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="INTER_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> interests;
-	// Transcript
 	@ElementCollection  
 	@CollectionTable (
 			name = "CLASSES_TABLE",
@@ -113,11 +106,8 @@ public class Student implements Serializable {
 	private List<Application> applications;
 	@Embedded
 	private StudentSettings settings;
-	//private BufferedImage profilePicture;
-	@Version @Column(name = "VERSION")
-	private long version;
 
-	// Constructors:
+	// Constructors
 	public Student() 
 	{
 		
@@ -129,12 +119,11 @@ public class Student implements Serializable {
 		this.netID=netID;
 		this.email = email;
 		this.year = Year.Senior;
-		this.version = 1;
 		if (random == 1){
 		this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
 		this.skills = Arrays.asList(SkillController.getSkillByDescription("Java"),
 				SkillController.getSkillByDescription("C"));
-		this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
+		this.colleges = Arrays.asList(CollegeController.getCollege(
 				"College of Arts and Sciences"));
 		
 		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
@@ -149,7 +138,7 @@ public class Student implements Serializable {
 			this.majors = Arrays.asList(MajorController.getMajorByDescription("Information Science"));
 			this.skills = Arrays.asList(SkillController.getSkillByDescription("Python"),
 					SkillController.getSkillByDescription("Scrum"));
-			this.colleges = Arrays.asList(CollegeController.getCollegeByDescription(
+			this.colleges = Arrays.asList(CollegeController.getCollege(
 					"College of Arts and Sciences"));
 			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
 			
@@ -159,11 +148,15 @@ public class Student implements Serializable {
 			
 		}
 	}
-	public Student(String name, String netID, double gpa, String email,
+	
+	/*
+	 * Formal constructor: no initial applications or settings
+	 */
+	Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
 			List<Minor> minors, List<Skill> skills,
 			List<Experience> priorExperience, List<Interest> interests,
-			List<Course> transcript) {
+			List<Course> transcript, User user) {
 		this.name = name;
 		this.netID = netID;
 		this.gpa = gpa;
@@ -176,34 +169,37 @@ public class Student implements Serializable {
 		this.priorExperience = priorExperience;
 		this.interests = interests;
 		this.transcript = transcript;
-		this.version = 1;
+		this.user = user;
 	}
 	
-	public String getAttribute(String attr){
-		if(attr.equals("name"))
-			return name;
-		if(attr.equals("netid"))
-			return netID;
-		if(attr.equals("Email"))
-			return email;
-		if(attr.equals("GPA"))
-			return Double.toString(gpa);
-		if(attr.equals("Year"))
-			return year.toString();
-		if(attr.equals("College"))
-			return getCollegeString();
-		if(attr.equals("Major"))
-			return getMajorString();
-		if(attr.equals("Minor"))
-			return getMinorString();
-		if(attr.equals("Skills"))
-			return getSkillString();
-		if(attr.equals("Research Interests"))
-			return getInterestString();
-		return null;
+	public String getAttribute(String attr) {
+		switch (attr.toLowerCase()) {
+			case "name":
+				return name;
+			case "netID":
+				return netID;
+			case "email":
+				return email;
+			case "gpa":
+				return Double.toString(gpa);
+			case "year":
+				return year.toString();
+			case "college":
+				return getCollegeString();
+			case "major":
+				return getMajorString();
+			case "minor":
+				return getMinorString();
+			case "skills":
+				return getSkillString();
+			case "research interests":
+				return getInterestString();
+			default:
+				System.out.println("Invalid attribute");
+				return null;
+		}
 	}
-		
-
+	
 	/**
 	 * @return the id
 	 */
@@ -256,7 +252,7 @@ public class Student implements Serializable {
 	/**
 	 * @return the user
 	 */
-	User getUser() {
+	public User getUser() {
 		return user;
 	}
 
@@ -324,23 +320,17 @@ public class Student implements Serializable {
 	}
 
 	/**
-	 * @return the version
-	 */
-	public long getVersion() {
-		return version;
-	}
-	/**
 	 * @return a string with all skills separated by ', '
 	 */
 	public String getSkillString(){
-		if (skills.size() > 0){
+		if (skills.size() > 0) {
 			Collections.sort(skills);
-		StringBuilder builder = new StringBuilder();
-		for (Skill s : skills){
-			builder.append(s.getDescription()+", ");
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+			StringBuilder builder = new StringBuilder();
+			for (Skill s : skills) {
+				builder.append(s.getDescription() + ", ");
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
 		}
 		return "";
 	}
@@ -348,33 +338,34 @@ public class Student implements Serializable {
 	 * @return a string with all Skills separated by ', '. If it's bigger than 15 chars,
 	 * return the first 15 chars + '...'
 	 */
-	public String getTruncatedSkillString(){
-		if (skills.size() > 0){
+	public String getTruncatedSkillString() {
+		if (skills.size() > 0) {
 			Collections.sort(skills);
-		StringBuilder builder = new StringBuilder();
-		for (Skill s : skills){
-			builder.append(s.getDescription()+", ");
-		}
-		if (builder.length() > 17){
-			return builder.toString().subSequence(0, 16) +"...";
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+			StringBuilder builder = new StringBuilder();
+			for (Skill s : skills) {
+				builder.append(s.getDescription() + ", ");
+				if (builder.length() > 17) {
+					return builder.toString().subSequence(0, 16) + "...";
+				}
+			}
+			builder.deleteCharAt(builder.length() -2);
+			return builder.toString();
 		}
 		return "";
 	}
+	
 	/**
 	 * @return a string with all Interest separated by ', '
 	 */
-	public String getInterestString(){
-		if (interests.size() > 0){
+	public String getInterestString() {
+		if (interests.size() > 0) {
 			Collections.sort(interests);
-		StringBuilder builder = new StringBuilder();
-		for (Interest i : interests){
-			builder.append(i.getDescription()+", ");
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+			StringBuilder builder = new StringBuilder();
+			for (Interest i : interests){
+				builder.append(i.getDescription() + ", ");
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
 		}
 		return "";
 	}
@@ -382,17 +373,17 @@ public class Student implements Serializable {
 	 * @return a string with all Interest separated by ', '
 	 */
 	public String getTruncatedInterestString(){
-		if (interests.size() > 0){
+		if (interests.size() > 0) {
 			Collections.sort(interests);
-		StringBuilder builder = new StringBuilder();
-		for (Interest i : interests){
-			builder.append(i.getDescription()+", ");
-		}
-		if (builder.length() > 17){
-			return builder.toString().subSequence(0, 16) +"...";
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+			StringBuilder builder = new StringBuilder();
+			for (Interest i : interests){
+				builder.append(i.getDescription() + ", ");
+				if (builder.length() > 17){
+					return builder.toString().subSequence(0, 16) + "...";
+				}
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
 		}
 		return "";
 	}
@@ -400,15 +391,15 @@ public class Student implements Serializable {
 	/**
 	 * @return a string with all Majors separated by ', '
 	 */
-	public String getMajorString(){
-		if (majors.size() > 0){
+	public String getMajorString() {
+		if (majors.size() > 0) {
 			Collections.sort(majors);
-		StringBuilder builder = new StringBuilder();
-		for (Major m : majors){
-			builder.append(m.getDescription()+", ");
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+			StringBuilder builder = new StringBuilder();
+			for (Major m : majors){
+				builder.append(m.getDescription() + ", ");
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
 		}
 		return "";
 	}
@@ -416,33 +407,35 @@ public class Student implements Serializable {
 	/**
 	 * @return a string with all Minors separated by ', '
 	 */
-	public String getMinorString(){
-		if (minors.size() > 0){
-	    Collections.sort(minors);
-		StringBuilder builder = new StringBuilder();
-		for (Minor m : minors){
-			builder.append(m.getDescription()+", ");
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+	public String getMinorString() {
+		if (minors.size() > 0) {
+			Collections.sort(minors);
+			StringBuilder builder = new StringBuilder();
+			for (Minor m : minors){
+				builder.append(m.getDescription() + ", ");
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
 		}
 		return "";
 	}
+	
 	/**
 	 * @return a string with all Colleges separated by ','
 	 */
-	public String getCollegeString(){
-		if (colleges.size() > 0){
+	public String getCollegeString() {
+		if (colleges.size() > 0) {
 			Collections.sort(colleges);
-		StringBuilder builder = new StringBuilder();
-		for (College c : colleges){
-			builder.append(c.getDescription()+", ");
-		}
-		builder.deleteCharAt(builder.length() -2);
-		return builder.toString();
+			StringBuilder builder = new StringBuilder();
+			for (College c : colleges){
+				builder.append(c.getDescription() + ", ");
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
 		}
 		return "";
 	}
+	
 	/**
 	 * @param id the id to set
 	 */
@@ -504,14 +497,23 @@ public class Student implements Serializable {
 		}
 	}
 
-	/**
-	 * @param colleges the colleges to set
-	 */
-	void setColleges(List<College> colleges) {
-		this.colleges = colleges;
-		
+	void addCollege(College college) {
+		if (!this.colleges.contains(college)) {
+			this.colleges.add(college);
+			if (!college.getStudents().contains(this)) {
+				college.addStudent(this);
+			}
+		}
 	}
-
+	
+	void removeCollege(College college) {
+		if (this.colleges.remove(college)) {
+			if (college.getStudents().contains(this)) {
+				college.removeStudent(this);
+			}
+		}
+	}
+	
 	/**
 	 * @param majors the majors to set
 	 */
@@ -568,12 +570,6 @@ public class Student implements Serializable {
 		this.settings = settings;
 	}
 
-	/**
-	 * @param version the version to set
-	 */
-	void setVersion(long version) {
-		this.version = version;
-	}
 	
 	
 	

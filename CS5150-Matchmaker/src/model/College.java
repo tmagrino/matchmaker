@@ -51,19 +51,46 @@ public class College implements Comparable<College>{
 		
 	}
 	
-	public College(String name) {
+	College(String name) {
 		this.description = name;
 	}
 	public long getId(){
 		return id;
 	}
+	
 	public String getDescription() {
 		return this.description;
 	}
 	
+	public List<Student> getStudents() {
+		return students.subList(0, students.size());
+	}
 	
 	void setDescription(String name) {
 		this.description = name;
+	}
+	
+	void addStudent(Student s) {
+		if (!students.contains(s)) {
+			students.add(s);
+			if (!s.getColleges().contains((this))) {
+				s.addCollege(this);
+			}
+		}
+	}
+	
+	void removeStudent(Student s) {
+		if (this.students.remove(s)) {
+			if (s.getColleges().contains(this)) {
+				s.removeCollege(this);
+			}
+		}
+	}
+	
+	void removeStudents() {
+		for (Student s : students) {
+			removeStudent(s);
+		}
 	}
 
 	@Override

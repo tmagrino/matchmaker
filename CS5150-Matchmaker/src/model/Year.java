@@ -20,5 +20,4 @@ public enum Year {
 	public String toString(){
 		return yearValue;
 	}
-
 }

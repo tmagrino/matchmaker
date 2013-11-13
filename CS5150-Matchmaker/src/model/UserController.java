@@ -10,7 +10,7 @@ import javax.persistence.Persistence;
 public class UserController {
 
 	public User createUser(String name, String email, String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -23,11 +23,13 @@ public class UserController {
 	}
 	
 	public void removeUser(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		if (u != null) {
+			u.setStudent(null);
+			u.setResearcher(null);
 			em.remove(u);
 		}
 		tx.commit();
@@ -37,7 +39,7 @@ public class UserController {
 	
 	@SuppressWarnings("unchecked")
 	public User findUser(String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    String query = "select s from USER s where s.netID = \"" + netid +"\"";
         List<User> mylist = (List<User>) em.createQuery(query).getResultList();
@@ -52,7 +54,7 @@ public class UserController {
 	}
 	
 	public void setName(User u, String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -63,7 +65,7 @@ public class UserController {
 	}
 	
 	public void setEmail(User u, String email) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -74,7 +76,7 @@ public class UserController {
 	}
 	
 	public void setAdmin(User u, boolean makeAdmin) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -85,7 +87,7 @@ public class UserController {
 	}
 	
 	public void setStudent(User u, Student stud) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -96,7 +98,7 @@ public class UserController {
 	}
 	
 	public void setResearcher(User u, Researcher r) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -107,7 +109,7 @@ public class UserController {
 	}
 	
 	public void removeStudent(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -119,7 +121,7 @@ public class UserController {
 	}
 	
 	public void removeResearcher(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
