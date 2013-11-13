@@ -13,12 +13,11 @@ public enum Year {
 	Senior("4"),
 	Graduate("5+");
 	private final String yearValue; 
-	private Year(String value){
+	Year(String value){
 		yearValue = value;
 	}
 	@Override
 	public String toString(){
 		return yearValue;
 	}
-
 }

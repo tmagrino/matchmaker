@@ -14,9 +14,79 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class MajorController {
+	
+	public static Major createMajor(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Major m = new Major(description);
+		em.persist(m);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return m;
+	}
+
+	public static void deleteMajor(Major m) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (m != null) {
+			m.removeStudents();
+			em.remove(m);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void renameMajor(Major m, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void addStudent(Major m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void removeStudent(Major m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
 
 	public static String[] getMajors() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MAJOR m";
@@ -31,7 +101,7 @@ public class MajorController {
 	}
 	
 	public static List<Major> getMajorList() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
         EntityManager em = emf.createEntityManager();
        try{
         String query = "select m from MAJOR m";
@@ -45,7 +115,7 @@ public class MajorController {
        }
 	}
 	public static Major getMajorByDescription(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MAJOR m where m.description = \""+description+"\"";
@@ -65,7 +135,7 @@ public class MajorController {
 	}
 	
 	public static Major getMajor(long id) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
         EntityManager em = emf.createEntityManager();
 
         String query = "select m from MAJOR m where m.id = " + id;
@@ -75,7 +145,7 @@ public class MajorController {
         return majs.get(0);
 	}
 	public static JSONObject getMajorJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MajorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MAJOR m";

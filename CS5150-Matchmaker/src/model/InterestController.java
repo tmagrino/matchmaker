@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.json.JSONArray;
@@ -14,8 +15,78 @@ import org.json.JSONObject;
 
 public class InterestController {
 
+	public static Interest createInterest(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Interest i = new Interest(description);
+		em.persist(i);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return i;
+	}
+
+	public static void deleteInterest(Interest i) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (i != null) {
+			i.removeStudents();
+			em.remove(i);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void renameInterest(Interest i, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		i.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void addStudent(Interest i, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		i.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void removeStudent(Interest i, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		i.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
 	public static String[] getInterests() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select i from INTEREST i";
@@ -29,7 +100,7 @@ public class InterestController {
 		return (String[]) interests.toArray();
 	}
 	public static List<Interest> getInterestList() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
         EntityManager em = emf.createEntityManager();
         try{
 	        String query = "select i from INTEREST i";
@@ -42,7 +113,7 @@ public class InterestController {
         }
 	}
 	public static Interest getInterestByDescription(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select i from INTEREST i where i.description = \""+description+"\"";
@@ -61,7 +132,7 @@ public class InterestController {
 		return interestList;
 	}
     public static Interest getInterest(long id) {
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
         EntityManager em = emf.createEntityManager();
 
         String query = "select i from INTEREST i where i.id = " + id;
@@ -70,7 +141,7 @@ public class InterestController {
         return ints.get(0);
     }
 	public static JSONObject getInterestJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("InterestController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select i from INTEREST i";

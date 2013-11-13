@@ -19,7 +19,7 @@ public class User {
 	@Column(nullable = true)
 	private Researcher researcher;
 	
-	public User(String name, String email, String netid) {
+	User(String name, String email, String netid) {
 		this.name = name;
 		this.email = email;
 		this.netid = netid;

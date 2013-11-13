@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -45,11 +46,19 @@ public class Application implements Serializable {
 		
 	}
 
+	public Application(Student owner, Project project, 
+			String studentResponse) {
+		this.studentApplicant = owner;
+		this.applicationProject = project;
+		this.status = ApplicationStatus.Pending;
+		this.studentResponse = studentResponse;
+		this.submissionDate = new Date();
+	}
+	
 
 	public long getId() {
 		return id;
 	}
-
 
 	public void setId(long id) {
 		this.id = id;
@@ -61,17 +70,28 @@ public class Application implements Serializable {
 	}
 
 
-	public void setStudentApplicant(Student studentApplicant) {
-		this.studentApplicant = studentApplicant;
+	void setStudentApplicant(Student studentApplicant) {
+		if (studentApplicant == null) {
+			if (this.studentApplicant != null) {
+				Student s = this.studentApplicant;
+				this.studentApplicant = null;
+				s.removeApplication(this);
+			}
+		}
+		else {
+			this.studentApplicant = studentApplicant;
+			if (!studentApplicant.getApplications().contains(this)) {
+				studentApplicant.addApplication(this);
+			}
+		}
 	}
-
 
 	public Project getApplicationProject() {
 		return applicationProject;
 	}
 
 
-	public void setApplicationProject(Project applicationProject) {
+	void setApplicationProject(Project applicationProject) {
 		this.applicationProject = applicationProject;
 	}
 
@@ -81,7 +101,7 @@ public class Application implements Serializable {
 	}
 
 
-	public void setStatus(ApplicationStatus status) {
+	void setStatus(ApplicationStatus status) {
 		this.status = status;
 	}
 
@@ -91,7 +111,7 @@ public class Application implements Serializable {
 	}
 
 
-	public void setStudentResponse(String studentResponse) {
+	void setStudentResponse(String studentResponse) {
 		this.studentResponse = studentResponse;
 	}
 
@@ -101,7 +121,7 @@ public class Application implements Serializable {
 	}
 
 
-	public void setSubmissionDate(Date submissionDate) {
+	void setSubmissionDate(Date submissionDate) {
 		this.submissionDate = submissionDate;
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import org.json.JSONArray;
@@ -14,8 +15,78 @@ import org.json.JSONObject;
 
 public class MinorController {
 
+	public static Minor createMinor(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Minor m = new Minor(description);
+		em.persist(m);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return m;
+	}
+
+	public static void deleteMinor(Minor m) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (m != null) {
+			m.removeStudents();
+			em.remove(m);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void renameMinor(Minor m, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void addStudent(Minor m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void removeStudent(Minor m, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		m.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
 	public static String[] getMinors() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MINOR m";
@@ -29,7 +100,7 @@ public class MinorController {
 		return (String[]) Minors.toArray();
 	}
 	public static List<Minor> getMinorList(){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
         try{
         String query = "select m from MINOR m";
@@ -42,7 +113,7 @@ public class MinorController {
         }
 	}
 	public static Minor getMinorByDescription(String description){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MINOR m where m.description = \""+description+"\"";
@@ -63,7 +134,7 @@ public class MinorController {
 	}
 	
     public static Minor getMinor(long id){
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
 
         String query = "select m from MINOR m where m.id = " + id;
@@ -73,7 +144,7 @@ public class MinorController {
     }
     
     public static JSONObject getMinorJson() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("MinorController");
         EntityManager em = emf.createEntityManager();
       
         String query = "select m from MINOR m";

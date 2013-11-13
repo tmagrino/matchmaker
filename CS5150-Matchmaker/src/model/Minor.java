@@ -51,20 +51,47 @@ public class Minor implements Comparable<Minor>{
 		
 	}
 	
-	long getId(){
-		return id;
+	Minor(String name) {
+		this.description = name;
 	}
 	
-	public Minor(String name) {
-		this.description = name;
+	public long getId(){
+		return id;
 	}
 	
 	public String getDescription() {
 		return this.description;
 	}
 	
+	public List<Student> getStudents() {
+		return students.subList(0, students.size());
+	}
+	
 	void setDescription(String name) {
 		this.description = name;
+	}
+	
+	void addStudent(Student s) {
+		if (!students.contains(s)) {
+			students.add(s);
+			if (!s.getMinors().contains((this))) {
+				s.addMinor(this);
+			}
+		}
+	}
+	
+	void removeStudent(Student s) {
+		if (this.students.remove(s)) {
+			if (s.getMinors().contains(this)) {
+				s.removeMinor(this);
+			}
+		}
+	}
+	
+	void removeStudents() {
+		for (Student s : students) {
+			removeStudent(s);
+		}
 	}
 
 	@Override

@@ -9,8 +9,8 @@ import javax.persistence.Persistence;
 
 public class UserController {
 
-	public User createUser(String name, String email, String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static User createUser(String name, String email, String netid) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -22,12 +22,14 @@ public class UserController {
 		return u;
 	}
 	
-	public void removeUser(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void deleteUser(User u) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
 		if (u != null) {
+			u.setStudent(null);
+			u.setResearcher(null);
 			em.remove(u);
 		}
 		tx.commit();
@@ -36,8 +38,8 @@ public class UserController {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public User findUser(String netid) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static User findUser(String netid) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    String query = "select s from USER s where s.netID = \"" + netid +"\"";
         List<User> mylist = (List<User>) em.createQuery(query).getResultList();
@@ -51,8 +53,8 @@ public class UserController {
         }
 	}
 	
-	public void setName(User u, String name) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void setName(User u, String name) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -62,8 +64,8 @@ public class UserController {
 		emf.close();
 	}
 	
-	public void setEmail(User u, String email) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void setEmail(User u, String email) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -73,8 +75,8 @@ public class UserController {
 		emf.close();
 	}
 	
-	public void setAdmin(User u, boolean makeAdmin) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void setAdmin(User u, boolean makeAdmin) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -84,8 +86,8 @@ public class UserController {
 		emf.close();
 	}
 	
-	public void setStudent(User u, Student stud) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void setStudent(User u, Student stud) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -95,8 +97,8 @@ public class UserController {
 		emf.close();
 	}
 	
-	public void setResearcher(User u, Researcher r) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void setResearcher(User u, Researcher r) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -106,8 +108,8 @@ public class UserController {
 		emf.close();
 	}
 	
-	public void removeStudent(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void removeStudent(User u) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
@@ -118,8 +120,8 @@ public class UserController {
 		emf.close();
 	}
 	
-	public void removeResearcher(User u) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	public static void removeResearcher(User u) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("UserController");
 	    EntityManager em = emf.createEntityManager();
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();

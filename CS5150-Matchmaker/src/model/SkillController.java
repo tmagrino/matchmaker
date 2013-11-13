@@ -8,10 +8,81 @@ import org.json.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 public class SkillController {
 
+	public static Skill createSkill(String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Skill sk = new Skill(description);
+		em.persist(sk);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+		return sk;
+	}
+
+	public static void deleteSkill(Skill sk) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if (sk != null) {
+			sk.removeStudents();
+			em.remove(sk);
+		}
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void renameSkill(Skill sk, String description) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		sk.setDescription(description);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void addStudent(Skill sk, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		sk.addStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
+	public static void removeStudent(Skill sk, Student s) {
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("SkillController");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		sk.removeStudent(s);
+		
+		tx.commit();
+		em.close();
+		emf.close();
+	}
+	
 	public static String[] getSkills() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
         EntityManager em = emf.createEntityManager();
