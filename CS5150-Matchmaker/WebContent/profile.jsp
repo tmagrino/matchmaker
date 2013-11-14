@@ -64,7 +64,7 @@
 						<p
 							class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
 							<% if(attr.equals("Year")){ %>
-							<select name="year">
+							<select name = "year">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>

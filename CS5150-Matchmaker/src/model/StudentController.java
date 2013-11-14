@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -153,14 +154,14 @@ public class StudentController {
 		
 		tx.commit();
 	}
-	
 	public static void updateMajors(EntityManager em, Student s, String majorIds){
 		
-		String [] idList = majorIds.split(",");
-		for (String id : idList){
-			Major m = MajorController.getMajor(em,Long.parseLong(id));
-			StudentController.addMajor(em, s, m);
-		}
+		String[] idList =majorIds.split(",");
+		
+		s.removeMajors();
+		for (String id : idList)
+			if (id.length()>0)
+			StudentController.addMajor(em, s, MajorController.getMajor(em,Long.parseLong(id)));
 	}
 	public static void addMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
@@ -170,7 +171,6 @@ public class StudentController {
 		
 		tx.commit();
 	}
-	
 	public static void removeMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -179,7 +179,14 @@ public class StudentController {
 		
 		tx.commit();
 	}
-	
+	public static void updateMinors(EntityManager em, Student s, String minorIds){
+		
+		String[] idList =minorIds.split(",");
+		s.removeMinors();
+		for (String id : idList)
+			if (id.length()>0)
+			StudentController.addMinor(em, s, MinorController.getMinor(em,Long.parseLong(id)));
+	}
 	public static void addSkill(EntityManager em, Student s, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();

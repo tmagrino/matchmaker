@@ -11,20 +11,27 @@
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Student s = StudentController.getStudentByNetID(em,"lr437"); 
-   if (request.getParameter("email") != ""){
+   if (request.getParameter("email").length() > 0 && 
+		   s.getEmail() != request.getParameter("email")){
 	   StudentController.editEmail(em, s, request.getParameter("email"));
    }
-   if (request.getParameter("year") != ""){
+   if (request.getParameter("year").length()>0 && 
+		   s.getYear() != YearController.getYear(request.getParameter("year"))){
+	   
 	   StudentController.editYear(em, s, YearController.getYear(request.getParameter("year")));
    }
-   if (request.getParameter("gpa") != ""){
-	   StudentController.editGPA(em, s, Double.parseDouble(request.getParameter("gpa")));
+   if (request.getParameter("gpa").length()>0){
+	   double gpa = Double.parseDouble(request.getParameter("gpa").replace(",","."));
+	   if (gpa < 5 && gpa != s.getGpa())
+	   StudentController.editGPA(em, s, gpa);
    }
-   if (request.getParameter("as_values_major") != ""){
-	   
-	   StudentController.updateMajors(em,s,request.getParameter("as_values_major"));
-	   
+   if (request.getParameter("as_values_major").length()>0){
+	   StudentController.updateMajors(em,s,request.getParameter("as_values_major")); 
    }
+   if (request.getParameter("as_values_minor").length()>0){
+	   StudentController.updateMinors(em,s,request.getParameter("as_values_minor")); 
+   }
+
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "profile.jsp"); 
 // StudentController.updateStudent(new Student(),request.getParameter("name"), "jb20",

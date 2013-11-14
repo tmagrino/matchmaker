@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -681,9 +682,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeMajors() {
-		for (Major m : majors) {
-			removeMajor(m);
-		}
+		majors = new ArrayList<Major>();
 	}
 	
 	void addMinor(Minor minor) {
@@ -704,9 +703,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeMinors() {
-		for (Minor m : minors) {
-			removeMinor(m);
-		}
+		minors = new ArrayList<Minor>();
 	}
 	
 	void addSkill(Skill skill) {

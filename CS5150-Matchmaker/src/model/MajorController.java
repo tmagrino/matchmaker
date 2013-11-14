@@ -101,7 +101,7 @@ public class MajorController {
 	public static List<Major> parseMajor(String majors){
 		
 		String [] majorArray = majors.split(",");
-		List<Major> majorList = new ArrayList();
+		List<Major> majorList = new ArrayList<Major>();
 		for (String m : majorArray){
 			if (m != "") majorList.add(new Major(m));
 		}
