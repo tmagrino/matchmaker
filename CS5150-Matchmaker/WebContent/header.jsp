@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.*,model.Student, model.StudentController,model.Researcher,model.ResearcherController"%>
+<%@page import="java.util.*,model.Student, model.StudentController,model.Researcher,model.ResearcherController,javax.persistence.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -23,15 +23,18 @@
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
 
-		<% if(request.getParameter("stud_or_prof").equals("stud")){ 
+		<% 
+			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		 	EntityManager em = emf.createEntityManager();
+			if(request.getParameter("stud_or_prof").equals("stud")){ 
 
-				Student s = StudentController.getStudentByNetID("lr437");%>
+				Student s = StudentController.getStudentByNetID(em,"lr437");%>
 
 					<li>Welcome, <%=s.getName() %></li>
 
 		<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 
-		<%Researcher r = ResearcherController.getResearcherByNetID("tm123"); %>
+		<%Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); %>
 
 <li>Welcome, <%=r.getName() %></li>
 

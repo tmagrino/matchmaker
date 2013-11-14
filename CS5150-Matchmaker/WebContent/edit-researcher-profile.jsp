@@ -4,8 +4,10 @@
     <jsp:param name="sidebar_selected" value="edit"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
-		<%@page import="java.util.*,model.*"%>
-			<%Researcher r = ResearcherController.getResearcherByNetID("tm123"); %>
+		<%@page import="java.util.*,model.*,javax.persistence.*"%>
+			<%			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		 	EntityManager em = emf.createEntityManager();
+			Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); %>
 					<div class="content">
 						<h1>My Profile</h1>
 						<form name="profile-form" action="/">

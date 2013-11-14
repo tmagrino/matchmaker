@@ -4,15 +4,17 @@
     <jsp:param name="sidebar_selected" value="edit"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
-<%@page import="java.util.*,model.*, org.json.JSONObject"%>
+<%@page import="java.util.*,model.*, org.json.JSONObject,javax.persistence.*"%>
 <div class="content">
         <%
-        Student s = StudentController.getStudentByNetID("lr437");
-        JSONObject jsonMajor = MajorController.getMajorJson();
-        JSONObject jsonMinor = MinorController.getMinorJson();
-        JSONObject jsonCollege = CollegeController.getCollegeJson();
-        JSONObject jsonSkills = SkillController.getSkillJson();
-        JSONObject jsonInterest = InterestController.getInterestJson();
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	 	EntityManager em = emf.createEntityManager();
+        Student s = StudentController.getStudentByNetID(em,"lr437");
+        JSONObject jsonMajor = MajorController.getMajorJson(em);
+        JSONObject jsonMinor = MinorController.getMinorJson(em);
+        JSONObject jsonCollege = CollegeController.getCollegeJson(em);
+        JSONObject jsonSkills = SkillController.getSkillJson(em);
+        JSONObject jsonInterest = InterestController.getInterestJson(em);
         
                  
          %>

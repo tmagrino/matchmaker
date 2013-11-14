@@ -12,12 +12,14 @@
     <jsp:param name="sidebar_selected" value="<%= proj_sidebar %>"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 					<div class="content">
 						<%
-				        JSONObject jsonMajor = MajorController.getMajorJson();
-				        JSONObject jsonSkills = SkillController.getSkillJson();
-				        JSONObject jsonInterest = InterestController.getInterestJson();
+						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+					 	EntityManager em = emf.createEntityManager();
+				        JSONObject jsonMajor = MajorController.getMajorJson(em);
+				        JSONObject jsonSkills = SkillController.getSkillJson(em);
+				        JSONObject jsonInterest = InterestController.getInterestJson(em);
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
@@ -33,11 +35,11 @@
 									List<Student> studentList = new ArrayList<Student>();
 									
 									if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
-										studentList = StudentController.getStudentByFilter(
+										studentList = StudentController.getStudentByFilter(em,
 												"", "", "", "","","");
 									}
 									//List<Student> studentList = StudentController.getAllStudents();
-									else{studentList = StudentController.getStudentByFilter(
+									else{studentList = StudentController.getStudentByFilter(em,
 											request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");
 									}
 									for(int i=1;i<=100;i+=2) { 
