@@ -144,6 +144,7 @@ form[name='profile-form'] textarea {
 	width: 382px;
 	height: 157px;
 }
+
 .info td.field {
 	width: 525px;
 	height: 52px;
@@ -161,6 +162,11 @@ form[name='profile-form'] textarea {
 .edit-btn {
 	position: absolute;
 	top: -18px;
+}
+
+form[name=profile] {
+	float: right;
+	width: 720px;
 }
 
 #filter-list ul.as-selections li.as-original input[type=text] {
@@ -440,6 +446,7 @@ html[xmlns] .clearfix {
 ul {
 	list-style-type: none;
 }
+
 .hidden {
 	display: none;
 }
