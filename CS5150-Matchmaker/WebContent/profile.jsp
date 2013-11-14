@@ -8,7 +8,7 @@
 <%
 	 Student s = StudentController.getStudentByNetID("lr437"); %>
 					<div class="content">
-						<h1>My Profile</h1>
+						<h1>My Profile!!!</h1>
 						<h2 class="subheading">General Information</h2>
 						<div class="photo-info clearfix">
 							<img class="avatar" src="images/avatar-male.jpg" alt="avatar"/>
