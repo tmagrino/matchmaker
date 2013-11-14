@@ -61,8 +61,18 @@
 						</p>
 						<p
 							class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
+							<% if(attr.equals("Year")){ %>
+								<select>
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5+">5+</option>
+								</select>	
+							<% } else{ %>
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
 								value="<%=s.getAttribute(attr) %>" type="text" />
+							<% } %>
 						</p>
 					</td>
 				</tr>
