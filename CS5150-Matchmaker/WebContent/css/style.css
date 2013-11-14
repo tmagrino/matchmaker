@@ -1,7 +1,7 @@
 body,
 html{
-	margin: 0;
-	height: 100%;
+        margin: 0;
+        height: 100%;
 }
 .page,
 .wrapper,
@@ -10,260 +10,267 @@ html{
 #sidenav,
 .main, 
 .content{
-	min-height: 500px;
+        min-height: 500px;
 }
 
 .page{
-	text-align: center;
+        text-align: center;
 }
 
 .wrapper,
 #container{
-	height: 100%;
-	padding-bottom: 15px;
-	text-align: left;
+        height: 100%;
+        padding-bottom: 15px;
+        text-align: left;
 }
 
 #top-bar{
-	background-color: #ab1a2a;
-	height: 50px;
-	width: 100%;
-	text-align: right;
+        background-color: #ab1a2a;
+        height: 50px;
+        width: 100%;
+        text-align: right;
 }
 
 #top-bar .login-nav,
 #top-bar .login-nav a{
-	color: white;
-	font-weight: bold;
-	text-decoration: none;
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
 }
 
 #top-bar .login-nav{
-	padding-right: 15px;
+        padding-right: 15px;
 }
 
 .login-nav li{
-	padding-left: 5px;
-	display: inline;
+        padding-left: 5px;
+        display: inline;
 }
 
 .login-nav .login-link{
-	border-left: 1px solid white;
+        border-left: 1px solid white;
 }
 
 .wrapper{
-	width: 1300px;
-	margin: 10px auto 0;
+        width: 1300px;
+        margin: 10px auto 0;
 }
 
 .notifications{
-	background-color: black;
-	color: white;
-	width: 82px;
-	margin-left: 20px;
-	height: 18px;
-	padding: 1px 10px;
-	text-align: center;
+        background-color: black;
+        color: white;
+        width: 82px;
+        margin-left: 20px;
+        height: 18px;
+        padding: 1px 10px;
+        text-align: center;
 }
 
 .sidebar{
-	float:left;
-	height: 100%;
+        float:left;
+        height: 100%;
 }
 
 #sidenav{
-	background-color: #4F81BD;
-	width: 185px;
-	padding-right: 15px;
-	margin-left: 20px;
-	margin-top: 32px;
-	height: 100%;
+        background-color: #4F81BD;
+        width: 185px;
+        padding-right: 15px;
+        margin-left: 20px;
+        margin-top: 32px;
+        height: 100%;
 }
 #sidenav ul{
-	margin: 0;
+        margin: 0;
 }
 #sidenav li,
 #sidenav li a{
-	color: white;
-	text-decoration: none;
+        color: white;
+        text-decoration: none;
 }
 #sidenav li{
-	margin-top: 25px;
-	margin-left: 15px;
+        margin-top: 25px;
+        margin-left: 15px;
 }
 #sidenav ul{
-	padding: 0;
+        padding: 0;
 }
 #sidenav .first{
-	padding-top: 50px;
+        padding-top: 50px;
 }
 #sidenav .related{
-	text-decoration: underline;
-	margin-top: 100px;
+        text-decoration: underline;
+        margin-top: 100px;
 }
 
 .main{
-	float: right;
-	width: 1070px;
-	margin-top: 47px;
-	height: 100%;
+        float: right;
+        width: 1070px;
+        margin-top: 47px;
+        height: 100%;
 }
 .content{
-	background-color: #ECECEC;
-	padding-left: 20px;
-	height: 100%;
-	width: 1053px;
+        background-color: #ECECEC;
+        padding-left: 20px;
+        height: 100%;
+        width: 1053px;
 }
 h2.subheading{
-	margin-left: 38px;
+        margin-left: 38px;
 }
 img.avatar{
-	margin-left: 85px;
-	float: left;
-	margin-right: 20px;
+        margin-left: 85px;
+        float: left;
+        margin-right: 20px;
 }
 .photo-info .info{
-	float: right;
-	margin-top: -23px;
+        float: right;
+        margin-top: -23px;
 }
 .application-info{
-	margin-left: 84px;
+        margin-left: 84px;
 }
 #sidenav a.selected,
 #sidenav li a:hover{
-	color: #f9966b;
+        color: #f9966b;
 }
 form[name='profile-form'] input[type='text']{
-	padding: 10px;
+        padding: 10px;
 }
 form[name='profile-form'] textarea{
-	width: 382px;
-	height: 157px;
+        width: 382px;
+        height: 157px;
 }
-.photo-info.project-info input[type=text],
-ul.as-selections li.as-original input[type=text]
-{
-	width: 518px;
+.info td.field{
+        width: 525px;
+        height: 52px;
+}
+.info tr{
+        height: 52px;
+}
+.field p{
+        margin: 0;
+        position: relative;
+}
+.edit-btn{
+        position: absolute;
+        top: -18px;
+}
+form[name=profile]{
+        float: right;
+        width: 720px;
 }
 #filter-list ul.as-selections li.as-original input[type=text]{
-	width: 153px;
+        width: 153px;
 }
 form[name=profile-form] .project-info textarea{
-	width:510px;
+        width:510px;
 }
 .photo-info input[type='text']
 {
-	float: right;
-	width: 360px;
+        width: 494px;
+        padding: 10px;
 }
-input[name='gpa']{
-	margin-left: 10px;
-	width: 30px;
-}
-.photo-info p{
-	height: 43px;
-	display: table;
-}
-.photo-info label{
-	display: table-row;
+.info ul.as-selections{
+        width: 512px;
+        height: 28px;
 }
 .required label:after{
-	content: " *";
-	color:red;
+        content: " *";
+        color:red;
 }
 
 .project-list .status{
-	float: left;
+        float: left;
 }
 .project-list .status p{
-	width: 80px;
-	height: 21px;
-	margin-top: 47px;
-	margin-right: 20px;
-	text-align: center;
-	color: white;
-	padding: 10px 5px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px; 
-	-khtml-border-radius: 10px;
+        width: 80px;
+        height: 21px;
+        margin-top: 47px;
+        margin-right: 20px;
+        text-align: center;
+        color: white;
+        padding: 10px 5px;
+        -moz-border-radius: 10px;
+        -webkit-border-radius: 10px;
+        border-radius: 10px; 
+        -khtml-border-radius: 10px;
 }
 
 .project-list .status a{
-	margin-left: 24px;
-	text-decoration: underline;
+        margin-left: 24px;
+        text-decoration: underline;
 }
 
 .status .pending,
 .status .apply,
 .status .invite{
-	background-color: #388E8E;
+        background-color: #388E8E;
 }
 .status .accepted{
-	background-color: #32CD32;
+        background-color: #32CD32;
 }
 .status .rejected{
-	background-color: #FA8072;
+        background-color: #FA8072;
 }
 
 .status .deleted{
-	background-color: #E23F5F;
+        background-color: #E23F5F;
 }
 .project-list .project-info{
-	float: right;
-	background-color: #F8F8FF;
-	width: 535px;
-	padding-left: 21px;
+        float: right;
+        background-color: #F8F8FF;
+        width: 535px;
+        padding-left: 21px;
 }
 
 .accounts{
-	float: right;
-	width: 535px;
-	padding-left: 21px;
+        float: right;
+        width: 535px;
+        padding-left: 21px;
 }
 .project-list li{
-	margin-bottom: 25px;
+        margin-bottom: 25px;
 }
 
 .project-info .delete{
-	background-color: #E80000;
-	height: 20px;
-	width: 55px;
-	text-align: center;
-	color: white;
-	cursor: pointer;
+        background-color: #E80000;
+        height: 20px;
+        width: 55px;
+        text-align: center;
+        color: white;
+        cursor: pointer;
 }
 .project-info .edit,
 .project-info .delete{
-	float: right;
+        float: right;
 }
 .filters{
-	margin-left: 38px;
+        margin-left: 38px;
 }
 
 /* -- Results table styles -- */
 .project-list{
-	border-collapse: collapse;
-	border: 1px solid #ddd;
+        border-collapse: collapse;
+        border: 1px solid #ddd;
 }
 .project-list td, 
 .project-list th{
-	text-align: center;
-	width: 180px;
-	height: 50px;
-	border-bottom: 1px solid #ddd;
-	border-right: 1px solid #ddd;
+        text-align: center;
+        width: 180px;
+        height: 50px;
+        border-bottom: 1px solid #ddd;
+        border-right: 1px solid #ddd;
 }
 .project-list th{
-	color: #0000EE;
-	text-decoration: underline;
-	cursor: pointer;
+        color: #0000EE;
+        text-decoration: underline;
+        cursor: pointer;
 }
 #pager{
-	margin-top: 20px;
+        margin-top: 20px;
 }
 form .arrow{
-	cursor: pointer;
+        cursor: pointer;
 }
 
 /* -- End of results table styles -- */
@@ -289,15 +296,15 @@ form .arrow{
     color: white;
 }
 .tabrow li a{
-	color: white;
-	text-decoration: none;
+        color: white;
+        text-decoration: none;
 }
 .tabrow li.selected {
     background: #ECECEC;
     color: #000;
 }
 .tabrow li.selected a{
-	color: black;
+        color: black;
 }
 .tabrow:after {
     position: absolute;
@@ -369,37 +376,48 @@ form .arrow{
 }
 
 .lt-ie10 .tabrow li{
-	background-color: #7e7e7e;
+        background-color: #7e7e7e;
 }
 /* --- End of tab styles --- */
 
 /* --- Pagination Styles --- */
 .holder a{
-	text-decoration: underline;
+        text-decoration: underline;
 }
 /* --- End of pagination styles --- */
 
 .clearfix:after {
-	content: ".";
-	display: block;
-	clear: both;
-	visibility: hidden;
-	line-height: 0;
-	height: 0;
+        content: ".";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        line-height: 0;
+        height: 0;
 }
  
 .clearfix {
-	display: inline-block;
+        display: inline-block;
 }
  
 html[xmlns] .clearfix {
-	display: block;
+        display: block;
 }
  
 * html .clearfix {
-	height: 1%;
+        height: 1%;
 }
 
 ul{
-	list-style-type: none;
+        list-style-type: none;
+}
+.editable{
+        display: none;
+}
+#wrapper table, 
+#wrapper tr, 
+#wrapper td{
+        margin: 0;
+        padding: 0;
+        border-spacing: 0;
+        border-collapse: collapse;
 }
