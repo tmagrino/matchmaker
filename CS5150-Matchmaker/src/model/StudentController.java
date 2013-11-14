@@ -154,6 +154,14 @@ public class StudentController {
 		tx.commit();
 	}
 	
+	public static void updateMajors(EntityManager em, Student s, String majorIds){
+		
+		String [] idList = majorIds.split(",");
+		for (String id : idList){
+			Major m = MajorController.getMajor(em,Long.parseLong(id));
+			StudentController.addMajor(em, s, m);
+		}
+	}
 	public static void addMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();

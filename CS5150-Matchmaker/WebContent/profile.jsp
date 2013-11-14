@@ -27,7 +27,7 @@
 						<h1>My Profile</h1>
 						<div class="photo-info clearfix">
 							<img class="avatar" src="images/avatar-male.jpg" alt="avatar"/>
-							<form name="profile">
+							<form name="profile" action="savechanges.jsp" method="GET">
 								<table class="info">
 									<tr>
 										<td><h2><%=s.getName() %></h2></td>
