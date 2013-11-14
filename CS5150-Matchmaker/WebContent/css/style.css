@@ -1,423 +1,459 @@
-body,
-html{
-        margin: 0;
-        height: 100%;
-}
-.page,
-.wrapper,
-#container,
-.sidebar,
-#sidenav,
-.main, 
-.content{
-        min-height: 500px;
+body,html {
+	margin: 0;
+	height: 100%;
 }
 
-.page{
-        text-align: center;
+.page,.wrapper,#container,.sidebar,#sidenav,.main,.content {
+	min-height: 500px;
 }
 
-.wrapper,
-#container{
-        height: 100%;
-        padding-bottom: 15px;
-        text-align: left;
+.page {
+	text-align: center;
 }
 
-#top-bar{
-        background-color: #ab1a2a;
-        height: 50px;
-        width: 100%;
-        text-align: right;
+.wrapper,#container {
+	height: 100%;
+	padding-bottom: 15px;
+	text-align: left;
 }
 
-#top-bar .login-nav,
-#top-bar .login-nav a{
-        color: white;
-        font-weight: bold;
-        text-decoration: none;
+#top-bar {
+	background-color: #ab1a2a;
+	height: 50px;
+	width: 100%;
+	text-align: right;
 }
 
-#top-bar .login-nav{
-        padding-right: 15px;
+#top-bar .login-nav,#top-bar .login-nav a {
+	color: white;
+	font-weight: bold;
+	text-decoration: none;
 }
 
-.login-nav li{
-        padding-left: 5px;
-        display: inline;
+#top-bar .login-nav {
+	padding-right: 15px;
 }
 
-.login-nav .login-link{
-        border-left: 1px solid white;
+.login-nav li {
+	padding-left: 5px;
+	display: inline;
 }
 
-.wrapper{
-        width: 1300px;
-        margin: 10px auto 0;
+.login-nav .login-link {
+	border-left: 1px solid white;
 }
 
-.notifications{
-        background-color: black;
-        color: white;
-        width: 82px;
-        margin-left: 20px;
-        height: 18px;
-        padding: 1px 10px;
-        text-align: center;
+.wrapper {
+	width: 1300px;
+	margin: 10px auto 0;
 }
 
-.sidebar{
-        float:left;
-        height: 100%;
+.notifications {
+	background-color: black;
+	color: white;
+	width: 82px;
+	margin-left: 20px;
+	height: 18px;
+	padding: 1px 10px;
+	text-align: center;
 }
 
-#sidenav{
-        background-color: #4F81BD;
-        width: 185px;
-        padding-right: 15px;
-        margin-left: 20px;
-        margin-top: 32px;
-        height: 100%;
-}
-#sidenav ul{
-        margin: 0;
-}
-#sidenav li,
-#sidenav li a{
-        color: white;
-        text-decoration: none;
-}
-#sidenav li{
-        margin-top: 25px;
-        margin-left: 15px;
-}
-#sidenav ul{
-        padding: 0;
-}
-#sidenav .first{
-        padding-top: 50px;
-}
-#sidenav .related{
-        text-decoration: underline;
-        margin-top: 100px;
+.sidebar {
+	float: left;
+	height: 100%;
 }
 
-.main{
-        float: right;
-        width: 1070px;
-        margin-top: 47px;
-        height: 100%;
-}
-.content{
-        background-color: #ECECEC;
-        padding-left: 20px;
-        height: 100%;
-        width: 1053px;
-}
-h2.subheading{
-        margin-left: 38px;
-}
-img.avatar{
-        margin-left: 85px;
-        float: left;
-        margin-right: 20px;
-}
-.photo-info .info{
-        float: right;
-        margin-top: -23px;
-}
-.application-info{
-        margin-left: 84px;
-}
-#sidenav a.selected,
-#sidenav li a:hover{
-        color: #f9966b;
-}
-form[name='profile-form'] input[type='text']{
-        padding: 10px;
-}
-form[name='profile-form'] textarea{
-        width: 382px;
-        height: 157px;
-}
-.info td.field{
-        width: 525px;
-        height: 52px;
-}
-.info tr{
-        height: 52px;
-}
-.field p{
-        margin: 0;
-        position: relative;
-}
-.edit-btn{
-        position: absolute;
-        top: -18px;
-}
-form[name=profile]{
-        float: right;
-        width: 720px;
-}
-#filter-list ul.as-selections li.as-original input[type=text]{
-        width: 153px;
-}
-form[name=profile-form] .project-info textarea{
-        width:510px;
-}
-.photo-info input[type='text']
-{
-        width: 494px;
-        padding: 10px;
-}
-.info ul.as-selections{
-        width: 512px;
-        height: 28px;
-}
-.required label:after{
-        content: " *";
-        color:red;
+#sidenav {
+	background-color: #4F81BD;
+	width: 185px;
+	padding-right: 15px;
+	margin-left: 20px;
+	margin-top: 32px;
+	height: 100%;
 }
 
-.project-list .status{
-        float: left;
-}
-.project-list .status p{
-        width: 80px;
-        height: 21px;
-        margin-top: 47px;
-        margin-right: 20px;
-        text-align: center;
-        color: white;
-        padding: 10px 5px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px; 
-        -khtml-border-radius: 10px;
+#sidenav ul {
+	margin: 0;
 }
 
-.project-list .status a{
-        margin-left: 24px;
-        text-decoration: underline;
+#sidenav li,#sidenav li a {
+	color: white;
+	text-decoration: none;
 }
 
-.status .pending,
-.status .apply,
-.status .invite{
-        background-color: #388E8E;
-}
-.status .accepted{
-        background-color: #32CD32;
-}
-.status .rejected{
-        background-color: #FA8072;
+#sidenav li {
+	margin-top: 25px;
+	margin-left: 15px;
 }
 
-.status .deleted{
-        background-color: #E23F5F;
-}
-.project-list .project-info{
-        float: right;
-        background-color: #F8F8FF;
-        width: 535px;
-        padding-left: 21px;
+#sidenav ul {
+	padding: 0;
 }
 
-.accounts{
-        float: right;
-        width: 535px;
-        padding-left: 21px;
-}
-.project-list li{
-        margin-bottom: 25px;
+#sidenav .first {
+	padding-top: 50px;
 }
 
-.project-info .delete{
-        background-color: #E80000;
-        height: 20px;
-        width: 55px;
-        text-align: center;
-        color: white;
-        cursor: pointer;
+#sidenav .related {
+	text-decoration: underline;
+	margin-top: 100px;
 }
-.project-info .edit,
-.project-info .delete{
-        float: right;
+
+.main {
+	float: right;
+	width: 1070px;
+	margin-top: 47px;
+	height: 100%;
 }
-.filters{
-        margin-left: 38px;
+
+.content {
+	background-color: #ECECEC;
+	padding-left: 20px;
+	height: 100%;
+	width: 1053px;
+}
+
+h2.subheading {
+	margin-left: 38px;
+}
+
+img.avatar {
+	margin-left: 85px;
+	float: left;
+	margin-right: 20px;
+}
+
+.photo-info .info {
+	float: right;
+	margin-top: -23px;
+}
+
+.application-info {
+	margin-left: 84px;
+}
+
+#sidenav a.selected,#sidenav li a:hover {
+	color: #f9966b;
+}
+
+form[name='profile-form'] input[type='text'] {
+	padding: 10px;
+}
+
+form[name='profile-form'] textarea {
+	width: 382px;
+	height: 157px;
+}
+
+.info td.field {
+	width: 525px;
+	height: 52px;
+}
+
+.info tr {
+	height: 52px;
+}
+
+.field p {
+	margin: 0;
+	position: relative;
+}
+
+.edit-btn {
+	position: absolute;
+	top: -18px;
+}
+
+form[name=profile] {
+	float: right;
+	width: 720px;
+}
+
+#filter-list ul.as-selections li.as-original input[type=text] {
+	width: 153px;
+}
+
+form[name=profile-form] .project-info textarea {
+	width: 510px;
+}
+
+.photo-info input[type='text'] {
+	width: 494px;
+	padding: 10px;
+}
+
+.info ul.as-selections {
+	width: 512px;
+	height: 28px;
+}
+
+.required label:after {
+	content: " *";
+	color: red;
+}
+
+.project-list .status {
+	float: left;
+}
+
+.project-list .status p {
+	width: 80px;
+	height: 21px;
+	margin-top: 47px;
+	margin-right: 20px;
+	text-align: center;
+	color: white;
+	padding: 10px 5px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-khtml-border-radius: 10px;
+}
+
+.project-list .status a {
+	margin-left: 24px;
+	text-decoration: underline;
+}
+
+.status .pending,.status .apply,.status .invite {
+	background-color: #388E8E;
+}
+
+.status .accepted {
+	background-color: #32CD32;
+}
+
+.status .rejected {
+	background-color: #FA8072;
+}
+
+.status .deleted {
+	background-color: #E23F5F;
+}
+
+.project-list .project-info {
+	float: right;
+	background-color: #F8F8FF;
+	width: 535px;
+	padding-left: 21px;
+}
+
+.accounts {
+	float: right;
+	width: 535px;
+	padding-left: 21px;
+}
+
+.project-list li {
+	margin-bottom: 25px;
+}
+
+.project-info .delete {
+	background-color: #E80000;
+	height: 20px;
+	width: 55px;
+	text-align: center;
+	color: white;
+	cursor: pointer;
+}
+
+.project-info .edit,.project-info .delete {
+	float: right;
+}
+
+.filters {
+	margin-left: 38px;
 }
 
 /* -- Results table styles -- */
-.project-list{
-        border-collapse: collapse;
-        border: 1px solid #ddd;
+.project-list {
+	border-collapse: collapse;
+	border: 1px solid #ddd;
 }
-.project-list td, 
-.project-list th{
-        text-align: center;
-        width: 180px;
-        height: 50px;
-        border-bottom: 1px solid #ddd;
-        border-right: 1px solid #ddd;
+
+.project-list td,.project-list th {
+	text-align: center;
+	width: 180px;
+	height: 50px;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
 }
-.project-list th{
-        color: #0000EE;
-        text-decoration: underline;
-        cursor: pointer;
+
+.project-list th {
+	color: #0000EE;
+	text-decoration: underline;
+	cursor: pointer;
 }
-#pager{
-        margin-top: 20px;
+
+#pager {
+	margin-top: 20px;
 }
-form .arrow{
-        cursor: pointer;
+
+form .arrow {
+	cursor: pointer;
 }
 
 /* -- End of results table styles -- */
 
 /* --- Tab styles from http://css-tricks.com/better-tabs-with-round-out-borders/ --- */
 .tabrow {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    line-height: 24px;
-    position: relative;
-    float: right;
-    display: block;
-    width: auto;
-    white-space: nowrap;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	line-height: 24px;
+	position: relative;
+	float: right;
+	display: block;
+	width: auto;
+	white-space: nowrap;
 }
 
 .tabrow li {
-    margin: 0 10px;
-    padding: 0 10px;
-    border: 1px solid #AAA;
-    display: inline;
-    color: white;
+	margin: 0 10px;
+	padding: 0 10px;
+	border: 1px solid #AAA;
+	display: inline;
+	color: white;
 }
-.tabrow li a{
-        color: white;
-        text-decoration: none;
+
+.tabrow li a {
+	color: white;
+	text-decoration: none;
 }
+
 .tabrow li.selected {
-    background: #ECECEC;
-    color: #000;
+	background: #ECECEC;
+	color: #000;
 }
-.tabrow li.selected a{
-        color: black;
+
+.tabrow li.selected a {
+	color: black;
 }
+
 .tabrow:after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    border-bottom: 1px solid #AAA;
-    z-index: 1;
-}
-.tabrow:before {
-    z-index: 1;
-}
-.tabrow li {
-    position: relative;
-    z-index: 0;
-}
-.tabrow li.selected {
-    z-index: 2;
-    border-bottom-color: #FFF;
-}
-.tabrow li {
-    border-top-left-radius: 6px;
-    -webkit-border-top-left-radius: 6px;
-    -moz-border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
-    -moz-border-top-right-radius: 6px;
-}
-.tabrow li:before {
-    border-bottom-right-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
-    -moz-border-bottom-right-radius: 6px;
-    border-width: 0 1px 1px 0;
-}
-.tabrow li:after {
-    border-bottom-left-radius: 6px;
-    -webkit-border-bottom-left-radius: 6px;
-    -moz-border-bottom-left-radius: 6px;
-    border-width: 0 0 1px 1px;
-}
-.tabrow li:before {
-    box-shadow: 2px 2px 0 red;
-}
-.tabrow li:after {
-    box-shadow: -2px 2px 0 red;
-}
-.tabrow li:before {
-    box-shadow: 2px 2px 0 #696969;
-}
-.tabrow li:after {
-    box-shadow: -2px 2px 0 #696969;
-}
-.tabrow li.selected:before {
-    box-shadow: 2px 2px 0 #ececec;
-}
-.tabrow li.selected:after {
-    box-shadow: -2px 2px 0 #ececec;
-}
-.tabrow li {
-    background:      -o-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background:     -ms-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background:    -moz-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background: -webkit-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background: linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
-    margin: 0 -5px;
-    padding: 0 20px;
+	position: absolute;
+	content: "";
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	border-bottom: 1px solid #AAA;
+	z-index: 1;
 }
 
-.lt-ie10 .tabrow li{
-        background-color: #7e7e7e;
+.tabrow:before {
+	z-index: 1;
+}
+
+.tabrow li {
+	position: relative;
+	z-index: 0;
+}
+
+.tabrow li.selected {
+	z-index: 2;
+	border-bottom-color: #FFF;
+}
+
+.tabrow li {
+	border-top-left-radius: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+}
+
+.tabrow li:before {
+	border-bottom-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-width: 0 1px 1px 0;
+}
+
+.tabrow li:after {
+	border-bottom-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+	border-width: 0 0 1px 1px;
+}
+
+.tabrow li:before {
+	box-shadow: 2px 2px 0 red;
+}
+
+.tabrow li:after {
+	box-shadow: -2px 2px 0 red;
+}
+
+.tabrow li:before {
+	box-shadow: 2px 2px 0 #696969;
+}
+
+.tabrow li:after {
+	box-shadow: -2px 2px 0 #696969;
+}
+
+.tabrow li.selected:before {
+	box-shadow: 2px 2px 0 #ececec;
+}
+
+.tabrow li.selected:after {
+	box-shadow: -2px 2px 0 #ececec;
+}
+
+.tabrow li {
+	background: -o-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: -ms-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: -moz-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: -webkit-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+	margin: 0 -5px;
+	padding: 0 20px;
+}
+
+.lt-ie10 .tabrow li {
+	background-color: #7e7e7e;
 }
 /* --- End of tab styles --- */
 
 /* --- Pagination Styles --- */
-.holder a{
-        text-decoration: underline;
+.holder a {
+	text-decoration: underline;
 }
 /* --- End of pagination styles --- */
-
 .clearfix:after {
-        content: ".";
-        display: block;
-        clear: both;
-        visibility: hidden;
-        line-height: 0;
-        height: 0;
-}
- 
-.clearfix {
-        display: inline-block;
-}
- 
-html[xmlns] .clearfix {
-        display: block;
-}
- 
-* html .clearfix {
-        height: 1%;
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
 }
 
-ul{
-        list-style-type: none;
+.clearfix {
+	display: inline-block;
 }
-.editable{
-        display: none;
+
+html[xmlns] .clearfix {
+	display: block;
 }
-#wrapper table, 
-#wrapper tr, 
-#wrapper td{
-        margin: 0;
-        padding: 0;
-        border-spacing: 0;
-        border-collapse: collapse;
+
+* html .clearfix {
+	height: 1%;
+}
+
+ul {
+	list-style-type: none;
+}
+
+.hidden {
+	display: none;
+}
+
+#wrapper table,#wrapper tr,#wrapper td {
+	margin: 0;
+	padding: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
 }
