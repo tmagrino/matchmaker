@@ -5,6 +5,10 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -355,6 +359,33 @@ public class Student implements Serializable {
 	}
 	
 	/**
+	 * @return a Skill JSON object for pre-populating the autocomplete field
+	 */
+	public JSONObject getSkillJson() {
+		if(skills.size() > 0){
+			Collections.sort(skills);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (Skill s : skills){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(s.getId()));
+				jsonObject.put("name", s.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
+	}
+	/**
 	 * @return a string with all Interest separated by ', '
 	 */
 	public String getInterestString() {
@@ -389,6 +420,34 @@ public class Student implements Serializable {
 	}
 	
 	/**
+	 * @return an Interest JSON object for pre-populating the autocomplete field
+	 */
+	public JSONObject getInterestJson() {
+		if(interests.size() > 0){
+			Collections.sort(interests);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (Interest i : interests){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(i.getId()));
+				jsonObject.put("name", i.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
+	}
+	
+	/**
 	 * @return a string with all Majors separated by ', '
 	 */
 	public String getMajorString() {
@@ -402,6 +461,34 @@ public class Student implements Serializable {
 			return builder.toString();
 		}
 		return "";
+	}
+	
+	/**
+	 * @return a Major JSON object for pre-populating the autocomplete field
+	 */
+	public JSONObject getMajorJson() {
+		if(majors.size() > 0){
+			Collections.sort(majors);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (Major m : majors){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(m.getId()));
+				jsonObject.put("name", m.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
 	}
 	
 	/**
@@ -421,6 +508,33 @@ public class Student implements Serializable {
 	}
 	
 	/**
+	 * @return a Minor JSON object for pre-populating the autocomplete field
+	 */
+	public JSONObject getMinorJson() {
+		if(minors.size() > 0){
+			Collections.sort(minors);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (Minor m : minors){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(m.getId()));
+				jsonObject.put("name", m.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
+	}
+	/**
 	 * @return a string with all Colleges separated by ','
 	 */
 	public String getCollegeString() {
@@ -436,6 +550,33 @@ public class Student implements Serializable {
 		return "";
 	}
 	
+	/**
+	 * @return a College JSON object for pre-populating the autocomplete field
+	 */
+	public JSONObject getCollegeJson() {
+		if(colleges.size() > 0){
+			Collections.sort(interests);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (College c : colleges){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(c.getId()));
+				jsonObject.put("name", c.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
+	}
 	/**
 	 * @param id the id to set
 	 */

@@ -1,62 +1,54 @@
-body,
-html{
+body,html {
 	margin: 0;
 	height: 100%;
 }
-.page,
-.wrapper,
-#container,
-.sidebar,
-#sidenav,
-.main, 
-.content{
+
+.page,.wrapper,#container,.sidebar,#sidenav,.main,.content {
 	min-height: 500px;
 }
 
-.page{
+.page {
 	text-align: center;
 }
 
-.wrapper,
-#container{
+.wrapper,#container {
 	height: 100%;
 	padding-bottom: 15px;
 	text-align: left;
 }
 
-#top-bar{
+#top-bar {
 	background-color: #ab1a2a;
 	height: 50px;
 	width: 100%;
 	text-align: right;
 }
 
-#top-bar .login-nav,
-#top-bar .login-nav a{
+#top-bar .login-nav,#top-bar .login-nav a {
 	color: white;
 	font-weight: bold;
 	text-decoration: none;
 }
 
-#top-bar .login-nav{
+#top-bar .login-nav {
 	padding-right: 15px;
 }
 
-.login-nav li{
+.login-nav li {
 	padding-left: 5px;
 	display: inline;
 }
 
-.login-nav .login-link{
+.login-nav .login-link {
 	border-left: 1px solid white;
 }
 
-.wrapper{
+.wrapper {
 	width: 1300px;
 	margin: 10px auto 0;
 }
 
-.notifications{
+.notifications {
 	background-color: black;
 	color: white;
 	width: 82px;
@@ -66,12 +58,12 @@ html{
 	text-align: center;
 }
 
-.sidebar{
-	float:left;
+.sidebar {
+	float: left;
 	height: 100%;
 }
 
-#sidenav{
+#sidenav {
 	background-color: #4F81BD;
 	width: 185px;
 	padding-right: 15px;
@@ -79,110 +71,126 @@ html{
 	margin-top: 32px;
 	height: 100%;
 }
-#sidenav ul{
+
+#sidenav ul {
 	margin: 0;
 }
-#sidenav li,
-#sidenav li a{
+
+#sidenav li,#sidenav li a {
 	color: white;
 	text-decoration: none;
 }
-#sidenav li{
+
+#sidenav li {
 	margin-top: 25px;
 	margin-left: 15px;
 }
-#sidenav ul{
+
+#sidenav ul {
 	padding: 0;
 }
-#sidenav .first{
+
+#sidenav .first {
 	padding-top: 50px;
 }
-#sidenav .related{
+
+#sidenav .related {
 	text-decoration: underline;
 	margin-top: 100px;
 }
 
-.main{
+.main {
 	float: right;
 	width: 1070px;
 	margin-top: 47px;
 	height: 100%;
 }
-.content{
+
+.content {
 	background-color: #ECECEC;
 	padding-left: 20px;
 	height: 100%;
 	width: 1053px;
 }
-h2.subheading{
+
+h2.subheading {
 	margin-left: 38px;
 }
-img.avatar{
+
+img.avatar {
 	margin-left: 85px;
 	float: left;
 	margin-right: 20px;
 }
-.photo-info .info{
+
+.photo-info .info {
 	float: right;
 	margin-top: -23px;
 }
-.application-info{
+
+.application-info {
 	margin-left: 84px;
 }
-#sidenav a.selected,
-#sidenav li a:hover{
+
+#sidenav a.selected,#sidenav li a:hover {
 	color: #f9966b;
 }
-form[name='profile-form'] input[type='text']{
+
+form[name='profile-form'] input[type='text'] {
 	padding: 10px;
 }
-form[name='profile-form'] textarea{
+
+form[name='profile-form'] textarea {
 	width: 382px;
 	height: 157px;
 }
-.info td.field{
+.info td.field {
 	width: 525px;
 	height: 52px;
 }
-.info tr{
+
+.info tr {
 	height: 52px;
 }
-.field p{
+
+.field p {
 	margin: 0;
 	position: relative;
 }
-.edit-btn{
+
+.edit-btn {
 	position: absolute;
 	top: -18px;
 }
-form[name=profile]{
-	float: right;
-	width: 720px;
-}
-#filter-list ul.as-selections li.as-original input[type=text]{
+
+#filter-list ul.as-selections li.as-original input[type=text] {
 	width: 153px;
 }
-form[name=profile-form] .project-info textarea{
-	width:510px;
+
+form[name=profile-form] .project-info textarea {
+	width: 510px;
 }
-.photo-info input[type='text']
-{
+
+.photo-info input[type='text'] {
 	width: 494px;
 	padding: 10px;
 }
-.info ul.as-selections{
+
+.info ul.as-selections {
 	width: 512px;
 	height: 28px;
 }
-.required label:after{
+
+.required label:after {
 	content: " *";
-	color:red;
+	color: red;
 }
 
-.project-list .status{
+.project-list .status {
 	float: left;
 }
-.project-list .status p{
+
+.project-list .status p {
 	width: 80px;
 	height: 21px;
 	margin-top: 47px;
@@ -192,47 +200,49 @@ form[name=profile-form] .project-info textarea{
 	padding: 10px 5px;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	border-radius: 10px; 
+	border-radius: 10px;
 	-khtml-border-radius: 10px;
 }
 
-.project-list .status a{
+.project-list .status a {
 	margin-left: 24px;
 	text-decoration: underline;
 }
 
-.status .pending,
-.status .apply,
-.status .invite{
+.status .pending,.status .apply,.status .invite {
 	background-color: #388E8E;
 }
-.status .accepted{
+
+.status .accepted {
 	background-color: #32CD32;
 }
-.status .rejected{
+
+.status .rejected {
 	background-color: #FA8072;
 }
 
-.status .deleted{
+.status .deleted {
 	background-color: #E23F5F;
 }
-.project-list .project-info{
+
+.project-list .project-info {
 	float: right;
 	background-color: #F8F8FF;
 	width: 535px;
 	padding-left: 21px;
 }
 
-.accounts{
+.accounts {
 	float: right;
 	width: 535px;
 	padding-left: 21px;
 }
-.project-list li{
+
+.project-list li {
 	margin-bottom: 25px;
 }
 
-.project-info .delete{
+.project-info .delete {
 	background-color: #E80000;
 	height: 20px;
 	width: 55px;
@@ -240,36 +250,40 @@ form[name=profile-form] .project-info textarea{
 	color: white;
 	cursor: pointer;
 }
-.project-info .edit,
-.project-info .delete{
+
+.project-info .edit,.project-info .delete {
 	float: right;
 }
-.filters{
+
+.filters {
 	margin-left: 38px;
 }
 
 /* -- Results table styles -- */
-.project-list{
+.project-list {
 	border-collapse: collapse;
 	border: 1px solid #ddd;
 }
-.project-list td, 
-.project-list th{
+
+.project-list td,.project-list th {
 	text-align: center;
 	width: 180px;
 	height: 50px;
 	border-bottom: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 }
-.project-list th{
+
+.project-list th {
 	color: #0000EE;
 	text-decoration: underline;
 	cursor: pointer;
 }
-#pager{
+
+#pager {
 	margin-top: 20px;
 }
-form .arrow{
+
+form .arrow {
 	cursor: pointer;
 }
 
@@ -277,115 +291,131 @@ form .arrow{
 
 /* --- Tab styles from http://css-tricks.com/better-tabs-with-round-out-borders/ --- */
 .tabrow {
-    text-align: center;
-    margin: 0;
-    padding: 0;
-    line-height: 24px;
-    position: relative;
-    float: right;
-    display: block;
-    width: auto;
-    white-space: nowrap;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	line-height: 24px;
+	position: relative;
+	float: right;
+	display: block;
+	width: auto;
+	white-space: nowrap;
 }
 
 .tabrow li {
-    margin: 0 10px;
-    padding: 0 10px;
-    border: 1px solid #AAA;
-    display: inline;
-    color: white;
+	margin: 0 10px;
+	padding: 0 10px;
+	border: 1px solid #AAA;
+	display: inline;
+	color: white;
 }
-.tabrow li a{
+
+.tabrow li a {
 	color: white;
 	text-decoration: none;
 }
+
 .tabrow li.selected {
-    background: #ECECEC;
-    color: #000;
-}
-.tabrow li.selected a{
-	color: black;
-}
-.tabrow:after {
-    position: absolute;
-    content: "";
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    border-bottom: 1px solid #AAA;
-    z-index: 1;
-}
-.tabrow:before {
-    z-index: 1;
-}
-.tabrow li {
-    position: relative;
-    z-index: 0;
-}
-.tabrow li.selected {
-    z-index: 2;
-    border-bottom-color: #FFF;
-}
-.tabrow li {
-    border-top-left-radius: 6px;
-    -webkit-border-top-left-radius: 6px;
-    -moz-border-top-left-radius: 6px;
-    border-top-right-radius: 6px;
-    -webkit-border-top-right-radius: 6px;
-    -moz-border-top-right-radius: 6px;
-}
-.tabrow li:before {
-    border-bottom-right-radius: 6px;
-    -webkit-border-bottom-right-radius: 6px;
-    -moz-border-bottom-right-radius: 6px;
-    border-width: 0 1px 1px 0;
-}
-.tabrow li:after {
-    border-bottom-left-radius: 6px;
-    -webkit-border-bottom-left-radius: 6px;
-    -moz-border-bottom-left-radius: 6px;
-    border-width: 0 0 1px 1px;
-}
-.tabrow li:before {
-    box-shadow: 2px 2px 0 red;
-}
-.tabrow li:after {
-    box-shadow: -2px 2px 0 red;
-}
-.tabrow li:before {
-    box-shadow: 2px 2px 0 #696969;
-}
-.tabrow li:after {
-    box-shadow: -2px 2px 0 #696969;
-}
-.tabrow li.selected:before {
-    box-shadow: 2px 2px 0 #ececec;
-}
-.tabrow li.selected:after {
-    box-shadow: -2px 2px 0 #ececec;
-}
-.tabrow li {
-    background:      -o-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background:     -ms-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background:    -moz-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background: -webkit-linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    background: linear-gradient(top, #7e7e7e 50%, #696969 100%);
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
-    margin: 0 -5px;
-    padding: 0 20px;
+	background: #ECECEC;
+	color: #000;
 }
 
-.lt-ie10 .tabrow li{
+.tabrow li.selected a {
+	color: black;
+}
+
+.tabrow:after {
+	position: absolute;
+	content: "";
+	width: 100%;
+	bottom: 0;
+	left: 0;
+	border-bottom: 1px solid #AAA;
+	z-index: 1;
+}
+
+.tabrow:before {
+	z-index: 1;
+}
+
+.tabrow li {
+	position: relative;
+	z-index: 0;
+}
+
+.tabrow li.selected {
+	z-index: 2;
+	border-bottom-color: #FFF;
+}
+
+.tabrow li {
+	border-top-left-radius: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;
+}
+
+.tabrow li:before {
+	border-bottom-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-width: 0 1px 1px 0;
+}
+
+.tabrow li:after {
+	border-bottom-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-bottom-left-radius: 6px;
+	border-width: 0 0 1px 1px;
+}
+
+.tabrow li:before {
+	box-shadow: 2px 2px 0 red;
+}
+
+.tabrow li:after {
+	box-shadow: -2px 2px 0 red;
+}
+
+.tabrow li:before {
+	box-shadow: 2px 2px 0 #696969;
+}
+
+.tabrow li:after {
+	box-shadow: -2px 2px 0 #696969;
+}
+
+.tabrow li.selected:before {
+	box-shadow: 2px 2px 0 #ececec;
+}
+
+.tabrow li.selected:after {
+	box-shadow: -2px 2px 0 #ececec;
+}
+
+.tabrow li {
+	background: -o-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: -ms-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: -moz-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: -webkit-linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	background: linear-gradient(top, #7e7e7e 50%, #696969 100%);
+	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+	margin: 0 -5px;
+	padding: 0 20px;
+}
+
+.lt-ie10 .tabrow li {
 	background-color: #7e7e7e;
 }
 /* --- End of tab styles --- */
 
 /* --- Pagination Styles --- */
-.holder a{
+.holder a {
 	text-decoration: underline;
 }
 /* --- End of pagination styles --- */
-
 .clearfix:after {
 	content: ".";
 	display: block;
@@ -394,28 +424,27 @@ form .arrow{
 	line-height: 0;
 	height: 0;
 }
- 
+
 .clearfix {
 	display: inline-block;
 }
- 
+
 html[xmlns] .clearfix {
 	display: block;
 }
- 
+
 * html .clearfix {
 	height: 1%;
 }
 
-ul{
+ul {
 	list-style-type: none;
 }
-.editable{
+.hidden {
 	display: none;
 }
-#wrapper table, 
-#wrapper tr, 
-#wrapper td{
+
+#wrapper table,#wrapper tr,#wrapper td {
 	margin: 0;
 	padding: 0;
 	border-spacing: 0;

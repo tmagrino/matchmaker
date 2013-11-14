@@ -11,36 +11,54 @@ function initSideHeight()
 function doPagination() {
 	var pag_holder = $("ul.holder");
 	if(pag_holder.length == 0) {return;}
-    pag_holder.jPages({
-        containerID: "project-list-pagination",
-        perPage: 50
-    });
+	pag_holder.jPages({
+		containerID: "project-list-pagination",
+		perPage: 50
+	});
 }
 
 function initAutosuggest()
-{	
+{  
 	var majorInput = $(".info input[name=major], #filter-list input[name=filter-major]");
 	var minorInput = $(".info input[name=minor]");
-	var collegeInput = $(".info input[name=school]");
+	var collegeInput = $(".info input[name=college]");
 	var skillsInput = $(".application-info input[name=skills], .info input[name=skills], #filter-list input[name=filter-skill]");
 	var researchInput = $(".application-info input[name=research-area], .info input[name=research_interests], #filter-list input[name=filter-interest]");
-	
+
 	if(majorInput.length){
-		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "major"});
+		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name",  
+			startText: "",asHtmlID: "major", preFill: prefillMajor.items});
 	}
 	if(minorInput.length){
-		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "minor"});
+		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", 
+			startText: "",asHtmlID: "minor", preFill: prefillMinor.items});
 	}
 	if(collegeInput.length){
-		collegeInput.autoSuggest(collegeData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "college"});
+		collegeInput.autoSuggest(collegeData.items, {selectedItemProp: "name", searchObjProps: "name", 
+			startText: "",asHtmlID: "college", preFill: prefillCollege.items});
 	}
 	if(skillsInput.length){
-		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "skills"});
+		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", 
+			startText: "",asHtmlID: "skills", preFill: prefillSkills.items});
 	}
 	if(researchInput.length){
-		researchInput.autoSuggest(interestData.items, {selectedItemProp: "name", searchObjProps: "name", startText: "",asHtmlID: "research"});
+		researchInput.autoSuggest(interestData.items, {selectedItemProp: "name", searchObjProps: "name", 
+			startText: "",asHtmlID: "research", preFill: prefillInterests.items});
 	}
-	
+
+}
+
+function EditField()
+{
+	var edit_btn = $("a.edit-btn");
+	if(edit_btn.length == 0) { return; }
+	edit_btn.click(function(){
+		$(this).parent().fadeOut("slow", function(){
+			$(this).next().fadeIn();
+		});
+
+		return false;
+	});
 }
 
 function EditField()
@@ -62,7 +80,7 @@ function handleFilterText(){
 	if(formEl.length == 0) {return; }
 	formEl.submit(function(){
 		var inputFields = $("li input[type=text]", this);
-		
+
 		inputFields.each(function(index, el){
 			if($(el).val().length != 0 && filters.length != 0){
 				filters.append('<input type="checkbox" name="' + $(el).attr("name") + '">' + $(el).val());
@@ -106,8 +124,8 @@ function handleAddCourse(){
 }
 
 function IsEmail(email) {
-	  var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-	  return regex.test(email);
+	var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	return regex.test(email);
 }
 
 function validateFormSubmit()
@@ -151,9 +169,9 @@ function hideProject()
 	if(delButton.length == 0) {return;}
 	delButton.click(function(){
 		$(this).parent().parent().animate({
-		    opacity: 0,
-		    height: 'toggle'
-		  }, 1000);
+			opacity: 0,
+			height: 'toggle'
+		}, 1000);
 		doPagination();
 		initSideHeight();
 	});
@@ -188,4 +206,3 @@ $(document).ready(function(){
 	filterAll();
 	initSideHeight();
 });
-
