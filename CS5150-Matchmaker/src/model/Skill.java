@@ -36,7 +36,7 @@ import java.util.List;
  *   
  */
 @Entity(name = "SKILL")
-public class Skill implements Comparable<Skill>{
+public class Skill extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -94,7 +94,12 @@ public class Skill implements Comparable<Skill>{
 	}
 	
 	@Override
-	public int compareTo(Skill o) {
+	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
+	}
+
+	@Override
+	public MultipleItem create(String name) {
+		return new Skill(name);
 	}
 }

@@ -37,7 +37,7 @@ import java.util.List;
  */
 
 @Entity(name = "MINOR")
-public class Minor implements Comparable<Minor>{
+public class Minor extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -95,8 +95,12 @@ public class Minor implements Comparable<Minor>{
 	}
 
 	@Override
-	public int compareTo(Minor o) {
+	public int compareTo(MultipleItem o) {
 		
 		return getDescription().compareTo(o.getDescription());
+	}
+	@Override
+	public MultipleItem create(String name) {
+		return new Minor(name);
 	}
 }

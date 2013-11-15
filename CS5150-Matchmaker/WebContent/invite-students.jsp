@@ -42,10 +42,10 @@
 											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
-											<td><%=s.getMajorString() %></td>
+											<td><%=s.getString(s.getMajors()) %></td>
 											<td><%=s.getYear() %></td>
-											<td><%=s.getSkillString() %></td>
-											<td><%=s.getInterestString() %></td>
+											<td><%=s.getString(s.getSkills()) %></td>
+											<td><%=s.getString(s.getInterests()) %></td>
 										</tr>
 								<%}} %>
 								</tbody>

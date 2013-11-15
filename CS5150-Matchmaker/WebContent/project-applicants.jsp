@@ -60,10 +60,10 @@
 											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
-											<td><%=s.getMajorString() %></td>
+											<td><%=s.getString(s.getMajors()) %></td>
 											<td><%=s.getYear() %></td>
-											<td><%=s.getTruncatedSkillString() %></td>
-											<td><%=s.getTruncatedInterestString() %></td>
+											<td><%=s.getTruncatedString(s.getSkills()) %></td>
+											<td><%=s.getTruncatedString(s.getInterests()) %></td>
 										</tr>
 									<% }} %>
 								</tbody>

@@ -117,44 +117,6 @@ public class Student implements Serializable {
 	}
 	
 	/*
-	public Student (String name, String netID, double gpa, String email,int random){
-		this.name = name;
-		this.gpa = gpa;
-		this.netID=netID;
-		this.email = email;
-		this.year = Year.Senior;
-		if (random == 1){
-		this.majors = Arrays.asList(MajorController.getMajorByDescription("Computer Science"));
-		this.skills = Arrays.asList(SkillController.getSkillByDescription("Java"),
-				SkillController.getSkillByDescription("C"));
-		this.colleges = Arrays.asList(CollegeController.getCollege(
-				"College of Arts and Sciences"));
-		
-		this.minors = Arrays.asList(MinorController.getMinorByDescription("Game Design"));
-		
-			
-		
-		this.interests = Arrays.asList(InterestController.getInterestByDescription(
-				"Machine Learning"),(InterestController.getInterestByDescription(
-						"Software Engineering")));
-		}
-		else{
-			this.majors = Arrays.asList(MajorController.getMajorByDescription("Information Science"));
-			this.skills = Arrays.asList(SkillController.getSkillByDescription("Python"),
-					SkillController.getSkillByDescription("Scrum"));
-			this.colleges = Arrays.asList(CollegeController.getCollege(
-					"College of Arts and Sciences"));
-			this.minors = Arrays.asList(MinorController.getMinorByDescription("Music"));
-			
-			this.interests = Arrays.asList(InterestController.getInterestByDescription(
-					"Functional Programming"),(InterestController.getInterestByDescription(
-							"Computer Vision")));
-			
-		}
-	}
-	*/
-	
-	/*
 	 * Formal constructor: no initial applications or settings
 	 */
 	Student(String name, String netID, double gpa, String email,
@@ -190,15 +152,15 @@ public class Student implements Serializable {
 			case "year":
 				return year.toString();
 			case "college":
-				return getCollegeString();
+				return getString(getColleges());
 			case "major":
-				return getMajorString();
+				return getString(getMajors());
 			case "minor":
-				return getMinorString();
+				return getString(getMinors());
 			case "skills":
-				return getSkillString();
+				return getString(getSkills());
 			case "research interests":
-				return getInterestString();
+				return getString(getInterests());
 			default:
 				System.out.println("Invalid attribute");
 				return null;
@@ -323,261 +285,7 @@ public class Student implements Serializable {
 	public StudentSettings getSettings() {
 		return settings;
 	}
-
-	/**
-	 * @return a string with all skills separated by ', '
-	 */
-	public String getSkillString(){
-		if (skills.size() > 0) {
-			Collections.sort(skills);
-			StringBuilder builder = new StringBuilder();
-			for (Skill s : skills) {
-				builder.append(s.getDescription() + ", ");
-			}
-			builder.deleteCharAt(builder.length() - 2);
-			return builder.toString();
-		}
-		return "";
-	}
-	/**
-	 * @return a string with all Skills separated by ', '. If it's bigger than 15 chars,
-	 * return the first 15 chars + '...'
-	 */
-	public String getTruncatedSkillString() {
-		if (skills.size() > 0) {
-			Collections.sort(skills);
-			StringBuilder builder = new StringBuilder();
-			for (Skill s : skills) {
-				builder.append(s.getDescription() + ", ");
-				if (builder.length() > 17) {
-					return builder.toString().subSequence(0, 16) + "...";
-				}
-			}
-			builder.deleteCharAt(builder.length() -2);
-			return builder.toString();
-		}
-		return "";
-	}
 	
-	/**
-	 * @return a Skill JSON object for pre-populating the autocomplete field
-	 */
-	public JSONObject getSkillJson() {
-		if(skills.size() > 0){
-			Collections.sort(skills);
-		}
-		JSONArray jsonArray = new JSONArray();
-		for (Skill s : skills){
-			JSONObject jsonObject= new JSONObject();
-			try {
-				jsonObject.put("value", String.valueOf(s.getId()));
-				jsonObject.put("name", s.getDescription());
-				jsonArray.put(jsonObject);
-			} catch (JSONException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		JSONObject items_obj = new JSONObject();
-		try {
-			items_obj.put("items", jsonArray);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return items_obj;
-	}
-	/**
-	 * @return a string with all Interest separated by ', '
-	 */
-	public String getInterestString() {
-		if (interests.size() > 0) {
-			Collections.sort(interests);
-			StringBuilder builder = new StringBuilder();
-			for (Interest i : interests){
-				builder.append(i.getDescription() + ", ");
-			}
-			builder.deleteCharAt(builder.length() - 2);
-			return builder.toString();
-		}
-		return "";
-	}
-	/**
-	 * @return a string with all Interest separated by ', '
-	 */
-	public String getTruncatedInterestString(){
-		if (interests.size() > 0) {
-			Collections.sort(interests);
-			StringBuilder builder = new StringBuilder();
-			for (Interest i : interests){
-				builder.append(i.getDescription() + ", ");
-				if (builder.length() > 17){
-					return builder.toString().subSequence(0, 16) + "...";
-				}
-			}
-			builder.deleteCharAt(builder.length() - 2);
-			return builder.toString();
-		}
-		return "";
-	}
-	
-	/**
-	 * @return an Interest JSON object for pre-populating the autocomplete field
-	 */
-	public JSONObject getInterestJson() {
-		if(interests.size() > 0){
-			Collections.sort(interests);
-		}
-		JSONArray jsonArray = new JSONArray();
-		for (Interest i : interests){
-			JSONObject jsonObject= new JSONObject();
-			try {
-				jsonObject.put("value", String.valueOf(i.getId()));
-				jsonObject.put("name", i.getDescription());
-				jsonArray.put(jsonObject);
-			} catch (JSONException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		JSONObject items_obj = new JSONObject();
-		try {
-			items_obj.put("items", jsonArray);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return items_obj;
-	}
-	
-	/**
-	 * @return a string with all Majors separated by ', '
-	 */
-	public String getMajorString() {
-		if (majors.size() > 0) {
-			Collections.sort(majors);
-			StringBuilder builder = new StringBuilder();
-			for (Major m : majors){
-				builder.append(m.getDescription() + ", ");
-			}
-			builder.deleteCharAt(builder.length() - 2);
-			return builder.toString();
-		}
-		return "";
-	}
-	
-	/**
-	 * @return a Major JSON object for pre-populating the autocomplete field
-	 */
-	public JSONObject getMajorJson() {
-		if(majors.size() > 0){
-			Collections.sort(majors);
-		}
-		JSONArray jsonArray = new JSONArray();
-		for (Major m : majors){
-			JSONObject jsonObject= new JSONObject();
-			try {
-				jsonObject.put("value", String.valueOf(m.getId()));
-				jsonObject.put("name", m.getDescription());
-				jsonArray.put(jsonObject);
-			} catch (JSONException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		JSONObject items_obj = new JSONObject();
-		try {
-			items_obj.put("items", jsonArray);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return items_obj;
-	}
-	
-	/**
-	 * @return a string with all Minors separated by ', '
-	 */
-	public String getMinorString() {
-		if (minors.size() > 0) {
-			Collections.sort(minors);
-			StringBuilder builder = new StringBuilder();
-			for (Minor m : minors){
-				builder.append(m.getDescription() + ", ");
-			}
-			builder.deleteCharAt(builder.length() - 2);
-			return builder.toString();
-		}
-		return "";
-	}
-	
-	/**
-	 * @return a Minor JSON object for pre-populating the autocomplete field
-	 */
-	public JSONObject getMinorJson() {
-		if(minors.size() > 0){
-			Collections.sort(minors);
-		}
-		JSONArray jsonArray = new JSONArray();
-		for (Minor m : minors){
-			JSONObject jsonObject= new JSONObject();
-			try {
-				jsonObject.put("value", String.valueOf(m.getId()));
-				jsonObject.put("name", m.getDescription());
-				jsonArray.put(jsonObject);
-			} catch (JSONException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		JSONObject items_obj = new JSONObject();
-		try {
-			items_obj.put("items", jsonArray);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return items_obj;
-	}
-	/**
-	 * @return a string with all Colleges separated by ','
-	 */
-	public String getCollegeString() {
-		if (colleges.size() > 0) {
-			Collections.sort(colleges);
-			StringBuilder builder = new StringBuilder();
-			for (College c : colleges){
-				builder.append(c.getDescription() + ", ");
-			}
-			builder.deleteCharAt(builder.length() - 2);
-			return builder.toString();
-		}
-		return "";
-	}
-	
-	/**
-	 * @return a College JSON object for pre-populating the autocomplete field
-	 */
-	public JSONObject getCollegeJson() {
-		if(colleges.size() > 0){
-			Collections.sort(interests);
-		}
-		JSONArray jsonArray = new JSONArray();
-		for (College c : colleges){
-			JSONObject jsonObject= new JSONObject();
-			try {
-				jsonObject.put("value", String.valueOf(c.getId()));
-				jsonObject.put("name", c.getDescription());
-				jsonArray.put(jsonObject);
-			} catch (JSONException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		JSONObject items_obj = new JSONObject();
-		try {
-			items_obj.put("items", jsonArray);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return items_obj;
-	}
 	/**
 	 * @param id the id to set
 	 */
@@ -640,7 +348,69 @@ public class Student implements Serializable {
 			}
 		}
 	}
+	/**
+	 * Return a String version of a collection with elements separated by commas
+	 */
+	public String getString(List<? extends MultipleItem> collection) {
+		if (collection.size() > 0) {
+			Collections.sort(collection);
+			StringBuilder builder = new StringBuilder();
+			for (MultipleItem i : collection){
+				builder.append(i.getDescription() + ", ");
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
+		}
+		return "";
+	}
+	/**
+	 * Return a truncated version of a collection string
+	 */
+	public String getTruncatedString(List<? extends MultipleItem> collection){
+		if (collection.size() > 0) {
+			int subSequenceSize = 16;
+			Collections.sort(collection);
+			StringBuilder builder = new StringBuilder();
+			for (MultipleItem i : collection){
+				builder.append(i.getDescription() + ", ");
+				if (builder.length() > subSequenceSize+1){
+					return builder.toString().subSequence(0, subSequenceSize) + "...";
+				}
+			}
+			builder.deleteCharAt(builder.length() - 2);
+			return builder.toString();
+		}
+		return "";
+	}
 
+	/**
+	 * Return a JsonObject containing elements of a collection
+	 */
+	public JSONObject getObjectJson(List<? extends MultipleItem> collection) {
+		if(collection.size() > 0){
+			Collections.sort(collection);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (MultipleItem t : collection){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(t.getId()));
+				jsonObject.put("name", t.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
+	}
+	
 	void addCollege(College college) {
 		if (!this.colleges.contains(college)) {
 			this.colleges.add(college);
