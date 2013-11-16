@@ -1,7 +1,9 @@
 package model;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 /*
@@ -37,7 +39,7 @@ import java.util.List;
  */
 
 @Entity(name = "COLLEGE")
-public class College implements Comparable<College>{
+public class College extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -94,7 +96,12 @@ public class College implements Comparable<College>{
 	}
 
 	@Override
-	public int compareTo(College o) {
+	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
+	}
+
+	@Override
+	public MultipleItem create(String name) {
+		return new College(name);
 	}
 }

@@ -40,7 +40,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "INTEREST")
-public class Interest implements Comparable<Interest>{
+public class Interest extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -98,7 +98,12 @@ public class Interest implements Comparable<Interest>{
 	}
 
 	@Override
-	public int compareTo(Interest o) {
+	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
+	}
+
+	@Override
+	public MultipleItem create(String name) {
+		return new Interest(name);
 	}
 }

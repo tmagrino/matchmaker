@@ -20,11 +20,11 @@
      JSONObject jsonInterest = InterestController.getInterestJson(em);
 
      /* These JSON objects store values specific to the given student */
-     JSONObject jsonStudMajor = s.getMajorJson();
-     JSONObject jsonStudMinor = s.getMinorJson();
-     JSONObject jsonStudCollege = s.getCollegeJson();
-     JSONObject jsonStudSkills = s.getSkillJson();
-     JSONObject jsonStudInterest = s.getInterestJson();
+     JSONObject jsonStudMajor = s.getObjectJson(s.getMajors());
+     JSONObject jsonStudMinor = s.getObjectJson(s.getMinors());
+     JSONObject jsonStudCollege = s.getObjectJson(s.getColleges());;
+     JSONObject jsonStudSkills = s.getObjectJson(s.getSkills());
+     JSONObject jsonStudInterest = s.getObjectJson(s.getInterests());;
 %>
 <script type="text/javascript">
          var majorData = <%= jsonMajor %>;
