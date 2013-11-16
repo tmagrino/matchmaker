@@ -99,10 +99,4 @@ public class Major extends MultipleItem  {
 		// TODO Auto-generated method stub
 		return getDescription().compareTo(o.getDescription());
 	}
-
-	@Override
-	public MultipleItem create(String name) {
-		return new Major(name);
-		
-	}
 }

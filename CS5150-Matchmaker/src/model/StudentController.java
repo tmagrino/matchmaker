@@ -154,15 +154,38 @@ public class StudentController {
 		
 		tx.commit();
 	}
-	public static void updateMajors(EntityManager em, Student s, String majorIds){
-		
-		String[] idList =majorIds.split(",");
-		
-		s.removeMajors();
+	public static void update(EntityManager em, Student s, String ids, String type) 
+			throws NumberFormatException, InstantiationException, IllegalAccessException {
+		String[] idList =ids.split(",");
+		s.remove(type);
 		for (String id : idList)
 			if (id.length()>0)
-			StudentController.addMajor(em, s, MajorController.getMajor(em,Long.parseLong(id)));
+			StudentController.add(em, s, ListController.getItemById(em,Long.parseLong(id),type));
 	}
+	
+	private static void add(EntityManager em, Student s, MultipleItem item) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		if(item instanceof Major){
+			s.addMajor((Major) item);
+		}
+		if(item instanceof Minor){
+			s.addMinor((Minor) item);
+		}
+		if (item instanceof College){
+			s.addCollege((College) item );
+		}
+		if (item instanceof Skill){
+			s.addSkill((Skill) item );
+		}
+		if (item instanceof Interest){
+			s.addInterest((Interest) item );
+		}
+		tx.commit();
+		
+	}
+
 	public static void addMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -179,14 +202,7 @@ public class StudentController {
 		
 		tx.commit();
 	}
-	public static void updateMinors(EntityManager em, Student s, String minorIds){
-		
-		String[] idList =minorIds.split(",");
-		s.removeMinors();
-		for (String id : idList)
-			if (id.length()>0)
-			StudentController.addMinor(em, s, MinorController.getMinor(em,Long.parseLong(id)));
-	}
+
 	public static void addSkill(EntityManager em, Student s, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();

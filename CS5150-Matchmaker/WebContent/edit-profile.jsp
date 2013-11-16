@@ -10,11 +10,11 @@
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 	EntityManager em = emf.createEntityManager();
         Student s = StudentController.getStudentByNetID(em,"lr437");
-        JSONObject jsonMajor = MajorController.getMajorJson(em);
-        JSONObject jsonMinor = MinorController.getMinorJson(em);
-        JSONObject jsonCollege = CollegeController.getCollegeJson(em);
-        JSONObject jsonSkills = SkillController.getSkillJson(em);
-        JSONObject jsonInterest = InterestController.getInterestJson(em);
+        JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+        JSONObject jsonMinor = ListController.getItemJson(em,ItemFactory.MINOR);
+        JSONObject jsonCollege = ListController.getItemJson(em,ItemFactory.COLLEGE);
+        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
+        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
         
                  
          %>
@@ -33,7 +33,7 @@
                                 <div class="info">
                                         <h2><%=s.getName() %></h2>
                                         <p class="required"><label for="email">Email</label><input name="email" value="<%=s.getEmail() %>" type="text"></input></p>
-                                        <p class="required"><label for="major">Major</label><input name="major" value="<%=s.getMajorString() %>" type="text"></input></p>
+                                        <p class="required"><label for="major">Major</label><input name="major" value="<%=s.getString(s.getMajors()) %>" type="text"></input></p>
                                         <p><label for="minor">Minor</label><input name="minor" value="Music" type="text"></input></p>
                                         <p class="required"><label for="grad-year">Year</label><input name="grad-year" value="<%=s.getYear() %>" type="text"></input></p>
                                         <p class="required"><label for="school">College</label><input name="school" type="text"></input></p>
@@ -42,7 +42,7 @@
                         <h2 class="subheading">Application Information</h2>        
                         <div class="application-info">
                                 <p class="required"><label for="gpa">GPA</label><input name="gpa" value="<%=s.getGpa() %>"type="text" maxlength="4"></input></p>
-                                <p><label for="skills">Skills</label><input name="skills" value="<%=s.getSkillString() %>" type="text"></input></p>
+                                <p><label for="skills">Skills</label><input name="skills" value="<%=s.getString(s.getSkills()) %>" type="text"></input></p>
                                 <p><label for="research-area">Research Interests</label><input name="research-area" type="text"></input></p>
                                 <h3>Relevant Courses</h3>
                                 <table id="profile-courses">

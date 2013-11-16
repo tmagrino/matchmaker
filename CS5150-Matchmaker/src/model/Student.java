@@ -429,9 +429,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeColleges() {
-		for (College c : colleges) {
-			removeCollege(c);
-		}
+		colleges = new ArrayList<College>();
 	}
 	
 	void addMajor(Major major) {
@@ -450,7 +448,25 @@ public class Student implements Serializable {
 			}
 		}
 	}
-	
+	void remove(String type){
+		if(type.toLowerCase() == ItemFactory.MAJOR){
+			this.removeMajors();
+		}
+		if(type.toLowerCase() == ItemFactory.MINOR){
+			this.removeMinors();
+		}
+		if (type.toLowerCase() == ItemFactory.COLLEGE){
+			this.removeColleges();
+		}
+		if (type.toLowerCase() == ItemFactory.SKILL){
+			this.removeSkills();
+		}
+		if (type.toLowerCase() == ItemFactory.INTEREST){
+			this.removeInterests();
+		}
+		
+		
+	}
 	void removeMajors() {
 		majors = new ArrayList<Major>();
 	}
@@ -494,9 +510,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeSkills() {
-		for (Skill s : skills) {
-			removeSkill(s);
-		}
+		skills = new ArrayList<Skill>();
 	}
 	
 	void addInterest(Interest interest) {
@@ -517,9 +531,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeInterests() {
-		for (Interest i : interests) {
-			removeInterest(i);
-		}
+		interests = new ArrayList<Interest>();
 	}
 	
 	void addExperience(Experience exp) {

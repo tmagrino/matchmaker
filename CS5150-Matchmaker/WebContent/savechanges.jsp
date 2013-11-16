@@ -26,10 +26,19 @@
 	   StudentController.editGPA(em, s, gpa);
    }
    if (request.getParameter("as_values_major").length()>0){
-	   StudentController.updateMajors(em,s,request.getParameter("as_values_major")); 
+	   StudentController.update(em,s,request.getParameter("as_values_major"),ItemFactory.MAJOR); 
    }
    if (request.getParameter("as_values_minor").length()>0){
-	   StudentController.updateMinors(em,s,request.getParameter("as_values_minor")); 
+	   StudentController.update(em,s,request.getParameter("as_values_minor"),ItemFactory.MINOR); 
+   }
+   if (request.getParameter("as_values_skills").length()>0){
+	   StudentController.update(em,s,request.getParameter("as_values_skills"),ItemFactory.SKILL); 
+   }
+   if (request.getParameter("as_values_research").length()>0){
+	   StudentController.update(em,s,request.getParameter("as_values_research"),ItemFactory.INTEREST); 
+   }
+   if (request.getParameter("as_values_skills").length()>0){
+	   StudentController.update(em,s,request.getParameter("as_values_college"),ItemFactory.COLLEGE); 
    }
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);

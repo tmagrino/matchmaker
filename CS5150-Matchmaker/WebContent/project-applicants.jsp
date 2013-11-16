@@ -31,23 +31,23 @@
 							<input type="submit" value="Filter"/>
 							<table class="project-list">
 									<jsp:include page="stud-filters.jsp"/>
-									<% 
-									List<Student> studentList = new ArrayList<Student>();
-									
-									if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
-										studentList = StudentController.getStudentByFilter(em,
-												"", "", "", "","","");
-									}
-									//List<Student> studentList = StudentController.getAllStudents();
-									else{studentList = StudentController.getStudentByFilter(em,
-											request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");
-									}
-									for(int i=1;i<=100;i+=2) { 
-										for(Student s: studentList)
-									{
-									List<Major> maj = s.getMajors();
-									List<Interest> ints = s.getInterests();
-									List<Skill> skls = s.getSkills();
+									<%
+										List<Student> studentList = new ArrayList<Student>();
+																							
+																							if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
+																								studentList = StudentController.getStudentByFilter(em,
+																										"", "", "", "","","");
+																							}
+																							//List<Student> studentList = StudentController.getAllStudents();
+																							else{studentList = StudentController.getStudentByFilter(em,
+																									request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");
+																							}
+																							for(int i=1;i<=100;i+=2) { 
+																								for(Student s: studentList)
+																							{
+																							List<Major> maj = s.getMajors();
+																							List<Interest> ints = s.getInterests();
+																							List<Skill> skls = s.getSkills();
 									%>
 <%-- 									class = "name-<%=s.getId()%> gpa-<%=s.getId()%> <%for(Major m : maj) --%>
 <%-- 												%>major-<%=m.getId()%> year-<%=s.getYear()%> <%for(Interest in : ints) --%>

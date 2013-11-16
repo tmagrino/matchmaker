@@ -9,9 +9,9 @@
 						<%
 						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 					 	EntityManager em = emf.createEntityManager();
-				        JSONObject jsonMajor = MajorController.getMajorJson(em);
-				        JSONObject jsonSkills = SkillController.getSkillJson(em);
-				        JSONObject jsonInterest = InterestController.getInterestJson(em);
+					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
+				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;

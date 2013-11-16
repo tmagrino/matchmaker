@@ -69,7 +69,7 @@ public class Interest extends MultipleItem{
 	public List<Student> getStudents() {
 		return students.subList(0, students.size());
 	}
-	
+	@Override
 	void setDescription(String name) {
 		this.description = name;
 	}
@@ -90,7 +90,7 @@ public class Interest extends MultipleItem{
 			}
 		}
 	}
-	
+	@Override
 	void removeStudents() {
 		for (Student s : students) {
 			removeStudent(s);
@@ -100,10 +100,5 @@ public class Interest extends MultipleItem{
 	@Override
 	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
-	}
-
-	@Override
-	public MultipleItem create(String name) {
-		return new Interest(name);
 	}
 }

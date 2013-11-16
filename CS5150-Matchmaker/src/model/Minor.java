@@ -70,7 +70,7 @@ public class Minor extends MultipleItem{
 	void setDescription(String name) {
 		this.description = name;
 	}
-	
+	@Override
 	void addStudent(Student s) {
 		if (!students.contains(s)) {
 			students.add(s);
@@ -79,7 +79,7 @@ public class Minor extends MultipleItem{
 			}
 		}
 	}
-	
+	@Override
 	void removeStudent(Student s) {
 		if (this.students.remove(s)) {
 			if (s.getMinors().contains(this)) {
@@ -87,7 +87,7 @@ public class Minor extends MultipleItem{
 			}
 		}
 	}
-	
+	@Override
 	void removeStudents() {
 		for (Student s : students) {
 			removeStudent(s);
@@ -98,9 +98,5 @@ public class Minor extends MultipleItem{
 	public int compareTo(MultipleItem o) {
 		
 		return getDescription().compareTo(o.getDescription());
-	}
-	@Override
-	public MultipleItem create(String name) {
-		return new Minor(name);
 	}
 }

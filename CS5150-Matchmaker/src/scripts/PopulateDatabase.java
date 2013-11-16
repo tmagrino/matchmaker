@@ -20,6 +20,17 @@ import javax.persistence.Persistence;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 import model.*;
 
 public class PopulateDatabase {
@@ -29,14 +40,14 @@ public class PopulateDatabase {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		EntityManager em = emf.createEntityManager();
 		// Majors
-		if (MajorController.getMajorList(em).size() == 0) {
+		if (ListController.getItensList(em, ItemFactory.MAJOR).size() == 0) {
 			try {
 				File myfile = new File("MajorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					MajorController.createMajor(em, str);
+					ListController.createItem(em, str, ItemFactory.MAJOR);
 				}
 			}
 			catch (Exception e) {
@@ -44,14 +55,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Minors
-		if (MinorController.getMinorList(em).size() == 0) {
+		if (ListController.getItensList(em, ItemFactory.MINOR).size() == 0)  {
 			try {
 				File myfile = new File("MinorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					MinorController.createMinor(em, str);
+					ListController.createItem(em, str, ItemFactory.MINOR);
 				}
 			}
 			catch (Exception e) {
@@ -59,14 +70,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Colleges
-		if (CollegeController.getCollegeList(em).size()==0){
+		if (ListController.getItensList(em, ItemFactory.COLLEGE).size() == 0){
 			try {
 				File myfile = new File("CollegesList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					CollegeController.createCollege(em, str);
+					ListController.createItem(em, str, ItemFactory.COLLEGE);
 				}
 			}
 			catch (Exception e) {
@@ -74,14 +85,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Interests
-		if (InterestController.getInterestList(em).size() == 0){
+		if (ListController.getItensList(em, ItemFactory.INTEREST).size() == 0){
 			try {
 				File myfile = new File("InterestsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					InterestController.createInterest(em, str);
+					ListController.createItem(em, str, ItemFactory.INTEREST);
 				}
 			}
 			catch (Exception e) {
@@ -89,14 +100,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Skills
-		if (SkillController.getSkillList(em).size() == 0) {
+		if (ListController.getItensList(em, ItemFactory.SKILL).size() == 0){
 			try {
 				File myfile = new File("SkillsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					SkillController.createSkill(em,str);
+					ListController.createItem(em, str, ItemFactory.SKILL);
 				}
 			}
 			catch (Exception e) {
@@ -121,31 +132,36 @@ public class PopulateDatabase {
 					String[] cols = studentStrings[5].split(";");
 					LinkedList<College> colleges = new LinkedList<College>();
 					for (String s : cols) {
-						colleges.add(CollegeController.getCollege(em,s));
+						colleges.add((College) ListController.getItemByDescription(em, s, 
+								ItemFactory.COLLEGE));
 					}
 					// Majors
 					String[] majs = studentStrings[6].split(";");
 					LinkedList<Major> majors = new LinkedList<Major>();
 					for (String s : majs) {
-						majors.add(MajorController.getMajorByDescription(em,s));
+						majors.add((Major) ListController.getItemByDescription(em, s, 
+								ItemFactory.MAJOR));
 					}
 					// Minors
 					String[] mins = studentStrings[7].split(";");
 					LinkedList<Minor> minors = new LinkedList<Minor>();
 					for (String s : mins) {
-						minors.add(MinorController.getMinorByDescription(em,s));
+						minors.add((Minor) ListController.getItemByDescription(em, s, 
+								ItemFactory.MINOR));
 					}
 					// Skills
 					String[] skls = studentStrings[8].split(";");
 					LinkedList<Skill> skills = new LinkedList<Skill>();
 					for (String s : skls) {
-						skills.add(SkillController.getSkillByDescription(em,s));
+						skills.add((Skill) ListController.getItemByDescription(em, s, 
+								ItemFactory.SKILL));
 					}
 					// Interests
 					String[] ints = studentStrings[9].split(";");
 					LinkedList<Interest> interests = new LinkedList<Interest>();
 					for (String s : ints) {
-						interests.add(InterestController.getInterestByDescription(em,s));
+						interests.add((Interest) ListController.getItemByDescription(em, s, 
+								ItemFactory.INTEREST));
 					}
 					// Prior Experience TODO:
 					LinkedList<Experience> priorExperience= new LinkedList<Experience>();

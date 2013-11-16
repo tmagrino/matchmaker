@@ -11,13 +11,13 @@
 	 EntityManager em = emf.createEntityManager();
 	 Student s = StudentController.getStudentByNetID(em,"lr437"); 
 	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
-
+	 
      /* These JSON objects store all possible values */
-	 JSONObject jsonMajor = MajorController.getMajorJson(em);
-     JSONObject jsonMinor = MinorController.getMinorJson(em);
-     JSONObject jsonCollege = CollegeController.getCollegeJson(em);
-     JSONObject jsonSkills = SkillController.getSkillJson(em);
-     JSONObject jsonInterest = InterestController.getInterestJson(em);
+	 JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+     JSONObject jsonMinor = ListController.getItemJson(em,ItemFactory.MINOR);
+     JSONObject jsonCollege = ListController.getItemJson(em,ItemFactory.COLLEGE);
+     JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
+     JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 
      /* These JSON objects store values specific to the given student */
      JSONObject jsonStudMajor = s.getObjectJson(s.getMajors());

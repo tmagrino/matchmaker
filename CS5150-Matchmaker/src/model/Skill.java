@@ -86,7 +86,7 @@ public class Skill extends MultipleItem{
 			}
 		}
 	}
-	
+	@Override
 	void removeStudents() {
 		for (Student s : students) {
 			removeStudent(s);
@@ -96,10 +96,5 @@ public class Skill extends MultipleItem{
 	@Override
 	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
-	}
-
-	@Override
-	public MultipleItem create(String name) {
-		return new Skill(name);
 	}
 }
