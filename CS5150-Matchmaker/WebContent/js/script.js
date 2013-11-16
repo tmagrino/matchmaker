@@ -24,28 +24,34 @@ function initAutosuggest()
 	var collegeInput = $(".info input[name=college]");
 	var skillsInput = $(".application-info input[name=skills], .info input[name=skills], #filter-list input[name=filter-skill]");
 	var researchInput = $(".application-info input[name=research-area], .info input[name=research_interests], #filter-list input[name=filter-interest]");
-
+	var emptyTextOpt = "No results found <a class=\"autocomplete-no-results\" href=\"#\">Add New</a>";
+	
 	if(majorInput.length){
 		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name",  
-			startText: "",asHtmlID: "major", preFill: prefillMajor.items});
+			startText: "", emptyText: emptyTextOpt, asHtmlID: "major", preFill: prefillMajor.items,
+			noResultsCallbackEl: $(".autocomplete-no-results"), noResultsCallbackFunc: initAddSuggestion});
 	}
 	if(minorInput.length){
 		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "minor", preFill: prefillMinor.items});
+			startText: "",asHtmlID: "minor", emptyText: emptyTextOpt, preFill: prefillMinor.items});
 	}
 	if(collegeInput.length){
 		collegeInput.autoSuggest(collegeData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "college", preFill: prefillCollege.items});
+			startText: "",asHtmlID: "college", emptyText: emptyTextOpt, preFill: prefillCollege.items});
 	}
 	if(skillsInput.length){
 		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "skills", preFill: prefillSkills.items});
+			startText: "",asHtmlID: "skills", emptyText: emptyTextOpt, preFill: prefillSkills.items});
 	}
 	if(researchInput.length){
 		researchInput.autoSuggest(interestData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "research", preFill: prefillInterests.items});
+			startText: "",asHtmlID: "research", emptyText: emptyTextOpt, preFill: prefillInterests.items});
 	}
+}
 
+function initAddSuggestion(el)
+{
+	console.log($(el).parent().html());
 }
 
 function EditField()
@@ -61,18 +67,6 @@ function EditField()
 	});
 }
 
-function EditField()
-{
-	var edit_btn = $("a.edit-btn");
-	if(edit_btn.length == 0) { return; }
-	edit_btn.click(function(){
-		$(this).parent().fadeOut("slow", function(){
-			$(this).next().fadeIn();
-		});
-		
-		return false;
-	});
-}
 
 function handleFilterText(){
 	var formEl = $("#add-new-filters");
@@ -198,6 +192,7 @@ function sortTable()
 
 $(document).ready(function(){
 	initAutosuggest();
+	initAddSuggestion();
 	sortTable();
 	EditField();
 	handleAddCourse();

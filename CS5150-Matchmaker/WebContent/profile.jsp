@@ -54,15 +54,13 @@
 				<tr>
 					<td><%=attr %>:</td>
 					<td class="field">
-						<p
-							class="read-only <%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
+						<p class="read-only <%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
 							<%=s.getAttribute(attr) %>
 							<a class="edit-btn" href="#"> <img
 								src="images/pencil_small.png" alt="edit" />
 							</a>
 						</p>
-						<p
-							class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
+						<p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
 							<% if(attr.equals("Year")){ %>
 							<select name = "year">
 								<option value="1">1</option>
@@ -75,6 +73,9 @@
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
 								value="<%=s.getAttribute(attr) %>" type="text" />
 							<% } %>
+						</p>
+						<p class="other hidden">
+							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
 						</p>
 					</td>
 				</tr>
