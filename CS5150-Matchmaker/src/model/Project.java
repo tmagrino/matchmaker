@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -34,6 +35,11 @@ public class Project implements Serializable {
 	public Project() {
 		
 	}
+	public Project(String name, String description, List<Researcher> res) {
+		this.name = name;
+		this.description = description;
+		this.researchers = res;
+	}
 
 	public long getId() {
 		return id;
@@ -64,7 +70,7 @@ public class Project implements Serializable {
 	}
 
 	void addResearcher(Researcher res) {
-		
+		researchers.add(res);
 	}
 	
 	void removeResearcher(Researcher res) {
@@ -72,21 +78,19 @@ public class Project implements Serializable {
 	}
 	
 	void removeResearchers() {
-		for (Researcher r : researchers) {
-			removeResearcher(r);
-		}
+		researchers = new ArrayList<Researcher>();
 	}
 
 	void addApplication(Application app) {
-		
+		applications.add(app);
 	}
 	
 	void removeApplication(Application app) {
-		
+		applications.remove(app);
 	}
 	
 	void removeApplications() {
-		
+		applications = new ArrayList<Application>();
 	}
 	
 	public List<Application> getApplications() {

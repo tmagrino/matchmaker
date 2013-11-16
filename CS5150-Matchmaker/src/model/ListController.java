@@ -19,7 +19,7 @@ public class ListController{
 	public static MultipleItem createItem(EntityManager em, String description, String type) throws InstantiationException, IllegalAccessException {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-				
+		
 		MultipleItem m = (MultipleItem) ItemFactory.create(type, description);
 
 		em.persist(m);

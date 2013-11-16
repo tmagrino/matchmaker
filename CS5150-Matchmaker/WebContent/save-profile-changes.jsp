@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
@@ -43,15 +42,6 @@
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "profile.jsp"); 
-// StudentController.updateStudent(new Student(),request.getParameter("name"), "jb20",
-// 		Double.parseDouble(request.getParameter("gpa")),request.getParameter("email"),
-// 		YearController.getYear(request.getParameter("grad-year")), 
-// 		CollegeController.parseCollege(request.getParameter("as_values_college")),
-// 		MajorController.parseMajor(request.getParameter("as_values_major")),
-// 		MinorController.parseMinor(request.getParameter("as_values_minor")),
-// 		SkillController.parseSkill(request.getParameter("as_values_skills")),
-// 		null, InterestController.parseInterest(request.getParameter("as_values_research")),
-// 		null);
 %>
 
 

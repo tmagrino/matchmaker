@@ -22,9 +22,9 @@
      /* These JSON objects store values specific to the given student */
      JSONObject jsonStudMajor = s.getObjectJson(s.getMajors());
      JSONObject jsonStudMinor = s.getObjectJson(s.getMinors());
-     JSONObject jsonStudCollege = s.getObjectJson(s.getColleges());;
+     JSONObject jsonStudCollege = s.getObjectJson(s.getColleges());
      JSONObject jsonStudSkills = s.getObjectJson(s.getSkills());
-     JSONObject jsonStudInterest = s.getObjectJson(s.getInterests());;
+     JSONObject jsonStudInterest = s.getObjectJson(s.getInterests());
 %>
 <script type="text/javascript">
          var majorData = <%= jsonMajor %>;
@@ -44,7 +44,7 @@
 	<h1>My Profile</h1>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
-		<form name="profile" action="savechanges.jsp" method="GET">
+		<form name="profile" action="save-profile-changes.jsp" method="GET">
 			<table class="info">
 				<tr>
 					<td><h2><%=s.getName() %></h2></td>
