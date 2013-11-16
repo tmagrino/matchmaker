@@ -62,12 +62,20 @@
 						</p>
 						<p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
 							<% if(attr.equals("Year")){ %>
-							<select name = "year">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5+">5+</option>
+								<select name = "year">
+									<option value="">---</option>
+								<% String year_val = s.getAttribute(attr); %>
+								<% for(int i = 1; i<=5; i++){ 
+									String i_str = Integer.toString(i);
+									if(i == 5){
+										i_str += "+";
+									}
+									if(year_val.equals(i_str)){ %>
+										<option value="<%= i %>" selected="selected"><%= i_str%></option>
+									<%	} else{ %>
+										<option value="<%= i %>"><%= i_str%></option>
+									<% } %>
+								<% } %>
 							</select>
 							<% } else{ %>
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
