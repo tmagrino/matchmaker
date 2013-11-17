@@ -48,9 +48,7 @@
 		  	beforeRetrieve: function(string){ return string; },
 		  	retrieveComplete: function(data){ return data; },
 		  	resultClick: function(data){},
-		  	resultsComplete: function(){},
-		  	noResultsCallbackEl: '',
-		  	noResultsCallbackFunc: function(){}
+		  	resultsComplete: function(){}
 	  	};  
 	 	var opts = $.extend(defaults, options);	 	
 		
@@ -323,9 +321,6 @@
 					selections_holder.removeClass("loading");
 					if(matchCount <= 0){
 						results_ul.html('<li class="as-message">'+opts.emptyText+'</li>');
-						if(opts.noResultsCallbackEl){
-							opts.noResultsCallbackEl.click(opts.noResultsCallbackFunc);
-						}
 					}
 					results_ul.css("width", selections_holder.outerWidth());
 					results_holder.show();

@@ -24,7 +24,7 @@ function initAutosuggest()
 	var collegeInput = $(".info input[name=college]");
 	var skillsInput = $(".application-info input[name=skills], .info input[name=skills], #filter-list input[name=filter-skill]");
 	var researchInput = $(".application-info input[name=research-area], .info input[name=research_interests], #filter-list input[name=filter-interest]");
-	var emptyTextOpt = "No results found <a class=\"autocomplete-no-results\" href=\"#\">Add New</a>";
+	var emptyTextOpt = "No results found.  Press Tab to add new entry.";
 	
 	if(majorInput.length){
 		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name",  
