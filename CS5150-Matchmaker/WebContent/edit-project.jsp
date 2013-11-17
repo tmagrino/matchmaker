@@ -30,7 +30,8 @@
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
 JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);   
+JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
  %>
  <script type="text/javascript">
 	var skillsData = <%= jsonSkills %>;
@@ -38,10 +39,10 @@ JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 </script>
 					<div class="content">
 						<h1>My Projects</h1>
-						<form name="profile-form" action="/">
+						<form name="profile-form" action="save-project-changes.jsp">
 							<div class="photo-info project-info clearfix">
 								<div class="info">
-									<h2>Tom Magrino</h2>
+									<h2><%=r.getName() %></h2>
 									<p class="required"><label for="title">Title</label><input name="title" value="<%= proj_title %>" type="text"></input></p>
 									<p><label for="research-area">Research Area</label><input name="research-area" type="text"></input></p>
 									<p><label for="skills">Required Skills</label><input name="skills" type="text"></input></p>
