@@ -23,4 +23,13 @@ public class ProjectController {
 		
 	}
 	
+	public static void deleteProject(EntityManager em, Project p) {
+		for (Application a : p.getApplications())
+			em.remove(a);
+		p.removeApplications();
+		p.removeResearchers();
+		em.remove(p);
+		
+	}
+	
 }

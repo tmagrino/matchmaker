@@ -74,8 +74,14 @@ public class Project implements Serializable {
 	}
 	
 	void removeResearcher(Researcher res) {
-		
-	}
+		for (int i = 0; i < researchers.size(); i++) {
+			Researcher r = researchers.get(i);
+			if (r.equals(res)) {
+				researchers.remove(i);
+				break;
+			}
+		}
+	} 
 	
 	void removeResearchers() {
 		researchers = new ArrayList<Researcher>();
