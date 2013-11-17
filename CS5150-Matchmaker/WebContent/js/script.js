@@ -28,8 +28,7 @@ function initAutosuggest()
 	
 	if(majorInput.length){
 		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name",  
-			startText: "", emptyText: emptyTextOpt, asHtmlID: "major", preFill: prefillMajor.items,
-			noResultsCallbackEl: $(".autocomplete-no-results"), noResultsCallbackFunc: initAddSuggestion});
+			startText: "", emptyText: emptyTextOpt, asHtmlID: "major", preFill: prefillMajor.items});
 	}
 	if(minorInput.length){
 		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", 
@@ -49,9 +48,15 @@ function initAutosuggest()
 	}
 }
 
-function initAddSuggestion(el)
+function initAddSuggestion()
 {
-	console.log($(el).parent().html());
+	var add_btn = $(".add-suggestion");
+	if(add_btn.length == 0) {return; }
+	add_btn.each(function(idx, el){
+		$(el).click(function(){
+			$(".other", $(this).parent().prev()).fadeIn();
+		});
+	});
 }
 
 function EditField()
@@ -61,6 +66,9 @@ function EditField()
 	edit_btn.click(function(){
 		$(this).parent().fadeOut("slow", function(){
 			$(this).next().fadeIn();
+			if($(".as-selections", $(this).parent()).length > 0 || $("select", $(this).parent()).length > 0){
+				$(".add-suggestion", $(this).parent().next()).fadeIn();
+			}
 		});
 
 		return false;

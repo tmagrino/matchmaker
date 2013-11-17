@@ -46,12 +46,11 @@
 	</div>
 	<div class="page">
 		<div class="wrapper">
-			<div id="container" class="clearfix">
-				<div class="sidebar">
-					<p class="notifications">Notifications</p>
-				</div>
+			<div id="container">
 				<div class="main">
-					<ul class="tabrow">
+					<p class="notifications">Notifications</p>
+					<div class="nav">
+						<ul class="tabrow">
 						<% if(request.getParameter("stud_or_prof").equals("stud")){ %>
 						<li
 							<% if(request.getParameter("top_selected").equals("profile")){ %>
@@ -76,3 +75,5 @@
 						</li>
 						<% } %>
 					</ul>
+					</div>
+					

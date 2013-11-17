@@ -47,17 +47,17 @@
 		<form name="profile" action="savechanges.jsp" method="GET">
 			<table class="info">
 				<tr>
-					<td><h2><%=s.getName() %></h2></td>
-					<td></td>
+					<td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
 				</tr>
 				<% for(String attr: attributes){ %>
 				<tr>
-					<td><%=attr %>:</td>
+					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
 						<p class="read-only <%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
 							<%=s.getAttribute(attr) %>
-							<a class="edit-btn" href="#"> <img
-								src="images/pencil_small.png" alt="edit" />
+							<% if(s.getAttribute(attr).length() > 90) %>
+							<a class="edit-btn <%= s.getAttribute(attr).length() > 80 ? "extended" : "" %>" href="#"> 
+								<img src="images/pencil_small.png" alt="edit" />
 							</a>
 						</p>
 						<p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
@@ -85,6 +85,9 @@
 						<p class="other hidden">
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
 						</p>
+					</td>
+					<td>
+						<button class="add-suggestion hidden" type="button">Add Suggestion</button>
 					</td>
 				</tr>
 				<% } %>
