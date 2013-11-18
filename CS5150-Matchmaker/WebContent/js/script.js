@@ -1,13 +1,3 @@
-function initSideHeight()
-{
-	var sidebar = $(".sidebar #sidenav");
-	if(sidebar.length == 0) {return; }
-	if($(".main .content").height() > sidebar.height())
-		sidebar.height($(".main .content").height());
-	else
-		$(".main .content").height(sidebar.height());
-}
-
 function doPagination() {
 	var pag_holder = $("ul.holder");
 	if(pag_holder.length == 0) {return;}
@@ -18,43 +8,38 @@ function doPagination() {
 }
 
 function initAutosuggest()
-{  
-	var majorInput = $(".info input[name=major], #filter-list input[name=filter-major]");
-	var minorInput = $(".info input[name=minor]");
-	var collegeInput = $(".info input[name=college]");
-	var skillsInput = $(".application-info input[name=skills], .info input[name=skills], #filter-list input[name=filter-skill]");
-	var researchInput = $(".application-info input[name=research-area], .info input[name=research_interests], #filter-list input[name=filter-interest]");
+{ 
+	var autocomplete_els = Array();
+	$.each(autocomplete_attr, function(index, value){
+		autocomplete_els.push($(".info input[name=" + value + "], " +
+				"#filter-list input[name=filter-" + value + "]"));
+	});
 	var emptyTextOpt = "No results found.  Press Tab to add new entry.";
-	
-	if(majorInput.length){
-		majorInput.autoSuggest(majorData.items, {selectedItemProp: "name", searchObjProps: "name",  
-			startText: "", emptyText: emptyTextOpt, asHtmlID: "major", preFill: prefillMajor.items});
-	}
-	if(minorInput.length){
-		minorInput.autoSuggest(minorData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "minor", emptyText: emptyTextOpt, preFill: prefillMinor.items});
-	}
-	if(collegeInput.length){
-		collegeInput.autoSuggest(collegeData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "college", emptyText: emptyTextOpt, preFill: prefillCollege.items});
-	}
-	if(skillsInput.length){
-		skillsInput.autoSuggest(skillsData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "skills", emptyText: emptyTextOpt, preFill: prefillSkills.items});
-	}
-	if(researchInput.length){
-		researchInput.autoSuggest(interestData.items, {selectedItemProp: "name", searchObjProps: "name", 
-			startText: "",asHtmlID: "research", emptyText: emptyTextOpt, preFill: prefillInterests.items});
-	}
+	$.each(autocomplete_els, function(index, value){
+		if(value.length){
+			value.autoSuggest(jsonArrAll[index].items, {selectedItemProp: "name", searchObjProps: "name",  
+				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: jsonArrStud[index].items});
+		}
+	});
 }
 
-function initAddSuggestion()
+function initViewSuggestion()
 {
-	var add_btn = $(".add-suggestion");
+	var add_btn = $(".view-suggestion");
 	if(add_btn.length == 0) {return; }
+	$.each(autocomplete_attr, function(attrIdx, attr){
+		var output = '';
+		$.each(jsonArrAll[attrIdx].items, function(itemIdx, item){
+			output += (item.name + "<br/>");
+		});
+		$("#all-"+attr).html(output);
+	});
 	add_btn.each(function(idx, el){
 		$(el).click(function(){
-			$(".other", $(this).parent().prev()).fadeIn();
+			var name = $(".as-original input[type=text]", $(this).parent().prev()).attr("name");
+			$("#all-"+name).dialog({
+				modal: true
+			});
 		});
 	});
 }
@@ -67,7 +52,7 @@ function EditField()
 		$(this).parent().fadeOut("slow", function(){
 			$(this).next().fadeIn();
 			if($(".as-selections", $(this).parent()).length > 0 || $("select", $(this).parent()).length > 0){
-				$(".add-suggestion", $(this).parent().next()).fadeIn();
+				$(".view-suggestion", $(this).parent().next()).fadeIn();
 			}
 		});
 
@@ -75,44 +60,6 @@ function EditField()
 	});
 }
 
-
-function handleFilterText(){
-	var formEl = $("#add-new-filters");
-	var filters = $(".filters");
-	if(formEl.length == 0) {return; }
-	formEl.submit(function(){
-		var inputFields = $("li input[type=text]", this);
-
-		inputFields.each(function(index, el){
-			if($(el).val().length != 0 && filters.length != 0){
-				filters.append('<input type="checkbox" name="' + $(el).attr("name") + '">' + $(el).val());
-				filters.last().click(handleSingleCheckbox);
-				$(el).val('');
-			}
-		});
-		return false;
-	});
-}
-
-function handleFilterCheckboxes(){
-	var checkboxes = $(".filters input[type=checkbox]");
-	if(checkboxes.length == 0) {return;}
-	checkboxes.each(function(index, el){
-		$(el).click(handleSingleCheckbox);
-	});
-}
-
-function handleSingleCheckbox(){
-	var items = $(".project-list li");
-	console.log("hiding " + items.length + " items");
-	items.hide();
-	var rand1 = Math.floor((Math.random()*500)+1);
-	var rand2 = Math.floor((Math.random()*500)+rand1);
-	console.log("rand1=" + rand1 + " rand2=" + rand2);
-	items.slice(rand1, rand2).show();
-	doPagination();
-	initSideHeight();
-}
 
 function handleAddCourse(){
 	var addbtn = $("#add-course");
@@ -146,7 +93,6 @@ function validateFormSubmit()
 		var hiddenElReq = $(".required .as-selections input[type=hidden]");
 		if(textElReq.length){
 			textElReq.each(function(index, el){
-				console.log($(el).parent().html());
 				if($(el).val().length == 0){
 					e.preventDefault();
 					return false;
@@ -155,7 +101,6 @@ function validateFormSubmit()
 		}
 		if(hiddenElReq.length){
 			hiddenElReq.each(function(index, el){
-				console.log($(el).parent().html());
 				if($(el).val().length == 0){
 					e.preventDefault();
 					return false;
@@ -179,19 +124,6 @@ function hideProject()
 	});
 }
 
-function filterAll()
-{
-	var filterLink = $(".filters .filter-all");
-	if(filterLink.length == 0){return;}
-	var checkboxes = $(".filters input[type=checkbox]");
-	filterLink.click(function(){
-		checkboxes.each(function(idx, el){
-			$(el).prop("checked", true);
-		});
-		handleSingleCheckbox();
-	});
-}
-
 function sortTable()
 {
 	$(".project-list").tablesorter()
@@ -200,12 +132,10 @@ function sortTable()
 
 $(document).ready(function(){
 	initAutosuggest();
-	initAddSuggestion();
+	initViewSuggestion();
 	sortTable();
 	EditField();
 	handleAddCourse();
 	validateFormSubmit();
 	hideProject();
-	filterAll();
-	initSideHeight();
 });

@@ -167,6 +167,24 @@ public class Student implements Serializable {
 		}
 	}
 	
+	public List<? extends MultipleItem> getListAttribute(String attr) {
+		switch (attr.toLowerCase()) {
+			case "college":
+				return getColleges();
+			case "major":
+				return getMajors();
+			case "minor":
+				return getMinors();
+			case "skill":
+				return getSkills();
+			case "interest":
+				return getInterests();
+			default:
+				System.out.println("Invalid attribute");
+				return null;
+		}
+	}
+	
 	/**
 	 * @return the id
 	 */

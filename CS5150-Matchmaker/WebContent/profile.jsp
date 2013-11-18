@@ -5,43 +5,33 @@
 	<jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%@page
-	import="java.util.*,model.*, org.json.JSONObject,javax.persistence.*"%>
+	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
 <%	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
 	 Student s = StudentController.getStudentByNetID(em,"lr437"); 
 	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
-	 
-     /* These JSON objects store all possible values */
-	 JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
-     JSONObject jsonMinor = ListController.getItemJson(em,ItemFactory.MINOR);
-     JSONObject jsonCollege = ListController.getItemJson(em,ItemFactory.COLLEGE);
-     JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-     JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-
-     /* These JSON objects store values specific to the given student */
-     JSONObject jsonStudMajor = s.getObjectJson(s.getMajors());
-     JSONObject jsonStudMinor = s.getObjectJson(s.getMinors());
-     JSONObject jsonStudCollege = s.getObjectJson(s.getColleges());
-     JSONObject jsonStudSkills = s.getObjectJson(s.getSkills());
-     JSONObject jsonStudInterest = s.getObjectJson(s.getInterests());
+	 String[] autocomplete_attr = {"major", "minor", "college", "skill", "interest"};
+	 JSONArray jsonArrAll = new JSONArray();
+	 JSONArray jsonArrStud = new JSONArray();
+	 for(String auto_attr: autocomplete_attr){
+		 jsonArrAll.put(ListController.getItemJson(em, auto_attr));
+		 jsonArrStud.put(s.getObjectJson(s.getListAttribute(auto_attr)));
+	 }
 %>
 <script type="text/javascript">
-         var majorData = <%= jsonMajor %>;
-         var minorData = <%= jsonMinor %>;
-         var collegeData = <%= jsonCollege %>;
-         var skillsData = <%= jsonSkills %>;
-         var interestData = <%= jsonInterest %>;
-         
-         var prefillMajor = <%= jsonStudMajor %>;
-         var prefillMinor = <%= jsonStudMinor %>;
-         var prefillCollege = <%= jsonStudCollege %>;
-         var prefillSkills = <%= jsonStudSkills %>;
-         var prefillInterests = <%= jsonStudInterest %>;
+	var autocomplete_attr = Array("major", "minor", "college", "skills", "research_interests");
+	var jsonArrAll = <%= jsonArrAll %>;
+    var jsonArrStud = <%= jsonArrStud %>;
 </script>
 
 <div class="content">
 	<h1>My Profile</h1>
+	<div id="all-major" title="All Major Suggestions"></div>
+	<div id="all-minor" title="All Minor Suggestions"></div>
+	<div id="all-college" title="All College Suggestions"></div>
+	<div id="all-skills" title="All Skill Suggestions"></div>
+	<div id="all-research_interests" title="All Interest Suggestions"></div>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="save-profile-changes.jsp" method="GET">
@@ -87,7 +77,7 @@
 						</p>
 					</td>
 					<td>
-						<button class="add-suggestion hidden" type="button">Add Suggestion</button>
+						<button class="view-suggestion hidden" type="button">View All Suggestions</button>
 					</td>
 				</tr>
 				<% } %>

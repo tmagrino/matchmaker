@@ -129,7 +129,13 @@ form[name=profile] {
 	float: right;
 	width: 770px;
 }
-
+#all-major,
+#all-minor,
+#all-college,
+#all-skills,
+#all-research_interests{
+	display: none;	
+}
 #filter-list ul.as-selections li.as-original input[type=text] {
 	width: 153px;
 }
