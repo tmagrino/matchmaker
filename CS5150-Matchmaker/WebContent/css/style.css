@@ -70,7 +70,7 @@ body,html {
 	height: 100%;
 }
 td.attr-label{
-	width: 70px;	
+	width: 135px;	
 }
 h2.subheading {
 	margin-left: 38px;
@@ -92,15 +92,6 @@ img.avatar {
 
 #sidenav a.selected,#sidenav li a:hover {
 	color: #f9966b;
-}
-
-form[name='profile-form'] input[type='text'] {
-	padding: 10px;
-}
-
-form[name='profile-form'] textarea {
-	width: 382px;
-	height: 157px;
 }
 
 .info td.field {
@@ -129,24 +120,17 @@ form[name=profile] {
 	float: right;
 	width: 770px;
 }
-#all-major,
-#all-minor,
-#all-college,
-#all-skills,
-#all-research_interests{
-	display: none;	
-}
 #filter-list ul.as-selections li.as-original input[type=text] {
 	width: 153px;
 }
 
-form[name=profile-form] .project-info textarea {
-	width: 510px;
-}
-
-.photo-info input[type='text'] {
+form .info input[type='text'],
+form .info textarea {
 	width: 494px;
 	padding: 10px;
+}
+form .info textarea {
+	height: 157px;
 }
 
 .info ul.as-selections {

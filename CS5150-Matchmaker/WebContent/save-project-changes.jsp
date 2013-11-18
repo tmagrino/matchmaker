@@ -10,7 +10,7 @@
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
-	ProjectController.createProject(em, request.getParameter("title"), request.getParameter("description"), 
+	ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
 			r);
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);

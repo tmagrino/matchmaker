@@ -17,9 +17,13 @@ function initAutosuggest()
 	});
 	var emptyTextOpt = "No results found.  Press Tab to add new entry.";
 	$.each(autocomplete_els, function(index, value){
+		if(jsonArrStud.length == 0)
+			prefill = null;
+		else
+			prefill = jsonArrStud[index].items;
 		if(value.length){
 			value.autoSuggest(jsonArrAll[index].items, {selectedItemProp: "name", searchObjProps: "name",  
-				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: jsonArrStud[index].items});
+				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: prefill});
 		}
 	});
 }

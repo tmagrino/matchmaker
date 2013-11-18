@@ -27,11 +27,11 @@
 
 <div class="content">
 	<h1>My Profile</h1>
-	<div id="all-major" title="All Major Suggestions"></div>
-	<div id="all-minor" title="All Minor Suggestions"></div>
-	<div id="all-college" title="All College Suggestions"></div>
-	<div id="all-skills" title="All Skill Suggestions"></div>
-	<div id="all-research_interests" title="All Interest Suggestions"></div>
+	<div id="all-major" class="hidden" title="All Major Suggestions"></div>
+	<div id="all-minor" class="hidden" title="All Minor Suggestions"></div>
+	<div id="all-college" class="hidden" title="All College Suggestions"></div>
+	<div id="all-skills" class="hidden" title="All Skill Suggestions"></div>
+	<div id="all-research_interests" class="hidden" title="All Interest Suggestions"></div>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="save-profile-changes.jsp" method="GET">

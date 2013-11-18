@@ -10,18 +10,24 @@
 	EntityManager em = emf.createEntityManager();
 	Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); 
 	String[] attributes = {"Email", "URL", "Department", "Research Area"};
-	/* Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {"major", "minor", "college", "skill", "interest"};
+	// Update Research Area function to retrieve Interest objects.
+	String[] autocomplete_attr = {"major", "interest"};
 	JSONArray jsonArrAll = new JSONArray();
 	JSONArray jsonArrStud = new JSONArray();
 	for(String auto_attr: autocomplete_attr){
 		jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-		jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
+	//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
 	}
-	*/
 %>
+<script type="text/javascript">
+	var autocomplete_attr = Array("department", "research_area");
+	var jsonArrAll = <%= jsonArrAll %>;
+    var jsonArrStud = <%= jsonArrStud %>;
+</script>
 <div class="content">
 	<h1>My Profile</h1>
+	<div id="all-department" class="hidden" title="All Department Suggestions"></div>
+	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="#" method="GET">
