@@ -45,7 +45,6 @@
 					<td class="field">
 						<p class="read-only <%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
 							<%=s.getAttribute(attr) %>
-							<% if(s.getAttribute(attr).length() > 90) %>
 							<a class="edit-btn <%= s.getAttribute(attr).length() > 80 ? "extended" : "" %>" href="#"> 
 								<img src="images/pencil_small.png" alt="edit" />
 							</a>

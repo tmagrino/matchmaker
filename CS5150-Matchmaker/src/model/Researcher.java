@@ -58,9 +58,26 @@ public class Researcher implements Serializable {
 		this.department = department;
 		this.webpage = webpage;
 		this.researchArea = researchArea;
-		//this.department = "Computer Science Department";
-		//this.webpage = "www.cs.cornell.edu";
-		//this.researchArea = "Computer Science";
+	}
+	
+	public String getAttribute(String attr) {
+		switch (attr.toLowerCase()) {
+			case "name":
+				return name;
+			case "netID":
+				return netID;
+			case "email":
+				return email;
+			case "url":
+				return webpage;
+			case "department":
+				return department;
+			case "research area":
+				return researchArea;
+			default:
+				System.out.println("Invalid attribute");
+				return null;
+		}
 	}
 
 	public int getId() {

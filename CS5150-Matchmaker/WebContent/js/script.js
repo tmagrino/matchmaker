@@ -8,7 +8,8 @@ function doPagination() {
 }
 
 function initAutosuggest()
-{ 
+{
+	if(typeof autocomplete_attr === 'undefined' || autocomplete_attr == null){return;}
 	var autocomplete_els = Array();
 	$.each(autocomplete_attr, function(index, value){
 		autocomplete_els.push($(".info input[name=" + value + "], " +
@@ -25,6 +26,7 @@ function initAutosuggest()
 
 function initViewSuggestion()
 {
+	if(typeof autocomplete_attr === 'undefined' || autocomplete_attr == null){return;}
 	var add_btn = $(".view-suggestion");
 	if(add_btn.length == 0) {return; }
 	$.each(autocomplete_attr, function(attrIdx, attr){
@@ -126,7 +128,9 @@ function hideProject()
 
 function sortTable()
 {
-	$(".project-list").tablesorter()
+	var proj_list = $(".project-list");
+	if(proj_list.length == 0){ return;}
+	proj_list.tablesorter()
 	.tablesorterPager({container: $("#pager"), positionFixed: false});
 }
 
