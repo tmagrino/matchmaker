@@ -31,7 +31,7 @@ public class UserController {
 	
 	@SuppressWarnings("unchecked")
 	public static User findUser(EntityManager em, String netid) {
-	    String query = "select s from USER s where s.netID = \"" + netid +"\"";
+	    String query = "select * from USER s where s.netID = \"" + netid +"\"";
         List<User> mylist = (List<User>) em.createQuery(query).getResultList();
         try {
         	return mylist.get(0);

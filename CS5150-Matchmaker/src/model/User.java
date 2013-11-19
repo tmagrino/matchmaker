@@ -9,9 +9,13 @@ public class User {
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	@Column(name = "NAME", nullable = false, length = 75)
 	private String name;
+	@Column(name = "EMAIL", nullable = false)
 	private String email;
+	@Column(name = "NETID", nullable = false)
 	private String netid;
+	@Column(name = "ISADMIN", nullable = false)
 	boolean isAdmin;
 	@OneToOne
 	@JoinColumn(nullable = true)
