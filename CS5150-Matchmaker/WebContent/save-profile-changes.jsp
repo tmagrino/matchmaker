@@ -25,6 +25,7 @@
 	   StudentController.editGPA(em, s, gpa);
    }
    if (request.getParameter("as_values_major").length()>0){
+	   
 	   StudentController.update(em,s,request.getParameter("as_values_major"),ItemFactory.MAJOR); 
    }
    if (request.getParameter("as_values_minor").length()>0){
@@ -33,10 +34,10 @@
    if (request.getParameter("as_values_skills").length()>0){
 	   StudentController.update(em,s,request.getParameter("as_values_skills"),ItemFactory.SKILL); 
    }
-   if (request.getParameter("as_values_research").length()>0){
-	   StudentController.update(em,s,request.getParameter("as_values_research"),ItemFactory.INTEREST); 
+   if (request.getParameter("as_values_research_interests").length()>0){
+	   StudentController.update(em,s,request.getParameter("as_values_research_interests"),ItemFactory.INTEREST); 
    }
-   if (request.getParameter("as_values_skills").length()>0){
+   if (request.getParameter("as_values_college").length()>0){
 	   StudentController.update(em,s,request.getParameter("as_values_college"),ItemFactory.COLLEGE); 
    }
 
