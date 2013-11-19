@@ -20,7 +20,7 @@
 				        </script>
 						<h1>Students</h1>
 						<form name="filter-list" id="filter-list">
-							<input type="submit" value="Filter"/>
+							<!-- <input type="submit" value="Filter"/> -->
 							<table class="project-list">
 								<jsp:include page="stud-filters.jsp"/>
 								<%List<Student> studentList = new ArrayList<Student>();

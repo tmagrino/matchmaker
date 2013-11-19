@@ -2,7 +2,7 @@
 	<tr>
 		<th></th>
 		<th>Project Name</th>
-		<th>Researcher Name</th>
+		<th>Project Lead</th>
 		<th>Project URL</th>
 		<th>Description</th>
 		<th>Research Area</th>
