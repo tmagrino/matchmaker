@@ -21,4 +21,56 @@ public class Experience {
 	private String location;
 	private String description;
 	
+	public Experience() {
+		
+	}
+	
+	Experience(Date startDate, Date endDate, String jobTitle, String location,
+			String description) {
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.jobTitle = jobTitle;
+		this.location = location;
+		this.description = description;
+	}
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public String getJobTitle() {
+		return jobTitle;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+	public void setJobTitle(String jobTitle) {
+		this.jobTitle = jobTitle;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }

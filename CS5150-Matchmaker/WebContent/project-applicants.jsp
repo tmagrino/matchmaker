@@ -12,12 +12,14 @@
     <jsp:param name="sidebar_selected" value="<%= proj_sidebar %>"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 					<div class="content">
 						<%
-				        JSONObject jsonMajor = MajorController.getMajorJson();
-				        JSONObject jsonSkills = SkillController.getSkillJson();
-				        JSONObject jsonInterest = InterestController.getInterestJson();
+						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+					 	EntityManager em = emf.createEntityManager();
+					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
+				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
@@ -29,23 +31,23 @@
 							<input type="submit" value="Filter"/>
 							<table class="project-list">
 									<jsp:include page="stud-filters.jsp"/>
-									<% 
-									List<Student> studentList = new ArrayList<Student>();
-									
-									if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
-										studentList = StudentController.getStudentByFilter(
-												"", "", "", "","","");
-									}
-									//List<Student> studentList = StudentController.getAllStudents();
-									else{studentList = StudentController.getStudentByFilter(
-											request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");
-									}
-									for(int i=1;i<=100;i+=2) { 
-										for(Student s: studentList)
-									{
-									List<Major> maj = s.getMajors();
-									List<Interest> ints = s.getInterests();
-									List<Skill> skls = s.getSkills();
+									<%
+										List<Student> studentList = new ArrayList<Student>();
+																							
+																							if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
+																								studentList = StudentController.getStudentByFilter(em,
+																										"", "", "", "","","");
+																							}
+																							//List<Student> studentList = StudentController.getAllStudents();
+																							else{studentList = StudentController.getStudentByFilter(em,
+																									request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");
+																							}
+																							for(int i=1;i<=100;i+=2) { 
+																								for(Student s: studentList)
+																							{
+																							List<Major> maj = s.getMajors();
+																							List<Interest> ints = s.getInterests();
+																							List<Skill> skls = s.getSkills();
 									%>
 <%-- 									class = "name-<%=s.getId()%> gpa-<%=s.getId()%> <%for(Major m : maj) --%>
 <%-- 												%>major-<%=m.getId()%> year-<%=s.getYear()%> <%for(Interest in : ints) --%>
@@ -58,10 +60,10 @@
 											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
-											<td><%=s.getMajorString() %></td>
+											<td><%=s.getString(s.getMajors()) %></td>
 											<td><%=s.getYear() %></td>
-											<td><%=s.getTruncatedSkillString() %></td>
-											<td><%=s.getTruncatedInterestString() %></td>
+											<td><%=s.getTruncatedString(s.getSkills()) %></td>
+											<td><%=s.getTruncatedString(s.getInterests()) %></td>
 										</tr>
 									<% }} %>
 								</tbody>

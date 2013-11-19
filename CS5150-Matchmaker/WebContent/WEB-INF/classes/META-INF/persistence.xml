@@ -13,6 +13,8 @@
 		<class>model.Experience</class>
 		<class>model.StudentSettings</class>
 		<class>model.Course</class>
+		<class>model.User</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
 			<property name="javax.persistence.jdbc.user" value="root"/>

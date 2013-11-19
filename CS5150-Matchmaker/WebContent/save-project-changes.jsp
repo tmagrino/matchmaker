@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@page import="java.util.*,model.*"%>
+    <%@page import="java.util.*,model.*,javax.persistence.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 </head>
 <body>
-<% StudentController.updateStudent(new Student(),request.getParameter("name"), "jb20",
-		Double.parseDouble(request.getParameter("gpa")),request.getParameter("email"),
-		YearController.getYear(request.getParameter("grad-year")), 
-		CollegeController.parseCollege(request.getParameter("as_values_college")),
-		MajorController.parseMajor(request.getParameter("as_values_major")),
-		MinorController.parseMinor(request.getParameter("as_values_minor")),
-		SkillController.parseSkill(request.getParameter("as_values_skills")),
-		null, InterestController.parseInterest(request.getParameter("as_values_research")),
-		null);
+<% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+   EntityManager em = emf.createEntityManager();
+   Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
+	ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
+			r);
+
+   response.setStatus(response.SC_MOVED_TEMPORARILY);
+   response.setHeader("Location", "researcher-profile.jsp"); 
 %>
 
 

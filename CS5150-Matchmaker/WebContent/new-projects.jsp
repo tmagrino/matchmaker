@@ -5,11 +5,13 @@
     <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 					<div class="content">
-						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 						<%
-				        JSONObject jsonMajor = MajorController.getMajorJson();
-				        JSONObject jsonSkills = SkillController.getSkillJson();
-				        JSONObject jsonInterest = InterestController.getInterestJson();
+						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+					 	EntityManager em = emf.createEntityManager();
+					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
+				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;

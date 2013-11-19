@@ -34,11 +34,13 @@ package model;
  */
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
 @Entity(name = "INTEREST")
-public class Interest implements Comparable<Interest>{
+public class Interest extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -52,24 +54,51 @@ public class Interest implements Comparable<Interest>{
 		
 	}
 	
-	public long getId(){
-		return id;
+	Interest(String name) {
+		this.description = name;
 	}
 	
-	public Interest(String name) {
-		this.description = name;
+	public long getId(){
+		return id;
 	}
 	
 	public String getDescription() {
 		return this.description;
 	}
 	
+	public List<Student> getStudents() {
+		return students.subList(0, students.size());
+	}
+	@Override
 	void setDescription(String name) {
 		this.description = name;
 	}
+	
+	void addStudent(Student s) {
+		if (!students.contains(s)) {
+			students.add(s);
+			if (!s.getInterests().contains((this))) {
+				s.addInterest(this);
+			}
+		}
+	}
+	
+	void removeStudent(Student s) {
+		if (this.students.remove(s)) {
+			if (s.getInterests().contains(this)) {
+				s.removeInterest(this);
+			}
+		}
+	}
+	@Override
+	void removeStudents() {
+		for (Student s : students) {
+			removeStudent(s);
+		}
+	}
 
 	@Override
-	public int compareTo(Interest o) {
+	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
 	}
 }

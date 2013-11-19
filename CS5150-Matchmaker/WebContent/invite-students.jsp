@@ -4,12 +4,14 @@
     <jsp:param name="sidebar_selected" value="invite"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
-<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject"%>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 					<div class="content">
 						<%
-				        JSONObject jsonMajor = MajorController.getMajorJson();
-				        JSONObject jsonSkills = SkillController.getSkillJson();
-				        JSONObject jsonInterest = InterestController.getInterestJson();
+						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+					 	EntityManager em = emf.createEntityManager();
+					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
+				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
@@ -24,11 +26,11 @@
 								<%List<Student> studentList = new ArrayList<Student>();
 								
 								if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
-									studentList = StudentController.getStudentByFilter(
+									studentList = StudentController.getStudentByFilter(em,
 											"", "", "", "","","");
 								}
 								//List<Student> studentList = StudentController.getAllStudents();
-								else{studentList = StudentController.getStudentByFilter(
+								else{studentList = StudentController.getStudentByFilter(em,
 										request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","",""); 
 									for(Student s: studentList)
 									{
@@ -40,10 +42,10 @@
 											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
-											<td><%=s.getMajorString() %></td>
+											<td><%=s.getString(s.getMajors()) %></td>
 											<td><%=s.getYear() %></td>
-											<td><%=s.getSkillString() %></td>
-											<td><%=s.getInterestString() %></td>
+											<td><%=s.getString(s.getSkills()) %></td>
+											<td><%=s.getString(s.getInterests()) %></td>
 										</tr>
 								<%}} %>
 								</tbody>

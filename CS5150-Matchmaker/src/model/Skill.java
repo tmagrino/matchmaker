@@ -36,7 +36,7 @@ import java.util.List;
  *   
  */
 @Entity(name = "SKILL")
-public class Skill implements Comparable<Skill>{
+public class Skill extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -49,22 +49,52 @@ public class Skill implements Comparable<Skill>{
 	public Skill() {
 		
 	}
+	
+	Skill(String name) {
+		this.description = name;
+	}
+	
 	public long getId(){
 		return id;
-	}
-	public Skill(String name) {
-		this.description = name;
 	}
 	
 	public String getDescription() {
 		return this.description;
 	}
 	
+	public List<Student> getStudents() {
+		return students.subList(0, students.size());
+	}
+	
 	void setDescription(String name) {
 		this.description = name;
 	}
+	
+	void addStudent(Student s) {
+		if (!students.contains(s)) {
+			students.add(s);
+			if (!s.getSkills().contains((this))) {
+				s.addSkill(this);
+			}
+		}
+	}
+	
+	void removeStudent(Student s) {
+		if (this.students.remove(s)) {
+			if (s.getSkills().contains(this)) {
+				s.removeSkill(this);
+			}
+		}
+	}
 	@Override
-	public int compareTo(Skill o) {
+	void removeStudents() {
+		for (Student s : students) {
+			removeStudent(s);
+		}
+	}
+	
+	@Override
+	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
 	}
 }

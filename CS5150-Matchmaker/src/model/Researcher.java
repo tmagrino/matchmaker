@@ -32,6 +32,8 @@ public class Researcher implements Serializable {
 	private String researchArea;
 	@Column(name = "WEBPAGE", nullable = true)
 	private String webpage;
+	@OneToOne (mappedBy = "researcher")
+	private User user;
 	@ManyToMany
 	@JoinTable(
 			name = "PROJECTS_MAPPING",
@@ -43,16 +45,39 @@ public class Researcher implements Serializable {
 	//private BufferedImage profilePicture;
 	//private ResearcherSettings settings;
 
+	
 	public Researcher() {
 		
 	}
-	public Researcher(String name,String netID,String email){
+	
+	public Researcher(String name,String netID,String email, String department,
+			String webpage, String researchArea) {
 		this.name = name;
 		this.netID = netID;
 		this.email = email;
-		this.department = "Computer Science Department";
-		this.webpage = "www.cs.cornell.edu";
-		this.researchArea = "Computer Science";
+		this.department = department;
+		this.webpage = webpage;
+		this.researchArea = researchArea;
+	}
+	
+	public String getAttribute(String attr) {
+		switch (attr.toLowerCase()) {
+			case "name":
+				return name;
+			case "netID":
+				return netID;
+			case "email":
+				return email;
+			case "url":
+				return webpage;
+			case "department":
+				return department;
+			case "research area":
+				return researchArea;
+			default:
+				System.out.println("Invalid attribute");
+				return null;
+		}
 	}
 
 	public int getId() {
@@ -122,8 +147,29 @@ public class Researcher implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	/**
+	 * @return the user
+	 */
+	public User getUser() {
+		return user;
+	}
 	
-	
-
-
+	/**
+	 * @param user the user to set
+	 */
+	void setUser(User user) {
+		if (user == null) {
+			if (this.user != null) {
+				if (this.user.getResearcher() != null) {
+					User u = this.user;
+					this.user = null;
+					u.setResearcher(null);
+				}
+			}
+		}
+		this.user = user;
+		if (user.getResearcher() != this) {
+			user.setResearcher(this);
+		}
+	}
 }

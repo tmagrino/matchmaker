@@ -37,7 +37,7 @@ import java.util.List;
  */
 
 @Entity(name = "MAJOR")
-public class Major implements Comparable<Major>{
+public class Major extends MultipleItem  {
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -51,7 +51,7 @@ public class Major implements Comparable<Major>{
 		
 	}
 	
-	public Major(String name) {
+	Major(String name) {
 		this.description = name;
 	}
 	
@@ -63,12 +63,40 @@ public class Major implements Comparable<Major>{
 		return this.description;
 	}
 	
+	public List<Student> getStudents() {
+		return students.subList(0, students.size());
+	}
+	
 	void setDescription(String name) {
 		this.description = name;
 	}
+	
+	void addStudent(Student s) {
+		if (!students.contains(s)) {
+			students.add(s);
+			if (!s.getMajors().contains((this))) {
+				s.addMajor(this);
+			}
+		}
+	}
+	
+	void removeStudent(Student s) {
+		if (this.students.remove(s)) {
+			if (s.getMajors().contains(this)) {
+				s.removeMajor(this);
+			}
+		}
+	}
+	
+	void removeStudents() {
+		for (Student s : students) {
+			removeStudent(s);
+		}
+	}
 
 	@Override
-	public int compareTo(Major o) {
+	public int compareTo(MultipleItem o) {
+		// TODO Auto-generated method stub
 		return getDescription().compareTo(o.getDescription());
 	}
 }

@@ -37,7 +37,7 @@ import java.util.List;
  */
 
 @Entity(name = "MINOR")
-public class Minor implements Comparable<Minor>{
+public class Minor extends MultipleItem{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -51,24 +51,51 @@ public class Minor implements Comparable<Minor>{
 		
 	}
 	
-	long getId(){
-		return id;
+	Minor(String name) {
+		this.description = name;
 	}
 	
-	public Minor(String name) {
-		this.description = name;
+	public long getId(){
+		return id;
 	}
 	
 	public String getDescription() {
 		return this.description;
 	}
 	
+	public List<Student> getStudents() {
+		return students.subList(0, students.size());
+	}
+	
 	void setDescription(String name) {
 		this.description = name;
 	}
+	@Override
+	void addStudent(Student s) {
+		if (!students.contains(s)) {
+			students.add(s);
+			if (!s.getMinors().contains((this))) {
+				s.addMinor(this);
+			}
+		}
+	}
+	@Override
+	void removeStudent(Student s) {
+		if (this.students.remove(s)) {
+			if (s.getMinors().contains(this)) {
+				s.removeMinor(this);
+			}
+		}
+	}
+	@Override
+	void removeStudents() {
+		for (Student s : students) {
+			removeStudent(s);
+		}
+	}
 
 	@Override
-	public int compareTo(Minor o) {
+	public int compareTo(MultipleItem o) {
 		
 		return getDescription().compareTo(o.getDescription());
 	}

@@ -3,11 +3,22 @@ package model;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Course {
+public class Course{
 	private String coursenum;
 	private String title;
 	private String grade;
 	private String semester;
+	
+	public Course() {
+		
+	}
+	
+	public Course(String coursenum, String title, String grade, String semester) {
+		this.coursenum = coursenum;
+		this.title = title;
+		this.grade = grade;
+		this.semester = semester;
+	}
 
 	public String getCoursenum(){
 		return coursenum;
@@ -35,6 +46,11 @@ public class Course {
 	}
 	public void setSemester(String semester){
 		this.semester = semester;
+	}
+
+
+	public int compareTo(Course o) {
+		 return getTitle().compareTo(o.getTitle());
 	}
 
 
