@@ -122,7 +122,7 @@ public class PopulateDatabase {
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.SKILL);
+					ListController.createItem(em, str, ItemFactory.DEPARTMENT);
 				}
 			}
 			catch (Exception e) {
