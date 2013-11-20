@@ -18,7 +18,6 @@
 	Student s = null;
 	User u = null;
 	Researcher r = null;
-	System.out.println(netID);
 	
 	if(netID != null){
 		u = UserController.findUser(em, netID);
@@ -34,6 +33,18 @@
 	Boolean isResearcher = false;
 	if(r != null){
 		isResearcher = true;
+	}
+	
+	Boolean isAdmin = false;
+	if(u != null){
+		if(u.isAdmin()){
+			isAdmin = true;
+		}
+	}
+	
+	Boolean searchCompleted = false;
+	if(!isAdmin && !isStudent && !isResearcher && netID != null){
+		searchCompleted = true;
 	}
 %>
 		
@@ -54,17 +65,17 @@
 								 	<input type="Submit" value="Search" size=20  style="width: 10em; height:2em"/>
 								 	</form>
 									<br><br>
-									<% if(netID != null) {%>
+									<% if(netID != null && u != null) {%>
 									<table cellspacing=5 cellpadding=10 border=1>
 									<tr>
 										<td valign="top"><img src="images/blank.png" height=150 width=150/></td>
 										<td>
 								 		<table cellspacing=10 cellpadding=10 align=center border="0">
 								 		<tr><td><h3>Name:</h3></td>
-								 		<td><input type="text" value="<%=s.getName()%>" size=35/></td>
+								 		<td><input type="text" value="<%= u.getName()%>" size=35/></td>
 										</tr>
 										<tr><td><h3>NetID:</h3></td>
-									 		<td><input type="text" value="<%=s.getNetID() %>" size=35/></td>
+									 		<td><input type="text" value="<%=u.getNetid() %>" size=35/></td>
 										</tr>
 									    <tr><td><h3>Role:</h3></td>
 										 <td align="left">
@@ -78,7 +89,11 @@
 										 		<%} else{ %>
 										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Researcher"/>Researcher</li>
 										 		<% }%>
+										 		<% if(isAdmin){ %>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Admin" checked="checked"/>Administrator</li>
+										 		<%} else{%>
 										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Admin"/>Administrator</li>
+										 		<%} %>
 									 	</td>
 										</tr>
 										<tr>
@@ -102,6 +117,8 @@
 									</td>
 									</tr>
 									</table>
+									<% } else if(searchCompleted){ %>
+									<h3>No User found!!</h3>
 									<%} %>
 							</div>
 							</li>
