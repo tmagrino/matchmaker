@@ -49,6 +49,9 @@ public class ItemFactory {
 		if (item instanceof Skill){
 			return SKILL;
 		}
+		if (item instanceof Department) {
+			return DEPARTMENT;
+		}
 		return null;
 	}
 	public static String getQuery(MultipleItem item){
@@ -67,6 +70,9 @@ public class ItemFactory {
 		}
 		if (item instanceof Interest){
 			query = "select m from INTEREST m";
+		}
+		if (item instanceof Department) {
+			query = "select m from DEPARTMENT m";
 		}
 		return query;
 	}
@@ -87,6 +93,10 @@ public class ItemFactory {
 		if (type.toLowerCase() == INTEREST){
 			query = "select m from INTEREST m";
 		}
+		if (type.toLowerCase() == DEPARTMENT){
+			query = "select m from DEPARTMENT m";
+		}
+		
 		return query;
 	}
 }
