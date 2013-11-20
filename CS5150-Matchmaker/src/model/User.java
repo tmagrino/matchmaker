@@ -35,6 +35,10 @@ public class User {
 		this.isAdmin = false;
 		this.student = null;
 		this.researcher = null;
+		
+		if(this.netid.equalsIgnoreCase("ad234")){
+			this.isAdmin = true;
+		}
 	}
 
 	/**
