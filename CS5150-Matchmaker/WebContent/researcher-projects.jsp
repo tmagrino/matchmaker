@@ -61,6 +61,8 @@
 							</table>
 						</form>
 						<jsp:include page="pager.jsp"/>
+						<br>
+						<a href="proj-profile.jsp">Add New Project</a>
 					</div>				
 				</div>
 			</div>
