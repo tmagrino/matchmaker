@@ -11,10 +11,6 @@
 	<script src="js/jquery.autoSuggest.minified.js" type="text/javascript"></script>
 	<title>Matchmaker - Student Profile</title>
 </head>
-    <!--[if IE 7]>         <body class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-    <!--[if IE 8]>         <body class="lt-ie10 lt-ie9"> <![endif]-->
-    <!--[if IE 9]>         <body class="lt-ie10"> <![endif]-->
-    <!--[if gt IE 9]><!--> <body> <!--<![endif]-->
 	<div id="top-bar" class="clearfix">
 		<ul class="login-nav">
 			<li>Welcome, Jane Doe</li>
