@@ -21,7 +21,7 @@
 	System.out.println(netID);
 	
 	if(netID != null){
-		u = UserController.findUser(em, netID);	
+		u = UserController.findUser(em, netID);
 		s = StudentController.getStudentByNetID(em, netID);
 		r = ResearcherController.getResearcherByNetID(em, netID);
 	}

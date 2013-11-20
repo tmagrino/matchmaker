@@ -60,7 +60,8 @@
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 	
-<%	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+<%	 
+	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
 	 User u = UserController.findUser(em, "amg289");
 	 Student s = StudentController.getStudentByNetID(em, "amg289");
@@ -70,6 +71,7 @@
 	 if(s != null){
 		 isStudent = true;
 	 }
+	 
 	 Boolean isResearcher = false;
 	 if(r != null){
 		 isResearcher = true;
