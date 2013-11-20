@@ -190,13 +190,18 @@ public class PopulateDatabase {
 					String name = researcherStrings[0];
 					String netID = researcherStrings[1];
 					String email = researcherStrings[2];
-					String department = researcherStrings[3];
+					String[] deps = researcherStrings[3].split(";");
+					LinkedList<Department> departments = new LinkedList<Department>();
+					for (String s : deps) {
+						departments.add((Department) ListController.getItemByDescription(em, s, 
+								ItemFactory.DEPARTMENT));
+					}
 					String webpage = researcherStrings[4];
 					String researchArea = researcherStrings[5];
 					
 					User user = UserController.createUser(em, name, email, netID);
 					Researcher r = ResearcherController.createResearcher(em,name, netID, 
-							email, department, webpage, researchArea, user);
+							email, departments, webpage, researchArea, user);
 				}
 			}
 			catch (Exception e) {

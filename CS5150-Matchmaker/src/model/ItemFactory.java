@@ -8,6 +8,7 @@ public class ItemFactory {
 	public static final String MINOR = "minor";
 	public static final String INTEREST = "interest";
 	public static final String COLLEGE = "college";
+	public static final String DEPARTMENT = "department";
 	
 	
 	public static MultipleItem create(String type, String name){
@@ -25,6 +26,9 @@ public class ItemFactory {
 		}
 		if (type == COLLEGE){
 			return new College(name);
+		}
+		if (type == DEPARTMENT) {
+			return new Department(name);
 		}
 		
 		return null;

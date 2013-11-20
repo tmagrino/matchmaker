@@ -466,6 +466,7 @@ public class Student implements Serializable {
 			}
 		}
 	}
+	
 	void remove(String type){
 		if(type.toLowerCase() == ItemFactory.MAJOR){
 			this.removeMajors();

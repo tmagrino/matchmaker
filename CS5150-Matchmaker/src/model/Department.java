@@ -7,13 +7,12 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "DEPARTMENT")
-public class Department {
+public class Department extends MultipleItem {
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@Column(name="DEPARTMENT")
 	private String description;
-	
 	@ManyToMany(mappedBy = "departments")
 	private List<Researcher> researchers;
 	
@@ -65,5 +64,23 @@ public class Department {
 
 	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
+	}
+
+	@Override
+	void removeStudents() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void addStudent(Student s) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void removeStudent(Student s) {
+		// TODO Auto-generated method stub
+		
 	}
 }

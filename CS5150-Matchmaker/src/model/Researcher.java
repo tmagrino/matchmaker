@@ -26,8 +26,6 @@ public class Researcher implements Serializable {
 	private String netID;
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
-	@Column(name = "DEPARTMENT", nullable = false)
-	private String department;
 	@Column(name = "AREA", nullable = false)
 	private String researchArea;
 	@Column(name = "WEBPAGE", nullable = true)
@@ -41,6 +39,13 @@ public class Researcher implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")}
 	)
 	private List<Project> projects;
+	@ManyToMany
+	@JoinTable(
+			name = "DEPARTMENTS_TABLE",
+			joinColumns = {@JoinColumn(name="STUD_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="DEPARTMENT_ID", referencedColumnName="ID")}
+	)
+	private List<Department> departments;
 	
 	//private BufferedImage profilePicture;
 	//private ResearcherSettings settings;
@@ -50,12 +55,13 @@ public class Researcher implements Serializable {
 		
 	}
 	
-	public Researcher(String name,String netID,String email, String department,
+	public Researcher(String name,String netID,String email, 
+			List<Department> departments,
 			String webpage, String researchArea) {
 		this.name = name;
 		this.netID = netID;
 		this.email = email;
-		this.department = department;
+		this.departments = departments;
 		this.webpage = webpage;
 		this.researchArea = researchArea;
 	}
@@ -70,8 +76,8 @@ public class Researcher implements Serializable {
 				return email;
 			case "url":
 				return webpage;
-			case "department":
-				return department;
+			case "departments":
+				return "TODO: departments";
 			case "research area":
 				return researchArea;
 			default:
@@ -112,12 +118,20 @@ public class Researcher implements Serializable {
 		this.email = email;
 	}
 	
-	public String getDepartment() {
-		return department;
+	public List<Department> getDepartments() {
+		return departments;
 	}
-
-	public void setDepartment(String department) {
-		this.department = department;
+	
+	void addDepartment(Department d) {
+		
+	}
+	
+	void removeDepartment(Department d) {
+		
+	}
+	
+	void removeDepartments() {
+		
 	}
 
 	public String getResearchArea() {

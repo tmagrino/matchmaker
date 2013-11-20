@@ -10,12 +10,13 @@ import javax.persistence.Persistence;
 
 public class ResearcherController {
 
-	public static Researcher createResearcher(EntityManager em, String name,String netID,String email, String department,
+	public static Researcher createResearcher(EntityManager em, String name,
+			String netID,String email, List<Department> departments,
 			String webpage, String researchArea, User user) {
         EntityTransaction tx = em.getTransaction();
 		tx.begin();
         
-        Researcher r = new Researcher(name, netID, email, department,
+        Researcher r = new Researcher(name, netID, email, departments,
         				webpage, researchArea);
         user.setResearcher(r);
         em.persist(r);
@@ -26,6 +27,10 @@ public class ResearcherController {
 	
 	public static void deleteResearcher(Researcher r) {
 		//TODO:
+	}
+	
+	public static void addProject(EntityManager em, Project p) {
+		
 	}
 	
 	public static Researcher getResearcherByNetID(EntityManager em, String netid) {
@@ -65,24 +70,4 @@ public class ResearcherController {
         	return null;
         }
 	}
-	
-	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
-			String department, String researchArea, String webpage) {
-		researcher.setName(name);
-		researcher.setNetID(netID);
-		researcher.setEmail(email);
-		researcher.setDepartment(department);
-		researcher.setResearchArea(researchArea);
-		researcher.setWebpage(webpage);
-		
-        EntityTransaction tx = em.getTransaction();
-        
-        tx.begin();
-        String deleteQuery = "delete from RESEARCHER where id = " + researcher.getId();
-        em.createQuery(deleteQuery);
-        em.persist(researcher);
-        tx.commit();
-	}
-
-
 }

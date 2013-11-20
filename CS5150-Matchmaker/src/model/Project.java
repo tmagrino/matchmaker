@@ -28,13 +28,12 @@ public class Project implements Serializable {
 	private List<Researcher> researchers;
 	@OneToMany(mappedBy = "applicationProject")
 	private List<Application> applications;
-	@Column(name = "OPENINGS", nullable = false)
-	private int openings;
 	//private MinimumRequirements requirements;
 	
 	public Project() {
 		
 	}
+	
 	public Project(String name, String description, List<Researcher> res) {
 		this.name = name;
 		this.description = description;
@@ -101,14 +100,6 @@ public class Project implements Serializable {
 	
 	public List<Application> getApplications() {
 		return applications;
-	}
-
-	public int getOpenings() {
-		return openings;
-	}
-
-	void setOpenings(int openings) {
-		this.openings = openings;
 	}
 
 	public static long getSerialversionuid() {

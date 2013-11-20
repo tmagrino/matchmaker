@@ -31,6 +31,69 @@ public class ProjectController {
 		
 	}
 	
+	public static void editName(EntityManager em, Project p, String name) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.setName(name);
+		
+		tx.commit();
+	}
+	
+	public static void editDescription(EntityManager em, Project p, String desc) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.setDescription(desc);
+		
+		tx.commit();
+	}
+	
+	public static void addApplication(EntityManager em, Project p, String desc) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.setDescription(desc);
+		
+		tx.commit();
+	}
+	
+	public static void removeApplication(EntityManager em, Project p, String desc) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.setDescription(desc);
+		
+		tx.commit();
+	}
+	
+	public static void addResearcher(EntityManager em, Project p, String desc) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.setDescription(desc);
+		
+		tx.commit();
+	}
+	
+	public static void removeResearcher(EntityManager em, Project p, String desc) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.setDescription(desc);
+		
+		tx.commit();
+	}
+	
+	public static void editYear(EntityManager em, Student s, Year year) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		s.setYear(year);
+		
+		tx.commit();
+	}
+	
 	public static List<Project> getProjectList(EntityManager em) {
         EntityTransaction tx = em.getTransaction();
         try {

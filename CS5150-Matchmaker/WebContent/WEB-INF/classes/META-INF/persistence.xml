@@ -14,6 +14,7 @@
 		<class>model.StudentSettings</class>
 		<class>model.Course</class>
 		<class>model.User</class>
+		<class>model.Department</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
