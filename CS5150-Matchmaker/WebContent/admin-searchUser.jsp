@@ -108,7 +108,7 @@
 											<div class="status">
 												<form action="admin-update-role.jsp" method="Get">
 													<input type="hidden" name="hiddenNetID" value="<%=netID%>">
-													<input type="Submit" value="Update Role" size=20  style="width: 10em; height:2em"/>
+													<input type="Submit" value="Update User Roles" size=20  style="width: 10em; height:2em"/>
 												</form>
 											</div>
 											</td>
