@@ -205,7 +205,7 @@ public class PopulateDatabase {
 				}
 			}
 			catch (Exception e) {
-				System.out.println("Error: "+e);
+				System.out.println("Error:  "+e);
 			}
 		}
 		em.close();
