@@ -1,7 +1,6 @@
 package model;
 
 public abstract class MultipleItem implements Comparable<MultipleItem> {
-
 	public abstract	long getId();
 	public abstract String getDescription();
 	abstract void setDescription(String name);

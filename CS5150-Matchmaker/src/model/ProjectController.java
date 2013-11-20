@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -8,7 +9,7 @@ import javax.persistence.EntityTransaction;
 public class ProjectController {
 
 	public static Project createProject(EntityManager em , String name, String description, 
-			Researcher researcher){
+			Researcher researcher) {
 		
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -19,8 +20,6 @@ public class ProjectController {
 		
 		tx.commit();
 		return p;
-		
-		
 	}
 	
 	public static void deleteProject(EntityManager em, Project p) {
@@ -32,4 +31,16 @@ public class ProjectController {
 		
 	}
 	
+	public static List<Project> getProjectList(EntityManager em) {
+        EntityTransaction tx = em.getTransaction();
+        try {
+        String query = "select r from Project r";
+        List<Project> mylist = (List<Project>) em.createQuery(query).getResultList();
+        
+        	return mylist;
+        }
+        catch (Exception e) {
+        	return new ArrayList<Project>();
+        }
+	}
 }
