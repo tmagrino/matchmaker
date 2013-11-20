@@ -1,5 +1,8 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -60,5 +63,18 @@ public class ApplicationController {
 		a.setStudentResponse(response);
 		
 		tx.commit();
+	}
+	
+	public static List<Application> getApplicationList (EntityManager em){
+        EntityTransaction tx = em.getTransaction();
+        try {
+        String query = "select r from Application r";
+        List<Application> mylist = (List<Application>) em.createQuery(query).getResultList();
+        
+        	return mylist;
+        }
+        catch (Exception e) {
+        	return new ArrayList<Application>();
+        }
 	}
 }
