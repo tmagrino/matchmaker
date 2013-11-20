@@ -49,38 +49,38 @@ public class ProjectController {
 		tx.commit();
 	}
 	
-	public static void addApplication(EntityManager em, Project p, String desc) {
+	public static void addApplication(EntityManager em, Project p, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		p.setDescription(desc);
+		p.addApplication(a);
 		
 		tx.commit();
 	}
 	
-	public static void removeApplication(EntityManager em, Project p, String desc) {
+	public static void removeApplication(EntityManager em, Project p, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		p.setDescription(desc);
+		p.removeApplication(a);
 		
 		tx.commit();
 	}
 	
-	public static void addResearcher(EntityManager em, Project p, String desc) {
+	public static void addResearcher(EntityManager em, Project p, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		p.setDescription(desc);
+		p.addResearcher(r);
 		
 		tx.commit();
 	}
 	
-	public static void removeResearcher(EntityManager em, Project p, String desc) {
+	public static void removeResearcher(EntityManager em, Project p, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		p.setDescription(desc);
+		p.removeResearcher(r);
 		
 		tx.commit();
 	}

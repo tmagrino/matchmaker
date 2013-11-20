@@ -114,6 +114,22 @@ public class PopulateDatabase {
 				System.out.println("Error: "+e);
 			}
 		}
+		// Departments
+		if (ListController.getItensList(em, ItemFactory.DEPARTMENT).size() == 0){
+			try {
+				File myfile = new File("DepartmentsList");
+				in = new Scanner(new FileReader(myfile));
+				while (in.hasNextLine()) {
+					String str = in.nextLine();
+					System.out.println(str);
+					ListController.createItem(em, str, ItemFactory.SKILL);
+				}
+			}
+			catch (Exception e) {
+				System.out.println("Error: "+e);
+			}
+		}
+		// Students
 		if (StudentController.getAllStudents(em).size()==0){
 			try {
 				File myfile = new File("StudentList");
