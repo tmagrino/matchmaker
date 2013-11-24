@@ -120,7 +120,7 @@ form[name=profile] {
 	float: right;
 	width: 770px;
 }
-#filter-list ul.as-selections li.as-original input[type=text] {
+.project-list ul.as-selections li.as-original input[type=text] {
 	width: 153px;
 }
 
@@ -426,14 +426,15 @@ ul {
 	background-color: #006633;
 }
 .search-container{
-	margin-bottom: 22px;
-	width: 355px;
-	background-color: #9CBA7F;
+	margin: 18px 10px 22px 0;
+	float: right;
+	width: 457px;
+	background-color: #ab1a2a;
 	padding-left: 5px;
 }
 .search-container input[type=text]{
 	border: 0;
-	width: 270px;
+	width: 383px;
 	padding: 10px;
 }
 .search-container input[type=submit]{
@@ -443,4 +444,21 @@ ul {
 	height: 44px;
 	border: 0;
 	cursor: pointer;
+}
+table.project-list .header{
+	background: url("../images/sort_incr.png") no-repeat center right;
+	cursor: pointer;
+}
+table.project-list .header.headerSortDown{
+	background-image: url("../images/sort_decrease.png");
+}
+
+table.project-list .header.empty{
+	background: none;
+}
+#filter-list h1{
+	float: left;
+}
+#filter-list{
+	width: 100%;
 }

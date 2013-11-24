@@ -1,6 +1,6 @@
 <thead>
 	<tr>
-		<th></th>
+		<th class="empty"></th>
 		<th>Project Name</th>
 		<th>Project Lead</th>
 		<th>Project URL</th>

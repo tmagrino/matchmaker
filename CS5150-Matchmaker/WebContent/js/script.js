@@ -13,7 +13,7 @@ function initAutosuggest()
 	var autocomplete_els = Array();
 	$.each(autocomplete_attr, function(index, value){
 		autocomplete_els.push($(".info input[name=" + value + "], " +
-				"#filter-list input[name=filter-" + value + "]"));
+				".project-list input[name=filter-" + value + "]"));
 	});
 	var emptyTextOpt = "No results found.  Press Tab to add new entry.";
 	$.each(autocomplete_els, function(index, value){
