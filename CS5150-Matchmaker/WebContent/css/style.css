@@ -61,7 +61,7 @@ body,html {
 }
 .nav{
 	float: left;
-	width: 100%;
+	width: 1094px;
 	background-color: white;
 }
 .content {
@@ -257,49 +257,40 @@ form .arrow {
 }
 
 .tabrow li {
-	margin: 0 10px;
-	padding: 0 10px;
 	border: 1px solid #AAA;
 	display: inline;
 	color: white;
+	position: relative;
+	z-index: 0;
+	border-bottom: none;
+	margin: 0 -5px;
+	padding: 15px 20px 15px;
+	top: -10px;
+	cursor: pointer;
 }
 
 .tabrow li a {
 	color: white;
 	text-decoration: none;
+	display: inline-block;
 }
 
 .tabrow li.selected {
 	background: #ECECEC;
 	color: #000;
+	z-index: 2;
 }
 
 .tabrow li.selected a {
 	color: black;
 }
 
-.tabrow:after {
-	position: absolute;
-	content: "";
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	border-bottom: 1px solid #AAA;
-	z-index: 1;
-}
-
 .tabrow:before {
 	z-index: 1;
-}
-
-.tabrow li {
-	position: relative;
-	z-index: 0;
-}
-
-.tabrow li.selected {
-	z-index: 2;
-	border-bottom-color: #FFF;
+	border-bottom-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-width: 0 1px 1px 0;
 }
 
 .tabrow li {
@@ -310,43 +301,11 @@ form .arrow {
 	-webkit-border-top-right-radius: 6px;
 	-moz-border-top-right-radius: 6px;
 }
-
-.tabrow li:before {
-	border-bottom-right-radius: 6px;
-	-webkit-border-bottom-right-radius: 6px;
-	-moz-border-bottom-right-radius: 6px;
-	border-width: 0 1px 1px 0;
-}
-
 .tabrow li:after {
 	border-bottom-left-radius: 6px;
 	-webkit-border-bottom-left-radius: 6px;
 	-moz-border-bottom-left-radius: 6px;
 	border-width: 0 0 1px 1px;
-}
-
-.tabrow li:before {
-	box-shadow: 2px 2px 0 red;
-}
-
-.tabrow li:after {
-	box-shadow: -2px 2px 0 red;
-}
-
-.tabrow li:before {
-	box-shadow: 2px 2px 0 #696969;
-}
-
-.tabrow li:after {
-	box-shadow: -2px 2px 0 #696969;
-}
-
-.tabrow li.selected:before {
-	box-shadow: 2px 2px 0 #ececec;
-}
-
-.tabrow li.selected:after {
-	box-shadow: -2px 2px 0 #ececec;
 }
 
 .tabrow li {
@@ -355,9 +314,6 @@ form .arrow {
 	background: -moz-linear-gradient(top, #7e7e7e 50%, #696969 100%);
 	background: -webkit-linear-gradient(top, #7e7e7e 50%, #696969 100%);
 	background: linear-gradient(top, #7e7e7e 50%, #696969 100%);
-	box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
-	margin: 0 -5px;
-	padding: 0 20px;
 }
 
 .lt-ie10 .tabrow li {

@@ -138,6 +138,13 @@ function sortTable()
 	.tablesorterPager({container: $("#pager"), positionFixed: false});
 }
 
+function initTabLinks(){
+	var tabEl = $(".tabrow li");
+	tabEl.click(function(){
+		window.location = $("a", this).attr("href"); 
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	initViewSuggestion();
@@ -145,5 +152,6 @@ $(document).ready(function(){
 	EditField();
 	handleAddCourse();
 	validateFormSubmit();
+	initTabLinks();
 	hideProject();
 });
