@@ -425,3 +425,22 @@ ul {
 .actionButton.apply {
 	background-color: #006633;
 }
+.search-container{
+	margin-bottom: 22px;
+	width: 355px;
+	background-color: #9CBA7F;
+	padding-left: 5px;
+}
+.search-container input[type=text]{
+	border: 0;
+	width: 270px;
+	padding: 10px;
+}
+.search-container input[type=submit]{
+	text-indent: -9999px;
+	background: url(../images/search.png) no-repeat 17px 6px;
+	width: 48px;
+	height: 44px;
+	border: 0;
+	cursor: pointer;
+}

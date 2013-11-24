@@ -20,7 +20,6 @@
 				        </script>
 						<h1>My Projects</h1>
 						<form name="filter-list" id="filter-list">
-							<!-- <input type="submit" value="Filter"/> -->
 							<table class="project-list">
 									<jsp:include page="proj-filters.jsp"/>
 									<tr>
@@ -62,7 +61,10 @@
 						
 						<h1>Search New Projects</h1>
 						<form name="filter-list" id="filter-list">
-							<!-- <input type="submit" value="Filter"/> -->
+							<div class="search-container">
+								<input type="text" />
+								<input type="submit" value="Filter"/>
+							</div>
 							<table class="project-list">
 									<jsp:include page="proj-filters.jsp"/>
 									<tr>
