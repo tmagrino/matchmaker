@@ -1,7 +1,5 @@
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="stud" />
-	<jsp:param name="sidebar_type" value="stud-project" />
-	<jsp:param name="sidebar_selected" value="current" />
 	<jsp:param name="top_selected" value="project" />
 </jsp:include>
 <%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
@@ -39,7 +37,9 @@
 									<td>Project Name</td>
 									<td>Tom Magrino</td>
 									<td></td>
-									<td>This is a description of Project 2.  This is a...</td>
+									<td title="This is a description of description of Project 2.  This is a description of Project 2.">
+										This is a description of Project 2.  This is a...
+									</td>
 									<td>Systems</td>
 									<td>Python</td>
 								</tr>
@@ -50,7 +50,9 @@
 									<td>Project Name</td>
 									<td>Tom Magrino</td>
 									<td></td>
-									<td>This is a description of Project 3.  This is a...</td>
+									<td title="This is a description of description of Project 3.  This is a description of Project 3.">
+										This is a description of Project 3.  This is a...
+									</td>
 									<td>Systems</td>
 									<td>Python</td>
 								</tr>
@@ -68,7 +70,10 @@
 							<jsp:include page="proj-filters.jsp"/>
 							<tr>
 								<td>
-									<p><a class="actionButton apply" href="#">Apply</a> &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+									<p>
+										<a class="actionButton apply" href="#">Apply</a>&nbsp;
+										<a class="actionButton hide" href="#">Hide</a>
+									</p>
 								</td>
 								<td>Project Name</td>
 								<td>Andrew Myers</td>
@@ -84,7 +89,9 @@
 								<td>Project Name</td>
 								<td>Tom Magrino</td>
 								<td></td>
-								<td>This is a description of Project 2.  This is a...</td>
+								<td title="This is a description of description of Project 2.  This is a description of Project 2.">
+									This is a description of Project 2.  This is a...
+								</td>
 								<td>Systems</td>
 								<td>Python</td>
 							</tr>
@@ -95,7 +102,9 @@
 								<td>Project Name</td>
 								<td>Tom Magrino</td>
 								<td></td>
-								<td>This is a description of Project 3.  This is a...</td>
+								<td title="This is a description of description of Project 3.  This is a description of Project 3.">
+									This is a description of Project 3.  This is a...
+								</td>
 								<td>Systems</td>
 								<td>Python</td>
 							</tr>

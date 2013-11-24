@@ -1,7 +1,5 @@
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
-    <jsp:param name="sidebar_type" value="researcher-profile"/>
-    <jsp:param name="sidebar_selected" value="view"/>
     <jsp:param name="top_selected" value="profile"/>
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>

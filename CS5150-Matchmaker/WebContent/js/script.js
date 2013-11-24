@@ -140,6 +140,7 @@ function sortTable()
 
 function initTabLinks(){
 	var tabEl = $(".tabrow li");
+	if(tabEl.length == 0) {return;}
 	tabEl.click(function(){
 		window.location = $("a", this).attr("href"); 
 	});

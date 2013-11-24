@@ -374,12 +374,21 @@ ul {
 	-khtml-border-radius: 10px; /* for old Konqueror browsers */
 }
 
-.actionButton.hide {
+.actionButton.hide, 
+.actionButton.remove {
 	background-color: #000099;
 }
 
-.actionButton.apply {
+.actionButton.remove{
+	width: 60px;
+}
+
+.actionButton.apply,
+.actionButton.accept {
 	background-color: #006633;
+}
+.actionButton.reject{
+	background-color: #ab1a2a;
 }
 .search-container{
 	margin: 18px 10px 22px 0;

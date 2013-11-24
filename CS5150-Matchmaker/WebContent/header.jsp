@@ -77,7 +77,7 @@
 								Projects</a></li>
 						<li
 							<% if(request.getParameter("top_selected").equals("students")){ %>
-							class="selected" <% } %>><a href="invite-students.jsp">Students</a>
+							class="selected" <% } %>><a href="project-applicants.jsp">Students</a>
 						</li>
 						<% } %>
 					</ul>
