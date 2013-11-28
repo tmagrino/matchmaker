@@ -99,9 +99,17 @@
 										<tr>
 											<td>
 											<div class="status">
-												<form>
+												<% if(isStudent){%>
+										 		<form action="profile.jsp" method="get">
+										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
 													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
 												</form>
+										 		<%} if(isResearcher){ %>
+										 		<form action="researcher-profile.jsp" method="get">
+										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
+													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
+												</form>
+												<%}%>
 											</div>
 											</td>
 											<td>

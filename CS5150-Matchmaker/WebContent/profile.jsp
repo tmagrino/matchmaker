@@ -7,7 +7,13 @@
 
 <%	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
-	 Student s = StudentController.getStudentByNetID(em,"lr437"); 
+	 Student s;
+	 if(request.getParameter("netId") == null){
+		 s= StudentController.getStudentByNetID(em,"lr437");
+	 }else{
+		 s = StudentController.getStudentByNetID(em,request.getParameter("netId"));
+	 }
+	 
 	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
 	 String[] autocomplete_attr = {"major", "minor", "college", "skill", "interest"};
 	 JSONArray jsonArrAll = new JSONArray();
