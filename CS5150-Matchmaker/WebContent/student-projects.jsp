@@ -21,7 +21,7 @@
 								<jsp:include page="proj-filters.jsp"/>
 								<tr>
 									<td>
-										<p>Accepted &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+										<p>Applied &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
 									</td>
 									<td>Project Name</td>
 									<td>Andrew Myers</td>
@@ -32,7 +32,7 @@
 								</tr>
 								<tr>
 									<td>
-										<p>Rejected &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+										<p>Invited &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
 									</td>
 									<td>Project Name</td>
 									<td>Tom Magrino</td>
@@ -45,7 +45,7 @@
 								</tr>
 								<tr>
 									<td>
-										<p>Pending &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+										<p>Applied &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
 									</td>
 									<td>Project Name</td>
 									<td>Tom Magrino</td>

@@ -17,13 +17,21 @@
 				        	var interestData = <%= jsonInterest %>;
 				        </script>
 						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1>My Projects</h1>
+							<h1>My Project A</h1>
 							<div class="search-container">
 								<input type="text" placeholder="Search"/>
 								<input type="submit" value="Filter"/>
 							</div>
 						</form>
-						<table class="project-list">
+						
+						<form name="filter-list" id="filter-list" class="clearfix">
+							<h1>My Project A</h1>
+							<div class="search-container">
+								<input type="text" placeholder="Search"/>
+								<input type="submit" value="Filter"/>
+							</div>
+						</form>
+						<table class="student-list">
 							<thead>
 								<tr>
 									<th class="empty"></th>
