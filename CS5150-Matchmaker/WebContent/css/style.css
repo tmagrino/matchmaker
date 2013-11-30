@@ -66,7 +66,8 @@ body,html {
 }
 .content {
 	background-color: #ECECEC;
-	padding-left: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	height: 100%;
 }
 td.attr-label{
@@ -153,11 +154,11 @@ form .info textarea {
 	margin-right: 20px;
 	text-align: center;
 	color: white;
-	padding: 10px 5px;
-	-moz-border-radius: 10px;
+/* 	padding: 10px 5px; */
+/* 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
-	-khtml-border-radius: 10px;
+	-khtml-border-radius: 10px; */
 }
 
 .project-list .status a {
@@ -219,18 +220,20 @@ form .info textarea {
 .project-list {
 	border-collapse: collapse;
 	border: 1px solid #ddd;
+	margin: 0px;
+	padding: 0;
 }
 
 .project-list td,.project-list th {
 	text-align: center;
 	width: 180px;
-	height: 50px;
 	border-bottom: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 }
 
 .project-list th {
 	font-weight: bold;
+	font-style: italic;
 }
 
 #pager {
@@ -248,7 +251,7 @@ form .arrow {
 	text-align: center;
 	margin: 0;
 	padding: 0;
-	line-height: 24px;
+	line-height: 1px;
 	position: relative;
 	float: right;
 	display: block;
@@ -257,7 +260,7 @@ form .arrow {
 }
 
 .tabrow li {
-	border: 1px solid #AAA;
+	/* border: 1px solid #AAA; */
 	display: inline;
 	color: white;
 	position: relative;
@@ -265,7 +268,7 @@ form .arrow {
 	border-bottom: none;
 	margin: 0 -5px;
 	padding: 15px 20px 15px;
-	top: -10px;
+	top: -24px;
 	cursor: pointer;
 }
 
@@ -283,6 +286,8 @@ form .arrow {
 
 .tabrow li.selected a {
 	color: black;
+	font-weight: bold;
+	font-size: 120%;
 }
 
 .tabrow:before {
@@ -391,7 +396,7 @@ ul {
 	background-color: #ab1a2a;
 }
 .search-container{
-	margin: 18px 10px 22px 0;
+	margin: 1px 1px 1px 0;
 	float: right;
 	width: 457px;
 	background-color: #ab1a2a;
@@ -399,14 +404,14 @@ ul {
 }
 .search-container input[type=text]{
 	border: 0;
-	width: 383px;
-	padding: 10px;
+	width: 380px;
+	padding: 3px;
 }
 .search-container input[type=submit]{
 	text-indent: -9999px;
 	background: url(../images/search.png) no-repeat 17px 6px;
-	width: 48px;
-	height: 44px;
+	width: 46px;
+	height: 40px;
 	border: 0;
 	cursor: pointer;
 }
@@ -426,4 +431,9 @@ table.project-list .header.empty{
 }
 #filter-list{
 	width: 100%;
+}
+h1{
+	font-size: 12pt;
+	margin: 0px;
+	padding: none;
 }
