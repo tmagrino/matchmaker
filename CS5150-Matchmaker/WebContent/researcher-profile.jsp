@@ -7,7 +7,7 @@
 <%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); 
-	String[] attributes = {"Email", "URL", "Department", "Research Area"};
+	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
 	String[] autocomplete_attr = {"major", "interest"};
 	JSONArray jsonArrAll = new JSONArray();
