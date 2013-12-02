@@ -25,20 +25,20 @@
 									</td>
 									<td>Project Name</td>
 									<td>Andrew Myers</td>
-									<td><a href="#">Link to Project Webpage</a></td>
+									<td><a href="#">Project Webpage</a></td>
 									<td></td>
 									<td>Programming Languages</td>
 									<td>Java</td>
 								</tr>
 								<tr>
 									<td>
-										<p>Invited &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+										<p>Invited  &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
 									</td>
 									<td>Project Name</td>
 									<td>Tom Magrino</td>
 									<td></td>
 									<td title="This is a description of description of Project 2.  This is a description of Project 2.">
-										This is a description of Project 2.  This is a...
+										Description of Proj 2...
 									</td>
 									<td>Systems</td>
 									<td>Python</td>
@@ -51,7 +51,7 @@
 									<td>Tom Magrino</td>
 									<td></td>
 									<td title="This is a description of description of Project 3.  This is a description of Project 3.">
-										This is a description of Project 3.  This is a...
+										Description of Proj 3...
 									</td>
 									<td>Systems</td>
 									<td>Python</td>
@@ -77,33 +77,35 @@
 								</td>
 								<td>Project Name</td>
 								<td>Andrew Myers</td>
-								<td><a href="#">Link to Project Webpage</a></td>
+								<td><a href="#">Project Webpage</a></td>
 								<td></td>
 								<td>Programming Languages</td>
 								<td>Java</td>
 							</tr>
 							<tr>
 								<td>
-									<p><a class="actionButton apply" href="#">Apply</a> &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+									<p><a class="actionButton apply" href="#">Apply</a> &nbsp;
+									<a class="actionButton hide" href="#">Hide</a></p>
 								</td>
 								<td>Project Name</td>
 								<td>Tom Magrino</td>
 								<td></td>
 								<td title="This is a description of description of Project 2.  This is a description of Project 2.">
-									This is a description of Project 2.  This is a...
+									Description of Proj 2...
 								</td>
 								<td>Systems</td>
 								<td>Python</td>
 							</tr>
 							<tr>
 								<td>
-									<p><a class="actionButton apply" href="#">Apply</a> &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
+									<p><a class="actionButton apply" href="#">Apply</a> &nbsp;
+									<a class="actionButton hide" href="#">Hide</a></p>
 								</td>
 								<td>Project Name</td>
 								<td>Tom Magrino</td>
 								<td></td>
 								<td title="This is a description of description of Project 3.  This is a description of Project 3.">
-									This is a description of Project 3.  This is a...
+									Description of Proj 3...
 								</td>
 								<td>Systems</td>
 								<td>Python</td>

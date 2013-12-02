@@ -14,6 +14,7 @@ body,html {
 .wrapper,#container {
 	height: 100%;
 	padding-bottom: 15px;
+	padding-top: 20px;
 	text-align: left;
 }
 
@@ -220,8 +221,8 @@ form .info textarea {
 .project-list {
 	border-collapse: collapse;
 	border: 1px solid #ddd;
-	margin: 0px;
-	padding: 0;
+	/* margin: 0px;
+	padding: 0; */
 }
 
 .project-list td,.project-list th {
@@ -434,6 +435,14 @@ table.project-list .header.empty{
 }
 h1{
 	font-size: 12pt;
+	margin: 0px;
+	padding: none;
+}
+td{
+	margin: 0px;
+	padding: none;
+}
+p{
 	margin: 0px;
 	padding: none;
 }

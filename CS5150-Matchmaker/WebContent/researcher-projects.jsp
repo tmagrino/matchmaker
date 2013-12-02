@@ -23,15 +23,53 @@
 								<input type="submit" value="Filter"/>
 							</div>
 						</form>
+						<table class="project-list">
+							<thead>
+								<tr>
+									<th class="empty"></th>
+									<th>Project Name</th>
+									<th>Project URL</th>
+									<th>Description</th>
+									<th>Research Area</th>
+									<th>Required Skills</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<a class="actionButton remove" href="#">Remove</a>
+									</td>
+									<td>Project Name</td>
+									<td><a href="#">Link to Project Webpage</a></td>
+									<td></td>
+									<td>Programming Languages</td>
+									<td>Java</td>
+								</tr>
+								<tr>
+									<td>
+										<a class="actionButton remove" href="#">Remove</a>
+									</td>
+									<td>Project Name</td>
+									<td></td>
+									<td title="This is a description of Project 2.  This is a description of Project 2.">
+										This is a description of Project 2.  This is a...
+									</td>
+									<td>Systems</td>
+									<td>Python</td>
+								</tr>
+							</tbody>
+						</table>
+						
+						<br>
 						
 						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1>My Project A</h1>
+							<h1>My Project B</h1>
 							<div class="search-container">
 								<input type="text" placeholder="Search"/>
 								<input type="submit" value="Filter"/>
 							</div>
 						</form>
-						<table class="student-list">
+						<table class="project-list">
 							<thead>
 								<tr>
 									<th class="empty"></th>
