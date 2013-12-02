@@ -22,22 +22,38 @@ public class Project implements Serializable {
 	private long id;
 	@Column(name = "NAME", nullable = false, length = 75)
 	private String name;
+	@Column(name = "URL")
+	private String url;
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
 	@ManyToMany(mappedBy = "projects")
 	private List<Researcher> researchers;
 	@OneToMany(mappedBy = "applicationProject")
 	private List<Application> applications;
+	@Column(name = "OPENINGS", nullable = false)
+	private int openings;
 	//private MinimumRequirements requirements;
 	
 	public Project() {
 		
 	}
-	
-	public Project(String name, String description, List<Researcher> res) {
+	public Project(String name, String description, String url, List<Researcher> res) {
 		this.name = name;
 		this.description = description;
 		this.researchers = res;
+		this.url = url;
+		this.applications = new ArrayList<Application>();
+		this.openings = 0;
+	}
+	public Project(String name, String description, String url, Researcher res) {
+		this.name = name;
+		this.description = description;
+		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
+		rlist.add(res);
+		this.researchers = rlist;
+		this.url = url;
+		this.applications = new ArrayList<Application>();
+		this.openings = 0;
 	}
 
 	public long getId() {
@@ -102,7 +118,21 @@ public class Project implements Serializable {
 		return applications;
 	}
 
+	public int getOpenings() {
+		return openings;
+	}
+
+	void setOpenings(int openings) {
+		this.openings = openings;
+	}
+	public String getURL(){
+		return url;
+	}
+	void setURL(String url){
+		this.url = url;
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
 }

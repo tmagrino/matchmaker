@@ -70,4 +70,30 @@ public class ResearcherController {
         	return null;
         }
 	}
+	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
+			String department, String researchArea, String webpage) {
+		
+		researcher.setName(name);
+		researcher.setNetID(netID);
+		researcher.setEmail(email);
+		researcher.addDepartment((Department) ListController.getItemByDescription( em,  department, ItemFactory.DEPARTMENT));
+		researcher.setResearchArea(researchArea);
+		researcher.setWebpage(webpage);
+		
+        EntityTransaction tx = em.getTransaction();
+        
+        tx.begin();
+        String deleteQuery = "delete from RESEARCHER where id = " + researcher.getId();
+        em.createQuery(deleteQuery);
+        em.persist(researcher);
+        tx.commit();
+	}
+	public static void addProject(EntityManager em,Researcher r, Project p) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		r.addProject(p);
+		
+		tx.commit();
+	}
 }

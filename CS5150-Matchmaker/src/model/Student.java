@@ -151,15 +151,15 @@ public class Student implements Serializable {
 				return Double.toString(gpa);
 			case "year":
 				return year.toString();
-			case "college":
+			case ItemFactory.COLLEGE:
 				return getString(getColleges());
-			case "major":
+			case ItemFactory.MAJOR:
 				return getString(getMajors());
-			case "minor":
+			case ItemFactory.MINOR:
 				return getString(getMinors());
-			case "skills":
+			case ItemFactory.SKILL:
 				return getString(getSkills());
-			case "research interests":
+			case ItemFactory.INTEREST:
 				return getString(getInterests());
 			default:
 				System.out.println("Invalid attribute");
@@ -169,15 +169,15 @@ public class Student implements Serializable {
 	
 	public List<? extends MultipleItem> getListAttribute(String attr) {
 		switch (attr.toLowerCase()) {
-			case "college":
+			case ItemFactory.COLLEGE:
 				return getColleges();
-			case "major":
+			case ItemFactory.MAJOR:
 				return getMajors();
-			case "minor":
+			case ItemFactory.MINOR:
 				return getMinors();
-			case "skill":
+			case ItemFactory.SKILL:
 				return getSkills();
-			case "interest":
+			case ItemFactory.INTEREST:
 				return getInterests();
 			default:
 				System.out.println("Invalid attribute");

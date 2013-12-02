@@ -9,7 +9,7 @@
 	Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); 
 	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {"major", "interest"};
+	String[] autocomplete_attr = {ItemFactory.MAJOR, "interest"};
 	JSONArray jsonArrAll = new JSONArray();
 	JSONArray jsonArrStud = new JSONArray();
 	for(String auto_attr: autocomplete_attr){
