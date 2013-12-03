@@ -11,7 +11,7 @@ JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
 String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
-String[] autocomplete_attr = {"interest", "skill"};
+String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
 for(String auto_attr: autocomplete_attr){

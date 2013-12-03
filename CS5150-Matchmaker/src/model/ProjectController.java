@@ -20,8 +20,6 @@ public class ProjectController {
 		
 		tx.commit();
 		return p;
-		
-		
 	}
 	
 	public static void deleteProject(EntityManager em, Project p) {

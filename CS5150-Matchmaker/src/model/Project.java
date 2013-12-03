@@ -92,7 +92,7 @@ public class Project implements Serializable {
 				break;
 			}
 		}
-	} 
+	}
 	
 	void removeResearchers() {
 		researchers = new ArrayList<Researcher>();
@@ -122,6 +122,16 @@ public class Project implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getResearchersString(){
+		StringBuilder builder = new StringBuilder();
+		for (Researcher r : researchers){
+			builder.append(r.getName()+", ");
+			
+		}
+		if (builder.length() > 2)
+			builder.deleteCharAt(builder.length() - 2);
+		return builder.toString();
 	}
 
 }

@@ -12,6 +12,8 @@
 					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
 				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+				        Student s = StudentController.getStudentByNetID(em,request.getParameter("netId"));
+				        List<Project> allProjects = ProjectController.getProjectList(em);
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
@@ -23,26 +25,17 @@
 							<input type="submit" value="Filter"/>
 							<table class="project-list">
 							<jsp:include page="proj-filters.jsp"/>
-							<% for(int i=1;i<=500;i+=2)
+							<% for( Project p : allProjects)
 							{
 							%>
 								<tr>
 									<td><a href="#">Apply</a></td>
-									<td>Project Name <%=i %></td>
-									<td>Andrew Myers</td>
-									<td><a href="#">Link to Project Webpage <%=i %></a></td>
+									<td><%= p.getName() %></td>
+									<td><%=p.getResearchersString() %></td>
+									<td><a href="#"><%=p.getURL()%></a></td>
 									<td></td>
 									<td>Programming Languages</td>
 									<td>Java</td>
-								</tr>
-								<tr>
-									<td><a href="#">Apply</a></td>
-									<td>Project Name <%=i+1 %></td>
-									<td>Tom Magrino</td>
-									<td></td>
-									<td>This is a description of Project <%=i+1 %>.  This is a...</td>
-									<td>Systems</td>
-									<td>Python</td>
 								</tr>
 							<% } %>
 							</tbody>
