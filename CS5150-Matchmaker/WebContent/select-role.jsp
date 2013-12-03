@@ -5,7 +5,7 @@
 	 EntityManager em = emf.createEntityManager();
 	 
 	 String netId = request.getParameter("netId");
-	 
+	 session.setAttribute("currentUser", netId);
 	 User u = UserController.findUser(em, netId);
 	 Student s = StudentController.getStudentByNetID(em, netId);
 	 Researcher r = ResearcherController.getResearcherByNetID(em, netId);
@@ -19,6 +19,7 @@
 	 if(r != null){
 		 isResearcher = true;
 	 }
+	 
 %>
 
 <style>
@@ -99,11 +100,13 @@
 			<td valign="bottom">
 			 
 			<div id="accountchooser-card" class="card accountchooser-card">
+			<% if (u != null){ %>
 			  <h2 align ="center">Choose an account</h2>
+			  <% } %>
 			 	<ol class="accounts " id="account-list">
-			 	 <% if (u.isAdmin()){ %>
+			 	 <% if (u != null && u.isAdmin()){ %>
 			  	<li>
-			  	<form action="admin-searchUser.jsp" method="post">
+			  	<form action="admin-searchUser.jsp" method="get">
 			  	<button type="submit" id="choose-account-1">
 			  		<img class="account-image" alt=""
 			                 src="images/blank.png">
@@ -117,7 +120,7 @@
 			  <% }%>
 			  <% if(isStudent){ %>
 			   
-			  <li><form action="profile.jsp" method="post"><button type="submit" id="choose-account-0">
+			  <li><form action="profile.jsp" method="get"><button type="submit" id="choose-account-0">
 			  <img class="account-image" src="images/blank.png">
 			  	<span class="account-name"><%= u.getName() %></span>
 			  		<span class="account-email" id="account-email-0">
@@ -128,13 +131,21 @@
 			  <%}%>
 			  <%if (isResearcher){ %>
 			  <li>
-			  <form action="researcher-profile.jsp" method="post">
+			  <form action="researcher-profile.jsp" method="get">
 			  <button type="submit" id="choose-account-1">
 			  	<img class="account-image" alt=""
 			                 src="images/blank.png">
 			  		<span class="account-name"><%= u.getName() %></span>
 			  		<span class="account-email" id="account-email-1">
 			  		Researcher
+			  		</span>
+			  		</button>
+			  	</form>
+			  		</li>
+			  <%}%>
+			   <%if (u == null){ %>
+			  <li>
+			  		<h3>Sorry.. Not Such User Found!!</h3>
 			  		</span>
 			  		</button>
 			  	</form>
