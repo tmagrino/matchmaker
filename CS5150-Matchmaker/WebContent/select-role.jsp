@@ -3,9 +3,12 @@
 <%	 
 	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
-	 User u = UserController.findUser(em, "ad234");
-	 Student s = StudentController.getStudentByNetID(em, "ad234");
-	 Researcher r = ResearcherController.getResearcherByNetID(em, "ad234");
+	 
+	 String netId = request.getParameter("netId");
+	 
+	 User u = UserController.findUser(em, netId);
+	 Student s = StudentController.getStudentByNetID(em, netId);
+	 Researcher r = ResearcherController.getResearcherByNetID(em, netId);
 	 
 	 Boolean isStudent = false;
 	 if(s != null){
@@ -131,7 +134,6 @@
 			  		</button>
 			  		</li>
 			  <%}%>
-			  
 			  </ol>
 			  </form>
 			</div>

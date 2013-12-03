@@ -23,16 +23,7 @@
 <!--[if gt IE 9]><!-->
 <body>
 	<!--<![endif]-->
-	<%
-		session.setAttribute("currentUser", "lr437");
-		if(session.getAttribute("currentUser")!= null){
-	%> 
-		<div style="background-color: #ab1a2a;
-		height: 15px;
-		width: 100%; text-align : right">
-		<font size="2" color="blue"><a href="">View My Profile</a></font></div>
-		
-	<% }	%>
+	
 	
 	<div id="top-bar" class="clearfix">
 
@@ -43,21 +34,23 @@
 		<% 
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
+		 	String currentUser = request.getParameter("netId");
+		 	session.setAttribute("currentUser", currentUser);
 			if(request.getParameter("stud_or_prof").equals("stud")){ 
-				Student s = StudentController.getStudentByNetID(em,"lr437");%>
+				Student s = StudentController.getStudentByNetID(em,currentUser);%>
 				
 				<li>Welcome, <%=s.getName() %>
 				<br><font size="2">Acting as <%=s.getNetID()%>, Student</font></li>
 
 			<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 				<li><a href="">View My Profile</a></li>
-				<%Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); %>
+				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
 				<li>Welcome, <%=r.getName()%>
 				<br><font size="2">Acting as <%=r.getNetID()%>, Researcher</font></li>
 
 			<% } else if(request.getParameter("stud_or_prof").equals("header")){
-				User u = UserController.findUser(em, "lr437");
+				User u = UserController.findUser(em, currentUser);
 			%>
 	
 				<li>Welcome, <%=u.getName() %></li>
