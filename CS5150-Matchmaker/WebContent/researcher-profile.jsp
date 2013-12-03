@@ -6,7 +6,12 @@
 
 <%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	Researcher r = ResearcherController.getResearcherByNetID(em,"tm123"); 
+	
+	String currentuser = (String) session.getAttribute("currentUser");
+	if (currentuser == null) {
+		currentuser = "tm123";
+	}
+	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
 	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
 	String[] autocomplete_attr = {ItemFactory.MAJOR, "interest"};
