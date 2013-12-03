@@ -100,10 +100,11 @@
 			 
 			<div id="accountchooser-card" class="card accountchooser-card">
 			  <h2 align ="center">Choose an account</h2>
-			  <form action="" method="post">
 			 	<ol class="accounts " id="account-list">
 			 	 <% if (u.isAdmin()){ %>
-			  	<li><button type="submit" id="choose-account-1">
+			  	<li>
+			  	<form action="admin-searchUser.jsp" method="post">
+			  	<button type="submit" id="choose-account-1">
 			  		<img class="account-image" alt=""
 			                 src="images/blank.png">
 			  		<span class="account-name"><%= u.getName() %></span>
@@ -111,20 +112,24 @@
 			  			Administrator
 			 		 </span>
 			  		</button>
+			  	</form>
 			  	</li>
 			  <% }%>
 			  <% if(isStudent){ %>
-			  <li><button type="submit" id="choose-account-0">
+			   
+			  <li><form action="profile.jsp" method="post"><button type="submit" id="choose-account-0">
 			  <img class="account-image" src="images/blank.png">
 			  	<span class="account-name"><%= u.getName() %></span>
 			  		<span class="account-email" id="account-email-0">
 			  		Student 
 			  		</span>
-			  		</button>
+			  		</button></form>
 			  		</li>
 			  <%}%>
 			  <%if (isResearcher){ %>
-			  <li><button type="submit" id="choose-account-1">
+			  <li>
+			  <form action="researcher-profile.jsp" method="post">
+			  <button type="submit" id="choose-account-1">
 			  	<img class="account-image" alt=""
 			                 src="images/blank.png">
 			  		<span class="account-name"><%= u.getName() %></span>
@@ -132,10 +137,10 @@
 			  		Researcher
 			  		</span>
 			  		</button>
+			  	</form>
 			  		</li>
 			  <%}%>
 			  </ol>
-			  </form>
 			</div>
 			</td>
 			</tr>

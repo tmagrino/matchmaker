@@ -34,8 +34,12 @@
 		<% 
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
-		 	String currentUser = request.getParameter("netId");
-		 	session.setAttribute("currentUser", currentUser);
+		 	String currentUser = (String) session.getAttribute("currentUser");
+		 	if(currentUser == null){
+		 		currentUser = request.getParameter("netId");
+		 		session.setAttribute("currentUser", currentUser);
+		 	}
+		 	
 			if(request.getParameter("stud_or_prof").equals("stud")){ 
 				Student s = StudentController.getStudentByNetID(em,currentUser);%>
 				
