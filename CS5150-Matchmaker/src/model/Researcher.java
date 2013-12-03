@@ -123,11 +123,11 @@ public class Researcher implements Serializable {
 	}
 	
 	void addDepartment(Department d) {
-		
+		this.departments.add(d);
 	}
 	
 	void removeDepartment(Department d) {
-		
+		this.departments.remove(d);
 	}
 	
 	void removeDepartments() {

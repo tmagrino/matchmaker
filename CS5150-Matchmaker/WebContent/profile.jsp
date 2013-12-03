@@ -75,8 +75,7 @@
 							<% } else{ %>
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
 								value="<%=s.getAttribute(attr) %>" type="text" />
-						<td><input type="submit" value="Save Changes" />
-					</td>	<% } %>
+							<% } %>
 						</p>
 						<p class="other hidden">
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
