@@ -10,7 +10,7 @@ public class ProjectController {
 
 	public static Project createProject(EntityManager em , String name, String description,
 			String url, Researcher researcher){
-		
+		if (description == null) description = "";
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();

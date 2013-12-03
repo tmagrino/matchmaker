@@ -26,9 +26,16 @@ public class Project implements Serializable {
 	private String url;
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
-	@ManyToMany(mappedBy = "projects")
+	@Column(name = "OPENINGS")
+	private int openings;
+	@ManyToMany
+	@JoinTable(
+			name = "PROJECT_LEADERS",
+			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="RES_ID", referencedColumnName="ID")}
+	)
 	private List<Researcher> researchers;
-	@OneToMany(mappedBy = "applicationProject")
+	@OneToMany(mappedBy = "project")
 	private List<Application> applications;
 	//private MinimumRequirements requirements;
 	
@@ -41,6 +48,7 @@ public class Project implements Serializable {
 		this.researchers = res;
 		this.url = url;
 		this.applications = new ArrayList<Application>();
+		this.openings = 0;
 	}
 	public Project(String name, String description, String url, Researcher res) {
 		this.name = name;
@@ -50,6 +58,7 @@ public class Project implements Serializable {
 		this.researchers = rlist;
 		this.url = url;
 		this.applications = new ArrayList<Application>();
+		this.openings = 0;
 	}
 
 	public long getId() {

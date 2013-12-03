@@ -40,10 +40,12 @@ public class Application implements Serializable {
 	@Column(name = "SUBMITTED")
 	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
-	
+	@ManyToOne
+	@JoinColumn(name = "project")
+	private Project project;
 	
 	public Application() {
-		
+
 	}
 
 	public Application(Student owner, Project project, 
