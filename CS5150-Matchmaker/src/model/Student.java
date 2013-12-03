@@ -109,6 +109,7 @@ public class Student implements Serializable {
 	private List<Application> applications;
 	@Embedded
 	private StudentSettings settings;
+	
 
 	// Constructors
 	public Student() 
@@ -603,9 +604,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeApplications() {
-		for (Application app : applications) {
-			removeApplication(app);
-		}
+		applications = new ArrayList<Application>();
 	}
 
 	/**
