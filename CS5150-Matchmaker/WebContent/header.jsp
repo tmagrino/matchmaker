@@ -41,12 +41,12 @@
 		 	}
 		 	
 			if(request.getParameter("stud_or_prof").equals("stud")){ 
-				Student s = StudentController.getStudentByNetID(em,currentUser);%>
-				
-				<li>Welcome, <%=s.getName() %>
-				<br><font size="2">Acting as <%=s.getNetID()%>, Student</font></li>
-
-			<% } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
+				Student s = StudentController.getStudentByNetID(em,currentUser);
+				if(s != null){%>
+					<li>Welcome, <%=s.getName() %>
+					<br><font size="2">Acting as <%=s.getNetID()%>, Student</font></li>
+				<%}
+			 } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 				<li><a href="">View My Profile</a></li>
 				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
@@ -55,11 +55,13 @@
 
 			<% } else if(request.getParameter("stud_or_prof").equals("header")){
 				User u = UserController.findUser(em, currentUser);
+				if(u != null){
 			%>
 	
 				<li>Welcome, <%=u.getName() %></li>
 	
-			<%} %>
+			<%}
+			}	%>
 			<li class="login-link"><a href="#">sign out</a></li>
 
 		</ul>
