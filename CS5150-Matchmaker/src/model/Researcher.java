@@ -157,7 +157,9 @@ public class Researcher implements Serializable {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-
+	public void addProject(Project proj){
+		this.projects.add(proj);
+	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

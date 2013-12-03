@@ -15,7 +15,8 @@
 	 }
 	 
 	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
-	 String[] autocomplete_attr = {"major", "minor", "college", "skill", "interest"};
+	 String[] autocomplete_attr = {ItemFactory.MAJOR, ItemFactory.MINOR, ItemFactory.COLLEGE, ItemFactory.SKILL
+			 , ItemFactory.INTEREST};
 	 JSONArray jsonArrAll = new JSONArray();
 	 JSONArray jsonArrStud = new JSONArray();
 	 for(String auto_attr: autocomplete_attr){
@@ -30,7 +31,8 @@
 </script>
 
 <div class="content">
-	<h1>My Profile</h1>
+	<h1>My Profile</h1><td><input type="submit" value="Save Changes" />
+					</td>
 	<div id="all-major" class="hidden" title="All Major Suggestions"></div>
 	<div id="all-minor" class="hidden" title="All Minor Suggestions"></div>
 	<div id="all-college" class="hidden" title="All College Suggestions"></div>
@@ -73,7 +75,8 @@
 							<% } else{ %>
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
 								value="<%=s.getAttribute(attr) %>" type="text" />
-							<% } %>
+						<td><input type="submit" value="Save Changes" />
+					</td>	<% } %>
 						</p>
 						<p class="other hidden">
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
