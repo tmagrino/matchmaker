@@ -10,8 +10,9 @@
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
+   //String url = request.getParameter("url");
 	ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
-			r);
+			"www.cornell.edu", r);
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "researcher-profile.jsp"); 
