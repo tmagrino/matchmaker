@@ -14,7 +14,7 @@
 		 s = StudentController.getStudentByNetID(em,request.getParameter("netId"));
 	 }
 	 
-	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
+	 String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skill", "Interest"};
 	 String[] autocomplete_attr = {ItemFactory.MAJOR, ItemFactory.MINOR, ItemFactory.COLLEGE, ItemFactory.SKILL
 			 , ItemFactory.INTEREST};
 	 JSONArray jsonArrAll = new JSONArray();

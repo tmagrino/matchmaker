@@ -162,7 +162,7 @@ public class Student implements Serializable {
 			case ItemFactory.INTEREST:
 				return getString(getInterests());
 			default:
-				System.out.println("Invalid attribute");
+				System.out.println("Invalid attribute " + attr);
 				return null;
 		}
 	}
@@ -180,7 +180,7 @@ public class Student implements Serializable {
 			case ItemFactory.INTEREST:
 				return getInterests();
 			default:
-				System.out.println("Invalid attribute");
+				System.out.println("Invalid attribute " + attr);
 				return null;
 		}
 	}
