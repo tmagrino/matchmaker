@@ -159,7 +159,11 @@ public class Student implements Serializable {
 				return getString(getMinors());
 			case ItemFactory.SKILL:
 				return getString(getSkills());
+			case "skills":
+				return getString(getSkills());
 			case ItemFactory.INTEREST:
+				return getString(getInterests());
+			case "research interests":
 				return getString(getInterests());
 			default:
 				System.out.println("Invalid attribute " + attr);

@@ -96,7 +96,6 @@ public class ItemFactory {
 		if (type.toLowerCase() == DEPARTMENT){
 			query = "select m from DEPARTMENT m";
 		}
-		
 		return query;
 	}
 }
