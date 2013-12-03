@@ -33,6 +33,8 @@ body,html {
 
 #top-bar .login-nav {
 	padding-right: 15px;
+	padding-top: 5px;
+	margin: 0px;
 }
 
 .login-nav li {

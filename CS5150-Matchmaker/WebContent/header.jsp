@@ -47,7 +47,6 @@
 					<br><font size="2">Acting as <%=s.getNetID()%>, Student</font></li>
 				<%}
 			 } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
-				<li><a href="">View My Profile</a></li>
 				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
 				<li>Welcome, <%=r.getName()%>
