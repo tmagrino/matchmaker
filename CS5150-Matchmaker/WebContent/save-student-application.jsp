@@ -10,18 +10,16 @@
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
-   //String projid = request.getParameter("applyBut");
-   Project p = ProjectController.getProjectById(em, request.getParameter("applyBut"));
-   /*Enumeration<String> e = request.getAttributeNames();
-   while (e.hasMoreElements()) {
-	   System.out.println(e.nextElement());
-   }*/
+   
+   
+   Project p = ProjectController.getProjectById(em, request.getParameter("id"));
+   System.out.println(p.getName());
    String text = request.getParameter("cover-letter");
-   System.out.println("Creating application");
+   
    Application a = ApplicationController.createApplication(em, s, p, text);
-   System.out.println("Application created");
-   ApplicationController.updateApplication(em, s, p, a);
-   //System.out.println("Application updated");
+   
+   //ApplicationController.updateApplication(em, s, p, a);
+
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "student-projects.jsp"); 
 %>

@@ -13,13 +13,7 @@
                                  Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
                                  List<Application> allApplications = s.getApplications();
                                  %>
-                                 <div id="apply-form" class="hidden" title="Apply">
-                                                         <form method="post" action="save-student-application.jsp">
-                                                                 <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
-                                                                 <textarea name="cover-letter" id="cover-letter"></textarea>
-                                                                 <input type="submit" value="Apply">
-                                                         </form>
-                                                </div>
+                                 
                                  <script type="text/javascript">
                                          var majorData = <%= jsonMajor %>;
                                          var skillsData = <%= jsonSkills %>;
@@ -64,8 +58,7 @@
                                                         <tr class="<%= cssClasses %>">
                                                                 <td>
                                                                  	<p>
-                                                                    	<a class="actionButton apply" href="save-student-application.jsp?id=<%=p.getId()%>">
-																		Apply</a>&nbsp;
+                                                                    	<a class="actionButton apply" href="save-student-application.jsp?id=<%=p.getId()%>">Apply</a>&nbsp;
 																		<a class="actionButton hide" href="hideProject.jsp?id=<%=p.getId()%>">Hide</a>
                                                                    </p>
                                                                 </td>
@@ -76,6 +69,13 @@
                                                                 <td><%=p.getAreaString() %></td>
                                                                 <td>Java</td>
                                                         </tr>
+                                                        <div id="apply-form" class="hidden" title="Apply">
+                                                         <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
+                                                                 <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+                                                                 <textarea name="cover-letter" id="cover-letter"></textarea>
+                                                                 <input type="submit" value="Apply">
+                                                         </form>
+                                                </div>
                                                         <%} %>
                                                                  
                                                         </tbody>
