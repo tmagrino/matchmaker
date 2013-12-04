@@ -412,10 +412,22 @@ public class StudentController {
 		return null;
 		
 	}
-	
+	public static List<Long> getStudentProjects(EntityManager em, Student s){
+		
+		try {
+			System.out.println(s.getId());
+			String query = "select p.id from PROJECT p, APPLICATION a where p.id = "
+					+ "a.applicationProject and a.studentApplicant = " + s.getId();
+			return (List<Long>) em.createQuery(query).getResultList();
+		}
+		catch (Exception e){
+			
+			return new ArrayList<Long>();
+		}
+	}
 	
 	public static List<Student> getAllStudents(EntityManager em) {
-        EntityTransaction tx = em.getTransaction();
+        
         try {
         String query = "select s from STUDENT s";
         return (List<Student>) em.createQuery(query).getResultList();

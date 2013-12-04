@@ -26,7 +26,7 @@
                                                                 {
                                                                 %>
                                                                 <tr>
-                                                                        <td><a href="#">Apply</a></td>
+                                                                        <td><a href="#">Remove</a></td>
                                                                         <td><%= a.getApplicationProject().getName() %></td>
                                                                         <td><%=a.getApplicationProject().getResearchersString() %></td>
                                                                         <td><a href="#"><%=a.getApplicationProject().getURL()%></a></td>
@@ -48,7 +48,13 @@
                                                 <table class="project-list">
                                                         <jsp:include page="proj-filters.jsp"/>
                                                         <%List<Project> allProjects = ProjectController.getProjectList(em);
-                                                        for (Project p : allProjects){%>
+                                                        List<Long> studProjs = StudentController.getStudentProjects(em,s);
+                                                        
+                                                        for (Long i : studProjs){
+                                                        	
+                                                        }
+                                                        for (Project p : allProjects){
+                                                         %>
                                                         <%
                                                         String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
                                                         + p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
