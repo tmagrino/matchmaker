@@ -10,14 +10,33 @@
 	 Student s = StudentController.getStudentByNetID(em, netId);
 	 Researcher r = ResearcherController.getResearcherByNetID(em, netId);
 	 
+	 int count = 0;
 	 Boolean isStudent = false;
 	 if(s != null){
 		 isStudent = true;
+		 count++;
 	 }
 	 
 	 Boolean isResearcher = false;
 	 if(r != null){
 		 isResearcher = true;
+		 count++;
+	 }
+	 
+	 if(u.isAdmin()){
+		 count++;
+	 }
+	 
+	 if(count==1){
+		 if(isResearcher){
+			 response.sendRedirect("researcher-profile.jsp");
+		 }
+		 if(isStudent){
+			 response.sendRedirect("profile.jsp");
+		 }
+		 if(u.isAdmin()){
+			 response.sendRedirect("admin-searchUser.jsp");
+		 }
 	 }
 	 
 %>
