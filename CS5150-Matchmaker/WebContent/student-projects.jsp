@@ -77,7 +77,13 @@
 							<jsp:include page="proj-filters.jsp"/>
 							<%List<Project> allProjects = ProjectController.getProjectList(em);
 							for (Project p : allProjects){%>
-							<tr>
+							<% 
+							String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
+							+ p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
+						 	+ p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
+						  	+ p.getAreaString().replaceAll(" ", "_").toLowerCase();
+							%>
+							<tr class="<%= cssClasses %>">
 								<td>
 									<p>
 										<a class="actionButton apply" name = "applyBut" 
@@ -93,7 +99,6 @@
 								<td><%=p.getAreaString() %></td>
 								<td>Java</td>
 							</tr>
-							<tr>
 							<%} %>
  								
 							</tbody>
