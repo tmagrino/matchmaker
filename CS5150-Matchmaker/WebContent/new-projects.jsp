@@ -37,7 +37,7 @@
 									<td>Programming Languages</td>
 									<td>Java</td>
 								</tr>
-							<% } %>
+							<%} %>
 							</tbody>
 							</table>
 						</form>

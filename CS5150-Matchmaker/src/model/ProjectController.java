@@ -106,4 +106,16 @@ public class ProjectController {
         	return new ArrayList<Project>();
         }
 	}
+	public static Project getProjectById(EntityManager em,String id) {
+        EntityTransaction tx = em.getTransaction();
+        try {
+        String query = "select r from Project r where id = " + id;
+        List<Project> mylist = (List<Project>) em.createQuery(query).getResultList();
+        
+        	return mylist.get(0);
+        }
+        catch (Exception e) {
+        	return new Project();
+        }
+	}
 }
