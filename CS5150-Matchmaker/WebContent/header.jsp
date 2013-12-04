@@ -69,7 +69,6 @@
 		<div class="wrapper">
 			<div id="container">
 				<div class="main">
-					<p class="notifications">Notifications</p>
 					<div class="nav">
 						<ul class="tabrow">
 						<% if(request.getParameter("stud_or_prof").equals("stud")){ %>
