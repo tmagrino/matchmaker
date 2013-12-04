@@ -28,7 +28,7 @@ public class Application implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(name = "APPLICANT")
 	private Student studentApplicant;
 	@ManyToOne
 	@JoinColumn(name = "OWNER_ID")
@@ -40,10 +40,12 @@ public class Application implements Serializable {
 	@Column(name = "SUBMITTED")
 	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
-	
+	@ManyToOne
+	@JoinColumn(name = "PROJECT")
+	private Project project;
 	
 	public Application() {
-		
+
 	}
 
 	public Application(Student owner, Project project, 

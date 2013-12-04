@@ -68,6 +68,8 @@
 						</form>
 						<table class="project-list">
 							<jsp:include page="proj-filters.jsp"/>
+							<%List<Project> allProjects = ProjectController.getProjectList(em);
+							for (Project p : allProjects){%>
 							<tr>
 								<td>
 									<p>
@@ -75,41 +77,16 @@
 										<a class="actionButton hide" href="#">Hide</a>
 									</p>
 								</td>
-								<td>Project Name</td>
-								<td>Andrew Myers</td>
-								<td><a href="#">Project Webpage</a></td>
+								<td><%=p.getName() %></td>
+								<td><%=p.getResearchersString() %></td>
+								<td><a href="<%=p.getURL() %>"><%=p.getURL() %></a></td>
 								<td></td>
-								<td>Programming Languages</td>
+								<td><%=p.getAreaString() %></td>
 								<td>Java</td>
 							</tr>
 							<tr>
-								<td>
-									<p><a class="actionButton apply" href="#">Apply</a> &nbsp;
-									<a class="actionButton hide" href="#">Hide</a></p>
-								</td>
-								<td>Project Name</td>
-								<td>Tom Magrino</td>
-								<td></td>
-								<td title="This is a description of description of Project 2.  This is a description of Project 2.">
-									Description of Proj 2...
-								</td>
-								<td>Systems</td>
-								<td>Python</td>
-							</tr>
-							<tr>
-								<td>
-									<p><a class="actionButton apply" href="#">Apply</a> &nbsp;
-									<a class="actionButton hide" href="#">Hide</a></p>
-								</td>
-								<td>Project Name</td>
-								<td>Tom Magrino</td>
-								<td></td>
-								<td title="This is a description of description of Project 3.  This is a description of Project 3.">
-									Description of Proj 3...
-								</td>
-								<td>Systems</td>
-								<td>Python</td>
-							</tr>
+							<%} %>
+ 								
 							</tbody>
 						</table>
 						<jsp:include page="pager.jsp"/>

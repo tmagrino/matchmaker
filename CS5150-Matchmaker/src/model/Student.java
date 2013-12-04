@@ -109,6 +109,7 @@ public class Student implements Serializable {
 	private List<Application> applications;
 	@Embedded
 	private StudentSettings settings;
+	
 
 	// Constructors
 	public Student() 
@@ -159,7 +160,11 @@ public class Student implements Serializable {
 				return getString(getMinors());
 			case ItemFactory.SKILL:
 				return getString(getSkills());
+			case "skills":
+				return getString(getSkills());
 			case ItemFactory.INTEREST:
+				return getString(getInterests());
+			case "research interests":
 				return getString(getInterests());
 			default:
 				System.out.println("Invalid attribute " + attr);
@@ -599,9 +604,7 @@ public class Student implements Serializable {
 	}
 	
 	void removeApplications() {
-		for (Application app : applications) {
-			removeApplication(app);
-		}
+		applications = new ArrayList<Application>();
 	}
 
 	/**

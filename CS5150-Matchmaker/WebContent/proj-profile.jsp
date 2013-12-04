@@ -9,9 +9,9 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
 JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
+Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
 String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
-String[] autocomplete_attr = {"interest", "skill"};
+String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
 for(String auto_attr: autocomplete_attr){
@@ -45,7 +45,7 @@ for(String auto_attr: autocomplete_attr){
 						</p>
 						<p class="editable hidden">
 							<% if((attr).equals("Project Description")){ %>
-								<textarea><%=attr %></textarea>
+								<textarea name = "project_description"><%=attr %></textarea>
 							<% } else{ %>
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
 								value="<%=attr %>" type="text" />

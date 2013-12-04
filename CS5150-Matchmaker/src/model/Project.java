@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.*;
@@ -26,30 +27,41 @@ public class Project implements Serializable {
 	private String url;
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
-	@ManyToMany(mappedBy = "projects")
+	@Column(name = "OPENINGS")
+	private int openings;
+	@ManyToMany
+	@JoinTable(
+			name = "PROJECT_LEADERS",
+			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="RES_ID", referencedColumnName="ID")}
+	)
 	private List<Researcher> researchers;
-	@OneToMany(mappedBy = "applicationProject")
+	@ManyToMany
+	@JoinTable(
+			name = "PROJECT_AREA",
+			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
+	)
+	private List<Interest> project_area;
+	@OneToMany(mappedBy = "project")
 	private List<Application> applications;
 	//private MinimumRequirements requirements;
 	
 	public Project() {
 		
 	}
-	public Project(String name, String description, String url, List<Researcher> res) {
+	public Project(String name, String description, String url, List<Researcher> res, List<Interest> area) {
 		this.name = name;
 		this.description = description;
 		this.researchers = res;
 		this.url = url;
 		this.applications = new ArrayList<Application>();
+		this.openings = 0;
+		this.project_area = area;
 	}
-	public Project(String name, String description, String url, Researcher res) {
-		this.name = name;
-		this.description = description;
-		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
-		rlist.add(res);
-		this.researchers = rlist;
-		this.url = url;
-		this.applications = new ArrayList<Application>();
+	public Project(String name, String description, String url, Researcher res,List<Interest> area) {
+		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area);
+		
 	}
 
 	public long getId() {
@@ -92,7 +104,7 @@ public class Project implements Serializable {
 				break;
 			}
 		}
-	} 
+	}
 	
 	void removeResearchers() {
 		researchers = new ArrayList<Researcher>();
@@ -122,6 +134,26 @@ public class Project implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getResearchersString(){
+		StringBuilder builder = new StringBuilder();
+		for (Researcher r : researchers){
+			builder.append(r.getName()+", ");
+			
+		}
+		if (builder.length() > 2)
+			builder.deleteCharAt(builder.length() - 2);
+		return builder.toString();
+	}
+	public String getAreaString(){
+		StringBuilder builder = new StringBuilder();
+		for (Interest i : project_area){
+			builder.append(i.getDescription()+", ");
+			
+		}
+		if (builder.length() > 2)
+			builder.deleteCharAt(builder.length() - 2);
+		return builder.toString();
 	}
 
 }

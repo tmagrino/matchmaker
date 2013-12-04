@@ -9,10 +9,16 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   Researcher r = ResearcherController.getResearcherByNetID(em,"tm123");
-   //String url = request.getParameter("url");
-	ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
-			"www.cornell.edu", r);
+   Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+   String ids = request.getParameter("as_values_research_area");
+   String [] idList = ids.split(",");
+   List<Interest> area = new ArrayList<Interest>();
+	for (String id : idList)
+		if (id.length()>0){
+		area.add((Interest)ListController.getItemById(em, Long.parseLong(id), ItemFactory.INTEREST));
+		}
+   ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
+			request.getParameter("project_url"), r,area);
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "researcher-profile.jsp"); 
