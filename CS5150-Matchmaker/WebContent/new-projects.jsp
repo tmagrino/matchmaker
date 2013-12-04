@@ -20,7 +20,7 @@
 				        	var skillsData = <%= jsonSkills %>;
 				        	var interestData = <%= jsonInterest %>;
 				        </script>
-						<h1>Projects</h1>
+						<h1>All Projects</h1>
 						<form name="filter-list" id="filter-list">
 							<input type="submit" value="Filter"/>
 							<table class="project-list">
@@ -33,9 +33,9 @@
 									<td><%= p.getName() %></td>
 									<td><%=p.getResearchersString() %></td>
 									<td><a href="#"><%=p.getURL()%></a></td>
-									<td></td>
-									<td>Programming Languages</td>
-									<td>Java</td>
+									<td><%= p.getDescription() %></td>
+									<td><%= p.getAreaString() %></td>
+									<td>TODO: backend</td>
 								</tr>
 							<%} %>
 							</tbody>
