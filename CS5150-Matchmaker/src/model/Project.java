@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +45,9 @@ public class Project implements Serializable {
 	private List<Interest> project_area;
 	@OneToMany(mappedBy = "applicationProject" ,cascade = CascadeType.ALL)
 	private List<Application> applications;
+	
+	@ManyToMany (mappedBy = "hiddenProjects")
+	List<StudentSettings> settings;
 	//private MinimumRequirements requirements;
 	
 	public Project() {

@@ -63,12 +63,11 @@
                                                         %>
                                                         <tr class="<%= cssClasses %>">
                                                                 <td>
-                                                                        <p>
-                                                                                <a class="actionButton apply" name = "applyBut"
-                                                                                value = "<%= p.getId() %>"href="save-student-application.jsp">
-                                                                                Apply</a>&nbsp;
-                                                                                <a class="actionButton hide" href="#">Hide</a>
-                                                                        </p>
+                                                                 	<p>
+                                                                    	<a class="actionButton apply" href="save-student-application.jsp?id=<%=p.getId()%>">
+																		Apply</a>&nbsp;
+																		<a class="actionButton hide" href="hideProject.jsp?id=<%=p.getId()%>">Hide</a>
+                                                                   </p>
                                                                 </td>
                                                                 <td><%=p.getName() %></td>
                                                                 <td><%=p.getResearchersString() %></td>
