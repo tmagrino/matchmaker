@@ -13,7 +13,7 @@
    
    
    Project p = ProjectController.getProjectById(em, request.getParameter("id"));
-   System.out.println(p.getName());
+   System.out.println("name" + p.getName());
    String text = request.getParameter("cover-letter");
    
    Application a = ApplicationController.createApplication(em, s, p, text);

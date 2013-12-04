@@ -109,12 +109,13 @@ public class ProjectController {
 	public static Project getProjectById(EntityManager em,String id) {
         EntityTransaction tx = em.getTransaction();
         try {
-        String query = "select r from Project r where id = " + id;
+        String query = "select r from Project r where r.id = " + id;
         List<Project> mylist = (List<Project>) em.createQuery(query).getResultList();
-        
+        	
         	return mylist.get(0);
         }
         catch (Exception e) {
+        	System.out.print(e);
         	return new Project();
         }
 	}

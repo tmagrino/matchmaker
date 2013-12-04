@@ -48,8 +48,8 @@ public class Application implements Serializable {
 
 	public Application(Student owner, Project project, 
 			String studentResponse) {
-		this.studentApplicant = null;
-		this.applicationProject = null;
+		this.studentApplicant = owner;
+		this.applicationProject = project;
 		this.status = ApplicationStatus.Pending;
 		this.studentResponse = studentResponse;
 		this.submissionDate = new Date();
