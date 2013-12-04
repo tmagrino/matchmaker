@@ -105,7 +105,7 @@ public class Student implements Serializable {
 			joinColumns = @JoinColumn(name = "OWNER_ID")
 		)
 	private List<Course> transcript;
-	@OneToMany(mappedBy = "studentApplicant")
+	@OneToMany(mappedBy = "studentApplicant", cascade = CascadeType.ALL)
 	private List<Application> applications;
 	@Embedded
 	private StudentSettings settings;

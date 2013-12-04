@@ -452,3 +452,8 @@ body .ui-dialog .ui-dialog-content{
 	overflow: scroll;
 	height: 500px !important;
 }
+#cover-letter{
+	width: 445px;
+	height: 345px;
+}
+

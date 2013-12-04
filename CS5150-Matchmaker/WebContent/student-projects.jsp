@@ -10,7 +10,16 @@
 					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
 				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+				        Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
+				        List<Application> allApplications = s.getApplications();
 				         %>
+				         <div id="apply-form" class="hidden" title="Apply">
+							  <form method="post" action="save-student-application.jsp">
+								    <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+								    <textarea name="cover-letter" id="cover-letter"></textarea>
+								    <input type="submit" value="Apply">
+							  </form>
+						</div>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
 				        	var skillsData = <%= jsonSkills %>;
@@ -19,43 +28,19 @@
 						<h1>My Projects</h1>
 							<table class="project-list">
 								<jsp:include page="proj-filters.jsp"/>
+								<% for(Application a : allApplications)
+								{
+								%>
 								<tr>
-									<td>
-										<p>Applied &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
-									</td>
-									<td>Project Name</td>
-									<td>Andrew Myers</td>
-									<td><a href="#">Project Webpage</a></td>
-									<td></td>
-									<td>Programming Languages</td>
-									<td>Java</td>
+									<td><a href="#">Apply</a></td>
+									<td><%= a.getApplicationProject().getName() %></td>
+									<td><%=a.getApplicationProject().getResearchersString() %></td>
+									<td><a href="#"><%=a.getApplicationProject().getURL()%></a></td>
+									<td><%= a.getApplicationProject().getDescription() %></td>
+									<td><%= a.getApplicationProject().getAreaString() %></td>
+									<td>TODO: backend</td>
 								</tr>
-								<tr>
-									<td>
-										<p>Invited  &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
-									</td>
-									<td>Project Name</td>
-									<td>Tom Magrino</td>
-									<td></td>
-									<td title="This is a description of description of Project 2.  This is a description of Project 2.">
-										Description of Proj 2...
-									</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Applied &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
-									</td>
-									<td>Project Name</td>
-									<td>Tom Magrino</td>
-									<td></td>
-									<td title="This is a description of description of Project 3.  This is a description of Project 3.">
-										Description of Proj 3...
-									</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
+							<%} %>
 								</tbody>
 							</table>
 							
@@ -70,7 +55,13 @@
 							<jsp:include page="proj-filters.jsp"/>
 							<%List<Project> allProjects = ProjectController.getProjectList(em);
 							for (Project p : allProjects){%>
-							<tr>
+							<% 
+							String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
+							+ p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
+						 	+ p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
+						  	+ p.getAreaString().replaceAll(" ", "_").toLowerCase();
+							%>
+							<tr class="<%= cssClasses %>">
 								<td>
 									<p>
 										<a class="actionButton apply" name = "applyBut" 
@@ -86,7 +77,6 @@
 								<td><%=p.getAreaString() %></td>
 								<td>Java</td>
 							</tr>
-							<tr>
 							<%} %>
  								
 							</tbody>

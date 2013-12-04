@@ -11,8 +11,9 @@
    EntityManager em = emf.createEntityManager();
    Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
    Project p = ProjectController.getProjectById(em, request.getParameter("applyBut"));
-   ApplicationController.createApplication(em, s, p, "");
-
+   String text = request.getParameter("cover-letter");
+   ApplicationController.createApplication(em, s, p, text);
+	
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "researcher-profile.jsp"); 
 %>
