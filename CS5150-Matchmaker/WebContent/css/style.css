@@ -448,3 +448,7 @@ p{
 	margin: 0px;
 	padding: none;
 }
+body .ui-dialog .ui-dialog-content{
+	overflow: scroll;
+	height: 500px !important;
+}
