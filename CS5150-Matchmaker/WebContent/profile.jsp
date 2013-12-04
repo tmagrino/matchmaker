@@ -7,9 +7,7 @@
 
 <%         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
          EntityManager em = emf.createEntityManager();
-         Student s;
-
-         s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
+         Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
          
          
          String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
@@ -19,7 +17,9 @@
          JSONArray jsonArrStud = new JSONArray();
          for(String auto_attr: autocomplete_attr){
                  jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-                 jsonArrStud.put(s.getObjectJson(s.getListAttribute(auto_attr)));
+                 if(s!=null){
+                 	jsonArrStud.put(s.getObjectJson(s.getListAttribute(auto_attr)));
+                 }
          }
 %>
 <script type="text/javascript">
@@ -66,7 +66,7 @@
                                                                                 <option value="<%= i %>" selected="selected"><%= i_str%></option>
                                                                         <%        } else{ %>
                                                                                 <option value="<%= i %>"><%= i_str%></option>
-                                                                        <% } %>
+                                                                         <%} %>
                                                                 <% } %>
                                                         </select>
                                                         <% } else{ %>

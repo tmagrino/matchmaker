@@ -144,13 +144,13 @@
 			  		</li>
 			  <%}%>
 			   <%if (u == null){ %>
-			  <li>
-			  		<h3>Sorry.. Not Such User Found!!</h3>
-			  		</span>
-			  		</button>
-			  	</form>
-			  		</li>
-			  <%}%>
+				   <form action="createUser.jsp">
+					<p>Are you a student Or a Researcher?
+					<p><input type="radio" name="role" value="student"> Student
+					&nbsp;&nbsp;<input type="radio" name="role" value="researcher"> Researcher
+					<p>&nbsp;&nbsp;<input type="submit" value="Submit">
+					</form>
+			  	<% }%>
 			  </ol>
 			</div>
 			</td>
