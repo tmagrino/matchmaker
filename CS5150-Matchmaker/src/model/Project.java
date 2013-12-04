@@ -27,8 +27,6 @@ public class Project implements Serializable {
 	private String url;
 	@Column(name = "DESCRIPTION", nullable = false)
 	private String description;
-	@Column(name = "OPENINGS")
-	private int openings;
 	@ManyToMany
 	@JoinTable(
 			name = "PROJECT_LEADERS",
@@ -56,7 +54,6 @@ public class Project implements Serializable {
 		this.researchers = res;
 		this.url = url;
 		this.applications = new ArrayList<Application>();
-		this.openings = 0;
 		this.project_area = area;
 	}
 	public Project(String name, String description, String url, Researcher res,List<Interest> area) {

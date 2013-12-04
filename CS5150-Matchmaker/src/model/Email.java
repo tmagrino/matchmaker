@@ -47,5 +47,4 @@ public class Email {
             me.printStackTrace();
         }
     }
-
 }
