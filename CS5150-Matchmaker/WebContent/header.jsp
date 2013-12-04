@@ -15,7 +15,7 @@
 <script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 <script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
 <script src="js/jquery.autoSuggest.js" type="text/javascript"></script>
-<title>Matchmaker - Student Profile</title>
+<title>Matchmaker - Profile</title>
 </head>
 <!--[if IE 7]>         <body class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <body class="lt-ie10 lt-ie9"> <![endif]-->
