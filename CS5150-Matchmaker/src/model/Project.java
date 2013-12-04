@@ -35,7 +35,7 @@ public class Project implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="RES_ID", referencedColumnName="ID")}
 	)
 	private List<Researcher> researchers;
-	@ManyToMany
+	@ManyToMany (cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "PROJECT_AREA",
 			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
@@ -47,7 +47,7 @@ public class Project implements Serializable {
 	//private MinimumRequirements requirements;
 	
 	public Project() {
-		
+		System.out.println("Using constructor 1:");
 	}
 	public Project(String name, String description, String url, List<Researcher> res, List<Interest> area) {
 		this.name = name;
@@ -56,10 +56,12 @@ public class Project implements Serializable {
 		this.url = url;
 		this.applications = new ArrayList<Application>();
 		this.project_area = area;
+		System.out.println("Using contstructor 2:");
 	}
 	public Project(String name, String description, String url, Researcher res,List<Interest> area) {
 		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area);
 	}
+	
 
 	public long getId() {
 		return id;
@@ -88,17 +90,20 @@ public class Project implements Serializable {
 	public List<Researcher> getResearchers() {
 		return researchers;
 	}
-
+	
 	void addResearcher(Researcher res) {
-		researchers.add(res);
+		if (!researchers.contains(res)) {
+			researchers.add(res);
+			if (!res.getProjects().contains(this)) {
+				res.addProject(this);
+			}
+		}
 	}
 	
 	void removeResearcher(Researcher res) {
-		for (int i = 0; i < researchers.size(); i++) {
-			Researcher r = researchers.get(i);
-			if (r.equals(res)) {
-				researchers.remove(i);
-				break;
+		if (researchers.remove(res)) {
+			if (res.getProjects().contains(this)) {
+				res.removeProject(this);
 			}
 		}
 	}
@@ -111,11 +116,20 @@ public class Project implements Serializable {
 		if (applications == null) {
 			applications = new ArrayList<Application>();
 		}
-		applications.add(app);
+		if (!this.applications.contains(app)) {
+			this.applications.add(app);
+			if (app.getApplicationProject() != this) {
+				app.setApplicationProject(this);
+			}
+		}
 	}
 	
 	void removeApplication(Application app) {
-		applications.remove(app);
+		if (this.applications.remove(app)) {
+			if (app.getApplicationProject() == this) {
+				app.setApplicationProject(null);
+			}
+		}
 	}
 	
 	void removeApplications() {

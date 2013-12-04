@@ -157,9 +157,23 @@ public class Researcher implements Serializable {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-	public void addProject(Project proj){
-		this.projects.add(proj);
+	public void addProject(Project proj) {
+		if (!projects.contains(proj)) {
+			this.projects.add(proj);
+			if (!proj.getResearchers().contains(this)) {
+				proj.addResearcher(this);
+			}
+		}
 	}
+	
+	public void removeProject(Project proj) {
+		if (projects.remove(proj)) {
+			if (proj.getResearchers().contains(this)) {
+				proj.removeResearcher(this);
+			}
+		}
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

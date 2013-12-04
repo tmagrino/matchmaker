@@ -15,13 +15,43 @@ public class ApplicationController {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
+		System.out.println("Creating...");
 		Application a = new Application(s, p, studentResponse);
-		s.addApplication(a);
-		p.addApplication(a);
-		em.persist(a);
 		
+		System.out.println("App: " + a);
+		System.out.println("Stud: " + s);
+		System.out.println("Stud Name: " + s.getName());
+		System.out.println("Stud NETID: " + s.getNetID());
+		System.out.println("Proj: " + p);
+		System.out.println("Proj Name: " + p.getName());
+		System.out.println("Proj Description: " + p.getDescription());
+		System.out.println("App's Proj: " + a.getApplicationProject());
+		System.out.println("App's Stud: " + a.getStudentApplicant());
+		System.out.println("Persisting...");
+		em.persist(a);
+		System.out.println("Persisted now");
 		tx.commit();
 		return a;
+	}
+	
+	public static void updateApplication(EntityManager em, Student s, Project p,
+			Application a) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		System.out.println("Updating...");
+		s.addApplication(a);
+		p.addApplication(a);
+		System.out.println("Testing");
+		System.out.println("App: " + a);
+		System.out.println("Stud: " + s);
+		System.out.println("Stud Name: " + s.getName());
+		System.out.println("Stud NETID: " + s.getNetID());
+		System.out.println("Proj: " + p);
+		System.out.println("Proj Name: " + p.getName());
+		System.out.println("Proj Description: " + p.getDescription());
+		System.out.println("App's Proj: " + a.getApplicationProject());
+		System.out.println("App's Stud: " + a.getStudentApplicant());
+		tx.commit();
 	}
 
 	public static void deleteApplication(EntityManager em, Application a) {
