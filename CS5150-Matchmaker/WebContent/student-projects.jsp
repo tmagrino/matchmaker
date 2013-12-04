@@ -14,7 +14,7 @@
 				        List<Application> allApplications = s.getApplications();
 				         %>
 				         <div id="apply-form" class="hidden" title="Apply">
-							  <form method="post" action="apply.jsp">
+							  <form method="post" action="save-student-application.jsp">
 								    <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
 								    <textarea name="cover-letter" id="cover-letter"></textarea>
 								    <input type="submit" value="Apply">

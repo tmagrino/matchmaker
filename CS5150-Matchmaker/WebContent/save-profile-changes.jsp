@@ -9,7 +9,8 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   Student s = StudentController.getStudentByNetID(em,"lr437"); 
+   Student s = StudentController.getStudentByNetID(em,"lr437");
+   User u = UserController.findUser(em, "lr437");
    if (request.getParameter("email").length() > 0 && 
 		   s.getEmail() != request.getParameter("email")){
 	   StudentController.editEmail(em, s, request.getParameter("email"));
@@ -21,11 +22,10 @@
    }
    if (request.getParameter("gpa").length()>0){
 	   double gpa = Double.parseDouble(request.getParameter("gpa").replace(",","."));
-	   if (gpa < 5 && gpa != s.getGpa())
+	   if (gpa <= 4.3 && gpa != s.getGpa())
 	   StudentController.editGPA(em, s, gpa);
    }
    if (request.getParameter("as_values_major").length()>0){
-	   
 	   StudentController.update(em,s,request.getParameter("as_values_major"),ItemFactory.MAJOR); 
    }
    if (request.getParameter("as_values_minor").length()>0){
