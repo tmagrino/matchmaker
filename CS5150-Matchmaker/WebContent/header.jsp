@@ -44,13 +44,13 @@
 				Student s = StudentController.getStudentByNetID(em,currentUser);
 				if(s != null){%>
 					<li>Welcome, <%=s.getName() %>
-					<br><font size="2">Acting as <%=s.getNetID()%>, Student</font></li>
+					<br><font size="2"><%=s.getNetID()%>, Student</font></li>
 				<%}
 			 } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
 				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
 				<li>Welcome, <%=r.getName()%>
-				<br><font size="2">Acting as <%=r.getNetID()%>, Researcher</font></li>
+				<br><font size="2"> <%=r.getNetID()%>, Researcher</font></li>
 
 			<% } else if(request.getParameter("stud_or_prof").equals("header")){
 				User u = UserController.findUser(em, currentUser);

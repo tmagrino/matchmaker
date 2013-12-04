@@ -80,14 +80,16 @@
 							<tr>
 								<td>
 									<p>
-										<a class="actionButton apply" href="#">Apply</a>&nbsp;
+										<a class="actionButton apply" name = "applyBut" 
+										value = "<%= p.getId() %>"href="save-student-application.jsp">
+										Apply</a>&nbsp;
 										<a class="actionButton hide" href="#">Hide</a>
 									</p>
 								</td>
 								<td><%=p.getName() %></td>
 								<td><%=p.getResearchersString() %></td>
 								<td><a href="<%=p.getURL() %>"><%=p.getURL() %></a></td>
-								<td></td>
+								<td><%=p.getDescription() %></td>
 								<td><%=p.getAreaString() %></td>
 								<td>Java</td>
 							</tr>
