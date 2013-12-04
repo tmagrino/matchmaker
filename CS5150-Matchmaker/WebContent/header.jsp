@@ -51,16 +51,25 @@
 				
 				<li>Welcome, <%=r.getName()%>
 				<br><font size="2"> <%=r.getNetID()%>, Researcher</font></li>
-
-			<% } else if(request.getParameter("stud_or_prof").equals("header")){
+				
+			<% } else if(request.getParameter("stud_or_prof").equals("admin")){
 				User u = UserController.findUser(em, currentUser);
 				if(u != null){
 			%>
-	
 				<li>Welcome, <%=u.getName() %></li>
-	
+				<br><font size="2"> <%=u.getNetid()%>, Administrator</font></li>
 			<%}
-			}	%>
+
+			} else if(request.getParameter("stud_or_prof").equals("header")){
+				User u = UserController.findUser(em, currentUser);
+				if(u != null){
+			%>
+				<li>Welcome, <%=u.getName() %></li>
+				<% }
+				else{ %>
+				<li>Welcome, New User</li>
+				<% }
+			  } %>
 				<li class="login-link"><a href="clearsession.jsp">sign out</a></li>
 		</ul>
 	</div>
@@ -93,7 +102,17 @@
 							<% if(request.getParameter("top_selected").equals("students")){ %>
 							class="selected" <% } %>><a href="project-applicants.jsp">Students</a>
 						</li>
+						<% } else if(request.getParameter("stud_or_prof").equals("admin")){ %>
+						<li
+							<% if(request.getParameter("top_selected").equals("profile")){ %>
+							class="selected" <% } %>><a href="admin-searchUser.jsp">Search
+								User</a></li>
+						<li
+							<% if(request.getParameter("top_selected").equals("project")){ %>
+							class="selected" <% } %>><a href="admin-searchUser.jsp">Edit
+								Fields</a></li>
 						<% } %>
+
 					</ul>
 					</div>
 		<%} %>	

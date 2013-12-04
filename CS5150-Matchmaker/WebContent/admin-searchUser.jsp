@@ -3,7 +3,7 @@
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="stud" />
+	<jsp:param name="stud_or_prof" value="admin" />
 	<jsp:param name="sidebar_type" value="stud-profile" />
 	<jsp:param name="sidebar_selected" value="view" />
 	<jsp:param name="top_selected" value="profile" />
@@ -49,7 +49,6 @@
 %>
 		
 			<div class="content">
-						<h1>Accounts</h1>
 						<h3 class="subheading">&nbsp;Search User</h3>
 						<ul class="project-list">
 							<li class="clearfix">
