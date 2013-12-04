@@ -17,6 +17,7 @@ public class ApplicationController {
 		
 		Application a = new Application(s, p, studentResponse);
 		s.addApplication(a);
+		p.addApplication(a);
 		em.persist(a);
 		
 		tx.commit();
