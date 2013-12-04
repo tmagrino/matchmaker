@@ -146,9 +146,23 @@ function initTabLinks(){
 	});
 }
 
+function initApplyButton()
+{
+	var applyBtn = $("a.apply");
+	applyBtn.click(function(){
+		$("#apply-form").dialog({
+			  height: 200,
+		      width: 500,
+		      modal: true
+		});
+		return false;
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	initViewSuggestion();
+	initApplyButton();
 	sortTable();
 	EditField();
 	handleAddCourse();

@@ -11,6 +11,13 @@
 				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
+				         <div id="apply-form" class="hidden" title="Apply">
+							  <form method="post" action="apply.jsp">
+								    <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+								    <textarea name="cover-letter" id="cover-letter"></textarea>
+								    <input type="submit" value="Apply">
+							  </form>
+						</div>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
 				        	var skillsData = <%= jsonSkills %>;
