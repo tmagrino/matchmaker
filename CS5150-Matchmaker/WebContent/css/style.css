@@ -462,3 +462,8 @@ input[type="submit"] {
 	font-size: larger;
 	width: 115px;
 }
+.newUser{
+	background-color: #FFFFFF;
+	padding-bottom: 1%;
+	border-color: #ECECEC; 
+}

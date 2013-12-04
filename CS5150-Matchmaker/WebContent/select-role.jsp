@@ -156,18 +156,22 @@
 			                 src="images/blank.png">
 			  		<span class="account-name"><%= u.getName() %></span>
 			  		<span class="account-email" id="account-email-1">
-			  		Researcher
+			  		Project Lead
 			  		</span>
 			  		</button>
 			  	</form>
 			  		</li>
 			  <%}%>
+			  
 			   <%if (u == null){ %>
-				   <form action="createUser.jsp">
-					<p>Are you a student Or a Researcher?
-					<p><input type="radio" name="role" value="student"> Student
-					&nbsp;&nbsp;<input type="radio" name="role" value="researcher"> Researcher
-					<p>&nbsp;&nbsp;<input type="submit" value="Submit">
+					<form action="createUser.jsp">
+							<h3>Are you a Student or a Project Lead?</h3>
+							<p>
+								<input type="radio" name="role" value="student"> Student
+								<br>
+								<input type="radio" name="role" value="researcher"> Project Lead
+							</p>
+							<p>&nbsp;&nbsp;<input type="submit" value="Submit"></p>
 					</form>
 			  	<% }%>
 			  </ol>
