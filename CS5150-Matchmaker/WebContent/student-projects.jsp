@@ -10,6 +10,8 @@
 					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
 				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+				        Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
+				        List<Application> allApplications = s.getApplications();
 				         %>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
@@ -19,43 +21,19 @@
 						<h1>My Projects</h1>
 							<table class="project-list">
 								<jsp:include page="proj-filters.jsp"/>
+								<% for(Application a : allApplications)
+								{
+								%>
 								<tr>
-									<td>
-										<p>Applied &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
-									</td>
-									<td>Project Name</td>
-									<td>Andrew Myers</td>
-									<td><a href="#">Project Webpage</a></td>
-									<td></td>
-									<td>Programming Languages</td>
-									<td>Java</td>
+									<td><a href="#">Apply</a></td>
+									<td><%= a.getApplicationProject().getName() %></td>
+									<td><%=a.getApplicationProject().getResearchersString() %></td>
+									<td><a href="#"><%=a.getApplicationProject().getURL()%></a></td>
+									<td><%= a.getApplicationProject().getDescription() %></td>
+									<td><%= a.getApplicationProject().getAreaString() %></td>
+									<td>TODO: backend</td>
 								</tr>
-								<tr>
-									<td>
-										<p>Invited  &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
-									</td>
-									<td>Project Name</td>
-									<td>Tom Magrino</td>
-									<td></td>
-									<td title="This is a description of description of Project 2.  This is a description of Project 2.">
-										Description of Proj 2...
-									</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
-								<tr>
-									<td>
-										<p>Applied &nbsp; <a class="actionButton hide" href="#">Hide</a></p>
-									</td>
-									<td>Project Name</td>
-									<td>Tom Magrino</td>
-									<td></td>
-									<td title="This is a description of description of Project 3.  This is a description of Project 3.">
-										Description of Proj 3...
-									</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
+							<%} %>
 								</tbody>
 							</table>
 							

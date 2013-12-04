@@ -13,6 +13,7 @@ import javax.persistence.*;
  * 
  */
 @Entity
+
 @NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -41,7 +42,7 @@ public class Project implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> project_area;
-	@OneToMany(mappedBy = "applicationProject")
+	@OneToMany(mappedBy = "applicationProject" ,cascade = CascadeType.PERSIST)
 	private List<Application> applications;
 	//private MinimumRequirements requirements;
 	
