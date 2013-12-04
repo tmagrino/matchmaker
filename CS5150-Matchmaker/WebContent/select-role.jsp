@@ -23,7 +23,7 @@
 		 count++;
 	 }
 	 
-	 if(u.isAdmin()){
+	 if(u!=null && u.isAdmin()){
 		 count++;
 	 }
 	 
