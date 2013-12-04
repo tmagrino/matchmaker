@@ -19,7 +19,7 @@
 						<form name="filter-list" id="filter-list" class="clearfix">
 							<h1>My Project A</h1>
 							<div class="search-container">
-								<input type="text" placeholder="Search"/>
+								<input type="text" placeholder="Search..."/>
 								<input type="submit" value="Filter"/>
 							</div>
 						</form>

@@ -26,7 +26,7 @@
     var jsonArrStud = <%= jsonArrStud %>;
 </script>
 <div class="content">
-	<h1>My Profile</h1>
+	<!-- <h1>My Profile</h1> -->
 	<div id="all-department" class="hidden" title="All Department Suggestions"></div>
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
