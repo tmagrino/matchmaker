@@ -82,7 +82,7 @@
 								<td><%=p.getName() %></td>
 								<td><%=p.getResearchersString() %></td>
 								<td><a href="<%=p.getURL() %>"><%=p.getURL() %></a></td>
-								<td></td>
+								<td><%=p.getDescription() %></td>
 								<td><%=p.getAreaString() %></td>
 								<td>Java</td>
 							</tr>
