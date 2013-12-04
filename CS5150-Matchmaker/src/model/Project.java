@@ -41,7 +41,7 @@ public class Project implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> project_area;
-	@OneToMany(mappedBy = "project")
+	@OneToMany(mappedBy = "applicationProject")
 	private List<Application> applications;
 	//private MinimumRequirements requirements;
 	
