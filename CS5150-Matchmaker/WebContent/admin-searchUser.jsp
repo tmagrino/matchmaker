@@ -98,13 +98,24 @@
 										<tr>
 											<td>
 											<div class="status">
-												<% if(isStudent){%>
+												<% if(isStudent){
+													session.setAttribute("currentUser", request.getParameter("netID"));
+												%>
 										 		<form action="profile.jsp" method="get">
 										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
 													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
 												</form>
-										 		<%} if(isResearcher){ %>
+										 		<%} else if(isResearcher){
+										 			session.setAttribute("currentUser", request.getParameter("netID"));
+										 			%>
 										 		<form action="researcher-profile.jsp" method="get">
+										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
+													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
+												</form>
+												<%} else if(u!= null && u.isAdmin()){
+										 			session.setAttribute("currentUser", request.getParameter("netID"));
+										 			%>
+										 		<form action="admin-searchUser.jsp" method="get">
 										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
 													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
 												</form>
@@ -112,12 +123,12 @@
 											</div>
 											</td>
 											<td>
-											<div class="status">
+											<!-- <div class="status">
 												<form action="admin-update-role.jsp" method="Get">
 													<input type="hidden" name="hiddenNetID" value="<%=netID%>">
 													<input type="Submit" value="Update User Roles" size=20  style="width: 10em; height:2em"/>
 												</form>
-											</div>
+											</div> -->
 											</td>
 										</tr>
 									</table>
