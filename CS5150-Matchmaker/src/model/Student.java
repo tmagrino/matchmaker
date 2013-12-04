@@ -107,7 +107,7 @@ public class Student implements Serializable {
 	private List<Course> transcript;
 	@OneToMany(mappedBy = "studentApplicant", cascade = CascadeType.ALL)
 	private List<Application> applications;
-	@Embedded
+	@OneToOne
 	private StudentSettings settings;
 	
 
@@ -138,8 +138,20 @@ public class Student implements Serializable {
 		this.interests = interests;
 		this.transcript = transcript;
 		this.user = user;
+		
 	}
 	
+	public void createSettings(){
+		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+		EntityManager em = emf.createEntityManager();
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		this.settings = new StudentSettings();
+		settings.student = this;
+		tx.commit();
+		
+	}
 	public String getAttribute(String attr) {
 		switch (attr.toLowerCase()) {
 			case "name":

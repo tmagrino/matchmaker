@@ -279,7 +279,8 @@ fieldset {
 <SELECT ID="realm" NAME="realm">
 <OPTION VALUE='NetID'>NetID</OPTION>
 <OPTION VALUE='WCMC-CWID'>WCMC-CWID</OPTION>
-<OPTION VALUE='GuestID'>GuestID</OPTION>
+<OPTION VALUE='GuestID'>GuestID</OPTION>Apply  Hide
+
 </SELECT>
 </div></div>
 
@@ -304,7 +305,8 @@ fieldset {
 <div id="footer">
 	<div id="fc">
 		<div id="footer-content">
-     <p>   <a target="_blank" href="http://www.it.cornell.edu/services/cuweblogin/safe.cfm#exit">To log out, you must Exit or Quit your browser.</a>
+     <p>   <a target="_blank" href="http://www.it.cornApply  Hide
+     ell.edu/services/cuweblogin/safe.cfm#exit">To log out, you must Exit or Quit your browser.</a>
 </p><p>
    <strong>Caution:</strong> Always check your browser's address bar before you enter your NetID password to make sure the address starts with https://web*.login.cornell.edu/ (where web* is either web1, web2, web3 or web4).
 </p> <p>
