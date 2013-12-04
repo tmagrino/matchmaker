@@ -8,9 +8,7 @@
 	EntityManager em = emf.createEntityManager();
 	
 	String currentuser = (String) session.getAttribute("currentUser");
-	if (currentuser == null) {
-		currentuser = "tm123";
-	}
+	
 	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
 	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
