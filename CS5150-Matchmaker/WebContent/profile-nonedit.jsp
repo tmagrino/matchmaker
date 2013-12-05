@@ -1,5 +1,5 @@
 <jsp:include page="header.jsp">
-        <jsp:param name="stud_or_prof" value="stud" />
+        <jsp:param name="stud_or_prof" value="researcher" />
         <jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%@page
@@ -7,34 +7,17 @@
 
 <%         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
          EntityManager em = emf.createEntityManager();
-         Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
+         Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
          
+         Student s = StudentController.getStudentByNetID(em, (String) request.getParameter("studid"));
          
          String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
-         String[] autocomplete_attr = {ItemFactory.MAJOR, ItemFactory.MINOR, ItemFactory.COLLEGE, ItemFactory.SKILL
-                         , ItemFactory.INTEREST};
-         JSONArray jsonArrAll = new JSONArray();
-         JSONArray jsonArrStud = new JSONArray();
-         for(String auto_attr: autocomplete_attr){
-                 jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-                 if(s!=null){
-                 	jsonArrStud.put(s.getObjectJson(s.getListAttribute(auto_attr)));
-                 }
-         }
+        
+     
 %>
-<script type="text/javascript">
-        var autocomplete_attr = Array("major", "minor", "college", "skills", "research_interests");
-        var jsonArrAll = <%= jsonArrAll %>;
-    var jsonArrStud = <%= jsonArrStud %>;
-</script>
 
 <div class="content">
-        <h1>My Profile</h1>
-        <div id="all-major" class="hidden" title="All Major Suggestions"></div>
-        <div id="all-minor" class="hidden" title="All Minor Suggestions"></div>
-        <div id="all-college" class="hidden" title="All College Suggestions"></div>
-        <div id="all-skills" class="hidden" title="All Skill Suggestions"></div>
-        <div id="all-research_interests" class="hidden" title="All Interest Suggestions"></div>
+       
         <div class="photo-info clearfix">
                 <img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
                 <form name="profile" action="save-profile-changes.jsp" method="GET">
@@ -52,26 +35,9 @@
                                                         <%=s.getAttribute(attr) %>
                                                 </p>
                                                 <p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
-                                                        <% if(s!= null && attr.equals("Year")){ %>
-                                                                <select name = "year">
-                                                                        <option value="">---</option>
-                                                                <% String year_val = s.getAttribute(attr); %>
-                                                                <% for(int i = 1; i<=5; i++){ 
-                                                                        String i_str = Integer.toString(i);
-                                                                        if(i == 5){
-                                                                                i_str += "+";
-                                                                        }
-                                                                        if(year_val.equals(i_str)){ %>
-                                                                                <option value="<%= i %>" selected="selected"><%= i_str%></option>
-                                                                        <%        } else{ %>
-                                                                                <option value="<%= i %>"><%= i_str%></option>
-                                                                         <%} %>
-                                                                <% } %>
-                                                        </select>
-                                                        <% } else{ %>
-                                                        <input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
-                                                                value="<%=s.getAttribute(attr) %>" type="text" />
-                                                        <% } %>
+                                                    <input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
+                                                      value="<%=s.getAttribute(attr) %>" type="text" />
+                                                        
                                                 </p>
                                                 <p class="other hidden">
                                                         <input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />

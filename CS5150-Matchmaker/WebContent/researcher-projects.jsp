@@ -52,7 +52,7 @@
 											<td>
 												<a class="actionButton remove" href="#">Remove</a>
 											</td>
-											<td><%=s.getName() %></td>
+											<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID()%>"><%=s.getName()%></a></td>
 											<td><%=s.getGpa() %></a></td>
 											<td><%=s.getString(s.getMajors()) %></td>
 											<td><%=s.getYear() %></td>

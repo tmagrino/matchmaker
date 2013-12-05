@@ -53,7 +53,8 @@
 										<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>">Accept</a>&nbsp;
 										<a class="actionButton reject" href="#">Reject</a>
 									</td>
-									<td><%=s.getName() %></td>
+									
+									<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID()%>"><%=s.getName()%></a></td>
 									<td><%=s.getGpa() %></a></td>
 									<td><%=s.getString(s.getMajors()) %></td>
 									<td><%=s.getYear() %></td>
