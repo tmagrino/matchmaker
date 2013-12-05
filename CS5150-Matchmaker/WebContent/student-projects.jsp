@@ -12,6 +12,9 @@
                                  JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
                                  Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
                                  List<Application> allApplications = s.getApplications();
+                                 List<Project> hiddenProjects = s.getSettings().getHiddenProjects();
+                                 String showhide = request.getParameter("showhidden");
+                                 boolean showHidden = "yes".equals(showhide);
                                  %>
                                  <script type="text/javascript">
                                          var majorData = <%= jsonMajor %>;
@@ -21,8 +24,7 @@
                                                 <h1>My Applications</h1>
                                                 <br>
                                                         <table class="project-list">
-                                                                <jsp:include page="app-filters.jsp"/>
-                                                                <%
+                                                                <jsp:include page="app-filters.jsp"/><%
                                                                 for(Application a : allApplications)
                                                                 {
                                                                 	Project p = a.getApplicationProject();
@@ -39,12 +41,13 @@
                                                                         <td><%=p.getResearchersString() %></td>
                                                                         <td><a href="<%=p.getURL()%>"><%=p.getURL()%></a></td>
                                                                         <td><%= p.getDescription() %></td>
-                                                                </tr>
-                                                        <%} %>
+                                                        		<%
+                                                        		}
+                                                        		%>
+                                                        		</tr>
                                                                 </tbody>
                                                         </table>
-                                                        
-                                                <br>
+                                                        <br>
                                                 <form name="filter-list" id="filter-list" class="clearfix">
                                                         <h1>Search New Projects</h1>
                                                         <div class="search-container">
@@ -68,7 +71,11 @@
                                                         	if (applied) {
                                                         		continue;
                                                         	}
+                                                        	if (!showHidden && hiddenProjects.contains(p)) {
+                                                        		continue;
+                                                        	}
                                                         	atLeastOne = true;
+                                                        	
                                                          %>
                                                         <%
                                                         String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
@@ -101,7 +108,10 @@
                                                         <%} 
                                                           if (!atLeastOne) {
                                                             %>
-                                                            <td colspan = 7> <i>No available projects </i></td>
+                                                            <td colspan = 7> <i>No available projects. </i>
+                                                            	<a href="student-projects.jsp?showhidden=yes">
+                                                            		Show hidden projects</a>
+                                                            </td>
                                                             <%
                                                           }%>
                                                                  

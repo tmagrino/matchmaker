@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -21,24 +23,42 @@ import javax.persistence.OneToOne;
 public class StudentSettings {
 	
 	@Id @Column(name = "ID", nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	Student student;
+	private Student student;
 	
-	@ManyToMany
+	@ManyToMany (cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "HIDDEN_PROJ",
 			joinColumns = {@JoinColumn(name="SET_ID", referencedColumnName="ID")},
 			inverseJoinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")}
 	)
-	List<Project> hiddenProjects;
+	private List<Project> hiddenProjects;
 	
 	public StudentSettings(){
 		hiddenProjects = new ArrayList<Project>();
 	}
-	public void addProject(Project p){
-		hiddenProjects.add(p);
+	
+	public List<Project> getHiddenProjects() {
+		return hiddenProjects;
+	}
+	
+	public void addProject(Project p) {
+		if (!hiddenProjects.contains(p)) {
+			hiddenProjects.add(p);
+		}
+	}
+	
+	
+	
+	public Student getStudent() {
+		return student;
+	}
+	
+	void setStudent(Student s) {
+		student = s;
 	}
 	
 }

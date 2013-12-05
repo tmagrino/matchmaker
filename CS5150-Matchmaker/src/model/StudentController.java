@@ -24,6 +24,9 @@ public class StudentController {
 		
 		Student s = new Student(name, netID, gpa, email, year, colleges, majors,
 				minors, skills, priorExperience, interests, transcript, user);
+		StudentSettings set = new StudentSettings();
+		s.setSettings(set);
+		set.setStudent(s);
 		user.setStudent(s);
 		em.persist(s);
 		
@@ -356,6 +359,15 @@ public class StudentController {
 		tx.begin();
 		
 		s.removeApplication(a);
+		
+		tx.commit();
+	}
+	
+	public static void addHiddenProject(EntityManager em, Student s, Project p) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		s.getSettings().addProject(p);
 		
 		tx.commit();
 	}

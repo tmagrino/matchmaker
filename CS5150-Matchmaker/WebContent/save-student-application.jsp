@@ -12,8 +12,6 @@
    Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
    
    Project p = ProjectController.getProjectById(em, request.getParameter("id"));
-   System.out.println(request.getParameter("id"));
-   System.out.println(p);
    String text = request.getParameter("cover-letter");
    
    Application a = ApplicationController.createApplication(em, s, p, text);

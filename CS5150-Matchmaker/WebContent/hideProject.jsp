@@ -9,12 +9,9 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   
-   StudentSettings set = StudentController.getStudentByNetID(em, 
-		   (String) session.getAttribute("currentUser")).getSettings();
-   System.out.println(set);
-   set.addProject(ProjectController.getProjectById(em, request.getParameter("id")));
-
+   Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
+   Project p = ProjectController.getProjectById(em, request.getParameter("id"));
+   StudentController.addHiddenProject(em, s, p);
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "student-projects.jsp"); 
 %>
