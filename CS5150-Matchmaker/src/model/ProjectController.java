@@ -116,7 +116,7 @@ public class ProjectController {
         }
         catch (Exception e) {
         	System.out.print(e);
-        	return new Project();
+        	return null;
         }
 	}
 }

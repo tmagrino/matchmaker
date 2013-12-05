@@ -18,26 +18,33 @@
                                          var skillsData = <%= jsonSkills %>;
                                          var interestData = <%= jsonInterest %>;
                                  </script>
-                                                <h1>My Projects</h1>
+                                                <h1>My Applications</h1>
+                                                <br>
                                                         <table class="project-list">
-                                                                <jsp:include page="proj-filters.jsp"/>
-                                                                <% for(Application a : allApplications)
+                                                                <jsp:include page="app-filters.jsp"/>
+                                                                <%
+                                                                for(Application a : allApplications)
                                                                 {
                                                                 	Project p = a.getApplicationProject();
                                                                 %>
                                                                 <tr>
-                                                                        <td><a href="remove-student-project.jsp?id=<%=p.getId()%>">Remove</a></td>
+                                                                        <td>
+                                                                        	<%= a.getStatus() %>
+                                                                        	<a class"actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>">
+                                                                        		<img class="delete" src="images/Delete.png" alt="delete" border="0"
+                                                                        		 alt="Delete application"/>
+                                                                        	</a>
+                                                                        </td>
                                                                         <td><%= p.getName() %></td>
                                                                         <td><%=p.getResearchersString() %></td>
                                                                         <td><a href="<%=p.getURL()%>"><%=p.getURL()%></a></td>
                                                                         <td><%= p.getDescription() %></td>
-                                                                        <td><%= p.getAreaString() %></td>
-                                                                        <td><%= p.getSkillString() %></td>
                                                                 </tr>
                                                         <%} %>
                                                                 </tbody>
                                                         </table>
                                                         
+                                                <br>
                                                 <form name="filter-list" id="filter-list" class="clearfix">
                                                         <h1>Search New Projects</h1>
                                                         <div class="search-container">
@@ -49,10 +56,7 @@
                                                         <jsp:include page="proj-filters.jsp"/>
                                                         <%List<Project> allProjects = ProjectController.getProjectList(em);
                                                         List<Long> studProjs = StudentController.getStudentProjects(em,s);
-                                                        
-                                                        for (Long i : studProjs){
-                                                        	
-                                                        }
+                                                        boolean atLeastOne = false;
                                                         for (Project p : allProjects) {
                                                         	boolean applied = false;
                                                         	for (Application a : allApplications) {
@@ -64,6 +68,7 @@
                                                         	if (applied) {
                                                         		continue;
                                                         	}
+                                                        	atLeastOne = true;
                                                          %>
                                                         <%
                                                         String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
@@ -93,7 +98,12 @@
                                                                 <td><%=p.getSkillString() %></td>
                                                         </tr>
                                                   
-                                                        <%} %>
+                                                        <%} 
+                                                          if (!atLeastOne) {
+                                                            %>
+                                                            <td colspan = 7> <i>No available projects </i></td>
+                                                            <%
+                                                          }%>
                                                                  
                                                         </tbody>
                                                 </table>

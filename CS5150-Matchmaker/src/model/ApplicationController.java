@@ -79,6 +79,21 @@ public class ApplicationController {
         	return new ArrayList<Application>();
         }
 	}
+	
+	public static Application getApplicationById(EntityManager em,String id) {
+        EntityTransaction tx = em.getTransaction();
+        try {
+        String query = "select a FROM APPLICATION a WHERE a.id = "+ id;
+        List<Application> mylist = (List<Application>) em.createQuery(query).getResultList();
+        	
+        	return mylist.get(0);
+        }
+        catch (Exception e) {
+        	System.out.print(e);
+        	return null;
+        }
+	}
+	
 	public static Application getApplication(EntityManager em, Student s, Project p){
 		List<Application> allApps = getApplicationList(em);
 		System.out.println(allApps.size());
