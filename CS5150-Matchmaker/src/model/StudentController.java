@@ -372,6 +372,15 @@ public class StudentController {
 		tx.commit();
 	}
 	
+	public static void removeHiddenProject(EntityManager em, Student s, Project p) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		s.getSettings().removeProject(p);
+		
+		tx.commit();
+	}
+	
 	public static String[] calculateGpaRange(String gpa){
 		switch(gpa){
 		case "gt4":

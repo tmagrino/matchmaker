@@ -385,6 +385,12 @@ ul {
 .actionButton.hide, 
 .actionButton.remove {
 	background-color: #000099;
+	width: 65px;
+}
+
+.actionButton.unhide{
+	background-color: #FF8C00;
+	width: 65px;
 }
 
 .actionButton.remove{
@@ -394,6 +400,7 @@ ul {
 .actionButton.apply,
 .actionButton.accept {
 	background-color: #006633;
+	width: 65px;
 }
 .actionButton.reject{
 	background-color: #ab1a2a;

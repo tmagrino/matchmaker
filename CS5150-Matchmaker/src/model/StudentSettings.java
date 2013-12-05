@@ -51,7 +51,9 @@ public class StudentSettings {
 		}
 	}
 	
-	
+	public void removeProject(Project p) {
+		hiddenProjects.remove(p);
+	}
 	
 	public Student getStudent() {
 		return student;

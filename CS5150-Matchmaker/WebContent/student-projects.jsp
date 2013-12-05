@@ -50,6 +50,14 @@
                                                         <br>
                                                 <form name="filter-list" id="filter-list" class="clearfix">
                                                         <h1>Search New Projects</h1>
+                                                        <%
+                                                        if (showHidden) {
+                                                        	%>
+                                                        	<br>
+                                                        	<p><font size="2"><i>Displaying hidden projects</i></font></p>
+                                                        	<%
+                                                        }
+                                                        %>
                                                         <div class="search-container">
                                                                 <input type="text" placeholder="Search"/>
                                                                 <input type="submit" value="Filter"/>
@@ -62,6 +70,7 @@
                                                         boolean atLeastOne = false;
                                                         for (Project p : allProjects) {
                                                         	boolean applied = false;
+                                                        	boolean hid = false;
                                                         	for (Application a : allApplications) {
                                                         		if (a.getApplicationProject() == p) {
                                                         			applied = true;
@@ -71,7 +80,10 @@
                                                         	if (applied) {
                                                         		continue;
                                                         	}
-                                                        	if (!showHidden && hiddenProjects.contains(p)) {
+                                                        	if (hiddenProjects.contains(p)) {
+                                                        		hid = true;
+                                                        	}
+                                                        	if (!showHidden && hid) {
                                                         		continue;
                                                         	}
                                                         	atLeastOne = true;
@@ -94,7 +106,21 @@
                                                                 <td>
                                                                  	<p>
                                                                     	<a class="actionButton apply" href="save-student-application.jsp?id=<%=p.getId()%>">Apply</a>&nbsp;
-																		<a class="actionButton hide" href="hideProject.jsp?id=<%=p.getId()%>">Hide</a>
+                                                                    	<%
+                                                                    	if (hid && showHidden) {
+                                                                    		%><a class="actionButton unhide" href="unhideProject.jsp?id=<%=p.getId()%>">Unhide</a>
+                                                                    		<%
+                                                                    	}
+                                                                    	else {
+                                                                    		%><a class="actionButton hide" href="hideProject.jsp?id=<%=p.getId()%>
+                                                                    		<% 
+                                                                    		if (showHidden) {
+                                                                    			%>&showhidden=yes<%
+                                                                    		}
+                                                                    		%>
+                                                                    		">Hide</a><%
+                                                                    	}
+                                                                    	%>
                                                                    </p>
                                                                 </td>
                                                                 <td><%=p.getName() %></td>
