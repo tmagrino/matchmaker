@@ -17,8 +17,6 @@
    String text = request.getParameter("cover-letter");
    
    Application a = ApplicationController.createApplication(em, s, p, text);
-   
-   //ApplicationController.updateApplication(em, s, p, a);
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "student-projects.jsp"); 

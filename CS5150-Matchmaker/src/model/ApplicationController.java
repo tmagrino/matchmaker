@@ -16,21 +16,12 @@ public class ApplicationController {
 		tx.begin();
 		
 		Application a = new Application(s, p, studentResponse);
-		
+		s.addApplication(a);
+		p.addApplication(a);
 		em.persist(a);
 
 		tx.commit();
 		return a;
-	}
-	
-	public static void updateApplication(EntityManager em, Student s, Project p,
-			Application a) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		s.addApplication(a);
-		p.addApplication(a);
-		tx.commit();
 	}
 
 	public static void deleteApplication(EntityManager em, Application a) {

@@ -52,7 +52,17 @@
                                                         for (Long i : studProjs){
                                                         	
                                                         }
-                                                        for (Project p : allProjects){
+                                                        for (Project p : allProjects) {
+                                                        	boolean applied = false;
+                                                        	for (Application a : allApplications) {
+                                                        		if (a.getApplicationProject() == p) {
+                                                        			applied = true;
+                                                        			break;
+                                                        		}
+                                                        	}
+                                                        	if (applied) {
+                                                        		continue;
+                                                        	}
                                                          %>
                                                         <%
                                                         String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
