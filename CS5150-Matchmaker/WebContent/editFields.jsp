@@ -1,6 +1,9 @@
+<% session.setAttribute("currentUser", "ad234"); %>
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="researcher" />
-	<jsp:param name="top_selected" value="project" />
+	<jsp:param name="stud_or_prof" value="admin" />
+	<jsp:param name="sidebar_type" value="stud-profile" />
+	<jsp:param name="sidebar_selected" value="view" />
+	<jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
@@ -9,7 +12,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
 JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+Researcher r = ResearcherController.getResearcherByNetID(em,"ad234");
 String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
 String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
@@ -27,11 +30,10 @@ for(String auto_attr: autocomplete_attr){
 <div class="content">
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
-	<h1>My Projects</h1>
 	<form name="profile" action="save-project-changes.jsp">
 		<table class="info">
 			<tr>
-				<td class="attr-label" colspan="3"><h2><%=r.getName() %></h2></td>
+				<td class="attr-label" colspan="3"><h2>Edit Fields</h2></td>
 			</tr>
 			<% for(String attr: attributes){ %>
 				<tr>

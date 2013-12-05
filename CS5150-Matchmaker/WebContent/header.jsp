@@ -106,7 +106,7 @@
 								User</a></li>
 						<li
 							<% if(request.getParameter("top_selected").equals("project")){ %>
-							class="selected" <% } %>><a href="admin-searchUser.jsp">Edit
+							class="selected" <% } %>><a href="editFields.jsp">Edit
 								Fields</a></li>
 						<% } %>
 
