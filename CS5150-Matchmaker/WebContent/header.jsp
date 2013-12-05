@@ -32,7 +32,7 @@
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
 		 	String currentUser = (String) session.getAttribute("currentUser");
-		 	Integer num = (Integer) session.getAttribute("numberOfRoles");
+		 	Integer numRoles = (Integer) session.getAttribute("numberOfRoles");
 		 	if(currentUser == null){
 		 		currentUser = request.getParameter("netId");
 		 		session.setAttribute("currentUser", currentUser);
@@ -43,7 +43,9 @@
 				if(s != null){%>
 					<li>Welcome, <%=s.getName() %>
 					<br>
-					<li class="change-role"><a href="select-role.jsp">Change Role</a></li>
+					<% if(numRoles > 1) { %>
+						<li class="change-role"><a href="select-role.jsp">Change Role</a></li>
+					<% } %>
 					<font size="2"><%=s.getNetID()%>, Student</font></li>
 				<%}
 			 } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
@@ -51,7 +53,9 @@
 				
 				<li>Welcome, <%=r.getName()%>
 				<br>
-				<li class="change-role"><a href="select-role.jsp">Change Role</a></li>
+				<% if(numRoles > 1) { %>
+						<li class="change-role"><a href="select-role.jsp">Change Role</a></li>
+				<% } %>
 				<font size="2"> <%=r.getNetID()%>, Project Lead</font></li>
 				
 			<% } else if(request.getParameter("stud_or_prof").equals("admin")){
@@ -60,7 +64,9 @@
 			%>
 				<li>Welcome, <%=u.getName() %></li>
 				<br>
-				<li class="change-role"><a href="select-role.jsp">Change Role</a></li>
+				<% if(numRoles > 1) { %>
+						<li class="change-role"><a href="select-role.jsp">Change Role</a></li>
+				<% } %>
 				<font size="2"> <%=u.getNetid()%>, Administrator</font></li>
 			<%}
 
