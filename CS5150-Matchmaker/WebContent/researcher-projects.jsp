@@ -11,6 +11,7 @@
 				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
+				         
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
 				        	var skillsData = <%= jsonSkills %>;
