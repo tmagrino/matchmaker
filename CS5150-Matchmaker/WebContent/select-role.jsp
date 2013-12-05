@@ -32,7 +32,7 @@
 			 response.sendRedirect("researcher-profile.jsp");
 		 }
 		 if(isStudent){
-			 response.sendRedirect("profile-nonedit.jsp");
+			 response.sendRedirect("profile.jsp");
 		 }
 		 if(u.isAdmin()){
 			 response.sendRedirect("admin-searchUser.jsp");
