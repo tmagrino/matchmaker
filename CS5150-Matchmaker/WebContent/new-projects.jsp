@@ -35,7 +35,7 @@
 									<td><a href="#"><%=p.getURL()%></a></td>
 									<td><%= p.getDescription() %></td>
 									<td><%= p.getAreaString() %></td>
-									<td>TODO: backend</td>
+									<td><%=p.getSkillString() %></td>
 								</tr>
 							<%} %>
 							</tbody>
