@@ -31,7 +31,7 @@ var interestData = <%= jsonInterest %>;
 	<%
 		if (allApplications.size() == 0) {
 		%>
-			<tr class=""><td colspan="5"><i>No applications found</i></td></tr>	
+			<tr class="no-results"><td colspan="5"><i>No applications found</i></td></tr>	
 		<%
 		}
 		for(Application a : allApplications) {

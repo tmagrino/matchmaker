@@ -159,10 +159,19 @@ function initApplyButton()
 	});
 }
 
-function initFilterSubmit()
+function initFilterType()
 {
-	$("form.filter-submit").submit(function(){
-		var searchVal = $(".search-container input[name=")
+	var searchbox = $("form#filter-list .search-text");
+	if(searchbox.length == 0){return;}
+	$(searchbox).keyup(function(){
+		var searchVal = $(this).val().trim();
+		if(!searchVal || searchVal.length == 0){
+			$(".project-list tbody tr").not(".hidden").show();
+		}
+		else{
+			$(".project-list tbody tr").hide();
+			$(".project-list tbody tr[class*="+searchVal+"], .project-list tr.no-results").show();
+		}
 	});
 }
 
@@ -176,5 +185,5 @@ $(document).ready(function(){
 	validateFormSubmit();
 	initTabLinks();
 	hideProject();
-	initFilterSubmit();
+	initFilterType();
 });
