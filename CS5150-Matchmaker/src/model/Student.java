@@ -1,4 +1,4 @@
-// Model for Student 
+// Model for Student created
 package model;
 
 import java.awt.image.BufferedImage;
