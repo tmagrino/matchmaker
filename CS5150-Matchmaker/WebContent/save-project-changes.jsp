@@ -21,8 +21,8 @@
 		area.add((Interest)ListController.getItemById(em, Long.parseLong(id), ItemFactory.INTEREST));
 		}
 	for (String id : skillIdList){
-		if(id.length()>0){
-		reqSkills.add((Skill) ListController.getItemById(em, Long.parseLong(id), ItemFactory.SKILL));
+		if (id.length()>0){
+			reqSkills.add((Skill) ListController.getItemById(em, Long.parseLong(id), ItemFactory.SKILL));
 		}
 	}
    ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
