@@ -25,20 +25,15 @@
 								<jsp:include page="stud-filters.jsp"/>
 								<%List<Student> studentList = new ArrayList<Student>();
 								
-								if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
-									studentList = StudentController.getStudentByFilter(em,
-											"", "", "", "","","");
-								}
-								//List<Student> studentList = StudentController.getAllStudents();
-								else{studentList = StudentController.getStudentByFilter(em,
-										request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","",""); 
-									for(Student s: studentList)
-									{
+
+								studentList = StudentController.getAllStudents(em);
+
+									for (Student s : studentList){
 									%>
 										<tr>
 											<td>
 												<p><a href="#">Invite</a></p>
-												<p><a href="#">Hide</a></p>
+												<p><a class="actionButton hide" href="#">Hide</a></p>
 											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
@@ -47,7 +42,7 @@
 											<td><%=s.getString(s.getSkills()) %></td>
 											<td><%=s.getString(s.getInterests()) %></td>
 										</tr>
-								<%}} %>
+								<%} %>
 								</tbody>
 							</table>
 						</form>

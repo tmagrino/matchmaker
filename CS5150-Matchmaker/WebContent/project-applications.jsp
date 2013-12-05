@@ -11,7 +11,8 @@
 				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 				         %>
-				        
+				        <a href="proj-profile.jsp">Add New Project</a>
+				        <a href="invite-students.jsp">Show all Students</a>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
 				        	var skillsData = <%= jsonSkills %>;
@@ -72,7 +73,7 @@
 					
 						<jsp:include page="pager.jsp"/>
 						<br>
-						<a href="proj-profile.jsp">Add New Project</a>
+						
 					</div>				
 				</div>
 			</div>

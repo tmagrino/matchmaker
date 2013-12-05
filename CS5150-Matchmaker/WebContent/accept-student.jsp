@@ -11,7 +11,7 @@
    EntityManager em = emf.createEntityManager();
    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
    ApplicationController.approveApplication(em, a);
-   Email.sendAcceptingMessage(a.getStudentApplicant());
+   //Email.sendAcceptingMessage(a.getStudentApplicant());
    response.setStatus(response.SC_MOVED_TEMPORARILY);
   
    response.setHeader("Location", "project-applications.jsp"); 
