@@ -25,6 +25,7 @@ public class ProjectController {
 		tx.begin();
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
 		rlist.add(researcher);
+
 		Project p = new Project(name,description,newurl,rlist,area,skills);
 		em.persist(p);
 		
@@ -39,6 +40,7 @@ public class ProjectController {
 		tx.begin();
 		
 		Project p = new Project(name,description,url,researcher,area,skills);
+		
 		em.persist(p);
 		
 		tx.commit();

@@ -117,7 +117,7 @@ var interestData = <%= jsonInterest %>;
 			<label for="cover-letter">Enter a short paragraph explaining
 				why you would be a good fit for this project.</label>
 			<textarea name="cover-letter" id="cover-letter" cols="" rows=""></textarea>
-			<input type="submit" value="Apply" />
+			<input type="submit" value="Apply">
 		</form>
 	</div>
 	<tr class="<%= cssClasses %>">

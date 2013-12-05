@@ -27,11 +27,14 @@
 		<jsp:include page="stud-filters.jsp"/>
 		<%
 			List<Student> studentList = new ArrayList<Student>();
-																
+			Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+	        List<Project> projs = r.getProjects();
+	        
 			if (request.getParameter("filter-name") == null || request.getParameter("filter-gpa") == null){
 				studentList = StudentController.getStudentByFilter(em,
 						"", "", "", "","","");
 			}
+			
 			//List<Student> studentList = StudentController.getAllStudents();
 			else{studentList = StudentController.getStudentByFilter(em,
 					request.getParameter("filter-name"), request.getParameter("filter-gpa"), "", "","","");

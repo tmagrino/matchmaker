@@ -150,7 +150,7 @@ function initApplyButton()
 {
 	var applyBtn = $("a.apply");
 	applyBtn.click(function(){
-		$("#apply-form").dialog({
+		$(".apply-form", $(this.parent().prev())).dialog({
 			  height: 200,
 		      width: 500,
 		      modal: true

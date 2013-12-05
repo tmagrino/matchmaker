@@ -61,7 +61,7 @@ public class Researcher implements Serializable {
 		this.departments = departments;
 		this.webpage = webpage;
 		this.researchArea = researchArea;
-		this.projects = new ArrayList<Project>();
+		
 	}
 	
 	public String getAttribute(String attr) {
@@ -156,6 +156,7 @@ public class Researcher implements Serializable {
 		this.projects = projects;
 	}
 	public void addProject(Project proj) {
+		if (projects == null) {projects = new ArrayList<Project>();}
 		if (!projects.contains(proj)) {
 			this.projects.add(proj);
 			if (!proj.getResearchers().contains(this)) {
