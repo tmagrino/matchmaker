@@ -26,8 +26,10 @@
         
         for (Project p : projs) {
        		List<Application> apps = p.getApplications();
-       		System.out.println(p.getName());
-       		System.out.println(apps.size());
+       		if (apps.size() == 0){
+       			%><td colspan="7"><i>No available projects. </i><%
+       		}
+       		else{
     %>
     
 	<form name="filter-list" id="filter-list" class="clearfix">
@@ -38,7 +40,7 @@
 		</div>
 	</form>
 	<table class="project-list">
-		<%
+		<%	
 			for (Application a : apps) {
 				Student s = a.getStudentApplicant();
 		%>
@@ -67,8 +69,8 @@
 			<td><%=s.getString(s.getSkills()) %></td>
 			<td><%=s.getString(s.getInterests()) %></td>
 		</tr>
-		<%	
-			} 
+		<%	}
+		  } 
 		}
 		%>
 		</tbody>

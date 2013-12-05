@@ -24,13 +24,14 @@
                         <table class="info">
                                 <tr>
                                         <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
+
                                 </tr>
                                 <% for(String attr: attributes){ %>
                                 <tr>
                                         <td class="attr-label"><%=attr %>:</td>
                                         <td class="field">
                                                 <p class="read-only 
-                                                		<% System.out.println("s.getAtt "+s.getAttribute(attr)); %>
+                                                	
                                                 		<%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
                                                         <%=s.getAttribute(attr) %>
                                                 </p>
