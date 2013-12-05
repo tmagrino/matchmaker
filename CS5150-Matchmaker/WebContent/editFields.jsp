@@ -1,4 +1,3 @@
-<% session.setAttribute("currentUser", "ad234"); %>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="admin" />
 	<jsp:param name="sidebar_type" value="stud-profile" />
@@ -12,7 +11,7 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
 JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-Researcher r = ResearcherController.getResearcherByNetID(em,"ad234");
+Researcher r = ResearcherController.getResearcherByNetID(em,(String)session.getAttribute("currentUser"));
 String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
 String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
