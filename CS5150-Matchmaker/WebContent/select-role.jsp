@@ -38,7 +38,8 @@
 			 response.sendRedirect("admin-searchUser.jsp");
 		 }
 	 }
-	 
+	
+	 session.setAttribute("numberOfRoles", count); 
 %>
 
 <style>
