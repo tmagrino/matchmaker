@@ -1,3 +1,4 @@
+<!-- Code for adding new users -->
 <%@page
         import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

@@ -1,4 +1,4 @@
-<!-- Profile for Students -->
+<!-- Profile for Students created -->
 <jsp:include page="header.jsp">
         <jsp:param name="stud_or_prof" value="stud" />
         <jsp:param name="top_selected" value="profile" />
