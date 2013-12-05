@@ -31,7 +31,7 @@ var interestData = <%= jsonInterest %>;
 	<%
 		if (allApplications.size() == 0) {
 		%>
-			<tr class=""><td colspan="5"><i>No applications found</i></td></tr>	
+			<tr class="no-results"><td colspan="5"><i>No applications found</i></td></tr>	
 		<%
 		}
 		for(Application a : allApplications) {
@@ -109,7 +109,8 @@ var interestData = <%= jsonInterest %>;
           	String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
                     + p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
                      + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
-                     + p.getAreaString().replaceAll(" ", "_").toLowerCase();
+                     + p.getAreaString().replaceAll(" ", "_").toLowerCase() + " "
+                     + p.getSkillString().replaceAll(" ", "_").toLowerCase();
     %>
 	<tr class="hidden">
                 <td colspan="7">
