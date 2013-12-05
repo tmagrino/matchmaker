@@ -6,8 +6,7 @@
 	page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
 %>
 <div class="content">
-	<%
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	<%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
  		EntityManager em = emf.createEntityManager();
  		JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
  	    JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
@@ -31,24 +30,28 @@
 		<a href="invite-students.jsp">Show all available Students</a>
 		<%
 		List<Application> apps;
+		Student s;
         for (Project p : projs) {
        		 apps = p.getApplications();
        		
        		if (apps.size() != 0){
        			
          %>
-    
-	<form name="filter-list" id="filter-list" class="clearfix">
+     
+    <form name="filter-list" id="filter-list" class="clearfix">
+    <h1><%=p.getName() %></h1>    
 		<div class="search-container">
 			<input type="text" placeholder="Search..."/>
 			<input type="submit" value="Filter"/>
 		</div>
 	</form>
-	<table class="project-list">
-		<h1><%=p.getName() %></h1>
+    <table class="project-list">
+    
+
+	
 		<%	
 			for (Application a : apps) {
-				Student s = a.getStudentApplicant();
+				s = a.getStudentApplicant();
 		%>
 		<tr>
 			<td>
@@ -76,16 +79,18 @@
 			<td><%=s.getString(s.getInterests()) %></td>
 		</tr>
 		<%	} %>
-		
 		</tbody>
+
 	</table>
-	<%
-		  }
+	<br />
+		<%  }
         }
  
 	}
         %>
 
+
+	
 
 </div>
 <br />

@@ -32,6 +32,7 @@
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
 		 	String currentUser = (String) session.getAttribute("currentUser");
+		 	/* Integer num = (Integer) session.getAttribute("currentUser"); */
 		 	if(currentUser == null){
 		 		currentUser = request.getParameter("netId");
 		 		session.setAttribute("currentUser", currentUser);
@@ -47,14 +48,17 @@
 				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
 				<li>Welcome, <%=r.getName()%>
-				<br><font size="2"> <%=r.getNetID()%>, Project Lead</font></li>
+				<br>
+			
+				<font size="2"> <%=r.getNetID()%>, Project Lead</font></li>
 				
 			<% } else if(request.getParameter("stud_or_prof").equals("admin")){
 				User u = UserController.findUser(em, currentUser);
 				if(u != null){
 			%>
 				<li>Welcome, <%=u.getName() %></li>
-				<br><font size="2"> <%=u.getNetid()%>, Administrator</font></li>
+				<br>
+				<font size="2"> <%=u.getNetid()%>, Administrator</font></li>
 			<%}
 
 			} else if(request.getParameter("stud_or_prof").equals("header")){
