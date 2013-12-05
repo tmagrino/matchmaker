@@ -13,6 +13,7 @@
    ApplicationController.deleteApplication(em, a);
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
+   
    response.setHeader("Location", "student-projects.jsp"); 
 %>
 </body>

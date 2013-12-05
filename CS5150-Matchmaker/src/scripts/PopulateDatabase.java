@@ -194,6 +194,8 @@ public class PopulateDatabase {
 				System.out.println("Error: "+e);
 			}
 		}
+		
+		// Researchers
 		if (ResearcherController.getResearcherList(em).size()==0){
 			try {
 
@@ -218,6 +220,48 @@ public class PopulateDatabase {
 					User user = UserController.createUser(em, name, email, netID);
 					Researcher r = ResearcherController.createResearcher(em,name, netID, 
 							email, departments, webpage, researchArea, user);
+				}
+			}
+			catch (Exception e) {
+				System.out.println("Error:  "+e);
+			}
+		}
+		
+		// Projects
+		//String name, String description,
+		//String url, Researcher researcher, List<Interest> area, List<Skill> skills
+		if (ProjectController.getProjectList(em).size()==0){
+			try {
+
+				File myfile = new File("ProjectsList");
+				in = new Scanner(new FileReader(myfile));
+				while (in.hasNextLine()) {
+					String str = in.nextLine();
+					System.out.println(str);
+					String [] projectStrings = str.split(",");
+					String name = projectStrings[0];
+					String desc = projectStrings[1];
+					String url = projectStrings[2];
+					String[] ress = projectStrings[3].split(";");
+					LinkedList<Researcher> researchers = new LinkedList<Researcher>();
+					for (String s : ress) {
+						researchers.add((Researcher) ResearcherController.getResearcherByNetID(em, s));
+					}
+					
+					String[] inters = projectStrings[4].split(";");
+					LinkedList<Interest> interests = new LinkedList<Interest>();
+					for (String s : inters) {
+						interests.add((Interest) ListController.getItemByDescription(em, s, 
+								ItemFactory.INTEREST));
+					}
+					
+					String[] skls = projectStrings[5].split(";");
+					LinkedList<Skill> skills = new LinkedList<Skill>();
+					for (String s : skls) {
+						skills.add((Skill) ListController.getItemByDescription(em, s, 
+								ItemFactory.SKILL));
+					}
+					Project p = ProjectController.createProject(em, name, desc, url, researchers, interests, skills);
 				}
 			}
 			catch (Exception e) {

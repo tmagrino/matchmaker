@@ -10,12 +10,35 @@ public class ProjectController {
 
 	public static Project createProject(EntityManager em , String name, String description,
 			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
-		if (description == null) description = "";
+		String newurl = url;
+		
+		if (description == null) {
+			description = "";
+		}
+		if (url.startsWith("http://")) {
+			newurl = url.substring(7);
+		}
+		else if (url.startsWith("https://")) {
+			newurl = url.substring(8);
+		}
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
 		rlist.add(researcher);
-		Project p = new Project(name,description,url,rlist,area,skills);
+		Project p = new Project(name,description,newurl,rlist,area,skills);
+		em.persist(p);
+		
+		tx.commit();
+		return p;
+	}
+	
+	public static Project createProject(EntityManager em , String name, String description,
+			String url, List<Researcher> researcher, List<Interest> area, List<Skill> skills){
+		if (description == null) description = "";
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		Project p = new Project(name,description,url,researcher,area,skills);
 		em.persist(p);
 		
 		tx.commit();
