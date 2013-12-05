@@ -107,7 +107,7 @@ public class Student implements Serializable {
 	private List<Course> transcript;
 	@OneToMany(mappedBy = "studentApplicant", cascade = CascadeType.ALL)
 	private List<Application> applications;
-	@Embedded
+	@OneToOne (mappedBy = "student", cascade = CascadeType.ALL)
 	private StudentSettings settings;
 	
 

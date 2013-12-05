@@ -9,13 +9,13 @@ import javax.persistence.EntityTransaction;
 public class ProjectController {
 
 	public static Project createProject(EntityManager em , String name, String description,
-			String url, Researcher researcher, List<Interest> area){
+			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
 		if (description == null) description = "";
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
 		rlist.add(researcher);
-		Project p = new Project(name,description,url,rlist,area);
+		Project p = new Project(name,description,url,rlist,area,skills);
 		em.persist(p);
 		
 		tx.commit();
@@ -109,13 +109,14 @@ public class ProjectController {
 	public static Project getProjectById(EntityManager em,String id) {
         EntityTransaction tx = em.getTransaction();
         try {
-        String query = "select r from Project r where id = " + id;
+        String query = "select r from Project r where r.id = " + id;
         List<Project> mylist = (List<Project>) em.createQuery(query).getResultList();
-        
+        	
         	return mylist.get(0);
         }
         catch (Exception e) {
-        	return new Project();
+        	System.out.print(e);
+        	return null;
         }
 	}
 }

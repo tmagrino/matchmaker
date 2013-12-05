@@ -24,10 +24,7 @@
 <body>
 	<!--<![endif]-->
 	
-	
 	<div id="top-bar" class="clearfix">
-
-	
 		
 		<ul class="login-nav">
 		
@@ -50,7 +47,7 @@
 				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
 				<li>Welcome, <%=r.getName()%>
-				<br><font size="2"> <%=r.getNetID()%>, Researcher</font></li>
+				<br><font size="2"> <%=r.getNetID()%>, Project Lead</font></li>
 				
 			<% } else if(request.getParameter("stud_or_prof").equals("admin")){
 				User u = UserController.findUser(em, currentUser);

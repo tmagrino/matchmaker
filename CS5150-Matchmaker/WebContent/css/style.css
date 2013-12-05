@@ -385,6 +385,12 @@ ul {
 .actionButton.hide, 
 .actionButton.remove {
 	background-color: #000099;
+	width: 65px;
+}
+
+.actionButton.unhide{
+	background-color: #FF8C00;
+	width: 65px;
 }
 
 .actionButton.remove{
@@ -394,6 +400,7 @@ ul {
 .actionButton.apply,
 .actionButton.accept {
 	background-color: #006633;
+	width: 65px;
 }
 .actionButton.reject{
 	background-color: #ab1a2a;
@@ -461,4 +468,9 @@ body .ui-dialog .ui-dialog-content{
 input[type="submit"] {
 	font-size: larger;
 	width: 115px;
+}
+.newUser{
+	background-color: #FFFFFF;
+	padding-bottom: 1%;
+	border-color: #ECECEC; 
 }

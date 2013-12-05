@@ -1,5 +1,6 @@
 package model;
 
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,31 +36,46 @@ public class Project implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="RES_ID", referencedColumnName="ID")}
 	)
 	private List<Researcher> researchers;
-	@ManyToMany
+	@ManyToMany (cascade = CascadeType.ALL)
 	@JoinTable(
 			name = "PROJECT_AREA",
 			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
 			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> project_area;
+	
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "REQUIRED_SKILLS",
+			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="SKILL_ID", referencedColumnName="ID")}
+	)
+	private List<Skill> requiredSkills;
 	@OneToMany(mappedBy = "applicationProject" ,cascade = CascadeType.ALL)
 	private List<Application> applications;
+	
+	@ManyToMany (mappedBy = "hiddenProjects")
+	List<StudentSettings> settings;
 	//private MinimumRequirements requirements;
 	
 	public Project() {
 		
 	}
-	public Project(String name, String description, String url, List<Researcher> res, List<Interest> area) {
+	public Project(String name, String description, String url, List<Researcher> res, List<Interest> area
+			, List<Skill> skills) {
 		this.name = name;
 		this.description = description;
 		this.researchers = res;
 		this.url = url;
 		this.applications = new ArrayList<Application>();
 		this.project_area = area;
+		this.requiredSkills = skills;
 	}
-	public Project(String name, String description, String url, Researcher res,List<Interest> area) {
-		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area);
+	public Project(String name, String description, String url, Researcher res,List<Interest> area,
+			List<Skill> skills) {
+		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area,skills);
 	}
+	
 
 	public long getId() {
 		return id;
@@ -88,17 +104,20 @@ public class Project implements Serializable {
 	public List<Researcher> getResearchers() {
 		return researchers;
 	}
-
+	
 	void addResearcher(Researcher res) {
-		researchers.add(res);
+		if (!researchers.contains(res)) {
+			researchers.add(res);
+			if (!res.getProjects().contains(this)) {
+				res.addProject(this);
+			}
+		}
 	}
 	
 	void removeResearcher(Researcher res) {
-		for (int i = 0; i < researchers.size(); i++) {
-			Researcher r = researchers.get(i);
-			if (r.equals(res)) {
-				researchers.remove(i);
-				break;
+		if (researchers.remove(res)) {
+			if (res.getProjects().contains(this)) {
+				res.removeProject(this);
 			}
 		}
 	}
@@ -111,11 +130,20 @@ public class Project implements Serializable {
 		if (applications == null) {
 			applications = new ArrayList<Application>();
 		}
-		applications.add(app);
+		if (!this.applications.contains(app)) {
+			this.applications.add(app);
+			if (app.getApplicationProject() != this) {
+				app.setApplicationProject(this);
+			}
+		}
 	}
 	
 	void removeApplication(Application app) {
-		applications.remove(app);
+		if (this.applications.remove(app)) {
+			if (app.getApplicationProject() == this) {
+				app.setApplicationProject(null);
+			}
+		}
 	}
 	
 	void removeApplications() {
@@ -149,6 +177,16 @@ public class Project implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		for (Interest i : project_area){
 			builder.append(i.getDescription()+", ");
+			
+		}
+		if (builder.length() > 2)
+			builder.deleteCharAt(builder.length() - 2);
+		return builder.toString();
+	}
+	public String getSkillString(){
+		StringBuilder builder = new StringBuilder();
+		for (Skill s : requiredSkills){
+			builder.append(s.getDescription()+", ");
 			
 		}
 		if (builder.length() > 2)

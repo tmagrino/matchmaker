@@ -24,6 +24,9 @@ public class StudentController {
 		
 		Student s = new Student(name, netID, gpa, email, year, colleges, majors,
 				minors, skills, priorExperience, interests, transcript, user);
+		StudentSettings set = new StudentSettings();
+		s.setSettings(set);
+		set.setStudent(s);
 		user.setStudent(s);
 		em.persist(s);
 		
@@ -360,6 +363,24 @@ public class StudentController {
 		tx.commit();
 	}
 	
+	public static void addHiddenProject(EntityManager em, Student s, Project p) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		s.getSettings().addProject(p);
+		
+		tx.commit();
+	}
+	
+	public static void removeHiddenProject(EntityManager em, Student s, Project p) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		s.getSettings().removeProject(p);
+		
+		tx.commit();
+	}
+	
 	public static String[] calculateGpaRange(String gpa){
 		switch(gpa){
 		case "gt4":
@@ -412,10 +433,23 @@ public class StudentController {
 		return null;
 		
 	}
-	
+	public static List<Long> getStudentProjects(EntityManager em, Student s){
+		
+		try {
+			
+			String query = "select a.applicationProject from APPLICATION A where a.studentApplicant = " 
+			+ s.getId();
+			
+			return (List<Long>) em.createQuery(query).getResultList();
+		}
+		catch (Exception e){
+			
+			return new ArrayList<Long>();
+		}
+	}
 	
 	public static List<Student> getAllStudents(EntityManager em) {
-        EntityTransaction tx = em.getTransaction();
+        
         try {
         String query = "select s from STUDENT s";
         return (List<Student>) em.createQuery(query).getResultList();

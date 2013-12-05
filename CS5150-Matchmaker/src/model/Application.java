@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,11 +28,11 @@ public class Application implements Serializable {
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@ManyToOne
-	@JoinColumn(name = "APPLICANT")
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "STUD_ID")
 	private Student studentApplicant;
-	@ManyToOne
-	@JoinColumn(name = "OWNER_ID")
+	@ManyToOne (cascade = CascadeType.ALL)
+	@JoinColumn(name = "PROJ_ID")
 	private Project applicationProject;
 	@Column(name = "STATUS")
 	private ApplicationStatus status;
@@ -91,7 +92,19 @@ public class Application implements Serializable {
 
 
 	void setApplicationProject(Project applicationProject) {
-		this.applicationProject = applicationProject;
+		if (applicationProject == null) {
+			if (this.applicationProject != null) {
+				Project p  = this.applicationProject;
+				this.applicationProject = null;
+				p.removeApplication(this);
+			}
+		}
+		else {
+			this.applicationProject = applicationProject;
+			if (!applicationProject.getApplications().contains(this)) {
+				applicationProject.addApplication(this);
+			}
+		}
 	}
 
 

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,12 +33,8 @@ public class Researcher implements Serializable {
 	private String webpage;
 	@OneToOne (mappedBy = "researcher")
 	private User user;
-	@ManyToMany
-	@JoinTable(
-			name = "PROJECTS_MAPPING",
-			joinColumns = {@JoinColumn(name="RESEARCHER_ID", referencedColumnName="ID")},
-			inverseJoinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")}
-	)
+	
+	@ManyToMany(mappedBy = "researchers")
 	private List<Project> projects;
 	@ManyToMany
 	@JoinTable(
@@ -64,6 +61,7 @@ public class Researcher implements Serializable {
 		this.departments = departments;
 		this.webpage = webpage;
 		this.researchArea = researchArea;
+		this.projects = new ArrayList<Project>();
 	}
 	
 	public String getAttribute(String attr) {
@@ -157,9 +155,23 @@ public class Researcher implements Serializable {
 	public void setProjects(List<Project> projects) {
 		this.projects = projects;
 	}
-	public void addProject(Project proj){
-		this.projects.add(proj);
+	public void addProject(Project proj) {
+		if (!projects.contains(proj)) {
+			this.projects.add(proj);
+			if (!proj.getResearchers().contains(this)) {
+				proj.addResearcher(this);
+			}
+		}
 	}
+	
+	public void removeProject(Project proj) {
+		if (projects.remove(proj)) {
+			if (proj.getResearchers().contains(this)) {
+				proj.removeResearcher(this);
+			}
+		}
+	}
+	
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
