@@ -1,3 +1,4 @@
+<!-- Profile for Students -->
 <jsp:include page="header.jsp">
         <jsp:param name="stud_or_prof" value="stud" />
         <jsp:param name="top_selected" value="profile" />
@@ -75,14 +76,15 @@
                                                                 value="<%=s.getAttribute(attr) %>" type="text" />
                                                         <% } %>
                                                 </p>
-                                                <% } %>
                                                 <p class="other hidden">
                                                         <input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
                                                 </p>
+                                                
                                         </td>
                                         <td>
                                                 <button class="view-suggestion hidden" type="button">View All Suggestions</button>
                                         </td>
+                                        <% } %>
                                 </tr>
                                 <% } %>
                         </table>

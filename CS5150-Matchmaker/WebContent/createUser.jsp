@@ -9,12 +9,14 @@
          <%
          String netId = (String) session.getAttribute("currentUser");
          User u = UserController.createUser(em,"New User", "", netId);
+         // Changes for new user
          if(role.equalsIgnoreCase("student")){
-        	 Student s = StudentController.createStudent(em, "New User", netId, 0.0, " ", null, null, null, null, null, null, null, null, u);
+        	 Student s = StudentController.createStudent(em, "New User", netId, 0.0, "", null, null, null, null, null, null, null, null, u);
         	 response.sendRedirect("profile.jsp");
+        	
          }
          else{
-        	 Researcher r = ResearcherController.createResearcher(em, " ", netId, " ", null, " ", " ", u);
+        	 Researcher r = ResearcherController.createResearcher(em, "", netId, "", null, "", "", u);
         	 response.sendRedirect("researcher-profile.jsp");
          }
          
