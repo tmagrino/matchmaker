@@ -39,13 +39,13 @@
          %>
     
 	<form name="filter-list" id="filter-list" class="clearfix">
-		<h1><%=p.getName() %></h1>
 		<div class="search-container">
 			<input type="text" placeholder="Search..."/>
 			<input type="submit" value="Filter"/>
 		</div>
 	</form>
 	<table class="project-list">
+		<h1><%=p.getName() %></h1>
 		<%	
 			for (Application a : apps) {
 				Student s = a.getStudentApplicant();
@@ -75,17 +75,17 @@
 			<td><%=s.getString(s.getSkills()) %></td>
 			<td><%=s.getString(s.getInterests()) %></td>
 		</tr>
-		<%	}
+		<%	} %>
+		
+		</tbody>
+	</table>
+	<%
 		  }
         }
  
 	}
         %>
 
-
-		</tbody>
-
-	</table>
 
 </div>
 <br />
