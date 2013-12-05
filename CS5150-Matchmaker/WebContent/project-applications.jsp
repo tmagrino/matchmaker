@@ -1,6 +1,6 @@
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
-    <jsp:param name="top_selected" value="project"/>
+    <jsp:param name="top_selected" value="students"/>
 </jsp:include>
 <%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 					<div class="content">
@@ -18,7 +18,7 @@
 				        	var interestData = <%= jsonInterest %>;
 				        </script>
 				        <%Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
-				        List<Project> projs = r.getProjects();
+				        List<Project> projs = r.getProjects(); 
 				        List<Application> students;
 				        Student s;
 				        
@@ -46,19 +46,20 @@
 							</thead>
 							<tbody>
 								<%for (Application a : students){
-									if (a.getStatus() == ApplicationStatus.Accepted){
-										s = a.getStudentApplicant();%>
-										<tr>
-											<td>
-												<a class="actionButton remove" href="#">Remove</a>
-											</td>
-											<td><%=s.getName() %></td>
-											<td><%=s.getGpa() %></a></td>
-											<td><%=s.getString(s.getMajors()) %></td>
-											<td><%=s.getYear() %></td>
-											<td><%=s.getString(s.getSkills()) %></td>
-											<td><%=s.getString(s.getInterests()) %></td>
-										</tr>
+									if (a.getStatus() == ApplicationStatus.Pending){
+									s = a.getStudentApplicant();%>
+								<tr>
+									<td>
+										<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>">Accept</a>&nbsp;
+										<a class="actionButton reject" href="#">Reject</a>
+									</td>
+									<td><%=s.getName() %></td>
+									<td><%=s.getGpa() %></a></td>
+									<td><%=s.getString(s.getMajors()) %></td>
+									<td><%=s.getYear() %></td>
+									<td><%=s.getString(s.getSkills()) %></td>
+									<td><%=s.getString(s.getInterests()) %></td>
+								</tr>
 								<%} 
 								}%>
 
@@ -67,6 +68,7 @@
 						
 						<br>
 						<%}%>
+					
 						<jsp:include page="pager.jsp"/>
 						<br>
 						<a href="proj-profile.jsp">Add New Project</a>

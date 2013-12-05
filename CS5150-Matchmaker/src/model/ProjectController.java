@@ -16,6 +16,7 @@ public class ProjectController {
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
 		rlist.add(researcher);
 		Project p = new Project(name,description,url,rlist,area,skills);
+		researcher.addProject(p);
 		em.persist(p);
 		
 		tx.commit();

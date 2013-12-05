@@ -97,7 +97,7 @@
 								Projects</a></li>
 						<li
 							<% if(request.getParameter("top_selected").equals("students")){ %>
-							class="selected" <% } %>><a href="project-applicants.jsp">Students</a>
+							class="selected" <% } %>><a href="project-applications.jsp">Students</a>
 						</li>
 						<% } else if(request.getParameter("stud_or_prof").equals("admin")){ %>
 						<li
