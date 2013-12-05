@@ -398,7 +398,8 @@ ul {
 }
 
 .actionButton.apply,
-.actionButton.accept {
+.actionButton.accept,
+.actionButton.invite {
 	background-color: #006633;
 	width: 65px;
 }
