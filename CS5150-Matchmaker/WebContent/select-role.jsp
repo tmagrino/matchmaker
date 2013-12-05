@@ -82,8 +82,22 @@
   background-size: 21px 21px;
   list-style-type : none;
   }
+
+  .accountchooser-card ol li p {
+  padding: 15px 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  list-style-type : none;
+  }
+  
   .accountchooser-card ol li button img,
-  .accountchooser-card ol li .remove-entry img {
+  .accountchooser-card ol li .remove-entry img,
+  .accountchooser-card ol li p label img {
   float: left;
   -moz-border-radius: 50%;	
   -webkit-border-radius: 50%;
@@ -93,7 +107,8 @@
   list-style-type : none;
   }
   .accountchooser-card ol li button span,
-  .accountchooser-card ol li .remove-entry span {
+  .accountchooser-card ol li .remove-entry span,
+  .accountchooser-card ol li p span {
   display: block;
   margin-left: 58px;
   padding-right: 20px;
@@ -103,12 +118,26 @@
   list-style-type : none;
   }
   .accountchooser-card ol li button span.account-name,
-  .accountchooser-card ol li .remove-entry span.account-name {
+  .accountchooser-card ol li .remove-entry span.account-name,
+  .accountchooser-card ol li p span.account-name {
   font-weight: bold;
   font-size: 16px;
   padding-top: 3px;
   color: #427fed;
   list-style-type : none;
+  }
+  
+  input[type=radio] {
+  display:none;
+  }
+  
+  input[type=radio] + img{
+  cursor:pointer;
+  border:2px solid transparent;
+}
+  
+  input[type=radio]:checked + img{
+  border:4px solid #ab1a2a;
   }
   
 </style>
@@ -172,15 +201,43 @@
 			  <%}%>
 			  
 			   <%if (u == null){ %>
+			   <!-- <li>
+			     <h3>Are you a Student or a Project Lead?</h3>
+			  		<form action="createUser.jsp?role=student">
+			  			<input type="submit" class="choose-account-1">
+			  				<img class="account-image" alt=""
+			                 src="images/blank.png">
+			  				<span class="account-name">Student</span>
+			  		</form>
+			  		<form action="createUser.jsp?role=researcher">
+			  			<input type="submit" class="choose-account-1">
+			  				<img class="account-image" alt=""
+			                 src="images/blank.png">
+			  				<span class="account-name">Project Lead</span>
+			  		</form>
+			  	</li>
+			    -->
+			   
+			   <li>
 					<form action="createUser.jsp">
 							<h3>Are you a Student or a Project Lead?</h3>
 							<p>
-								<input type="radio" name="role" value="student"> Student
-								<br>
-								<input type="radio" name="role" value="researcher"> Project Lead
+								<label for="pic1">	
+									<input type="radio" name="role" value="student" id="pic1"> 
+									<img class="account-image" alt="" src="images/blank.png" />
+								</label>
+			                 	<span class="account-name">Student</span>
 							</p>
-							<p>&nbsp;&nbsp;<input type="submit" value="Submit"></p>
+							<p>
+								<label for="pic2">
+									<input type="radio" name="role" value="researcher" id="pic2">
+									<img class="account-image" alt="" src="images/blank.png" />
+								</label> 
+			                 	<span class="account-name">Project Lead</span>
+							</p>
+							&nbsp;&nbsp;<input type="submit" value="Submit">
 					</form>
+				</li>
 			  	<% }%>
 			  </ol>
 			</div>
