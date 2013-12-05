@@ -159,6 +159,13 @@ function initApplyButton()
 	});
 }
 
+function initFilterSubmit()
+{
+	$("form.filter-submit").submit(function(){
+		var searchVal = $(".search-container input[name=")
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	initViewSuggestion();
@@ -169,4 +176,5 @@ $(document).ready(function(){
 	validateFormSubmit();
 	initTabLinks();
 	hideProject();
+	initFilterSubmit();
 });

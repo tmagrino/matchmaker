@@ -47,7 +47,7 @@
 						<form name="filter-list" id="filter-list" class="clearfix">
 							<h1>Search New Projects</h1>
 							<div class="search-container">
-								<input type="text" placeholder="Search"/>
+								<input type="text" name="search" placeholder="Search"/>
 								<input type="submit" value="Filter"/>
 							</div>
 						</form>
