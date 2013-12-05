@@ -16,8 +16,16 @@
 				        	var skillsData = <%= jsonSkills %>;
 				        	var interestData = <%= jsonInterest %>;
 				        </script>
+				        <%Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+				        List<Project> projs = r.getProjects(); 
+				        List<Application> students;
+				        Student s;
+				        System.out.println(projs);
+				        for (Project p : projs) {
+				        	students = p.getApplications();
+				        %>
 						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1>My Project A</h1>
+							<h1><%=p.getName() %></h1>
 							<div class="search-container">
 								<input type="text" placeholder="Search..."/>
 								<input type="submit" value="Filter"/>
@@ -27,84 +35,35 @@
 							<thead>
 								<tr>
 									<th class="empty"></th>
-									<th>Project Name</th>
-									<th>Project URL</th>
-									<th>Description</th>
-									<th>Research Area</th>
-									<th>Required Skills</th>
+									<th>Name</th>
+									<th>GPA</th>
+									<th>Major</th>
+									<th>Year</th>
+									<th>Skills</th>
+									<th>Research Interests</th>
 								</tr>
 							</thead>
 							<tbody>
+								<%for (Application a : students){
+									s = a.getStudentApplicant();%>
 								<tr>
 									<td>
 										<a class="actionButton remove" href="#">Remove</a>
 									</td>
-									<td>Project Name</td>
-									<td><a href="#">Link to Project Webpage</a></td>
-									<td></td>
-									<td>Programming Languages</td>
-									<td>Java</td>
+									<td><%=s.getName() %></td>
+									<td><%=s.getGpa() %></a></td>
+									<td><%=s.getString(s.getMajors()) %></td>
+									<td><%=s.getYear() %></td>
+									<td><%=s.getString(s.getSkills()) %></td>
+									<td><%=s.getString(s.getInterests()) %></td>
 								</tr>
-								<tr>
-									<td>
-										<a class="actionButton remove" href="#">Remove</a>
-									</td>
-									<td>Project Name</td>
-									<td></td>
-									<td title="This is a description of Project 2.  This is a description of Project 2.">
-										This is a description of Project 2.  This is a...
-									</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
+								<%} %>
+
 							</tbody>
 						</table>
 						
 						<br>
-						
-						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1>My Project B</h1>
-							<div class="search-container">
-								<input type="text" placeholder="Search"/>
-								<input type="submit" value="Filter"/>
-							</div>
-						</form>
-						<table class="project-list">
-							<thead>
-								<tr>
-									<th class="empty"></th>
-									<th>Project Name</th>
-									<th>Project URL</th>
-									<th>Description</th>
-									<th>Research Area</th>
-									<th>Required Skills</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>
-										<a class="actionButton remove" href="#">Remove</a>
-									</td>
-									<td>Project Name</td>
-									<td><a href="#">Link to Project Webpage</a></td>
-									<td></td>
-									<td>Programming Languages</td>
-									<td>Java</td>
-								</tr>
-								<tr>
-									<td>
-										<a class="actionButton remove" href="#">Remove</a>
-									</td>
-									<td>Project Name</td>
-									<td></td>
-									<td title="This is a description of Project 2.  This is a description of Project 2.">
-										This is a description of Project 2.  This is a...
-									</td>
-									<td>Systems</td>
-									<td>Python</td>
-								</tr>
-							</tbody>
-						</table>
+						<%} %>
 						<jsp:include page="pager.jsp"/>
 						<br>
 						<a href="proj-profile.jsp">Add New Project</a>
