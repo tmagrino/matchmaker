@@ -13,9 +13,15 @@
 		JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 		Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
 		List<Application> allApplications = s.getApplications();
-		List<Project> hiddenProjects = s.getSettings().getHiddenProjects();
+		List<Project> hiddenProjects = null;
+		if(s.getSettings() != null){
+			hiddenProjects = s.getSettings().getHiddenProjects();
+		}
 		String showhide = request.getParameter("showhidden");
 		boolean showHidden = "yes".equals(showhide);
+		if(s.getSettings() == null){
+			showHidden = false;
+		}
 	%>
 	<script type="text/javascript">
 	var majorData = <%= jsonMajor %>;
@@ -52,7 +58,7 @@
    <form name="filter-list" id="filter-list" class="clearfix">
            <h1>Search New Projects</h1>
            <%
-           if (showHidden) {
+           if (showHidden && s.getSettings() != null) {
            	%>
            	<br>
            	<p><font size="2"><i>Displaying hidden projects</i></font></p>
@@ -81,7 +87,7 @@
            	if (applied) {
            		continue;
            	}
-           	if (hiddenProjects.contains(p)) {
+           	if (hiddenProjects != null && hiddenProjects.contains(p)) {
            		hid = true;
            	}
            	if (!showHidden && hid) {
@@ -96,13 +102,17 @@
             + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
             + p.getAreaString().replaceAll(" ", "_").toLowerCase();
            %>
-                 <div id="apply-form" class="hidden" title="Apply">
-            <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
-                    <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
-                    <textarea name="cover-letter" id="cover-letter"></textarea>
-                    <input type="submit" value="Apply">
-            </form>
-   			  </div>
+           <tr class="hidden">
+           		<td colspan="7">
+	                 <div id="apply-form-<%=p.getId()%>" % class="apply-form" class="hidden" title="Apply">
+			            <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
+			                    <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+			                    <textarea name="cover-letter" id="cover-letter"></textarea>
+			                    <input type="submit" value="Apply">
+			            </form>
+	   			  </div>
+	   			</td>
+   			</tr>
            <tr class="<%= cssClasses %>">
                    <td>
                     	<p>
