@@ -32,8 +32,10 @@
 									%>
 										<tr>
 											<td>
-												<p><a href="#">Invite</a></p>
-												<p><a class="actionButton hide" href="#">Hide</a></p>
+												<p>
+													<a class="actionButton invite" href="#">Invite</a>
+													<a class="actionButton hide" href="#">Hide</a>
+												</p>
 											</td>
 											<td><%=s.getName() %></td>
 											<td><%=s.getGpa() %></td>
