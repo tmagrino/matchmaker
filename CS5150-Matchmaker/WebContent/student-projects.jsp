@@ -109,7 +109,8 @@ var interestData = <%= jsonInterest %>;
           	String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
                     + p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
                      + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
-                     + p.getAreaString().replaceAll(" ", "_").toLowerCase();
+                     + p.getAreaString().replaceAll(" ", "_").toLowerCase() + " "
+                     + p.getSkillString().replaceAll(" ", "_").toLowerCase();
     %>
 	<tr class="hidden">
                 <td colspan="7">
