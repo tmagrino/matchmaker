@@ -111,15 +111,17 @@ var interestData = <%= jsonInterest %>;
                      + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
                      + p.getAreaString().replaceAll(" ", "_").toLowerCase();
     %>
-	<div id="apply-form" class="hidden" title="Apply">
-		<form method="post"
-			action="save-student-application.jsp?id=<%=p.getId()%>">
-			<label for="cover-letter">Enter a short paragraph explaining
-				why you would be a good fit for this project.</label>
-			<textarea name="cover-letter" id="cover-letter" cols="" rows=""></textarea>
-			<input type="submit" value="Apply">
-		</form>
-	</div>
+	<tr class="hidden">
+                <td colspan="7">
+                    <div id="apply-form-<%=p.getId()%>" % class="apply-form" class="hidden" title="Apply">
+                   <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
+                           <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+                           <textarea name="cover-letter" id="cover-letter"></textarea>
+                           <input type="submit" value="Apply">
+                   </form>
+              </div>
+            </td>
+          </tr>
 	<tr class="<%= cssClasses %>">
 		<td>
 			<p>
