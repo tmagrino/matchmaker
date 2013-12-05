@@ -151,7 +151,8 @@ public class Student implements Serializable {
 			case "gpa":
 				return Double.toString(gpa);
 			case "year":
-				return year.toString();
+				if(year != null) return year.toString();
+				else return "1";
 			case ItemFactory.COLLEGE:
 				return getString(getColleges());
 			case ItemFactory.MAJOR:

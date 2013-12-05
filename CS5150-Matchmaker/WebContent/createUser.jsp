@@ -8,9 +8,9 @@
          <%=role%>
          <%
          String netId = (String) session.getAttribute("currentUser");
-         User u = UserController.createUser(em, "", "", netId);
+         User u = UserController.createUser(em,"New User", "", netId);
          if(role.equalsIgnoreCase("student")){
-        	 Student s = StudentController.createStudent(em, " ", netId, 0.0, " ", null, null, null, null, null, null, null, null, u);
+        	 Student s = StudentController.createStudent(em, "New User", netId, 0.0, " ", null, null, null, null, null, null, null, null, u);
         	 response.sendRedirect("profile.jsp");
          }
          else{

@@ -46,6 +46,7 @@
                                 <tr>
                                         <td class="attr-label"><%=attr %>:</td>
                                         <td class="field">
+                                                <% if(s != null && s.getAttribute(attr) != null){ %>
                                                 <p class="read-only <%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
                                                         <%=s.getAttribute(attr) %>
                                                         <a class="edit-btn <%= s.getAttribute(attr).length() > 80 ? "extended" : "" %>" href="#"> 
@@ -74,6 +75,7 @@
                                                                 value="<%=s.getAttribute(attr) %>" type="text" />
                                                         <% } %>
                                                 </p>
+                                                <% } %>
                                                 <p class="other hidden">
                                                         <input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
                                                 </p>
