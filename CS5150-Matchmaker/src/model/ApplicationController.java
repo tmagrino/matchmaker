@@ -69,13 +69,26 @@ public class ApplicationController {
 	public static List<Application> getApplicationList (EntityManager em){
         EntityTransaction tx = em.getTransaction();
         try {
-        String query = "select r from Application r";
+        String query = "select a from APPLICATION a";
         List<Application> mylist = (List<Application>) em.createQuery(query).getResultList();
         
         	return mylist;
         }
         catch (Exception e) {
+        	System.out.println(e);
         	return new ArrayList<Application>();
         }
 	}
+	public static Application getApplication(EntityManager em, Student s, Project p){
+		List<Application> allApps = getApplicationList(em);
+		System.out.println(allApps.size());
+		for (Application a : allApps){
+			
+			if (a.getStudentApplicant().getId() == s.getId() && a.getApplicationProject().getId() == p.getId()){
+				return a;
+			}
+		}
+		
+		return null;
+	}	
 }

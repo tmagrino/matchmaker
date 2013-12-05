@@ -23,15 +23,16 @@
                                                                 <jsp:include page="proj-filters.jsp"/>
                                                                 <% for(Application a : allApplications)
                                                                 {
+                                                                	Project p = a.getApplicationProject();
                                                                 %>
                                                                 <tr>
-                                                                        <td><a href="#">Remove</a></td>
-                                                                        <td><%= a.getApplicationProject().getName() %></td>
-                                                                        <td><%=a.getApplicationProject().getResearchersString() %></td>
-                                                                        <td><a href="#"><%=a.getApplicationProject().getURL()%></a></td>
-                                                                        <td><%= a.getApplicationProject().getDescription() %></td>
-                                                                        <td><%= a.getApplicationProject().getAreaString() %></td>
-                                                                        <td>TODO: backend</td>
+                                                                        <td><a href="remove-student-project.jsp?id=<%=p.getId()%>">Remove</a></td>
+                                                                        <td><%= p.getName() %></td>
+                                                                        <td><%=p.getResearchersString() %></td>
+                                                                        <td><a href="<%=p.getURL()%>"><%=p.getURL()%></a></td>
+                                                                        <td><%= p.getDescription() %></td>
+                                                                        <td><%= p.getAreaString() %></td>
+                                                                        <td><%= p.getSkillString() %></td>
                                                                 </tr>
                                                         <%} %>
                                                                 </tbody>
@@ -70,6 +71,13 @@
                                                          + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
                                                          + p.getAreaString().replaceAll(" ", "_").toLowerCase();
                                                         %>
+                                                              <div id="apply-form" class="hidden" title="Apply">
+                                                         <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
+                                                                 <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+                                                                 <textarea name="cover-letter" id="cover-letter"></textarea>
+                                                                 <input type="submit" value="Apply">
+                                                         </form>
+                                                			  </div>
                                                         <tr class="<%= cssClasses %>">
                                                                 <td>
                                                                  	<p>
@@ -84,13 +92,7 @@
                                                                 <td><%=p.getAreaString() %></td>
                                                                 <td><%=p.getSkillString() %></td>
                                                         </tr>
-                                                        <div id="apply-form" class="hidden" title="Apply">
-                                                         <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
-                                                                 <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
-                                                                 <textarea name="cover-letter" id="cover-letter"></textarea>
-                                                                 <input type="submit" value="Apply">
-                                                         </form>
-                                                </div>
+                                                  
                                                         <%} %>
                                                                  
                                                         </tbody>
