@@ -11,14 +11,20 @@
    EntityManager em = emf.createEntityManager();
    Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
    String ids = request.getParameter("as_values_research_area");
+   String skIds = request.getParameter("as_values_required_skills");
    String [] idList = ids.split(",");
+   String [] skillIdList = skIds.split(",");
    List<Interest> area = new ArrayList<Interest>();
+   List<Skill> reqSkills = new ArrayList<Skill>();
 	for (String id : idList)
 		if (id.length()>0){
 		area.add((Interest)ListController.getItemById(em, Long.parseLong(id), ItemFactory.INTEREST));
 		}
+	for (String id : skillIdList){
+		reqSkills.add((Skill) ListController.getItemById(em, Long.parseLong(id), ItemFactory.SKILL));
+	}
    ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
-			request.getParameter("project_url"), r,area);
+			request.getParameter("project_url"), r,area,reqSkills);
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "researcher-profile.jsp"); 

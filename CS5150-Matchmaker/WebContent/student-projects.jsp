@@ -4,16 +4,15 @@
 </jsp:include>
 <%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
                                         <div class="content">
-                                                <%
-                                                EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-                                                 EntityManager em = emf.createEntityManager();
-                                                 JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
+                                 <%
+                                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+                                 EntityManager em = emf.createEntityManager();
+                                 JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
                                  JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
                                  JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
                                  Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
                                  List<Application> allApplications = s.getApplications();
                                  %>
-                                 
                                  <script type="text/javascript">
                                          var majorData = <%= jsonMajor %>;
                                          var skillsData = <%= jsonSkills %>;
@@ -73,7 +72,7 @@
                                                                 <td><a href="<%=p.getURL() %>"><%=p.getURL() %></a></td>
                                                                 <td><%=p.getDescription() %></td>
                                                                 <td><%=p.getAreaString() %></td>
-                                                                <td>Java</td>
+                                                                <td><%=p.getSkillString() %></td>
                                                         </tr>
                                                         <div id="apply-form" class="hidden" title="Apply">
                                                          <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">

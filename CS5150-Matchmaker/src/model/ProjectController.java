@@ -9,13 +9,13 @@ import javax.persistence.EntityTransaction;
 public class ProjectController {
 
 	public static Project createProject(EntityManager em , String name, String description,
-			String url, Researcher researcher, List<Interest> area){
+			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
 		if (description == null) description = "";
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
 		rlist.add(researcher);
-		Project p = new Project(name,description,url,rlist,area);
+		Project p = new Project(name,description,url,rlist,area,skills);
 		em.persist(p);
 		
 		tx.commit();

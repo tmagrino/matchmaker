@@ -43,6 +43,14 @@ public class Project implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> project_area;
+	
+	@ManyToMany (cascade = CascadeType.ALL)
+	@JoinTable(
+			name = "REQUIRED_SKILLS",
+			joinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="SKILL_ID", referencedColumnName="ID")}
+	)
+	private List<Skill> requiredSkills;
 	@OneToMany(mappedBy = "applicationProject" ,cascade = CascadeType.ALL)
 	private List<Application> applications;
 	
@@ -51,19 +59,21 @@ public class Project implements Serializable {
 	//private MinimumRequirements requirements;
 	
 	public Project() {
-		System.out.println("Using constructor 1:");
+		
 	}
-	public Project(String name, String description, String url, List<Researcher> res, List<Interest> area) {
+	public Project(String name, String description, String url, List<Researcher> res, List<Interest> area
+			, List<Skill> skills) {
 		this.name = name;
 		this.description = description;
 		this.researchers = res;
 		this.url = url;
 		this.applications = new ArrayList<Application>();
 		this.project_area = area;
-		System.out.println("Using contstructor 2:");
+		this.requiredSkills = skills;
 	}
-	public Project(String name, String description, String url, Researcher res,List<Interest> area) {
-		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area);
+	public Project(String name, String description, String url, Researcher res,List<Interest> area,
+			List<Skill> skills) {
+		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area,skills);
 	}
 	
 
@@ -167,6 +177,16 @@ public class Project implements Serializable {
 		StringBuilder builder = new StringBuilder();
 		for (Interest i : project_area){
 			builder.append(i.getDescription()+", ");
+			
+		}
+		if (builder.length() > 2)
+			builder.deleteCharAt(builder.length() - 2);
+		return builder.toString();
+	}
+	public String getSkillString(){
+		StringBuilder builder = new StringBuilder();
+		for (Skill s : requiredSkills){
+			builder.append(s.getDescription()+", ");
 			
 		}
 		if (builder.length() > 2)
