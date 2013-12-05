@@ -31,7 +31,7 @@ var interestData = <%= jsonInterest %>;
 	<%
 		if (allApplications.size() == 0) {
 		%>
-			<tr><td colspan="5"><i>No applications found</i></td></tr>	
+			<tr class=""><td colspan="5"><i>No applications found</i></td></tr>	
 		<%
 		}
 		for(Application a : allApplications) {
@@ -64,7 +64,7 @@ var interestData = <%= jsonInterest %>;
 
 <form name="filter-list" id="filter-list" class="clearfix" action="">
 	<div class="search-container">
-		<input type="text" placeholder="Search" /> <input type="submit"
+		<input class="search-text" type="text" placeholder="Search" /> <input type="submit"
 			value="Filter" />
 	</div>
 </form>
