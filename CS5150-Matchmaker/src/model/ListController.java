@@ -131,7 +131,7 @@ public class ListController{
 	
 	public static List<LatestAddition> getLatestAddedFields(EntityManager em) {
 		
-		String query = "select a from LATEST_ADDITION a";
+		String query = "select a from LATESTADDITION a";
 		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
 		return items;
 	}

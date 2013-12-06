@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity (name="LATEST_ADDITION")
+@Entity (name="LATESTADDITION")
 public class LatestAddition {
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,6 +22,7 @@ public class LatestAddition {
 	@Column(name="NAME")
 	private String name;
 	@Column(name="SUBMISSIONDATE")
+	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
 	
 	LatestAddition() {
