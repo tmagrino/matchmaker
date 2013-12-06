@@ -53,8 +53,8 @@ var interestData = <%= jsonInterest %>;
 		</td>
 		<td><%= p.getName() %></td>
 		<td><%=p.getResearchersString() %></td>
-		<td><a href="//<%=p.getURL()%>"><%=p.getURL()%></a></td>
-		<td><%= p.getDescription() %></td>
+		<td><a href="//<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
+		<td><%= ItemFactory.shortenString(p.getDescription()) %></td>
 		<%
         }
          %>
@@ -75,9 +75,17 @@ var interestData = <%= jsonInterest %>;
 %>
 <br />
 <p>
-	<font size="2"><i>Displaying hidden projects</i></font>
+	<font size="2"><i>Displaying hidden projects</i><a href="student-projects.jsp?showhidden=no"> Hide Projects</a></font>
 </p>
 <%
+	}
+	else{
+		%>
+	<br />
+	<p>
+		<font size="2"><i><a href="student-projects.jsp?showhidden=yes"> Show hidden projects</a></i></font>
+	</p>
+	<%
 	}
 %>
 
@@ -150,18 +158,17 @@ var interestData = <%= jsonInterest %>;
 		</td>
 		<td><%=p.getName() %></td>
 		<td><%=p.getResearchersString() %></td>
-		<td><a href="//<%=p.getURL() %>"><%=p.getURL()%></a></td>
-		<td><%=p.getDescription() %></td>
-		<td><%=p.getAreaString() %></td>
-		<td><%=p.getSkillString() %></td>
+		<td><a href="//<%=p.getURL() %>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
+		<td><%=ItemFactory.shortenString(p.getDescription())%></td>
+		<td><%= ItemFactory.shortenString(p.getAreaString())%></td>
+		<td><%= ItemFactory.shortenString(p.getSkillString())%></td>
 	</tr>
 
 	<%
 		} 
         if (!atLeastOne) {
     %>
-	<td colspan="7"><i>No available projects. </i> <a
-		href="student-projects.jsp?showhidden=yes"> Show hidden projects</a>
+	<td colspan="7"><i>No available projects. </i> 
 	</td>
 	<%
         }

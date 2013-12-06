@@ -157,6 +157,7 @@ public class Project implements Serializable {
 	public String getURL(){
 		return url;
 	}
+
 	void setURL(String url){
 		this.url = url;
 	}

@@ -98,4 +98,10 @@ public class ItemFactory {
 		}
 		return query;
 	}
+	public static String shortenString(String str){
+		if (str.length() > 40){
+		return str.substring(0, 40) + "...";
+		}
+		else return str;
+	}
 }
