@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class LatestAddition {
 	private String type;
 	@Column(name="NAME")
 	private String name;
-	@Column(name="SUBMISSIONDATE")
-	@Temporal(TemporalType.DATE)
-	private Date submissionDate;
+	@Column(name="SUBMISSIONDATE", updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private final Date submissionDate;
 	
 	LatestAddition() {
 		submissionDate = null;
