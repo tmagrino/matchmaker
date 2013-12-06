@@ -1,17 +1,15 @@
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="admin" />
-	<jsp:param name="sidebar_type" value="stud-profile" />
-	<jsp:param name="sidebar_selected" value="view" />
-	<jsp:param name="top_selected" value="profile" />
+	<jsp:param name="stud_or_prof" value="stud" />
+	<jsp:param name="top_selected" value="project" />
 </jsp:include>
 <%@page
 	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
+
 <div class="content">
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	String category = request.getParameter("mydropdown");
-	
+	String category = request.getParameter("category");
 	List<LatestAddition> additions;
 	if (category == null || category.equals("recents")) {
 		additions = ListController.getLatestAddedFields(em);
@@ -22,8 +20,8 @@
 	}
 %>
 <h1><%= category %></h1><br />
-<form action="latestAdditions.jsp">
-<select name="mydropdown" onchange="this.form.submit()">
+
+<select name="mydropdown" onchange="getSelectedValue()">
 	<option value="recents">Recent Additions</option>
 	<option value="college">Colleges</option>
 	<option value="department">Departments</option>
@@ -32,7 +30,6 @@
 	<option value="minor">Minors</option>
 	<option value="skill">Skills</option>
 </select>
-</form>
 <br />
 <table class="additions_table">
 	<tr>
