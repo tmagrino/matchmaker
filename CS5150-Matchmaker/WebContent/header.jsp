@@ -62,6 +62,11 @@
 				User u = UserController.findUser(em, currentUser);
 				if(u != null){
 			%>
+				<li class="acting-as">
+					Current User: NetID
+					<br>
+					<a href="admin-searchUser.jsp">Exit</a>
+				</li>
 				<li>Welcome, <%=u.getName() %></li>
 				<br>
 				<% if(numRoles > 1) { %>
@@ -120,7 +125,7 @@
 								<!-- Edit Fields -->
 						<li
 							<% if(request.getParameter("top_selected").equals("project")){ %>
-							class="selected" <% } %>><a href="latestAdditions.jsp">Latest Additions</a></li>
+							class="selected" <% } %>><a href="latestAdditions.jsp">Vocabulary</a></li>
 						<% } %>
 
 					</ul>

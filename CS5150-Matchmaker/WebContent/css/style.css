@@ -478,3 +478,37 @@ input[type="submit"] {
 td.buttonTD{
 	width: 220px;
 }
+
+#top-bar .login-nav .change-role {
+	width: 90px;
+	height: 20px;
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 11px; /* future proofing */
+	-khtml-border-radius: 11px; /* for old Konqueror browsers */
+	padding: 2px;
+	margin-right: 2px;
+	background-color: #ECECEC;
+}
+
+#top-bar .login-nav .change-role a {
+	color: black;
+}
+
+#top-bar .login-nav .acting-as {
+	float: left;
+}
+
+#top-bar .login-nav .acting-as a {
+	float: left;
+	width: 30px;
+	height: 20px;
+	padding: 2px;
+	margin-left: 2px;
+	-moz-border-radius: 11px;
+	-webkit-border-radius: 11px;
+	border-radius: 11px; /* future proofing */
+	-khtml-border-radius: 11px; /* for old Konqueror browsers */
+	background-color: #ECECEC;
+	color: black;
+}
