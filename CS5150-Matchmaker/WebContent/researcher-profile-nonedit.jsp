@@ -7,20 +7,15 @@
 <%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	
-	Student s = 
+	Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
 	
-	Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id")); 
+	Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id"));
+	
 	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
-	
-
-	
-
 %>
 
 <div class="content">
 	<!-- <h1>My Profile</h1> -->
-	<div id="all-department" class="hidden" title="All Department Suggestions"></div>
-	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="#" method="GET">
@@ -45,12 +40,11 @@
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
 						</p>
 					</td>
-					<td>
-						<button class="view-suggestion hidden" type="button">View All Suggestions</button>
-					</td>
+					
 				</tr>
 				<% } %>
 			</table>
+			<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 		</form>
 	</div>
 </div>
