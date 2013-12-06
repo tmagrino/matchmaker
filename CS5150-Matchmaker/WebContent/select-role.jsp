@@ -4,6 +4,11 @@
 	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
 	 
+	 if(session.getAttribute("adminUser")!= null){
+		 session.setAttribute("currentUser", session.getAttribute("adminUser"));
+		 session.setAttribute("adminUser", null);
+	 }
+	 
 	 String netId = null;
 	 if(session.getAttribute("currentUser") != null){
 		netId = (String) session.getAttribute("currentUser");  
@@ -13,9 +18,11 @@
 		 session.setAttribute("currentUser", netId);
 	 }
 	 
+	 
 	 User u = UserController.findUser(em, netId);
 	 Student s = StudentController.getStudentByNetID(em, netId);
 	 Researcher r = ResearcherController.getResearcherByNetID(em, netId);
+	 
 	 
 	 int count = 0;
 	 Boolean isStudent = false;
@@ -41,12 +48,17 @@
 		 if(isStudent){
 			 response.sendRedirect("profile.jsp");
 		 }
-		 if(u.isAdmin()){
+		 if(u.isAdmin()){ 
 			 response.sendRedirect("admin-searchUser.jsp");
 		 }
 	 }
 	
-	 session.setAttribute("numberOfRoles", count); 
+	 session.setAttribute("numberOfRoles", count);
+	 
+	 
+	 
+	 
+	 
 %>
 
 <style>
@@ -160,9 +172,10 @@
 			  <h2 align ="center">Choose an account</h2>
 			  <% } %>
 			 	<ol class="accounts " id="account-list">
-			 	 <% if (u != null && u.isAdmin()){ %>
+			 	 <% if (u != null && u.isAdmin()){ 
+			 	 %>
 			  	<li>
-			  	<form action="admin-searchUser.jsp" method="get">
+			  	<form action="admin-searchUserRedirect.jsp" method="get">
 			  	<button type="submit" id="choose-account-1">
 			  		<img class="account-image" alt=""
 			                 src="images/blank.png">

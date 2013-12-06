@@ -32,13 +32,29 @@
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
 		 	String currentUser = (String) session.getAttribute("currentUser");
+		 	System.out.println("---------------Set by currentUser-------------------");
 		 	Integer numRoles = (Integer) session.getAttribute("numberOfRoles");
 		 	if(currentUser == null){
 		 		currentUser = request.getParameter("netId");
-		 		session.setAttribute("currentUser", currentUser);
+		 		System.out.println("---------------Set by currentUser-------------------");
+		 		//session.setAttribute("currentUser", currentUser);
 		 	}
 		 	
-			if(request.getParameter("stud_or_prof").equals("stud")){ 
+		 	String stud_prof = request.getParameter("stud_or_prof");
+		 	System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
+		 	if(session.getAttribute("adminUser") != null){
+		 		System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
+		 		currentUser = (String) session.getAttribute("adminUser");
+		 		stud_prof = "admin";
+		 	}
+		 	
+		 	System.out.println("currentUser : "+currentUser);
+		 	
+		 	
+		 	
+		 	
+		 	
+			if(stud_prof.equals("stud")){ 
 				Student s = StudentController.getStudentByNetID(em,currentUser);
 				if(s != null){%>
 					<li>Welcome, <%=s.getName() %>
@@ -48,7 +64,7 @@
 					<% } %>
 					<font size="2"><%=s.getNetID()%>, Student</font></li>
 				<%}
-			 } else if(request.getParameter("stud_or_prof").equals("researcher")){ %>
+			 } else if(stud_prof.equals("researcher")){ %>
 				<%Researcher r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 				
 				<li>Welcome, <%=r.getName()%>
@@ -58,14 +74,23 @@
 				<% } %>
 				<font size="2"> <%=r.getNetID()%>, Project Lead</font></li>
 				
-			<% } else if(request.getParameter("stud_or_prof").equals("admin")){
+			<% } else if(stud_prof.equals("admin")){
 				User u = UserController.findUser(em, currentUser);
 				if(u != null){
 			%>
 				<li class="acting-as">
-					Current User: NetID
+				<% if(session.getAttribute("adminUser")!= null){ %>
+					Logged In User Profile : <%
+						if(session.getAttribute("page").equals("adminSearch")){
+							session.setAttribute("page","");	
+						%> None <%}else{
+						User usr = UserController.findUser(em,(String)session.getAttribute("currentUser"));%>
+					<%=usr.getName() %>
 					<br>
 					<a href="admin-searchUser.jsp">Exit</a>
+				<%}
+					} else{%>
+				<%} %>
 				</li>
 				<li>Welcome, <%=u.getName() %></li>
 				<br>
@@ -75,7 +100,7 @@
 				<font size="2"> <%=u.getNetid()%>, Administrator</font></li>
 			<%}
 
-			} else if(request.getParameter("stud_or_prof").equals("header")){
+			} else if(stud_prof.equals("header")){
 				User u = UserController.findUser(em, currentUser);
 				if(u != null){
 			%>
@@ -84,11 +109,14 @@
 				else{ %>
 				<li>Welcome, New User</li>
 				<% }
-			  } %>
+			  } 
+			  
+			  
+			  %>
 				<li class="login-link"><a href="clearsession.jsp">sign out</a></li>
 		</ul>
 	</div>
-	<% if(!request.getParameter("stud_or_prof").equals("header")){ %>
+	<% if(! request.getParameter("stud_or_prof").equals("header")){ %>
 	<div class="page">
 		<div class="wrapper">
 			<div id="container">

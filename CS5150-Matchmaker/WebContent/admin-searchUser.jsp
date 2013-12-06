@@ -1,4 +1,4 @@
-
+<% session.setAttribute("page", "adminSearch"); %>
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
@@ -11,6 +11,7 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
+	
 	
 	
 	String netID = request.getParameter("netID");
@@ -46,6 +47,8 @@
 	if(!isAdmin && !isStudent && !isResearcher && netID != null){
 		searchCompleted = true;
 	}
+	
+	
 %>
 		
 			<div class="content">
