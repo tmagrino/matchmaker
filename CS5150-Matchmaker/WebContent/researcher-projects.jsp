@@ -23,9 +23,12 @@
 
 				        List<Application> students;
 				        Student s;
+				        
 				        %><a href="proj-profile.jsp">Add New Project</a><br><%
 				        for (Project p : projs) {
+				        	
 				        	students = p.getApplications();
+				        	boolean hasApplicants = false;
 				        %>
 						<form name="filter-list" id="filter-list" class="clearfix">
 							<h1><%=p.getName() %></h1>
@@ -49,6 +52,7 @@
 							<tbody>
 								<%for (Application a : students){
 									if (a.getStatus() == ApplicationStatus.Accepted){
+										hasApplicants = true;
 										s = a.getStudentApplicant();%>
 										<tr>
 											<td>
@@ -61,9 +65,14 @@
 											<td><%=s.getString(s.getSkills()) %></td>
 											<td><%=s.getString(s.getInterests()) %></td>
 										</tr>
-								<%} 
-								}%>
-
+								<%}
+								}
+								if (!hasApplicants) { %>
+								<td colspan = "7"><i>No students have been accepted yet.</i></td>
+								 <%
+				        }
+								%>
+								
 							</tbody>
 						</table>
 						
