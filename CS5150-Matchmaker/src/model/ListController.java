@@ -31,12 +31,25 @@ public class ListController{
 	/**
 	 * Removes a given item
 	 */
+	@SuppressWarnings("unchecked")
 	public static void removeItem(EntityManager em, MultipleItem typeElement) throws InstantiationException, IllegalAccessException {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
 		if (typeElement != null) {
 			typeElement.removeStudents();
+			String description = typeElement.getDescription();
+			String type = ItemFactory.typeIdentifier(typeElement);
+			String query = "select a FROM LATESTADDITION a WHERE a.type = \""+type+"\" "
+					+ "AND a.name = \""+description+"\"";
+			List<LatestAddition> results = (List<LatestAddition>) em.createQuery(query).getResultList();
+			try {
+				LatestAddition add = results.get(0);
+				em.remove(add);
+			}
+			catch (Exception e) {
+				System.out.println("Addition not found while removing");
+			}
 			em.remove(typeElement);
 		}
 		
@@ -121,7 +134,7 @@ public class ListController{
 	 */
 	public static MultipleItem getItemByDescription(EntityManager em, String description, String type){
 		
-        String query = ItemFactory.getQuery(ItemFactory.create(type,""))+ 
+        String query = ItemFactory.getQuery(type)+ 
         		" where m.description = \""+description+"\"";
 		@SuppressWarnings("unchecked")
 		List<MultipleItem> itens = (List<MultipleItem>) em.createQuery(query).getResultList();
@@ -132,6 +145,13 @@ public class ListController{
 	public static List<LatestAddition> getLatestAddedFields(EntityManager em) {
 		
 		String query = "select a from LATESTADDITION a";
+		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
+		return items;
+	}
+	
+	public static List<LatestAddition> getLatestAddedFields(EntityManager em, String type) {
+		
+		String query = "select a from LATESTADDITION a where a.type = \""+type+"\"";
 		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
 		return items;
 	}

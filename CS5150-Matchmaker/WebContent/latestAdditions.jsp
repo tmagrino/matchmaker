@@ -9,18 +9,34 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	List<LatestAddition> additions = ListController.getLatestAddedFields(em);
+	String category = request.getParameter("category");
+	List<LatestAddition> additions;
+	if (category == null || category.equals("recents")) {
+		additions = ListController.getLatestAddedFields(em);
+		category = "Recent Additions";
+	}
+	else {
+		additions = ListController.getLatestAddedFields(em, category);
+	}
 %>
+<h1><%= category %></h1><br />
 
-
-<h1>Latest Additions</h1><br />
-<table>
+<select name="mydropdown" onchange="getSelectedValue()">
+	<option value="recents">Recent Additions</option>
+	<option value="college">Colleges</option>
+	<option value="department">Departments</option>
+	<option value="interest">Interests</option>
+	<option value="major">Majors</option>
+	<option value="minor">Minors</option>
+	<option value="skill">Skills</option>
+</select>
+<br />
+<table class="additions_table">
 	<tr>
-		<th>
-			<td>Type</td>
-			<td>Description</td>
-			<td>Date Added</td>
-		</th>
+		<th></th>
+		<th>Type</th>
+		<th>Description</th>
+		<th>Date Added</th>
 	</tr>
 	<% 
 		if (additions.size() == 0) {
@@ -32,8 +48,20 @@
 			for (LatestAddition add : additions) {
 				%>
 					<tr>
-						<td> </td>
-						<td><%= add.getType() %> </td>
+						<td> 
+							<a class="actionButton remove" href="remove-item.jsp?type=
+								<%= add.getType() %>&desc=<%= add.getName() %>
+								<% 
+									if (category != null) {
+										%>&category=<%= category %>
+								<%
+									}
+									
+								%>
+								">Remove
+							</a>
+						</td>
+						<td><%= ("" + add.getType().charAt(0)).toUpperCase() + add.getType().substring(1) %> </td>
 						<td><%= add.getName() %> </td>
 						<td><%= add.getSubmissionDate() %> </td>
 					</tr>

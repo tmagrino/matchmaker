@@ -52,7 +52,8 @@ var interestData = <%= jsonInterest %>;
 			</a>
 		</td>
 		<td><%= p.getName() %></td>
-		<td><%=p.getResearchersString() %></td>
+		<% Researcher projLeader = p.getResearchers().get(0); %>
+		<td><a href = "researcher-profile-nonedit.jsp?id=<%=projLeader.getNetID()%>"><%=p.getResearchersString()%></a></td>
 		<td title = "<%=p.getURL() %>"><a href="//<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%= ItemFactory.shortenString(p.getDescription())%></td>
 		<%
@@ -122,7 +123,7 @@ var interestData = <%= jsonInterest %>;
     %>
 	<tr class="hidden">
                 <td colspan="7">
-                    <div id="apply-form-<%=p.getId()%>" % class="apply-form" class="hidden" title="Apply">
+                    <div id="apply-form-<%=p.getId()%>" class="apply-form" class="hidden" title="Apply">
                    <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
                            <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
                            <textarea name="cover-letter" id="cover-letter"></textarea>
@@ -157,7 +158,8 @@ var interestData = <%= jsonInterest %>;
 			</p>
 		</td>
 		<td><%=p.getName() %></td>
-		<td><%=p.getResearchersString() %></td>
+		<% Researcher projLeader = p.getResearchers().get(0); %>
+		<td><a href = "researcher-profile-nonedit.jsp?id=<%=projLeader.getNetID()%>"><%=p.getResearchersString()%></a></td>
 		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL() %>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%=ItemFactory.shortenString(p.getDescription())%></td>
 		<td title = "<%=p.getAreaString()%>"><%= ItemFactory.shortenString(p.getAreaString())%></td>

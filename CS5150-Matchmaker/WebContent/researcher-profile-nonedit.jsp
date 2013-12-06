@@ -7,28 +7,15 @@
 <%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	
-	String currentuser = (String) session.getAttribute("currentUser");
+	Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
 	
-	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
+	Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id"));
+	
 	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
-	// Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {ItemFactory.MAJOR, "interest"};
-	JSONArray jsonArrAll = new JSONArray();
-	JSONArray jsonArrStud = new JSONArray();
-	for(String auto_attr: autocomplete_attr){
-		jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-	//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
-	}
 %>
-<script type="text/javascript">
-	var autocomplete_attr = Array("department", "research_area");
-	var jsonArrAll = <%= jsonArrAll %>;
-    var jsonArrStud = <%= jsonArrStud %>;
-</script>
+
 <div class="content">
 	<!-- <h1>My Profile</h1> -->
-	<div id="all-department" class="hidden" title="All Department Suggestions"></div>
-	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="#" method="GET">
@@ -53,12 +40,11 @@
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
 						</p>
 					</td>
-					<td>
-						<button class="view-suggestion hidden" type="button">View All Suggestions</button>
-					</td>
+					
 				</tr>
 				<% } %>
 			</table>
+			<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 		</form>
 	</div>
 </div>

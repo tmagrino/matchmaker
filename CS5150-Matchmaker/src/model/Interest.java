@@ -93,7 +93,7 @@ public class Interest extends MultipleItem{
 	@Override
 	void removeStudents() {
 		for (Student s : students) {
-			removeStudent(s);
+			s.getInterests().remove(this);
 		}
 	}
 

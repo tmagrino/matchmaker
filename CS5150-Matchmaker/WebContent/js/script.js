@@ -163,16 +163,36 @@ function initFilterType()
 {
 	var searchbox = $("form#filter-list .search-text");
 	if(searchbox.length == 0){return;}
-	$(searchbox).keyup(function(){
-		var searchVals = $(this).val().trim().toLowerCase().split(" ");
-		if(!searchVals[0]){
+	$("form#filter-list").submit(function(){
+		return false;
+	});
+	$(searchbox).keyup(function(){ 
+		var searchVals = new Array();
+		var searchInput = $(this).val().trim().toLowerCase();
+		if(!searchInput){
 			$(".project-list tbody tr").not(".hidden").show();
 		}
 		else{
 			$(".project-list tbody tr").hide();
-			$.each(searchVals, function(idx, searchVal){
-				$(".project-list tbody tr[class*="+searchVal+"], .project-list tr.no-results").not(".hidden").show();
-			});
+			var quotedInputArr = searchInput.match(/"(.*?)"/);
+			if(quotedInputArr){
+				$.each(quotedInputArr, function(idx, quotedInput){
+					quotedInput = quotedInput.replace(/ /g, "_");
+					searchVals.push(quotedInput);
+				});
+			}
+			searchInput = searchInput.replace(/"(.*?)"?/g, "");
+			var searchSplit = searchInput.split(" ");
+			if(searchSplit.length > 0)
+				$.each(searchSplit, function(idx, val){
+					searchVals.push(val);
+				});
+			var selector = ".project-list tbody tr";
+			if(searchVals.length > 0)
+				$.each(searchVals, function(idx, val){
+					selector += "[class*="+val+"]";
+				});
+			$(selector+", .project-list tr.no-results").not(".hidden").show();
 		}
 	});
 }
