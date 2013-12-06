@@ -11,7 +11,8 @@
    EntityManager em = emf.createEntityManager();
    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
    ApplicationController.declineApplication(em, a);
-   //Email.sendAcceptingMessage(a.getStudentApplicant());
+   String body = "Your project application to project " + a.getApplicationProject().getName() + " has been rejected. You can check it out here: \n " + a.getApplicationProject().getURL();
+   Email.sendAcceptingMessage(a.getStudentApplicant(),"Your project application has been rejected", body);
    response.setStatus(response.SC_MOVED_TEMPORARILY);
   
    response.setHeader("Location", "project-applications.jsp"); 

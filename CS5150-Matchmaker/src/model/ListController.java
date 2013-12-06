@@ -149,6 +149,13 @@ public class ListController{
 		return items;
 	}
 	
+	public static List<LatestAddition> getLatestAddedFields(EntityManager em, String type) {
+		
+		String query = "select a from LATESTADDITION a where a.type = \""+type+"\"";
+		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
+		return items;
+	}
+	
 	
 	/**
 	 * Parse a string of items separated by ',' to an ArrayList of items with

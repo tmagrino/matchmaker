@@ -9,24 +9,29 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	List<LatestAddition> additions = ListController.getLatestAddedFields(em);
 	String category = request.getParameter("category");
-	if (category == null) {
+	List<LatestAddition> additions;
+	if (category == null || category.equals("recents")) {
+		additions = ListController.getLatestAddedFields(em);
 		category = "Recent Additions";
+	}
+	else {
+		additions = ListController.getLatestAddedFields(em, category);
 	}
 %>
 <h1><%= category %></h1><br />
-<select>
+
+<select name="mydropdown" onchange="getSelectedValue()">
 	<option value="recents">Recent Additions</option>
-	<option value="colleges">Colleges</option>
-	<option value="departments">Departments</option>
-	<option value="interests">Interests</option>
-	<option value="majors">Majors</option>
-	<option value="minors">Minors</option>
-	<option value="skills">Skills</option>
+	<option value="college">Colleges</option>
+	<option value="department">Departments</option>
+	<option value="interest">Interests</option>
+	<option value="major">Majors</option>
+	<option value="minor">Minors</option>
+	<option value="skill">Skills</option>
 </select>
 <br />
-<table>
+<table class="additions_table">
 	<tr>
 		<th></th>
 		<th>Type</th>
