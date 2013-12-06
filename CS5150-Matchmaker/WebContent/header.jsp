@@ -27,7 +27,7 @@
 	<div id="top-bar" class="clearfix">
 		
 		<ul class="login-nav">
-		<!-- This a Header page -->
+		<!-- This a Header page!!! -->
 		<% 
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
