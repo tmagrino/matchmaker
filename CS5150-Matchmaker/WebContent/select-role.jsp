@@ -4,8 +4,15 @@
 	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
 	 
-	 String netId = request.getParameter("netId");
-	 session.setAttribute("currentUser", netId);
+	 String netId = null;
+	 if(session.getAttribute("currentUser") != null){
+		netId = (String) session.getAttribute("currentUser");  
+	 	session.setAttribute("currentUser", netId);
+	 }else{
+		 netId = (String) request.getParameter("netId");
+		 session.setAttribute("currentUser", netId);
+	 }
+	 
 	 User u = UserController.findUser(em, netId);
 	 Student s = StudentController.getStudentByNetID(em, netId);
 	 Researcher r = ResearcherController.getResearcherByNetID(em, netId);

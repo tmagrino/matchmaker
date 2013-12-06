@@ -49,7 +49,7 @@
 %>
 		
 			<div class="content">
-						<h3 class="subheading">&nbsp;Search User</h3>
+						<h3 class="subheading">&nbsp;&nbsp;Search User</h3>
 						<ul class="project-list">
 							<li class="clearfix">
 								<div class="accounts">
@@ -65,11 +65,11 @@
 								 	</form>
 									<br><br>
 									<% if(netID != null && u != null) {%>
-									<table cellspacing=5 cellpadding=10 border=1>
+									<table cellspacing=5 cellpadding=10 border=0>
 									<tr>
 										<td valign="top"><img src="images/blank.png" height=150 width=150/></td>
 										<td>
-								 		<table cellspacing=10 cellpadding=10 align=center border="0">
+								 		<table cellspacing=10 cellpadding=10 align=center border=0>
 								 		<tr><td><h3>Name:</h3></td>
 								 		<td><input type="text" value="<%= u.getName()%>" size=35/></td>
 										</tr>
@@ -96,7 +96,7 @@
 									 	</td>
 										</tr>
 										<tr>
-											<td>
+											<td colspan=2 align="center">
 											<div class="status">
 												<% if(isStudent){
 													session.setAttribute("currentUser", request.getParameter("netID"));
@@ -136,7 +136,7 @@
 									</tr>
 									</table>
 									<% } else if(searchCompleted){ %>
-									<h3>No User found!!</h3>
+									<h3><i>No User found</i></h3>
 									<%} %>
 							</div>
 							</li>
