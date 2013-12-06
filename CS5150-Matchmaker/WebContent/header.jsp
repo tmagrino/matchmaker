@@ -85,7 +85,7 @@
 							session.setAttribute("page","");	
 						%> None <%}else{
 						User usr = UserController.findUser(em,(String)session.getAttribute("currentUser"));%>
-					<%=usr.getName() %>
+					<%=usr.getName()%> (<%=usr.getNetid() %>) 
 					<br>
 					<a href="admin-searchUser.jsp">Exit</a>
 				<%}
