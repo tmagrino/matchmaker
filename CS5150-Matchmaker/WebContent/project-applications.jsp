@@ -13,8 +13,7 @@
  	    JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
  	    JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
 	%>
-    <a href="proj-profile.jsp">Add New Project</a>
-    <a href="invite-students.jsp">Show all Students</a>
+    
     <script type="text/javascript">
     	var majorData = <%= jsonMajor %>;
        	var skillsData = <%= jsonSkills %>;
@@ -23,14 +22,25 @@
     <%
     	Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
         List<Project> projs = r.getProjects(); 
+        if (projs.size() == 0){
+       %><td colspan="7"><h1>You have no projects! Would you like to 
+       			<a href="proj-profile.jsp">add a new project?</a> </h1></td>
         
+        <%}else{
+        	
         for (Project p : projs) {
        		List<Application> apps = p.getApplications();
        		if (apps.size() == 0){
-       			%><td colspan="7"><i>No available projects. </i><%
+       			
+       			%>
+       			<a href="proj-profile.jsp">Add New Project</a>
+   				 <a href="invite-students.jsp">Show all Students</a>
+       			<td colspan="7"><i>No applications to be displayed. Would you like to 
+       			<a href="proj-profile.jsp">add a new project?</a> </i></td>
+       			<td>Click<a href="invite-students.jsp">here</a> to show all available students.</td><%
        		}
        		else{
-    %>
+        %>
     
 	<form name="filter-list" id="filter-list" class="clearfix">
 		<h1><%=p.getName() %></h1>
@@ -70,8 +80,9 @@
 			<td><%=s.getString(s.getInterests()) %></td>
 		</tr>
 		<%	}
-		  } 
-		}
+		  }
+        }
+	}
 		%>
 		</tbody>
 	</table>	

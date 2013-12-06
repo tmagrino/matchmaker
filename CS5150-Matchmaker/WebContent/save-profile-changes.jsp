@@ -9,8 +9,9 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   Student s = StudentController.getStudentByNetID(em,"lr437");
-   User u = UserController.findUser(em, "lr437");
+   String netId = (String) session.getAttribute("currentUser");
+   Student s = StudentController.getStudentByNetID(em,netId);
+   User u = UserController.findUser(em, netId);
    if (request.getParameter("email").length() > 0 && 
 		   s.getEmail() != request.getParameter("email")){
 	   StudentController.editEmail(em, s, request.getParameter("email"));
