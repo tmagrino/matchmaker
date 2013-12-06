@@ -21,21 +21,25 @@
     <%
     	Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
         List<Project> projs = r.getProjects(); 
+        boolean hasApplications = false;
         if (projs.size() == 0){
        %><td colspan="7"><h1>You have no projects! Would you like to 
        			<a href="proj-profile.jsp">add a new project?</a> </h1></td>
         
         <%}else{
-			%><a href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
+			%>
+		<a href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="invite-students.jsp">Show all available Students</a>
 		<%
 		List<Application> apps;
+		List<Application> declinedApps;
 		Student s;
         for (Project p : projs) {
-       		 apps = p.getApplications();
+       		apps = p.getApplications();
+       		apps = 	ProjectController.removeDeclinedApplications(apps);
        		
        		if (apps.size() != 0){
-       			
+       		hasApplications = true;
          %>
      
     <form name="filter-list" id="filter-list" class="clearfix">
@@ -55,11 +59,11 @@
 		%>
 		<tr>
 			<td>
-			<%
+			<%	
 				if (a.getStatus() == ApplicationStatus.Pending) {
 			%>
 				<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>">Accept</a>&nbsp;
-				<a class="actionButton reject" href="#">Reject</a>
+				<a class="actionButton reject" href="reject-student.jsp?id=<%=a.getId()%>">Reject</a>
 			<%
 				}
 				else {
@@ -84,6 +88,13 @@
 	</table>
 	<br />
 		<%  }
+        }
+        if (!hasApplications){
+        	%>
+        	<br />
+        	<br />
+        	<h1>No students have applyed yet. Invite students <a href="invite-students.jsp">here</a>.</h1>
+        	<%
         }
  
 	}

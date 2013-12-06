@@ -39,7 +39,7 @@ var interestData = <%= jsonInterest %>;
     %>
 	<tr>
 		<td><%= 
-			a.getStatus()%> 
+			a.getStatus()%> &nbsp;&nbsp;
 			<a class"actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
 				<%
 					if (showHidden) {

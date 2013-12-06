@@ -145,4 +145,14 @@ public class ProjectController {
         	return null;
         }
 	}
+	public static List<Application> removeDeclinedApplications(List<Application> apps){
+		List<Application> declined = new ArrayList<Application>();
+		for (Application a : apps){
+			if (a.getStatus() == ApplicationStatus.Declined){
+				declined.add(a);
+			}
+		}
+		apps.removeAll(declined);
+		return apps;
+	}
 }

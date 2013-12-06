@@ -54,7 +54,7 @@ public class ApplicationController {
 		tx.commit();
 	}
 	
-	public static void DeclineApplication(EntityManager em, Application a) {
+	public static void declineApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		

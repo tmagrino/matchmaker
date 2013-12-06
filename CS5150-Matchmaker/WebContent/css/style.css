@@ -467,7 +467,6 @@ body .ui-dialog .ui-dialog-content{
 	height: 345px;
 }
 input[type="submit"] {
-	font-size: larger;
 	width: 115px;
 }
 .newUser{
@@ -477,5 +476,5 @@ input[type="submit"] {
 }
 
 td.buttonTD{
-	width: 210px;
+	width: 220px;
 }
