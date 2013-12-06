@@ -13,8 +13,9 @@
    Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
    Project p = r.getProjects().get(0);
    Application a = ApplicationController.createApplication(em, s, p, "Invited Student");
-   ApplicationController.inviteApplication(em, a);
-   //Email.sendAcceptingMessage(a.getStudentApplicant());
+   ApplicationController.inviteApplication(em, a);   
+   String body = "You have been invited to project " + a.getApplicationProject().getName() + ". You can check it out here: \n " + a.getApplicationProject().getURL();
+   Email.sendAcceptingMessage(a.getStudentApplicant(),"You have been invited to a project", body);
    response.setStatus(response.SC_MOVED_TEMPORARILY);
   
    response.setHeader("Location", "invite-students.jsp"); 
