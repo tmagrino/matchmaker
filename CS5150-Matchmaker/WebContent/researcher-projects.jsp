@@ -33,7 +33,7 @@
 						<form name="filter-list" id="filter-list" class="clearfix">
 							<h1><%=p.getName() %></h1>
 							<div class="search-container">
-								<input type="text" placeholder="Search..."/>
+								<input class="search-text" type="text" placeholder="Search..."/>
 								<input type="submit" value="Filter"/>
 							</div>
 						</form>
@@ -53,8 +53,14 @@
 								<%for (Application a : students){
 									if (a.getStatus() == ApplicationStatus.Accepted){
 										hasApplicants = true;
-										s = a.getStudentApplicant();%>
-										<tr>
+										s = a.getStudentApplicant();
+										String cssClasses = s.getName().replaceAll(" ", "_").toLowerCase() + " "
+							                    + s.getString(s.getMajors()).replaceAll(" ", "_").toLowerCase() + " "
+							                     + s.getString(s.getSkills()).replaceAll(" ", "_").toLowerCase() + " "
+							                     + s.getString(s.getInterests()).replaceAll(" ", "_").toLowerCase() + " "
+							                     + s.getNetID().replaceAll(" ", "_").toLowerCase();
+										%>
+										<tr class="<%= cssClasses %>">
 											<td>
 												<a class="actionButton remove" href="remove-student.jsp?id=<%=a.getId()%>">Remove</a>
 											</td>

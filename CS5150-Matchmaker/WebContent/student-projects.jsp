@@ -122,7 +122,7 @@ var interestData = <%= jsonInterest %>;
     %>
 	<tr class="hidden">
                 <td colspan="7">
-                    <div id="apply-form-<%=p.getId()%>" % class="apply-form" class="hidden" title="Apply">
+                    <div id="apply-form-<%=p.getId()%>" class="apply-form" class="hidden" title="Apply">
                    <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
                            <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
                            <textarea name="cover-letter" id="cover-letter"></textarea>
