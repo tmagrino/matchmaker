@@ -29,6 +29,7 @@ public class StudentController {
 		set.setStudent(s);
 		user.setStudent(s);
 		em.persist(s);
+		em.persist(set);
 		
 		tx.commit();
 		return s;

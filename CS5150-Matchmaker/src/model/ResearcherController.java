@@ -18,8 +18,12 @@ public class ResearcherController {
         
         Researcher r = new Researcher(name, netID, email, departments,
         				webpage, researchArea);
+        ResearcherSettings settings = new ResearcherSettings();
+        r.setSettings(settings);
+		settings.setResearcher(r);
         user.setResearcher(r);
         em.persist(r);
+        em.persist(settings);
         
 		tx.commit();
 		return r;
@@ -31,6 +35,24 @@ public class ResearcherController {
 	
 	public static void addProject(EntityManager em, Project p) {
 		
+	}
+	
+	public static void addHiddenStudent(EntityManager em, Researcher r, Student s) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		r.getSettings().addStudent(s);
+		
+		tx.commit();
+	}
+	
+	public static void removeHiddenStudent(EntityManager em, Researcher r, Student s) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		r.getSettings().removeStudent(s);
+		
+		tx.commit();
 	}
 	
 	public static Researcher getResearcherByNetID(EntityManager em, String netid) {

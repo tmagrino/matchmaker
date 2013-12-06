@@ -43,6 +43,8 @@ public class Researcher implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="DEPARTMENT_ID", referencedColumnName="ID")}
 	)
 	private List<Department> departments;
+	@OneToOne (mappedBy = "researcher", cascade = CascadeType.ALL)
+	private ResearcherSettings settings;
 	
 	//private BufferedImage profilePicture;
 	//private ResearcherSettings settings;
@@ -183,6 +185,19 @@ public class Researcher implements Serializable {
 		return user;
 	}
 	
+	
+	public ResearcherSettings getSettings() {
+		return settings;
+	}
+
+	void setSettings(ResearcherSettings settings) {
+		this.settings = settings;
+	}
+
+	void setDepartments(List<Department> departments) {
+		this.departments = departments;
+	}
+
 	/**
 	 * @param user the user to set
 	 */
