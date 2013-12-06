@@ -9,17 +9,16 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
-   ApplicationController.approveApplication(em, a);
-   Email.sendAcceptingMessage(a.getStudentApplicant(),"testing","sending");
+   Student s = StudentController.getStudentByNetID(em, request.getParameter("id"));
+   Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+   Project p = r.getProjects().get(0);
+   Application a = ApplicationController.createApplication(em, s, p, "Invited Student");
+   ApplicationController.inviteApplication(em, a);
+   //Email.sendAcceptingMessage(a.getStudentApplicant());
    response.setStatus(response.SC_MOVED_TEMPORARILY);
-   
-   if (request.getParameter("studinvite").equals("true")){
-	   response.setHeader("Location", "student-projects.jsp"); 
-   }
-   else{
-   response.setHeader("Location", "project-applications.jsp"); 
-   }
+  
+   response.setHeader("Location", "invite-students.jsp"); 
+
 	   
  
 %>

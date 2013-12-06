@@ -39,7 +39,7 @@ var interestData = <%= jsonInterest %>;
     %>
 	<tr>
 		<td><%= 
-			a.getStatus()%> &nbsp;&nbsp;
+			a.getStatus()%> &nbsp;<%if (a.getStatus() == ApplicationStatus.Invited){ %><a href = "accept-student.jsp?id=<%=a.getId()%>&studinvite=true">Accept Invitation</a><%} %>&nbsp;
 			<a class"actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
 				<%
 					if (showHidden) {

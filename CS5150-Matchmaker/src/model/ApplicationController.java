@@ -53,6 +53,14 @@ public class ApplicationController {
 		
 		tx.commit();
 	}
+	public static void inviteApplication(EntityManager em, Application a) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		a.setStatus(ApplicationStatus.Invited);
+		
+		tx.commit();
+	}
 	
 	public static void declineApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
