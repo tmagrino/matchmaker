@@ -159,12 +159,19 @@ public class StudentController {
 		tx.commit();
 	}
 	public static void update(EntityManager em, Student s, String ids, String type) 
-			throws NumberFormatException, InstantiationException, IllegalAccessException {
+			throws InstantiationException, IllegalAccessException {
 		String[] idList =ids.split(",");
 		s.remove(type);
 		for (String id : idList)
-			if (id.length()>0)
-			StudentController.add(em, s, ListController.getItemById(em,Long.parseLong(id),type));
+			if (id.length()>0){
+				try{
+					StudentController.add(em, s, ListController.getItemById(em,Long.parseLong(id),type));
+				}
+				catch(NumberFormatException e){
+					StudentController.add(em, s, ListController.createItem(em, id, type));
+				}
+			}
+		
 	}
 	
 	private static void add(EntityManager em, Student s, MultipleItem item) {

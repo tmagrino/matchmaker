@@ -18,11 +18,21 @@
    List<Skill> reqSkills = new ArrayList<Skill>();
 	for (String id : idList)
 		if (id.length()>0){
-		area.add((Interest)ListController.getItemById(em, Long.parseLong(id), ItemFactory.INTEREST));
+			try{
+				area.add((Interest)ListController.getItemById(em, Long.parseLong(id), ItemFactory.INTEREST));
+			}
+			catch(NumberFormatException e){
+				area.add((Interest)ListController.createItem(em, id, ItemFactory.INTEREST));
+			}
 		}
 	for (String id : skillIdList){
 		if (id.length()>0){
-			reqSkills.add((Skill) ListController.getItemById(em, Long.parseLong(id), ItemFactory.SKILL));
+			try{
+				reqSkills.add((Skill) ListController.getItemById(em, Long.parseLong(id), ItemFactory.SKILL));
+			}
+			catch(NumberFormatException e){
+				reqSkills.add((Skill)ListController.createItem(em, id, ItemFactory.SKILL));
+			}
 		}
 	}
    ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
