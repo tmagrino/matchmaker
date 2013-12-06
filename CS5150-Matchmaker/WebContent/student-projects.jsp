@@ -58,8 +58,15 @@ var interestData = <%= jsonInterest %>;
 			</a>
 		</td>
 		<td><%= p.getName() %></td>
-		<% Researcher projLeader = p.getResearchers().get(0); %>
-		<td><a href = "researcher-profile-nonedit.jsp?id=<%=projLeader.getNetID()%>"><%=p.getResearchersString()%></a></td>
+		<td>
+		<%	
+			for (Researcher r : p.getResearchers()) {
+		%>
+			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
+		<% 
+			}
+		%>
+		</td>
 		<td title = "<%=p.getURL() %>"><a href="//<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%= ItemFactory.shortenString(p.getDescription())%></td>
 		<%
@@ -153,8 +160,15 @@ var interestData = <%= jsonInterest %>;
 			</p>
 		</td>
 		<td><%=p.getName() %></td>
-		<% Researcher projLeader = p.getResearchers().get(0); %>
-		<td><a href = "researcher-profile-nonedit.jsp?id=<%=projLeader.getNetID()%>"><%=p.getResearchersString()%></a></td>
+		<td>
+		<% 
+			for (Researcher r : p.getResearchers()) {
+		%>
+			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
+		<% 
+        	}
+		%>
+		</td>
 		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL() %>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%=ItemFactory.shortenString(p.getDescription())%></td>
 		<td title = "<%=p.getAreaString()%>"><%= ItemFactory.shortenString(p.getAreaString())%></td>
