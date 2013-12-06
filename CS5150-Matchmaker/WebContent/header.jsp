@@ -107,8 +107,7 @@
 								<!-- Edit Fields -->
 						<li
 							<% if(request.getParameter("top_selected").equals("project")){ %>
-							class="selected" <% } %>><a href="editFields.jsp">Edit
-								Fields</a></li>
+							class="selected" <% } %>><a href="latestAdditions.jsp">Latest Additions</a></li>
 						<% } %>
 
 					</ul>
