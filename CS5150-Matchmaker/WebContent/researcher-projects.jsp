@@ -21,7 +21,7 @@
 				        List<Project> projs = r.getProjects();
 				        List<Application> students;
 				        Student s;
-				        
+				        %><a href="proj-profile.jsp">Add New Project</a><br><%
 				        for (Project p : projs) {
 				        	students = p.getApplications();
 				        %>
@@ -69,7 +69,7 @@
 						<%}%>
 						<jsp:include page="pager.jsp"/>
 						<br>
-						<a href="proj-profile.jsp">Add New Project</a>
+						
 					</div>				
 				</div>
 			</div>

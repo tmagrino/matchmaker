@@ -44,12 +44,11 @@
                                                         <input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
                                                 </p>
                                         </td>
-                                        <td>
-                                                <button class="view-suggestion hidden" type="button">View All Suggestions</button>
-                                        </td>
+                      
                                 </tr>
                                 <% } %>
                         </table>
+                        <FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
                 </form>
 
         </div>

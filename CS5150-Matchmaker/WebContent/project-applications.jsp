@@ -27,20 +27,14 @@
        			<a href="proj-profile.jsp">add a new project?</a> </h1></td>
         
         <%}else{
-        	
+			%><a href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="invite-students.jsp">Show all available Students</a>
+		<%
         for (Project p : projs) {
        		List<Application> apps = p.getApplications();
-       		if (apps.size() == 0){
+       		if (apps.size() != 0){
        			
-       			%>
-       			<a href="proj-profile.jsp">Add New Project</a>
-   				 <a href="invite-students.jsp">Show all Students</a>
-       			<td colspan="7"><i>No applications to be displayed. Would you like to 
-       			<a href="proj-profile.jsp">add a new project?</a> </i></td>
-       			<td>Click<a href="invite-students.jsp">here</a> to show all available students.</td><%
-       		}
-       		else{
-        %>
+         %>
     
 	<form name="filter-list" id="filter-list" class="clearfix">
 		<h1><%=p.getName() %></h1>
@@ -82,10 +76,15 @@
 		<%	}
 		  }
         }
+ 
 	}
-		%>
+        %>
+
+
 		</tbody>
-	</table>	
+
+	</table>
+
 </div>
 <br />
 <jsp:include page="pager.jsp"/>

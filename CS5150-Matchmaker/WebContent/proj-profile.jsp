@@ -61,7 +61,7 @@ for(String auto_attr: autocomplete_attr){
 				</tr>
 				<% } %>
 		</table>
-		<input type="submit" value="Save Changes"></input>
+		<input type="submit" value="Save Changes"></input><FORM><INPUT Type="button" VALUE="Cancel" onClick="history.go(-1);return true;"></FORM>
 	</form>
 </div>
 </div>
