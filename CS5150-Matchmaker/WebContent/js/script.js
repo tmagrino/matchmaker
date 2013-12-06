@@ -151,11 +151,7 @@ function initApplyButton()
 	var applyBtn = $("a.apply");
 	applyBtn.click(function(){
 		var apply_form = $(".apply-form");
-		var action = $("form", apply_form).attr("action");
-		if(action.search("id") == -1){
-			action += "?id=" + applyBtn.attr("id");
-			$("form", apply_form).attr("action", action);
-		}
+		$("input[type=hidden]", apply_form).val($(this).attr("id"));
 		apply_form.dialog({
 			  height: 200,
 		      width: 500,
