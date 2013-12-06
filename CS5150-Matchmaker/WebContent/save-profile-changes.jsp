@@ -12,6 +12,11 @@
    String netId = (String) session.getAttribute("currentUser");
    Student s = StudentController.getStudentByNetID(em,netId);
    User u = UserController.findUser(em, netId);
+   if (request.getParameter("NewUser")!=null && 
+		   request.getParameter("NewUser").length() > 0 && 
+		   s.getName() != request.getParameter("NewUser")){
+	   StudentController.editName(em, s, request.getParameter("NewUser"));
+   }
    if (request.getParameter("email").length() > 0 && 
 		   s.getEmail() != request.getParameter("email")){
 	   StudentController.editEmail(em, s, request.getParameter("email"));

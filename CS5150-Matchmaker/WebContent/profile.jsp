@@ -40,10 +40,22 @@
                 <img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
                 <form name="profile" action="save-profile-changes.jsp" method="GET">
                         <table class="info">
-                                <tr>
-                                        <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
-                                </tr>
-                                <% for(String attr: attributes){ %>
+                                <%if(!(s.getName().equals("New User"))){ %>
+	                                <tr>
+	                                     <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
+	                                </tr>
+                                <% } else { %>
+                                	<tr>
+                                    	<td class="attr-label"><h2>New User: </h2></td>
+	                                   	<td class="field">
+	                                    	 <p class="editable">
+	                                    	 	<input name="NewUser" value="" type="text" />
+	                                    	 </p>
+                                    	 </td>
+                            		</tr>
+                                <% }
+                      
+                                for(String attr: attributes){ %>
                                 <tr>
                                         <td class="attr-label"><%=attr %>:</td>
                                         <td class="field">
