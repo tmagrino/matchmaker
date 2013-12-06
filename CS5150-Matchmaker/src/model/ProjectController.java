@@ -27,6 +27,7 @@ public class ProjectController {
 		rlist.add(researcher);
 
 		Project p = new Project(name,description,newurl,rlist,area,skills);
+		researcher.addProject(p);
 		em.persist(p);
 		
 		tx.commit();
