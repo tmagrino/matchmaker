@@ -53,8 +53,8 @@ var interestData = <%= jsonInterest %>;
 		</td>
 		<td><%= p.getName() %></td>
 		<td><%=p.getResearchersString() %></td>
-		<td><a href="//<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
-		<td><%= ItemFactory.shortenString(p.getDescription())%></td>
+		<td title = "<%=p.getURL() %>"><a href="//<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getDescription()%>"><%= ItemFactory.shortenString(p.getDescription())%></td>
 		<%
         }
          %>
@@ -132,7 +132,7 @@ var interestData = <%= jsonInterest %>;
             </td>
           </tr>
 	<tr class="<%= cssClasses %>">
-		<td>
+		<td class = "buttonTD">
 			<p>
 				<a class="actionButton apply"
 					href="save-student-application.jsp?id=<%=p.getId()%>">Apply</a>&nbsp;
@@ -158,10 +158,10 @@ var interestData = <%= jsonInterest %>;
 		</td>
 		<td><%=p.getName() %></td>
 		<td><%=p.getResearchersString() %></td>
-		<td><a href="//<%=p.getURL() %>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
-		<td><%=ItemFactory.shortenString(p.getDescription())%></td>
-		<td><%= ItemFactory.shortenString(p.getAreaString())%></td>
-		<td><%= ItemFactory.shortenString(p.getSkillString())%></td>
+		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL() %>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getDescription()%>"><%=ItemFactory.shortenString(p.getDescription())%></td>
+		<td title = "<%=p.getAreaString()%>"><%= ItemFactory.shortenString(p.getAreaString())%></td>
+		<td title = "<%=p.getSkillString()%>"><%= ItemFactory.shortenString(p.getSkillString())%></td>
 	</tr>
 
 	<%

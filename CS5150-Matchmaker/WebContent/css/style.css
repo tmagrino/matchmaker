@@ -475,3 +475,7 @@ input[type="submit"] {
 	padding-bottom: 1%;
 	border-color: #ECECEC; 
 }
+
+td.buttonTD{
+	width: 210px;
+}
