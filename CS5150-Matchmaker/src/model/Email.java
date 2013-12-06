@@ -11,8 +11,8 @@ import javax.persistence.Persistence;
 public class Email {	
     private static String from = "researchmatchmaker.email";  // GMail user name (just the part before "@gmail.com")
     private static String pass = "researchmatchmaker"; // GMail password
-    private static String subject = "Testing sending email";
-    private static String body = "Testing sending email from researchMatchmaker";
+    //private static String subject = "Testing sending email";
+    //private static String body = "Testing sending email from researchMatchmaker";
 
     public static void main(String[] args) {
         
@@ -20,9 +20,11 @@ public class Email {
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
     	EntityManager em = emf.createEntityManager();
     	Student s = StudentController.getStudentByNetID(em, "lr437");
-        sendAcceptingMessage(s);
+    	String subject = "Testing sending email";
+    	String body = "Testing sending email from researchMatchmaker";
+        sendAcceptingMessage(s, subject, body);
     }
-    public static void sendAcceptingMessage(Student s){
+    public static void sendAcceptingMessage(Student s, String subject, String body){
     	
     	String to = s.getEmail();
     	Properties props = System.getProperties();
@@ -56,7 +58,7 @@ public class Email {
         }
     }
     
-    private static void sendFromGMail(String to) {
+    private static void sendFromGMail(String to, String subject, String body) {
         Properties props = System.getProperties();
         String host = "smtp.gmail.com";
         props.put("mail.smtp.starttls.enable", "true");
