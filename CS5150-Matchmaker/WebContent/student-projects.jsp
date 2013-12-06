@@ -4,7 +4,13 @@
 </jsp:include>
 <%@page
 	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
-
+<div class="apply-form hidden" title="Apply">
+	<form method="post" action="save-student-application.jsp">
+     	<label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
+         <textarea name="cover-letter" id="cover-letter"></textarea>
+         <input type="submit" value="Apply">
+     </form>
+ </div>
 <div class="content">
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
@@ -121,21 +127,10 @@ var interestData = <%= jsonInterest %>;
                      + p.getAreaString().replaceAll(" ", "_").toLowerCase() + " "
                      + p.getSkillString().replaceAll(" ", "_").toLowerCase();
     %>
-	<tr class="hidden">
-                <td colspan="7">
-                    <div id="apply-form-<%=p.getId()%>" class="apply-form" class="hidden" title="Apply">
-                   <form method="post" action="save-student-application.jsp?id=<%=p.getId()%>">
-                           <label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
-                           <textarea name="cover-letter" id="cover-letter"></textarea>
-                           <input type="submit" value="Apply">
-                   </form>
-              </div>
-            </td>
-          </tr>
 	<tr class="<%= cssClasses %>">
 		<td class = "buttonTD">
 			<p>
-				<a class="actionButton apply"
+				<a id="<%=p.getId()%>" class="actionButton apply"
 					href="save-student-application.jsp?id=<%=p.getId()%>">Apply</a>&nbsp;
 				<%
                       	if (hid && showHidden) {

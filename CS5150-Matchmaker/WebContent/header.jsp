@@ -27,7 +27,7 @@
 	<div id="top-bar" class="clearfix">
 		
 		<ul class="login-nav">
-		<!-- This a Header page -->
+		<!-- This a Header page!! -->
 		<% 
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
@@ -62,6 +62,11 @@
 				User u = UserController.findUser(em, currentUser);
 				if(u != null){
 			%>
+				<li class="acting-as">
+					Current User: NetID
+					<br>
+					<a href="admin-searchUser.jsp">Exit</a>
+				</li>
 				<li>Welcome, <%=u.getName() %></li>
 				<br>
 				<% if(numRoles > 1) { %>
