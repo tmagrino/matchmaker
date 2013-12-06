@@ -1,4 +1,3 @@
-<!-- Non editable researcher page -->
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="researcher" />
 	<jsp:param name="top_selected" value="project" />
@@ -10,8 +9,11 @@ EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
 JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
 JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
-String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
+
+
+Project p = ProjectController.getProjectById(em, request.getParameter("projectId"));
+
+String[] attributes = {"Research Area", "Required Skills", "Project URL", "Project Description"};
 String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
@@ -28,10 +30,15 @@ for(String auto_attr: autocomplete_attr){
 <div class="content">
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
+	<h1>My Projects</h1>
 	<form name="profile">
 		<table class="info">
 			<tr>
-				<td class="attr-label"><h2><%=r.getName() %></h2></td>
+				<td class="attr-label" colspan="3"><h2><%=p.getName()%></h2>
+			</tr>
+			<tr>
+				<td class="attr-label">Researcher Name :</td>
+				<td class="attr-label"><h2><%=p.getResearchersString()%></h2></td>
 			</tr>
 			<% for(String attr: attributes){ %>
 				<tr>
@@ -56,10 +63,6 @@ for(String auto_attr: autocomplete_attr){
 				<% } %>
 		</table>
 	</form>
-</div>
-</div>
-</div>
-</div>
 </div>
 </body>
 </html>
