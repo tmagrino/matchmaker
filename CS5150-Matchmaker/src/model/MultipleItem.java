@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Date;
+
 public abstract class MultipleItem implements Comparable<MultipleItem> {
 	public abstract	long getId();
 	public abstract String getDescription();

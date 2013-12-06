@@ -12,7 +12,7 @@ public class ItemFactory {
 	
 	
 	public static MultipleItem create(String type, String name){
-		if (type == MAJOR){
+		if (type == MAJOR) {
 			return new Major(name);
 		}
 		if (type == MINOR){

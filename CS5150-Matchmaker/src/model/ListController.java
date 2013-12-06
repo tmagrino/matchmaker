@@ -21,8 +21,10 @@ public class ListController{
 		tx.begin();
 		
 		MultipleItem m = (MultipleItem) ItemFactory.create(type, description);
-
+		LatestAddition addition = new LatestAddition(type, description);
+		
 		em.persist(m);
+		em.persist(addition);
 		tx.commit();
 		return m;
 	}
@@ -126,6 +128,15 @@ public class ListController{
 		
 		return itens.get(0);
 	}
+	
+	public static List<LatestAddition> getLatestAddedFields(EntityManager em) {
+		
+		String query = "select a from LATEST_ADDITION a";
+		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
+		return items;
+	}
+	
+	
 	/**
 	 * Parse a string of items separated by ',' to an ArrayList of items with
 	 * the string description.

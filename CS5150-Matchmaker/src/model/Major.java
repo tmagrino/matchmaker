@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.Date;
 import java.util.List;
 
 /*
@@ -48,7 +49,6 @@ public class Major extends MultipleItem  {
 	private List<Student> students;
 	
 	public Major() {
-		
 	}
 	
 	Major(String name) {
