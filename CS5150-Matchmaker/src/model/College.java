@@ -91,7 +91,7 @@ public class College extends MultipleItem{
 	@Override
 	void removeStudents() {
 		for (Student s : students) {
-			removeStudent(s);
+			s.getColleges().remove(this);
 		}
 	}
 

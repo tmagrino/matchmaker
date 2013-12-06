@@ -30,6 +30,7 @@ public class LatestAddition {
 	}
 	
 	LatestAddition(String type, String name) {
+		
 		this.type = type;
 		this.name = name;
 		submissionDate = new Date();

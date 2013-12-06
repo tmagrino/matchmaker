@@ -90,7 +90,7 @@ public class Major extends MultipleItem  {
 	
 	void removeStudents() {
 		for (Student s : students) {
-			removeStudent(s);
+			s.getMajors().remove(this);
 		}
 	}
 

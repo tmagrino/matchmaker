@@ -90,7 +90,7 @@ public class Minor extends MultipleItem{
 	@Override
 	void removeStudents() {
 		for (Student s : students) {
-			removeStudent(s);
+			s.getMinors().remove(this);
 		}
 	}
 
