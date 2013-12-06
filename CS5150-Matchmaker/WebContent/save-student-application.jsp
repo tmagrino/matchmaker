@@ -10,7 +10,6 @@
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
-   System.out.println("IM here");
    Project p = ProjectController.getProjectById(em, request.getParameter("id"));
    String text = request.getParameter("cover-letter");
    
