@@ -7,24 +7,16 @@
 <%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	
-	String currentuser = (String) session.getAttribute("currentUser");
+	Student s = 
 	
-	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
+	Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id")); 
 	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
-	// Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {ItemFactory.MAJOR, "interest"};
-	JSONArray jsonArrAll = new JSONArray();
-	JSONArray jsonArrStud = new JSONArray();
-	for(String auto_attr: autocomplete_attr){
-		jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-	//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
-	}
+	
+
+	
+
 %>
-<script type="text/javascript">
-	var autocomplete_attr = Array("department", "research_area");
-	var jsonArrAll = <%= jsonArrAll %>;
-    var jsonArrStud = <%= jsonArrStud %>;
-</script>
+
 <div class="content">
 	<!-- <h1>My Profile</h1> -->
 	<div id="all-department" class="hidden" title="All Department Suggestions"></div>

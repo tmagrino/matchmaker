@@ -19,9 +19,13 @@
 				        	var interestData = <%= jsonInterest %>;
 				        </script>
 				        <a href="project-applications.jsp">Show applications</a>
-						<h1>Students</h1>
-						<form name="filter-list" id="filter-list">
-							<!-- <input type="submit" value="Filter"/> -->
+						<form name="filter-list" id="filter-list" class="clearfix">
+						    <h1>Students</h1>    
+							<div class="search-container">
+								<input class="search-text" type="text" placeholder="Search..."/>
+								<input type="submit" value="Filter"/>
+							</div>
+						</form>
 							<table class="project-list">
 								<jsp:include page="stud-filters.jsp"/>
 								
@@ -31,8 +35,13 @@
 								studentList = StudentController.getAllStudents(em);
 
 									for (Student s : studentList){
+										String cssClasses = s.getName().replaceAll(" ", "_").toLowerCase() + " "
+							                    + s.getString(s.getMajors()).replaceAll(" ", "_").toLowerCase() + " "
+							                     + s.getString(s.getSkills()).replaceAll(" ", "_").toLowerCase() + " "
+							                     + s.getString(s.getInterests()).replaceAll(" ", "_").toLowerCase() + " "
+							                     + s.getNetID().replaceAll(" ", "_").toLowerCase();
 									%>
-										<tr>
+										<tr class="<%=cssClasses %>">
 											<td>
 												<p>
 													<a class="actionButton invite" href="send-invitation.jsp?id=<%=s.getNetID()%>">Invite</a>

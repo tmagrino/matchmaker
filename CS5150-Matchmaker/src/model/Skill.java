@@ -89,7 +89,7 @@ public class Skill extends MultipleItem{
 	@Override
 	void removeStudents() {
 		for (Student s : students) {
-			removeStudent(s);
+			s.getSkills().remove(this);
 		}
 	}
 	
