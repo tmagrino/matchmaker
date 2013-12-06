@@ -77,7 +77,7 @@ public class Researcher implements Serializable {
 			case "url":
 				return webpage;
 			case "departments":
-				return "TODO: departments";
+				return departmentString();
 			case "research area":
 				return researchArea;
 			default:
@@ -85,7 +85,17 @@ public class Researcher implements Serializable {
 				return null;
 		}
 	}
-
+	
+	public String departmentString() {
+		String res = "";
+		for (Department d : departments) {
+			res = res + d.getDescription() + ", ";
+		}
+		if (res.length() >= 2) {
+			res = res.substring(0, res.length() -2);
+		}
+		return res;
+	}
 	public int getId() {
 		return id;
 	}
