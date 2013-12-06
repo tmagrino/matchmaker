@@ -11,7 +11,8 @@
    EntityManager em = emf.createEntityManager();
    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
    ApplicationController.approveApplication(em, a);
-   Email.sendAcceptingMessage(a.getStudentApplicant(),"testing","sending");
+   String body = "You have been invited to project " + a.getApplicationProject().getName() + ". You can check it out here: \n " + a.getApplicationProject().getURL();
+   Email.sendAcceptingMessage(a.getStudentApplicant(),"You have been invited to a project", body);
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    
    if (request.getParameter("studinvite").equals("true")){

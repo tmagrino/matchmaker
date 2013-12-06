@@ -58,18 +58,19 @@ public class Department extends MultipleItem {
 
 	void removeResearchers() {
 		for (Researcher r : researchers) {
-			removeResearcher(r);
+			r.getDepartments().remove(this);
 		}
 	}
 
 	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
-	}
+	}	
 
 	@Override
 	void removeStudents() {
-		// TODO Auto-generated method stub
-		
+		for (Researcher r : researchers) {
+			r.getDepartments().remove(this);
+		}
 	}
 
 	@Override

@@ -78,22 +78,23 @@ public class ItemFactory {
 	}
 	public static String getQuery(String type){
 		String query = new String();
-		if (type.toLowerCase() == MAJOR){
+		System.out.println(type);
+		if (type.toLowerCase().equals(MAJOR)){
 			query = "select m from MAJOR m";
 		}
-		if (type.toLowerCase() == MINOR){
+		if (type.toLowerCase().equals(MINOR)){
 			query = "select m from MINOR m";
 		}
-		if (type.toLowerCase() == COLLEGE){
+		if (type.toLowerCase().equals(COLLEGE)){
 			query = "select m from COLLEGE m";
 		}
-		if (type.toLowerCase() == SKILL){
+		if (type.toLowerCase().equals(SKILL)){
 			query = "select m from SKILL m";
 		}
-		if (type.toLowerCase() == INTEREST){
+		if (type.toLowerCase().equals(INTEREST)){
 			query = "select m from INTEREST m";
 		}
-		if (type.toLowerCase() == DEPARTMENT){
+		if (type.toLowerCase().equals(DEPARTMENT)){
 			query = "select m from DEPARTMENT m";
 		}
 		return query;

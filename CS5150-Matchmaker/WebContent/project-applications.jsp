@@ -67,7 +67,7 @@
 			<%	
 				if (a.getStatus() == ApplicationStatus.Pending) {
 			%>
-				<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>">Accept</a>&nbsp;
+				<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>&studinvite=false">Accept</a>&nbsp;
 				<a class="actionButton reject" href="reject-student.jsp?id=<%=a.getId()%>">Reject</a>
 			<%
 				}
