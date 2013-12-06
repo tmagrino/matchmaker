@@ -80,7 +80,7 @@
 			%>
 				<li class="acting-as">
 				<% if(session.getAttribute("adminUser")!= null){ %>
-					Logged In User Profile : <%
+					Acting as User : <%
 						if(session.getAttribute("page").equals("adminSearch")){
 							session.setAttribute("page","");	
 						%> None <%}else{
