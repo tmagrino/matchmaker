@@ -30,8 +30,10 @@
 			%><a href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="invite-students.jsp">Show all available Students</a>
 		<%
+		List<Application> apps;
         for (Project p : projs) {
-       		List<Application> apps = p.getApplications();
+       		 apps = p.getApplications();
+       		
        		if (apps.size() != 0){
        			
          %>
@@ -54,7 +56,7 @@
 				if (a.getStatus() == ApplicationStatus.Pending) {
 			%>
 				<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>">Accept</a>&nbsp;
-								<a class="actionButton reject" href="#">Reject</a>
+				<a class="actionButton reject" href="#">Reject</a>
 			<%
 				}
 				else {

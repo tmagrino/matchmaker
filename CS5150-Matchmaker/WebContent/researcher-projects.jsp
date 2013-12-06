@@ -19,6 +19,8 @@
 				        </script>
 				        <%Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
 				        List<Project> projs = r.getProjects();
+				        
+
 				        List<Application> students;
 				        Student s;
 				        %><a href="proj-profile.jsp">Add New Project</a><br><%
