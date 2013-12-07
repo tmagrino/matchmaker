@@ -58,7 +58,7 @@ var interestData = <%= jsonInterest %>;
 				alt="Delete application" />
 			</a>
 		</td>
-		<td><%= p.getName() %></td>
+		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
 		<td>
 		<%	
 			for (Researcher r : p.getResearchers()) {
@@ -160,7 +160,7 @@ var interestData = <%= jsonInterest %>;
                       	%>
 			</p>
 		</td>
-		<td><%=p.getName() %></td>
+		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
 		<td>
 		<% 
 			for (Researcher r : p.getResearchers()) {

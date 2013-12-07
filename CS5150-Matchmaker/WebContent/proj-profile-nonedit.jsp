@@ -1,6 +1,6 @@
 <!-- Project profile page -->
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="researcher" />
+	<jsp:param name="stud_or_prof" value="stud" />
 	<jsp:param name="top_selected" value="project" />
 </jsp:include>
 <%@page
@@ -8,30 +8,12 @@
 <%
 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
-JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-
-
-Project p = ProjectController.getProjectById(em, request.getParameter("projectId"));
-
+Project p = ProjectController.getProjectById(em, request.getParameter("pid"));
 String[] attributes = {"Research Area", "Required Skills", "Project URL", "Project Description"};
-String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
-JSONArray jsonArrAll = new JSONArray();
-JSONArray jsonArrStud = new JSONArray();
-for(String auto_attr: autocomplete_attr){
-	jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
-}
+
+
  %>
-<script type="text/javascript">
-	var autocomplete_attr = Array("research_area", "required_skills");
-	var jsonArrAll = <%= jsonArrAll %>;
-    var jsonArrStud = <%= jsonArrStud %>;
-</script>
 <div class="content">
-	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
-	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
-	<h1>My Projects</h1>
 	<form name="profile">
 		<table class="info">
 			<tr>
@@ -63,6 +45,7 @@ for(String auto_attr: autocomplete_attr){
 				</tr>
 				<% } %>
 		</table>
+		<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 	</form>
 </div>
 </body>
