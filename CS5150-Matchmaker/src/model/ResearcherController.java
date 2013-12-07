@@ -58,7 +58,7 @@ public class ResearcherController {
 	public static Researcher getResearcherByNetID(EntityManager em, String netid) {
         EntityTransaction tx = em.getTransaction();
         
-        String query = "select s from Researcher s where s.netID = \"" + netid +"\"";
+        String query = "select r from Researcher r where r.netID = \"" + netid +"\"";
         List<Researcher> mylist = (List<Researcher>) em.createQuery(query).getResultList();
         try {
         	return mylist.get(0);
@@ -83,7 +83,7 @@ public class ResearcherController {
 	public static Researcher getResearcherByName(EntityManager em, String name) {
         EntityTransaction tx = em.getTransaction();
         
-        String query = "select s from RESEARCHER s where s.name = \"" + name +"\"";
+        String query = "select r from Researcher r where r.name = \"" + name +"\"";
         List<Researcher> mylist = (List<Researcher>) em.createQuery(query).getResultList();
         try {
         	return mylist.get(0);

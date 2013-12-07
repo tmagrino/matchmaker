@@ -77,9 +77,10 @@ public class StudentController {
 	public static Student getStudentByName(EntityManager em, String name) {
         EntityTransaction tx = em.getTransaction();
         
-        String query = "select s from student s where s.netid = \"" + name +"\"";
+        String query = "select s from STUDENT s where s.name= \"" + name +"\"";
         List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
         try {
+        	System.out.println("eu aqui!");
         	return mylist.get(0);
         }
         catch (Exception e) {

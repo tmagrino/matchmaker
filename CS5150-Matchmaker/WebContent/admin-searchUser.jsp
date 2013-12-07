@@ -15,15 +15,29 @@
 	
 	
 	String netID = request.getParameter("netID");
+	String name = request.getParameter("name");
 	
 	Student s = null;
 	User u = null;
 	Researcher r = null;
 	
-	if(netID != null){
+	if(netID != null && netID != ""){
 		u = UserController.findUser(em, netID);
 		s = StudentController.getStudentByNetID(em, netID);
 		r = ResearcherController.getResearcherByNetID(em, netID);
+	}
+	else if (name != null){
+		System.out.println(name);
+		s = StudentController.getStudentByName(em, name);
+		System.out.println(s.getName());
+		r = ResearcherController.getResearcherByName(em, name);
+		if (s != null){
+			
+			u = UserController.findUser(em, s.getNetID());
+		}
+		else if (r != null){
+			u = UserController.findUser(em, r.getNetID());
+		}
 	}
 	
 	Boolean isStudent = false;
@@ -44,13 +58,12 @@
 	}
 	
 	Boolean searchCompleted = false;
-	if(!isAdmin && !isStudent && !isResearcher && netID != null){
+	if(!isAdmin && !isStudent && !isResearcher && (netID != null || name != null) ){
 		searchCompleted = true;
 	}
 	
 	
 %>
-		
 			<div class="content">
 						<h3 class="subheading">&nbsp;&nbsp;Search User</h3>
 						<ul class="project-list">
@@ -63,11 +76,19 @@
 								 	<input type="text" name="netID" value="<%=netID%>" size=35/>
 								 	<%} else{%>
 								 	<input type="text" name="netID" value="" size=35/>
+								 	<% }%><br />
+								 	<font size ="4"><b>Search By Name : </b>&nbsp;</font>
+								 	<%if(name != null) {%>
+								 	<input type="text" name="name" value="<%=name%>" size=35/>
+								 	<%} else{%>
+								 	<input type="text" name="name" value="" size=35/>
 								 	<% }%>
 								 	<input type="Submit" value="Search" size=20  style="width: 10em; height:2em"/>
 								 	</form>
 									<br><br>
-									<% if(netID != null && u != null) {%>
+									<% if((netID != null || name != null) && u != null) {
+								 	%>
+									
 									<table cellspacing=5 cellpadding=10 border=0>
 									<tr>
 										<td valign="top"><img src="images/blank.png" height=150 width=150/></td>
