@@ -47,7 +47,16 @@ public class ProjectController {
 	
 	public static Project createProject(EntityManager em , String name, String description,
 			String url, List<Researcher> researcher, List<Interest> area, List<Skill> skills){
-		if (description == null) description = "";
+		String newurl = url;
+		if (description == null) {
+			description = "";
+		}
+		if (url.startsWith("http://")) {
+			newurl = url.substring(7);
+		}
+		else if (url.startsWith("https://")) {
+			newurl = url.substring(8);
+		}
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		

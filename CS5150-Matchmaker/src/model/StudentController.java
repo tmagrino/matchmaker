@@ -80,7 +80,6 @@ public class StudentController {
         String query = "select s from STUDENT s where s.name= \"" + name +"\"";
         List<Student> mylist = (List<Student>) em.createQuery(query).getResultList();
         try {
-        	System.out.println("eu aqui!");
         	return mylist.get(0);
         }
         catch (Exception e) {

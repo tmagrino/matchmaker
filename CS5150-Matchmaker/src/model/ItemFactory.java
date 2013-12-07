@@ -78,7 +78,7 @@ public class ItemFactory {
 	}
 	public static String getQuery(String type){
 		String query = new String();
-		System.out.println(type);
+		
 		if (type.toLowerCase().equals(MAJOR)){
 			query = "select m from MAJOR m";
 		}

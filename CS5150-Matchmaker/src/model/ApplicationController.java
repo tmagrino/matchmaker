@@ -110,7 +110,6 @@ public class ApplicationController {
 	
 	public static Application getApplication(EntityManager em, Student s, Project p){
 		List<Application> allApps = getApplicationList(em);
-		System.out.println(allApps.size());
 		for (Application a : allApps){
 			
 			if (a.getStudentApplicant().getId() == s.getId() && a.getApplicationProject().getId() == p.getId()){
