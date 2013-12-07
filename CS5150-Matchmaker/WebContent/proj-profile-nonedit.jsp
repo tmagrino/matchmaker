@@ -20,30 +20,33 @@ String[] attributes = {"Research Area", "Required Skills", "Project URL", "Proje
 				<td class="attr-label" colspan="3"><h2><%=p.getName()%></h2>
 			</tr>
 			<tr>
-				<td class="attr-label">Researcher Name :</td>
-				<td class="attr-label"><h2><%=p.getResearchersString()%></h2></td>
+				<td class="attr-label" >Researcher(s) Name(s):</td>
+				<td class="attr-label"><h1><% 
+			for (Researcher r : p.getResearchers()) {
+		%>
+			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a><br />
+		<% 
+        	}
+		%></h1></td>
 			</tr>
 			<% for(String attr: attributes){ %>
 				<tr>
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
 						<p class="read-only">
-							<%=attr %>
-						</p>
-						<p class="editable hidden">
-							<% if((attr).equals("Project Description")){ %>
-								<textarea name = "project_description"><%=attr %></textarea>
-							<% } else{ %>
-							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
-								value="<%=attr %>" type="text" />
-							<% } %>
-						</p>
-						<p class="other hidden">
-							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
+						<% if((attr).equals("Research Area")){ %>
+						<%=p.getAreaString() %>
+						<% }
+						if((attr).equals("Required Skills")){ %>
+						<%=p.getSkillString() %>
+						<%} if((attr).equals("Project URL")){ %>
+							<a href="//<%=p.getURL() %>"><%=p.getURL()%></a>
+						<%} if((attr).equals("Project Description")){ %>
+						<%=p.getDescription() %>
+						<%}} %>
 						</p>
 					</td>
 				</tr>
-				<% } %>
 		</table>
 		<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
 	</form>
