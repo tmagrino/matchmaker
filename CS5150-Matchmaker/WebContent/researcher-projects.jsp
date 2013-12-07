@@ -31,7 +31,7 @@
 				        	boolean hasApplicants = false;
 				        %>
 						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1><%=p.getName() %></h1>
+							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a></h1>
 							<div class="search-container">
 								<input class="search-text" type="text" placeholder="Search..."/>
 								<input type="submit" value="Filter"/>

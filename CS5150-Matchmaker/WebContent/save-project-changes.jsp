@@ -9,6 +9,7 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
+   Project p = ProjectController.getProjectById(em, request.getParameter("projid"));
    Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
    String ids = request.getParameter("as_values_research_area");
    String skIds = request.getParameter("as_values_required_skills");
@@ -35,11 +36,16 @@
 			}
 		}
 	}
+   if (p == null){
    ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
 			request.getParameter("project_url"), r,area,reqSkills);
-
+   }
+   else{
+	   ProjectController.updateProject(em, p, request.getParameter("title"), request.getParameter("project_description"), 
+				request.getParameter("project_url"), r,area,reqSkills);
+   } 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
-   response.setHeader("Location", "researcher-profile.jsp"); 
+   response.setHeader("Location", "researcher-projects.jsp"); 
 %>
 
 

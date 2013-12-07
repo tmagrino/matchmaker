@@ -1,12 +1,23 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class ProjectController {
+	
+	public static final String TITLE = "Title";
+	public static final String AREA = "Research Area";
+	public static final String SKILL = "Required Skills";
+	public static final String URL = "Project URL";
+	public static final String DESCRIPTION = "Project Description";
 
 	public static Project createProject(EntityManager em , String name, String description,
 			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
@@ -41,6 +52,30 @@ public class ProjectController {
 		tx.begin();
 		
 		Project p = new Project(name,description,url,researcher,area,skills);
+		
+		em.persist(p);
+		
+		tx.commit();
+		return p;
+	}
+	public static Project updateProject(EntityManager em ,Project p, String name, String description,
+			String url, List<Researcher> researcher, List<Interest> area, List<Skill> skills){
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.updateProject(name,description,url,researcher,area,skills);
+		
+		em.persist(p);
+		
+		tx.commit();
+		return p;
+	}
+	public static Project updateProject(EntityManager em ,Project p, String name, String description,
+			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.updateProject(name,description,url,researcher,area,skills);
 		
 		em.persist(p);
 		
@@ -141,7 +176,7 @@ public class ProjectController {
         	return mylist.get(0);
         }
         catch (Exception e) {
-        	System.out.print(e);
+        	
         	return null;
         }
 	}
@@ -154,5 +189,47 @@ public class ProjectController {
 		}
 		apps.removeAll(declined);
 		return apps;
+	}
+	public static String getAttribute(Project p, String type){
+		if (type == TITLE){
+			return p.getName();
+		}
+		if (type == AREA){
+			return p.getAreaString();
+		}
+		if (type == SKILL){
+			return p.getSkillString();
+		}
+		if (type == URL){
+			return p.getURL();
+		}
+		if (type == DESCRIPTION){
+			return p.getDescription();
+		}
+		return null;
+	}
+	public static JSONObject getObjectJson(List<? extends MultipleItem> collection) {
+		if(collection.size() > 0){
+			Collections.sort(collection);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (MultipleItem t : collection){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(t.getId()));
+				jsonObject.put("name", t.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
 	}
 }

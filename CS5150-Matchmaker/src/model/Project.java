@@ -4,9 +4,14 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.*;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -74,6 +79,32 @@ public class Project implements Serializable {
 	public Project(String name, String description, String url, Researcher res,List<Interest> area,
 			List<Skill> skills) {
 		this(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area,skills);
+	}
+	public void updateProject(String name, String description, String url, List<Researcher> res, List<Interest> area
+			, List<Skill> skills){
+		if (name != null && name != ""){
+		this.name = name;
+		}
+		if (description != null && description != ""){
+		this.description = description;
+		}
+		if (res != null && !res.isEmpty()){
+		this.researchers = res;
+		}
+		if (url != null && url != ""){
+		this.url = url;
+		}
+		if (area != null && !area.isEmpty()){
+		this.project_area = area;
+		}
+		if (skills != null && !skills.isEmpty()){
+		this.requiredSkills = skills;
+		}
+		
+	}
+	public void updateProject(String name, String description, String url, Researcher res,List<Interest> area,
+			List<Skill> skills) {
+		updateProject(name, description,  url, new ArrayList<Researcher>(Arrays.asList(res)), area,skills);
 	}
 	
 
@@ -164,6 +195,12 @@ public class Project implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	public List<Interest> getArea(){
+		return project_area;
+	}
+	public List<Skill> getSkills(){
+		return requiredSkills;
+	}
 	public String getResearchersString(){
 		StringBuilder builder = new StringBuilder();
 		for (Researcher r : researchers){
@@ -194,5 +231,5 @@ public class Project implements Serializable {
 			builder.deleteCharAt(builder.length() - 2);
 		return builder.toString();
 	}
-
+	
 }
