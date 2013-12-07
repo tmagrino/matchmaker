@@ -27,12 +27,9 @@
 		r = ResearcherController.getResearcherByNetID(em, netID);
 	}
 	else if (name != null){
-		System.out.println(name);
 		s = StudentController.getStudentByName(em, name);
-		System.out.println(s.getName());
 		r = ResearcherController.getResearcherByName(em, name);
 		if (s != null){
-			
 			u = UserController.findUser(em, s.getNetID());
 		}
 		else if (r != null){
@@ -123,21 +120,21 @@
 											<td colspan=2 align="center">
 											<div class="status">
 												<% if(isStudent){
-													session.setAttribute("currentUser", request.getParameter("netID"));
+													session.setAttribute("currentUser", s.getNetID());
 												%>
 										 		<form action="profile.jsp" method="get">
 										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
 													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
 												</form>
 										 		<%} else if(isResearcher){
-										 			session.setAttribute("currentUser", request.getParameter("netID"));
+										 			session.setAttribute("currentUser", r.getNetID());
 										 			%>
 										 		<form action="researcher-profile.jsp" method="get">
 										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
 													<input type="Submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
 												</form>
 												<%} else if(u!= null && u.isAdmin()){
-										 			session.setAttribute("currentUser", request.getParameter("netID"));
+										 			session.setAttribute("currentUser", u.getNetid());
 										 			%>
 										 		<form action="admin-searchUser.jsp" method="get">
 										 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
