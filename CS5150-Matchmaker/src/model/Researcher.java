@@ -76,7 +76,7 @@ public class Researcher implements Serializable {
 				return email;
 			case "url":
 				return webpage;
-			case "departments":
+			case "department":
 				return departmentString();
 			case "research area":
 				return researchArea;

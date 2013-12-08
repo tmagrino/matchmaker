@@ -10,9 +10,9 @@
 	String currentuser = (String) session.getAttribute("currentUser");
 	
 	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
-	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
+	String[] attributes = {"Email", "URL", "Department", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {ItemFactory.MAJOR, "interest"};
+	String[] autocomplete_attr = {ItemFactory.DEPARTMENT, ItemFactory.INTEREST};
 	JSONArray jsonArrAll = new JSONArray();
 	JSONArray jsonArrStud = new JSONArray();
 	for(String auto_attr: autocomplete_attr){
@@ -44,7 +44,7 @@
 					<td class="field">
 						<p class="read-only <%= r.getAttribute(attr) == "" ? "hidden" : "" %>">
 							<%=r.getAttribute(attr) %>
-							<a class="edit-btn <%= r.getAttribute(attr).length() > 80 ? "extended" : "" %>" href="#"> 
+							<a class="edit-btn <%=(r.getAttribute(attr) != null && r.getAttribute(attr).length() > 80) ? "extended" : "" %>" href="#"> 
 								<img src="images/pencil_small.png" alt="edit" />
 							</a>
 						</p>
@@ -62,6 +62,7 @@
 				</tr>
 				<% } %>
 			</table>
+			<input type="submit" value="Save Changes" />
 		</form>
 	</div>
 </div>
