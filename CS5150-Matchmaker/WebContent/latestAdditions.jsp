@@ -1,6 +1,8 @@
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="stud" />
-	<jsp:param name="top_selected" value="project" />
+	<jsp:param name="stud_or_prof" value="admin" />
+	<jsp:param name="sidebar_type" value="stud-profile" />
+	<jsp:param name="sidebar_selected" value="view" />
+	<jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%@page
 	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
@@ -9,7 +11,7 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	String category = request.getParameter("category");
+	String category = request.getParameter("mydropdown");
 	List<LatestAddition> additions;
 	if (category == null || category.equals("recents")) {
 		additions = ListController.getLatestAddedFields(em);
@@ -19,17 +21,22 @@
 		additions = ListController.getLatestAddedFields(em, category);
 	}
 %>
-<h1><%= category %></h1><br />
+<%if(category.equals("recents")) {
+category =  "Recent Additions";} %>
+<h1><%=category.toUpperCase() %> : </h1>
 
-<select name="mydropdown" onchange="getSelectedValue()">
-	<option value="recents">Recent Additions</option>
-	<option value="college">Colleges</option>
-	<option value="department">Departments</option>
-	<option value="interest">Interests</option>
-	<option value="major">Majors</option>
-	<option value="minor">Minors</option>
-	<option value="skill">Skills</option>
+<form action="latestAdditions.jsp">
+Select Category To be Displayed : <select name="mydropdown" onchange="this.form.submit()">
+	<option value="recents" <% if(category.equals("recents")){%>selected<%} %>>Recent Additions</option>
+	<option value="college" <% if(category.equals("college")){%>selected<%} %>>Colleges</option>
+	<option value="department" <% if(category.equals("department")){%>selected<%} %>>Department</option>
+	<option value="interest" <% if(category.equals("interest")){%>selected<%} %>>Interests</option>
+	<option value="major" <% if(category.equals("major")){%>selected<%} %>>Majors</option>
+	<option value="minor" <% if(category.equals("minor")){%>selected<%} %>>Minors</option>
+	<option value="skill" <% if(category.equals("skill")){%>selected<%} %>>Skills</option>
 </select>
+</form>
+
 <br />
 <table class="additions_table">
 	<tr>
