@@ -199,6 +199,22 @@ function initFilterType()
 	});
 }
 
+function initInvite()
+{
+	var inviteBtn = $("a.invite");
+	if(inviteBtn.length == 0) {return;}
+	inviteBtn.click(function(){
+		var invite_form = $(".invite-form");
+		$("input[name=stud-id]", invite_form).val($(this).attr("id"));
+		invite_form.dialog({
+			  height: 200,
+		      width: 500,
+		      modal: true
+		});
+		return false;
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	initViewSuggestion();
@@ -210,4 +226,5 @@ $(document).ready(function(){
 	initTabLinks();
 	hideProject();
 	initFilterType();
+	initInvite();
 });

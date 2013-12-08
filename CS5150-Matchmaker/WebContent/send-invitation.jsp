@@ -9,15 +9,15 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   Student s = StudentController.getStudentByNetID(em, request.getParameter("id"));
+   Student s = StudentController.getStudentByNetID(em, request.getParameter("stud-id"));
    Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
-   Project p = r.getProjects().get(0);
+   Project p = ProjectController.getProjectById(em, request.getParameter("proj-id"));
    if (ApplicationController.getApplication(em, s, p) == null){
  
-   Application a = ApplicationController.createApplication(em, s, p, "Invited Student");
-   ApplicationController.inviteApplication(em, a);   
-   String body = "You have been invited to project " + a.getApplicationProject().getName() + ". You can check it out here: \n " + a.getApplicationProject().getURL();
-   Email.sendAcceptingMessage(a.getStudentApplicant(),"You have been invited to a project", body);
+	   Application a = ApplicationController.createApplication(em, s, p, "Invited Student");
+	   ApplicationController.inviteApplication(em, a);   
+	   String body = "You have been invited to project " + a.getApplicationProject().getName() + ". You can check it out here: \n " + a.getApplicationProject().getURL();
+	   Email.sendAcceptingMessage(a.getStudentApplicant(),"You have been invited to a project", body);
    }
    response.setStatus(response.SC_MOVED_TEMPORARILY);
   
