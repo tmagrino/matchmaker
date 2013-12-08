@@ -68,7 +68,7 @@ var interestData = <%= jsonInterest %>;
 			}
 		%>
 		</td>
-		<td title = "<%=p.getURL() %>"><a href="//<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getURL() %>"><a href="//http://<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%= ItemFactory.shortenString(p.getDescription())%></td>
 		<%
         }
