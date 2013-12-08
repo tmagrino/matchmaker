@@ -1,6 +1,7 @@
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%	 
+
 	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
 	 
@@ -14,6 +15,8 @@
 		netId = (String) session.getAttribute("currentUser");  
 	 	session.setAttribute("currentUser", netId);
 	 }else{
+		 
+//		 netId = request.getRemoteUser();	 
 		 netId = (String) request.getParameter("netId");
 		 session.setAttribute("currentUser", netId);
 	 }
