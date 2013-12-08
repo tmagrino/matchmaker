@@ -16,7 +16,6 @@ JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
 for(String auto_attr: autocomplete_attr){
 	jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
 }
  %>
 <script type="text/javascript">
@@ -37,18 +36,14 @@ for(String auto_attr: autocomplete_attr){
 				<tr>
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
-						<p class="read-only">
-							<%=attr %>
-							<a class="edit-btn <%= attr.length() > 80 ? "extended" : "" %>" href="#"> 
-								<img src="images/pencil_small.png" alt="edit" />
-							</a>
+						
 						</p>
-						<p class="editable hidden">
+						<p class="editable">
 							<% if((attr).equals(ProjectController.DESCRIPTION)){ %>
-								<textarea name = "project_description"><%=attr %></textarea>
+								<textarea name = "project_description"></textarea>
 							<% } else{ %>
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
-								value="<%=attr %>" type="text" />
+								type="text" />
 							<% } %>
 						</p>
 						<p class="other hidden">
