@@ -16,7 +16,7 @@
 	 	session.setAttribute("currentUser", netId);
 	 }else{
 		 
-//		 netId = request.getRemoteUser();	 
+		 //netId = request.getHeader("CUWA_REMOTE_USER");
 		 netId = (String) request.getParameter("netId");
 		 session.setAttribute("currentUser", netId);
 	 }
