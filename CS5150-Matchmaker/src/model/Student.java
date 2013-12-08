@@ -408,33 +408,7 @@ public class Student implements Serializable {
 		return "";
 	}
 
-	/**
-	 * Return a JsonObject containing elements of a collection
-	 */
-	public JSONObject getObjectJson(List<? extends MultipleItem> collection) {
-		if(collection.size() > 0){
-			Collections.sort(collection);
-		}
-		JSONArray jsonArray = new JSONArray();
-		for (MultipleItem t : collection){
-			JSONObject jsonObject= new JSONObject();
-			try {
-				jsonObject.put("value", String.valueOf(t.getId()));
-				jsonObject.put("name", t.getDescription());
-				jsonArray.put(jsonObject);
-			} catch (JSONException e) {
-				
-				e.printStackTrace();
-			}
-		}
-		JSONObject items_obj = new JSONObject();
-		try {
-			items_obj.put("items", jsonArray);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return items_obj;
-	}
+	
 	
 	void addCollege(College college) {
 		if (!this.colleges.contains(college)) {

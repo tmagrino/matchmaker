@@ -17,7 +17,8 @@
 	JSONArray jsonArrStud = new JSONArray();
 	for(String auto_attr: autocomplete_attr){
 		jsonArrAll.put(ListController.getItemJson(em, auto_attr));
-	//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
+		if(r != null)
+			jsonArrStud.put(ListController.getObjectJson(r.getListAttribute(auto_attr)));
 	}
 %>
 <script type="text/javascript">

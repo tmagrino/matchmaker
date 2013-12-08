@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -185,6 +186,33 @@ public class ListController{
 			try {
 				jsonObject.put("value", String.valueOf(m.getId()));
 				jsonObject.put("name", m.getDescription());
+				jsonArray.put(jsonObject);
+			} catch (JSONException e) {
+				
+				e.printStackTrace();
+			}
+		}
+		JSONObject items_obj = new JSONObject();
+		try {
+			items_obj.put("items", jsonArray);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return items_obj;
+	}
+	/**
+	 * Return a JsonObject containing elements of a collection
+	 */
+	public static JSONObject getObjectJson(List<? extends MultipleItem> collection) {
+		if(collection.size() > 0){
+			Collections.sort(collection);
+		}
+		JSONArray jsonArray = new JSONArray();
+		for (MultipleItem t : collection){
+			JSONObject jsonObject= new JSONObject();
+			try {
+				jsonObject.put("value", String.valueOf(t.getId()));
+				jsonObject.put("name", t.getDescription());
 				jsonArray.put(jsonObject);
 			} catch (JSONException e) {
 				

@@ -19,7 +19,7 @@
          for(String auto_attr: autocomplete_attr){
                  jsonArrAll.put(ListController.getItemJson(em, auto_attr));
                  if(s!=null){
-                 	jsonArrStud.put(s.getObjectJson(s.getListAttribute(auto_attr)));
+                 	jsonArrStud.put(ListController.getObjectJson(s.getListAttribute(auto_attr)));
                  }
          }
 %>

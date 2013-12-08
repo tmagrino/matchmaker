@@ -86,6 +86,18 @@ public class Researcher implements Serializable {
 		}
 	}
 	
+	public List<? extends MultipleItem> getListAttribute(String attr) {
+		switch (attr.toLowerCase()) {
+			case ItemFactory.DEPARTMENT:
+				return departments;
+			case ItemFactory.INTEREST:
+				return departments;
+			default:
+				System.out.println("Invalid attribute " + attr);
+				return null;
+		}
+	}
+	
 	public String departmentString() {
 		String res = "";
 		for (Department d : departments) {
