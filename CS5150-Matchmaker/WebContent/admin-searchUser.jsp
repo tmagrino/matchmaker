@@ -92,15 +92,15 @@
 										<td>
 								 		<table cellspacing=10 cellpadding=10 align=center border=0>
 								 		<tr><td><h3>Name:</h3></td>
-								 		<td><input type="text" value="<%= u.getName()%>" size=35/></td>
+								 		<td><p class = "read-only" size=35><%= u.getName()%></p></td>
 										</tr>
 										<tr><td><h3>NetID:</h3></td>
-									 		<td><input type="text" value="<%=u.getNetid() %>" size=35/></td>
+									 		<td><p class = "read-only" size=35><%= u.getNetid()%></p></td>
 										</tr>
 									    <tr><td><h3>Role:</h3></td>
 										 <td align="left">
 											 	<% if(isStudent){%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Student" checked="checked"/>Student &nbsp;&nbsp;</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Student" checked="checked" colspan = ""/>Student &nbsp;&nbsp;</li>
 										 		<% } else {%>
 										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Student"/>Student &nbsp;&nbsp;</li>
 										 		<% }%>
