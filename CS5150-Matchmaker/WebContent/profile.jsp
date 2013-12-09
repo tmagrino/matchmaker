@@ -88,10 +88,6 @@
                                                                 value="<%=s.getAttribute(attr) %>" type="text" />
                                                         <% } %>
                                                 </p>
-                                                <p class="other hidden">
-                                                        <input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
-                                                </p>
-                                                
                                         </td>
                                         <td>
                                                 <button class="view-suggestion hidden" type="button">View All Suggestions</button>

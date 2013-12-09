@@ -54,10 +54,16 @@ function EditField()
 {
 	var edit_btn = $("a.edit-btn");
 	if(edit_btn.length == 0) { return; }
+	var editableFields = $(".editable");
+	editableFields.each(function(idx, el){
+		if(!$(el).hasClass("hidden") && $(".as-selections", $(this).parent()).length > 0){
+			$(".view-suggestion", $(this).parent().next()).show();
+		}
+	});
 	edit_btn.click(function(){
 		$(this).parent().fadeOut("slow", function(){
 			$(this).next().fadeIn();
-			if($(".as-selections", $(this).parent()).length > 0 || $("select", $(this).parent()).length > 0){
+			if($(".as-selections", $(this).parent()).length > 0){
 				$(".view-suggestion", $(this).parent().next()).fadeIn();
 			}
 		});
