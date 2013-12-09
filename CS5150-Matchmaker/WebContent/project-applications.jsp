@@ -80,7 +80,7 @@
 				}
 			%>
 			</td>	
-			<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>"> <%= s.getName() %>  </a></td> </td>
+			<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>&appid=<%=a.getId() %>"> <%= s.getName() %>  </a></td> </td>
 			<td><%=s.getGpa() %></td>
 			<td><%=s.getString(s.getMajors()) %></td>
 			<td><%=s.getYear() %></td>

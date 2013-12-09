@@ -20,7 +20,6 @@
        
         <div class="photo-info clearfix">
                 <img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
-                <form name="profile" action="save-profile-changes.jsp" method="GET">
                         <table class="info">
                                 <tr>
                                         <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
@@ -30,26 +29,27 @@
                                 <tr>
                                         <td class="attr-label"><%=attr %>:</td>
                                         <td class="field">
-                                                <p class="read-only 
-                                                	
-                                                		<%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
-                                                        <%=s.getAttribute(attr) %>
-                                                </p>
-                                                <p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
-                                                    <input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
-                                                      value="<%=s.getAttribute(attr) %>" type="text" />
-                                                        
-                                                </p>
-                                                <p class="other hidden">
-                                                        <input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
+                                                <p class="read-only">
+                                                      <%=s.getAttribute(attr) %>
                                                 </p>
                                         </td>
-                      
                                 </tr>
                                 <% } %>
+                                <% if(request.getParameter("appid") != null && request.getParameter("appid").length() > 0){ %>
+	                                <tr>
+	                                	<td class="attr-label">Student Description:</td>
+	                                	<td class="field">
+	                                		<p class="read-only">
+	                                			<%
+	                                				Application a = ApplicationController.getApplicationById(em, request.getParameter("appid"));
+	                                			%>
+	                                			<%= a.getStudentResponse() %>
+	                                		</p>
+	                                	</td>
+	                                </tr>
+	                             <% } %>
                         </table>
                         <FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
-                </form>
 
         </div>
 </div>
