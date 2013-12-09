@@ -173,40 +173,52 @@ public class ResearcherController {
 	public static void editDepartments(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
 		r.removeDepartments();
 		String[] idList = ids.split(",");
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+
 		for (String id : idList){
 			if (id.length()>0){
 				try{
 			
-					r.addDepartment((Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
+					addDepartment(em,r,(Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
 				}
 				catch(NumberFormatException e){
-					r.addDepartment((Department) ListController.createItem(em, id, ItemFactory.DEPARTMENT));
+					addDepartment(em,r,(Department) ListController.createItem(em, id, ItemFactory.DEPARTMENT));
 				}
 			}
 		}
-		tx.commit();
+		
 		
 	}
+	private static void addDepartment(EntityManager em, Researcher r, Department dep){
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		r.addDepartment(dep);
+		tx.commit();
+	}
 		public static void editArea(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
-			EntityTransaction tx = em.getTransaction();
+			
 			r.removeResearchAreas();
 			String[] idList = ids.split(",");
-			tx.begin();
+			
 			for (String id : idList){
 				if (id.length()>0){
 					try{
-						r.addResearchArea((Interest) ListController.getItemById(em,Long.parseLong(id),ItemFactory.AREA));
+						addArea(em,r,(Interest) ListController.getItemById(em,Long.parseLong(id),ItemFactory.AREA));
 					}
 					catch(NumberFormatException e){
-						r.addResearchArea((Interest) ListController.createItem(em, id, ItemFactory.AREA));
+
+						addArea(em,r,(Interest) ListController.createItem(em, id, ItemFactory.AREA));
 					}
 				}
 			}
+		
+			
+		}
+		private static void addArea(EntityManager em, Researcher r, Interest a){
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
+			r.addResearchArea(a);
 			tx.commit();
-	}
-	
+		}
 	
 		
 	
