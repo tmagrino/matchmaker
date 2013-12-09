@@ -25,17 +25,6 @@
 		var skillsData = <%= jsonSkills %>;
 		var interestData = <%= jsonInterest %>;
 	</script>
-	<div class="invite-form hidden" title="Invite Students">
-		<%  List<Project> projs = r.getProjects(); %>
-		<form method="get" action="send-invitation.jsp">
-			<p>Select which project you would like to invite the student to</p>
-			<% for(Project p: projs){ %>
-				<input type="radio" name="proj-id" value="<%= p.getId() %>"><%= p.getName() %>	
-			<%} %>
-				<input type="hidden" name="stud-id">
-	         <input type="submit" value="Select">
-	     </form>
-	 </div>
 	<a href="project-applications.jsp">Show applications</a>
 	<form name="filter-list" id="filter-list" class="clearfix">
 		<h1>Students</h1>    
@@ -80,8 +69,20 @@
 		%>
 		<tr class="<%=cssClasses %>">
 			<td><p>
-				<a id=<%=s.getNetID() %> class="actionButton invite" href="send-invitation.jsp?id=<%=s.getNetID()%>">Invite</a>
-				<%
+				<%  
+					List<Project> projs = r.getProjects(); 
+					Boolean has_avail_proj = false;
+					for(Project p: projs){
+						if(ApplicationController.getApplication(em, s, p) == null){
+							has_avail_proj = true;
+							break;
+						}
+					}
+					if(!has_avail_proj){ %>
+						<a class="placeholder">Invited</a>
+					<%}else{ %>
+						<a id=<%=s.getNetID() %> class="actionButton invite" href="send-invitation.jsp?id=<%=s.getNetID()%>">Invite</a>
+				<%   }
         			if (hid && showHidden) {
         		%>	<a class="actionButton unhide" href="unhideStudent.jsp?id=<%=s.getNetID()%>">Unhide</a>
 				<%
@@ -98,6 +99,20 @@
                 }
                	%>
 				</p>
+				<% if(has_avail_proj){ %>
+				<div id="invite-form-<%=s.getNetID() %>" class="invite-form hidden" title="Invite Students">
+					<form method="get" action="send-invitation.jsp">
+						<p>Select which project you would like to invite the student to</p>
+						<% for(Project p: projs){ 
+								if(ApplicationController.getApplication(em, s, p) == null){ %>
+									<input type="radio" name="proj-id" value="<%= p.getId() %>"><%= p.getName() %>	
+						<%  	} 	
+						    } %>
+							<input type="hidden" name="stud-id">
+				         <input type="submit" value="Select">
+				     </form>
+				 </div>
+				 <% } %>
 			</td>
 			<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>"><%= s.getName()%></a></td>
 			<td><%=s.getGpa() %></td>

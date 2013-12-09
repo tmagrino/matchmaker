@@ -118,11 +118,11 @@ public class ApplicationController {
 	}
 	
 	public static Application getApplication(EntityManager em, Student s, Project p){
-		List<Application> allApps = getApplicationList(em);
+		List<Application> allApps = s.getApplications();
 		for (Application a : allApps){
 			if(a.getStudentApplicant() == null || a.getApplicationProject() == null)
 				return null;
-			if (a.getStudentApplicant().getId() == s.getId() && a.getApplicationProject().getId() == p.getId()){
+			if (a.getApplicationProject().getId() == p.getId()){
 				return a;
 			}
 		}

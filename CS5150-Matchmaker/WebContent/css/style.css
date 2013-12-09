@@ -403,6 +403,10 @@ ul {
 	background-color: #006633;
 	width: 65px;
 }
+.placeholder{
+	display: inline-block;
+	width:65px;
+}
 .actionButton.reject{
 	background-color: #ab1a2a;
 }

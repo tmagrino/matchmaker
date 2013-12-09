@@ -208,8 +208,9 @@ function initInvite()
 	var inviteBtn = $("a.invite");
 	if(inviteBtn.length == 0) {return;}
 	inviteBtn.click(function(){
-		var invite_form = $(".invite-form");
-		$("input[name=stud-id]", invite_form).val($(this).attr("id"));
+		var id = $(this).attr("id");
+		var invite_form = $("#invite-form-"+id);
+		$("input[name=stud-id]", invite_form).val(id);
 		invite_form.dialog({
 			  height: 200,
 		      width: 500,
