@@ -173,7 +173,7 @@ public class Researcher implements Serializable {
 	void removeDepartments() {
 		this.departments = new ArrayList<Department>();
 	}
-
+	
 	public List<Interest> getResearchArea() {
 		return researchArea;
 	}

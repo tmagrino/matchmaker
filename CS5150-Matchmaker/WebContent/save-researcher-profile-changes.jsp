@@ -27,7 +27,7 @@
 	   ResearcherController.editWebpage(em, r, request.getParameter("url"));
    }
 
-   System.out.println(request.getParameter("as_values_department"));
+   
    if (request.getParameter("as_values_research_area").length()>0){
 	   ResearcherController.editArea(em, r, request.getParameter("as_values_research_area")); 
    }
