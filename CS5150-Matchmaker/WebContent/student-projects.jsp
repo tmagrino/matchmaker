@@ -9,6 +9,7 @@
      	<label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
          <textarea name="cover-letter" id="cover-letter"></textarea>
          <input type="hidden" name="id">
+         <input type="hidden" name="app-id">
          <input type="submit" value="Apply">
      </form>
  </div>
@@ -45,8 +46,11 @@ var interestData = <%= jsonInterest %>;
             Project p = a.getApplicationProject();
     %>
 	<tr>
-		<td><%= 
-			a.getStatus()%> &nbsp;<%if (a.getStatus() == ApplicationStatus.Invited){ %><a href = "accept-student.jsp?id=<%=a.getId()%>&studinvite=true">Accept Invitation</a><%} %>&nbsp;
+		<td>
+			<%=a.getStatus()%>&nbsp;
+			<%if (a.getStatus() == ApplicationStatus.Invited){ %>
+				<a id="a<%=a.getId() %>"class="actionButton apply" href = "#">Apply</a>
+			<%} %>&nbsp;
 			<a class"actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
 				<%
 					if (showHidden) {
@@ -139,7 +143,7 @@ var interestData = <%= jsonInterest %>;
 		<td class = "buttonTD">
 			<p>
 				<a id="<%=p.getId()%>" class="actionButton apply"
-					href="save-student-application.jsp?id=<%=p.getId()%>">Apply</a>&nbsp;
+					href="#">Apply</a>&nbsp;
 				<%
                       	if (hid && showHidden) {
                       		%><a class="actionButton unhide"

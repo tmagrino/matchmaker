@@ -9,12 +9,17 @@
 <body>
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
-   Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
-   Project p = ProjectController.getProjectById(em, request.getParameter("id"));
-   
    String text = request.getParameter("cover-letter");
-   
-   Application a = ApplicationController.createApplication(em, s, p, text);
+   if (request.getParameter("app-id") != " "){
+	   Application a = ApplicationController.getApplicationById(em, request.getParameter("app-id"));
+	   ApplicationController.acceptInvitation(em, a, text); 
+   }
+   else{
+	   Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
+	   Project p = ProjectController.getProjectById(em, request.getParameter("id"));
+	   
+   	   Application a = ApplicationController.createApplication(em, s, p, text);
+   }
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "student-projects.jsp"); 

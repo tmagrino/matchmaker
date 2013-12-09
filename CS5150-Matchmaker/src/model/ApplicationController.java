@@ -61,6 +61,15 @@ public class ApplicationController {
 		
 		tx.commit();
 	}
+	public static void acceptInvitation(EntityManager em, Application a, String response){
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		a.setStatus(ApplicationStatus.Pending);
+		a.setStudentResponse(response);
+		
+		tx.commit();
+	}
 	
 	public static void declineApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
@@ -111,7 +120,8 @@ public class ApplicationController {
 	public static Application getApplication(EntityManager em, Student s, Project p){
 		List<Application> allApps = getApplicationList(em);
 		for (Application a : allApps){
-			
+			if(a.getStudentApplicant() == null || a.getApplicationProject() == null)
+				return null;
 			if (a.getStudentApplicant().getId() == s.getId() && a.getApplicationProject().getId() == p.getId()){
 				return a;
 			}
