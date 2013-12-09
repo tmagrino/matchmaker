@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "DEPARTMENT")
@@ -57,9 +58,7 @@ public class Department extends MultipleItem {
 	}
 
 	void removeResearchers() {
-		for (Researcher r : researchers) {
-			r.getDepartments().remove(this);
-		}
+		researchers = new ArrayList<Researcher>();
 	}
 
 	public int compareTo(MultipleItem o) {

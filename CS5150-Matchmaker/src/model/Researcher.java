@@ -44,7 +44,7 @@ public class Researcher implements Serializable {
 	@ManyToMany
 	@JoinTable(
 			name = "DEPARTMENTS_TABLE",
-			joinColumns = {@JoinColumn(name="STUD_ID", referencedColumnName="ID")},
+			joinColumns = {@JoinColumn(name="RES_ID", referencedColumnName="ID")},
 			inverseJoinColumns = {@JoinColumn(name="DEPARTMENT_ID", referencedColumnName="ID")}
 	)
 	private List<Department> departments;
@@ -167,7 +167,11 @@ public class Researcher implements Serializable {
 	}
 	
 	void removeDepartment(Department d) {
-		this.departments.remove(d);
+		if(this.departments.remove(d)){
+			if (d.getResearchers().contains(this)){
+				d.removeResearcher(this);
+			}
+		}
 	}
 	
 	void removeDepartments() {
@@ -184,8 +188,12 @@ public class Researcher implements Serializable {
 		this.researchArea = researchArea;
 	}
 	void removeResearchArea(Interest area){
-		this.researchArea.remove(area);
+		if (this.researchArea.remove(area)) {
+			if (area.getResearchers().contains(this)) {
+				area.removeResearcher(this);
+			}
 		}
+	}
 	void removeResearchAreas(){
 		this.researchArea = new ArrayList<Interest>();
 	}
