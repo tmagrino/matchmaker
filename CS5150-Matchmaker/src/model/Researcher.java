@@ -95,7 +95,7 @@ public class Researcher implements Serializable {
 			case ItemFactory.DEPARTMENT:
 				return departments;
 			case ItemFactory.INTEREST:
-				return departments;
+				return researchArea;
 			default:
 				System.out.println("Invalid attribute " + attr);
 				return null;

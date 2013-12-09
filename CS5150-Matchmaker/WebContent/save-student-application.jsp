@@ -10,7 +10,7 @@
 <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    String text = request.getParameter("cover-letter");
-   if (request.getParameter("app-id") != " "){
+   if (request.getParameter("app-id") != null && request.getParameter("app-id").length() > 0){
 	   Application a = ApplicationController.getApplicationById(em, request.getParameter("app-id"));
 	   ApplicationController.acceptInvitation(em, a, text); 
    }
