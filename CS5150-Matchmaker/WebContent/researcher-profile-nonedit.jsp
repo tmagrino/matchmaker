@@ -30,7 +30,11 @@
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
 						<p class="read-only <%= r.getAttribute(attr) == "" ? "hidden" : "" %>">
+							<% if (attr == "URL"){%>
+							<a href = "http://<%=r.getWebpage() %>"><%=r.getWebpage()%></a>
+							<%}else{ %>
 							<%=r.getAttribute(attr) %>
+							<%} %>
 						</p>
 						<p class="editable <%= r.getAttribute(attr) != "" ? "hidden" : "" %>">
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"

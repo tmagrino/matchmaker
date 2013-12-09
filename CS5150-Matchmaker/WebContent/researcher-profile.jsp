@@ -54,7 +54,11 @@
 					<td class="field">
 						<% if(r != null && r.getAttribute(attr) != null){ %>
 						<p class="read-only <%= r.getAttribute(attr) == "" ? "hidden" : "" %>">
+							<% if (attr == "URL"){%>
+							<a href = "http://<%=r.getWebpage() %>"><%=r.getWebpage()%></a>
+							<%}else{ %>
 							<%=r.getAttribute(attr) %>
+							<%} %>
 							<a class="edit-btn <%=(r.getAttribute(attr) != null && r.getAttribute(attr).length() > 80) ? "extended" : "" %>" href="#"> 
 								<img src="images/pencil_small.png" alt="edit" />
 							</a>
