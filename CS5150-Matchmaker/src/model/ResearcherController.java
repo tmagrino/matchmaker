@@ -171,12 +171,14 @@ public class ResearcherController {
 		tx.commit();
 	}
 	public static void editDepartments(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
-		EntityTransaction tx = em.getTransaction();
 		r.removeDepartments();
 		String[] idList = ids.split(",");
-		for (String id : idList)
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		for (String id : idList){
 			if (id.length()>0){
 				try{
+			
 					r.addDepartment((Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
 				}
 				catch(NumberFormatException e){
@@ -184,19 +186,25 @@ public class ResearcherController {
 				}
 			}
 		}
+		tx.commit();
+		
+	}
 		public static void editArea(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
 			EntityTransaction tx = em.getTransaction();
-			r.removeDepartments();
+			r.removeResearchAreas();
 			String[] idList = ids.split(",");
-			for (String id : idList)
+			tx.begin();
+			for (String id : idList){
 				if (id.length()>0){
 					try{
-						r.addDepartment((Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
+						r.addResearchArea((Interest) ListController.getItemById(em,Long.parseLong(id),ItemFactory.AREA));
 					}
 					catch(NumberFormatException e){
-						r.addDepartment((Department) ListController.createItem(em, id, ItemFactory.DEPARTMENT));
+						r.addResearchArea((Interest) ListController.createItem(em, id, ItemFactory.AREA));
 					}
 				}
+			}
+			tx.commit();
 	}
 	
 	
