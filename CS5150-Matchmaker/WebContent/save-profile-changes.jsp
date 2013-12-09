@@ -21,6 +21,8 @@
 		   s.getEmail() != request.getParameter("email")){
 	   StudentController.editEmail(em, s, request.getParameter("email"));
    }
+   System.out.println(s.getYear());
+   System.out.println(YearController.getYear(request.getParameter("year")));
    if (request.getParameter("year").length()>0 && 
 		   s.getYear() != YearController.getYear(request.getParameter("year"))){
 	   

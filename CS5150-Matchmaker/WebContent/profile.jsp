@@ -77,9 +77,9 @@
                                                                                 i_str += "+";
                                                                         }
                                                                         if(year_val.equals(i_str)){ %>
-                                                                                <option value="<%= i %>" selected="selected"><%= i_str%></option>
+                                                                                <option value="<%= i_str %>" selected="selected"><%= i_str%></option>
                                                                         <%        } else{ %>
-                                                                                <option value="<%= i %>"><%= i_str%></option>
+                                                                                <option value="<%= i_str %>"><%= i_str%></option>
                                                                          <%} %>
                                                                 <% } %>
                                                         </select>
