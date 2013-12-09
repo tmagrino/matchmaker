@@ -389,58 +389,6 @@ public class StudentController {
 		tx.commit();
 	}
 	
-	public static String[] calculateGpaRange(String gpa){
-		switch(gpa){
-		case "gt4":
-			return new String[]{"4.0","4.5"};
-		case "35to4":
-			return new String[]{"3.5","4.0"};
-		case "3to35":
-			return new String[]{"3.0","3.5"};
-		case "25to3":
-			return new String[]{"2.5","3.0"};
-		case "lt25":
-			return new String[]{"0.0","2.5"};
-		default:
-			return new String[]{"0.0","4.5"};
-		
-		}
-	}
-	
-	public static List<Student> getStudentByFilter(EntityManager em, String name, String gpa, String year,
-			String major, String skill, String interest){
-        EntityTransaction tx = em.getTransaction();
-        String [] gpaRange = calculateGpaRange(gpa);
-        
-        try{	StringBuilder query = new StringBuilder();  
-        	query.append("select s from STUDENT s");
-        		if (major != "") query.append(" join s.majors m");
-        		if (skill != "") query.append(" join s.skills sk");
-        		if (interest != "") query.append(" join s.interest i");
-        		query.append(" where s.name like '"+ name + "%' and "+
-        				"s.gpa between "+ gpaRange[0]+ " and " +gpaRange[1]);
-        		if (year != "") query.append(" and s.year = :year");
-        				
-                		
-        		if (major != "") query.append(" m.description like '%"+major+"'");
-        		if (skill != "") query.append(" sk.description like '%"+skill+"'");
-        		if (interest != "") query.append(" i.description like '%"+interest+"'");
-//        		Query q = em.createQuery(query.toString());
-//        		q.setParameter("name", "%'"+name+"'");
-//        		q.setParameter("firstgpa", Double.parseDouble(gpaRange[0]));
-//        		q.setParameter("secondgpa",Double.parseDouble(gpaRange[1]));
-//        		if (year != "") q.setParameter("year",YearController.getYear(year));
-        		
-        		return (List<Student>) em.createQuery(query.toString()).getResultList();
-        		
-        }
-        catch (Exception e){
-        	System.out.println(e.getMessage());
-        	
-        }
-		return null;
-		
-	}
 	public static List<Long> getStudentProjects(EntityManager em, Student s){
 		
 		try {

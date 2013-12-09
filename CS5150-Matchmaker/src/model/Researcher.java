@@ -27,8 +27,13 @@ public class Researcher implements Serializable {
 	private String netID;
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
-	@Column(name = "AREA", nullable = false)
-	private String researchArea;
+	@ManyToMany
+	@JoinTable(
+			name = "RESEARCH_AREA_TABLE",
+			joinColumns = {@JoinColumn(name="RES_ID", referencedColumnName="ID")},
+			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
+	)
+	private List<Interest> researchArea;
 	@Column(name = "WEBPAGE", nullable = true)
 	private String webpage;
 	@OneToOne (mappedBy = "researcher")
@@ -46,8 +51,7 @@ public class Researcher implements Serializable {
 	@OneToOne (mappedBy = "researcher", cascade = CascadeType.ALL)
 	private ResearcherSettings settings;
 	
-	//private BufferedImage profilePicture;
-	//private ResearcherSettings settings;
+
 
 	
 	public Researcher() {
@@ -56,7 +60,7 @@ public class Researcher implements Serializable {
 	
 	public Researcher(String name,String netID,String email, 
 			List<Department> departments,
-			String webpage, String researchArea) {
+			String webpage, List<Interest> researchArea) {
 		this.name = name;
 		this.netID = netID;
 		this.email = email;
@@ -79,7 +83,7 @@ public class Researcher implements Serializable {
 			case "department":
 				return departmentString();
 			case "research area":
-				return researchArea;
+				return areaString();
 			default:
 				System.out.println("Invalid attribute");
 				return null;
@@ -99,14 +103,28 @@ public class Researcher implements Serializable {
 	}
 	
 	public String departmentString() {
-		String res = "";
+		StringBuffer res = new StringBuffer();
 		for (Department d : departments) {
-			res = res + d.getDescription() + ", ";
+			res.append(d.getDescription());
+			res.append(", ");
+			
 		}
 		if (res.length() >= 2) {
-			res = res.substring(0, res.length() -2);
+			return res.substring(0, res.length() -2);
 		}
-		return res;
+		return res.toString();
+	}
+	
+	public String areaString() {
+		StringBuffer res = new StringBuffer();
+		for (Interest a : researchArea) {
+			res.append(a.getDescription());
+			res.append(", ");
+		}
+		if (res.length() >= 2) {
+			return res.substring(0, res.length() -2);
+		}
+		return res.toString();
 	}
 	public int getId() {
 		return id;
@@ -153,15 +171,23 @@ public class Researcher implements Serializable {
 	}
 	
 	void removeDepartments() {
-		
+		this.departments = new ArrayList<Department>();
 	}
 
-	public String getResearchArea() {
+	public List<Interest> getResearchArea() {
 		return researchArea;
 	}
-
-	public void setResearchArea(String researchArea) {
+	void addResearchArea(Interest area){
+		this.researchArea.add(area);
+	}
+	public void setResearchArea(List<Interest> researchArea) {
 		this.researchArea = researchArea;
+	}
+	void removeResearchArea(Interest area){
+		this.researchArea.remove(area);
+		}
+	void removeResearchAreas(){
+		this.researchArea = new ArrayList<Interest>();
 	}
 
 	public String getWebpage() {
@@ -195,6 +221,13 @@ public class Researcher implements Serializable {
 				proj.removeResearcher(this);
 			}
 		}
+	}
+	public void removeProjects() {
+		for (Project p : projects){
+			p.removeResearcher(this);
+		}
+		projects = new ArrayList<Project>();
+		
 	}
 	
 	public static long getSerialversionuid() {

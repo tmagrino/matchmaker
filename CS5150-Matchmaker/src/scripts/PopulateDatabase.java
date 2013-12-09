@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -16,6 +17,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+
 
 
 
@@ -215,7 +217,7 @@ public class PopulateDatabase {
 								ItemFactory.DEPARTMENT));
 					}
 					String webpage = researcherStrings[4];
-					String researchArea = researcherStrings[5];
+					Interest researchArea = (Interest) ListController.getItemByDescription(em, "Machine Learning", ItemFactory.AREA);
 					
 					User user = UserController.createUser(em, name, email, netID);
 					Researcher r = ResearcherController.createResearcher(em,name, netID, 

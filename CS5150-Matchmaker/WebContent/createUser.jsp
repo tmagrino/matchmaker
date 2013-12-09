@@ -5,9 +5,11 @@
          EntityManager em = emf.createEntityManager();
          String role = request.getParameter("role");
          
-         %>
-         <%=role%>
-         <%
+         if (role == null || role == ""){
+        	 response.sendRedirect("select-role.jsp");
+         }
+         else{
+         
          String netId = (String) session.getAttribute("currentUser");
          User u = UserController.createUser(em,"New User", "", netId);
          // Changes for new user
@@ -17,8 +19,9 @@
         	
          }
          else{
-        	 Researcher r = ResearcherController.createResearcher(em, "", netId, "", null, "", "", u);
+        	 List<Interest> area = null;
+        	 Researcher r = ResearcherController.createResearcher(em, "New User", netId, "", null, "", area, u);
         	 response.sendRedirect("researcher-profile.jsp");
          }
-         
+         }
 %>        

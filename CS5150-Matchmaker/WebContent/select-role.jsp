@@ -11,6 +11,7 @@
 	 }
 	 
 	 String netId = null;
+	 
 	 if(session.getAttribute("currentUser") != null){
 		netId = (String) session.getAttribute("currentUser");  
 	 	session.setAttribute("currentUser", netId);
@@ -217,22 +218,7 @@
 			  <%}%>
 			  
 			   <%if (u == null){ %>
-			   <!-- <li>
-			     <h3>Are you a Student or a Project Lead?</h3>
-			  		<form action="createUser.jsp?role=student">
-			  			<input type="submit" class="choose-account-1">
-			  				<img class="account-image" alt=""
-			                 src="images/blank.png">
-			  				<span class="account-name">Student</span>
-			  		</form>
-			  		<form action="createUser.jsp?role=researcher">
-			  			<input type="submit" class="choose-account-1">
-			  				<img class="account-image" alt=""
-			                 src="images/blank.png">
-			  				<span class="account-name">Project Lead</span>
-			  		</form>
-			  	</li>
-			    -->
+
 			   
 			   <li>
 					<form action="createUser.jsp">
@@ -252,7 +238,9 @@
 			                 	<span class="account-name">Project Lead</span>
 							</p>
 							&nbsp;&nbsp;<input type="submit" value="Submit">
+							<FORM><INPUT Type="button" VALUE="Cancel" onClick="history.go(-1);return true;"></FORM>
 					</form>
+					
 				</li>
 			  	<% }%>
 			  </ol>

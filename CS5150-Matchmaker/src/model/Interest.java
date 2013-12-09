@@ -50,6 +50,9 @@ public class Interest extends MultipleItem{
 	@ManyToMany(mappedBy = "interests")
 	private List<Student> students;
 	
+	@ManyToMany(mappedBy = "researchArea")
+	private List<Researcher> researchers;
+	
 	public Interest() {
 		
 	}
@@ -68,6 +71,9 @@ public class Interest extends MultipleItem{
 	
 	public List<Student> getStudents() {
 		return students.subList(0, students.size());
+	}
+	public List<Researcher> getResearchers() {
+		return researchers.subList(0, researchers.size());
 	}
 	@Override
 	void setDescription(String name) {
@@ -100,5 +106,22 @@ public class Interest extends MultipleItem{
 	@Override
 	public int compareTo(MultipleItem o) {
 		return getDescription().compareTo(o.getDescription());
+	}
+	
+	void addResearcher(Researcher r) {
+		if (!researchers.contains(r)) {
+			researchers.add(r);
+			if (!r.getResearchArea().contains((this))) {
+				r.addResearchArea(this);
+			}
+		}
+	}
+	
+	void removeResearcher(Researcher r) {
+		if (this.researchers.remove(r)) {
+			if (r.getResearchArea().contains(this)) {
+				r.removeResearchArea(this);
+			}
+		}
 	}
 }

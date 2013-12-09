@@ -12,7 +12,7 @@ public class ResearcherController {
 
 	public static Researcher createResearcher(EntityManager em, String name,
 			String netID,String email, List<Department> departments,
-			String webpage, String researchArea, User user) {
+			String webpage, List<Interest> researchArea, User user) {
         EntityTransaction tx = em.getTransaction();
 		tx.begin();
         
@@ -28,14 +28,41 @@ public class ResearcherController {
 		tx.commit();
 		return r;
 	}
-	
-	public static void deleteResearcher(Researcher r) {
-		//TODO:
+	public static Researcher createResearcher(EntityManager em, String name,
+			String netID,String email, List<Department> departments,
+			String webpage, Interest researchArea, User user) {
+        EntityTransaction tx = em.getTransaction();
+        List<Interest> areas = new ArrayList<Interest>();
+        areas.add(researchArea);
+		tx.begin();
+        
+        Researcher r = new Researcher(name, netID, email, departments,
+        				webpage, areas);
+        ResearcherSettings settings = new ResearcherSettings();
+        r.setSettings(settings);
+		settings.setResearcher(r);
+        user.setResearcher(r);
+        em.persist(r);
+        em.persist(settings);
+        
+		tx.commit();
+		return r;
 	}
 	
-	public static void addProject(EntityManager em, Project p) {
+	public static void deleteResearcher(EntityManager em, Researcher r) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
 		
+		if (r != null) {
+			r.removeDepartments();
+			r.removeProjects();
+			r.getUser().setResearcher(null);
+			em.remove(r);
+		}
+		tx.commit();
 	}
+	
+
 	
 	public static void addHiddenStudent(EntityManager em, Researcher r, Student s) {
 		EntityTransaction tx = em.getTransaction();
@@ -93,7 +120,7 @@ public class ResearcherController {
         }
 	}
 	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
-			String department, String researchArea, String webpage) {
+			String department, List<Interest> researchArea, String webpage) {
 		
 		researcher.setName(name);
 		researcher.setNetID(netID);
@@ -118,4 +145,62 @@ public class ResearcherController {
 		
 		tx.commit();
 	}
+	
+	public static void editName(EntityManager em, Researcher r, String name) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		r.setName(name);
+		
+		tx.commit();
+	}
+	public static void editEmail(EntityManager em, Researcher r, String email) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		r.setEmail(email);
+		
+		tx.commit();
+	}
+	public static void editWebpage(EntityManager em, Researcher r, String webpage) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		r.setWebpage(webpage);
+		
+		tx.commit();
+	}
+	public static void editDepartments(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
+		EntityTransaction tx = em.getTransaction();
+		r.removeDepartments();
+		String[] idList = ids.split(",");
+		for (String id : idList)
+			if (id.length()>0){
+				try{
+					r.addDepartment((Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
+				}
+				catch(NumberFormatException e){
+					r.addDepartment((Department) ListController.createItem(em, id, ItemFactory.DEPARTMENT));
+				}
+			}
+		}
+		public static void editArea(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
+			EntityTransaction tx = em.getTransaction();
+			r.removeDepartments();
+			String[] idList = ids.split(",");
+			for (String id : idList)
+				if (id.length()>0){
+					try{
+						r.addDepartment((Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
+					}
+					catch(NumberFormatException e){
+						r.addDepartment((Department) ListController.createItem(em, id, ItemFactory.DEPARTMENT));
+					}
+				}
+	}
+	
+	
+		
+	
+	
 }

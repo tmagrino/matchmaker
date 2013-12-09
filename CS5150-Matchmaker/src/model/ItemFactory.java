@@ -9,6 +9,7 @@ public class ItemFactory {
 	public static final String INTEREST = "interest";
 	public static final String COLLEGE = "college";
 	public static final String DEPARTMENT = "department";
+	public static final String AREA = "interest";
 	
 	
 	public static MultipleItem create(String type, String name){
@@ -21,7 +22,7 @@ public class ItemFactory {
 		if (type == SKILL){
 			return new Skill(name);
 		}
-		if (type == INTEREST){
+		if (type == INTEREST || type == AREA){
 			return new Interest(name);
 		}
 		if (type == COLLEGE){
@@ -91,7 +92,7 @@ public class ItemFactory {
 		if (type.toLowerCase().equals(SKILL)){
 			query = "select m from SKILL m";
 		}
-		if (type.toLowerCase().equals(INTEREST)){
+		if (type.toLowerCase().equals(INTEREST) || type.toLowerCase().equals(AREA)){
 			query = "select m from INTEREST m";
 		}
 		if (type.toLowerCase().equals(DEPARTMENT)){

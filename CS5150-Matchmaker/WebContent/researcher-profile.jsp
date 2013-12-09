@@ -32,17 +32,27 @@
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
 		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
-		<form name="profile" action="#" method="GET">
+		<form name="profile" action="save-researcher-profile-changes.jsp" method="GET">
 			<table class="info">
-				<tr>
-					<td class="attr-label" colspan="3">
-						<h2><%=r.getName()%></h2>
-					</td>
-				</tr>
-				<% for(String attr: attributes){ %>
+				<%if(!(r.getName().equals("New User"))){ %>
+	                                <tr>
+	                                     <td class="attr-label" colspan="3"><h2><%=r.getName() %></h2></td>
+	                                </tr>
+                                <% } else { %>
+                                	<tr>
+                                    	<td class="attr-label"><h2>New User: </h2></td>
+	                                   	<td class="field">
+	                                    	 <p class="editable">
+	                                    	 	<input name="NewUser" value="" type="text" />
+	                                    	 </p>
+                                    	 </td>
+                            		</tr>
+                                <% }
+				for(String attr: attributes){ %>
 				<tr>
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
+						<% if(r != null && r.getAttribute(attr) != null){ %>
 						<p class="read-only <%= r.getAttribute(attr) == "" ? "hidden" : "" %>">
 							<%=r.getAttribute(attr) %>
 							<a class="edit-btn <%=(r.getAttribute(attr) != null && r.getAttribute(attr).length() > 80) ? "extended" : "" %>" href="#"> 
@@ -60,6 +70,7 @@
 					<td>
 						<button class="view-suggestion hidden" type="button">View All Suggestions</button>
 					</td>
+					<% } %>
 				</tr>
 				<% } %>
 			</table>
