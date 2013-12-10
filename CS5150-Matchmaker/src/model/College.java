@@ -39,7 +39,7 @@ import java.util.List;
  */
 
 @Entity(name = "COLLEGE")
-public class College extends MultipleItem{
+public class College extends FieldValue{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -65,7 +65,7 @@ public class College extends MultipleItem{
 	}
 	
 	public List<Student> getStudents() {
-		return students.subList(0, students.size());
+		return students;
 	}
 	
 	void setDescription(String name) {
@@ -88,15 +88,35 @@ public class College extends MultipleItem{
 			}
 		}
 	}
-	@Override
+	
 	void removeStudents() {
 		for (Student s : students) {
 			s.getColleges().remove(this);
 		}
 	}
+	
+	void addResearcher(Researcher r) {
+		
+	}
+	
+	void removeResearcher(Researcher r) {
+		
+	}
+	
+	void addProject(Project p) {
+		
+	}
 
+	void removeProject(Project p) {
+		
+	}
+	
+	void removeElements() {
+		removeStudents();
+	}
+	
 	@Override
-	public int compareTo(MultipleItem o) {
+	public int compareTo(FieldValue o) {
 		return getDescription().compareTo(o.getDescription());
 	}
 }

@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<% 
+<%
 	System.out.println("HIII");
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
@@ -18,8 +18,8 @@
    System.out.println(category);
    System.out.println(type);
    System.out.println(description);
-   MultipleItem item = ListController.getItemByDescription(em, description, type);
-   ListController.removeItem(em, item);
+   FieldValue item = FieldValueController.getItemByDescription(em, description, type);
+   FieldValueController.removeFieldValue(em, item);
    
    response.setStatus(response.SC_MOVED_TEMPORARILY); 
    
@@ -29,10 +29,6 @@
    else {
 	   response.setHeader("Location", ("latestAdditions.jsp?category="+category)); 
    }
-   
-
-	   
- 
 %>
 
 </body>

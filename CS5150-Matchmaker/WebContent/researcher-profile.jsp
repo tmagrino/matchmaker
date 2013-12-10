@@ -4,7 +4,8 @@
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
-<%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+<%
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	
 	String currentuser = (String) session.getAttribute("currentUser");
@@ -12,13 +13,13 @@
 	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
 	String[] attributes = {"Email", "URL", "Department", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {ItemFactory.DEPARTMENT, ItemFactory.INTEREST};
+	String[] autocomplete_attr = {FieldFactory.DEPARTMENT, FieldFactory.INTEREST};
 	JSONArray jsonArrAll = new JSONArray();
 	JSONArray jsonArrStud = new JSONArray();
 	for(String auto_attr: autocomplete_attr){
-		jsonArrAll.put(ListController.getItemJson(em, auto_attr));
+		jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
 		if(r != null)
-			jsonArrStud.put(ListController.getObjectJson(r.getListAttribute(auto_attr)));
+	jsonArrStud.put(FieldValueController.getObjectJson(r.getListAttribute(auto_attr)));
 	}
 %>
 <script type="text/javascript">

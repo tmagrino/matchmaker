@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+<%
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Project p = ProjectController.getProjectById(em, request.getParameter("projid"));
    Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
@@ -19,33 +20,33 @@
    List<Skill> reqSkills = new ArrayList<Skill>();
 	for (String id : idList)
 		if (id.length()>0){
-			try{
-				area.add((Interest)ListController.getItemById(em, Long.parseLong(id), ItemFactory.INTEREST));
-			}
-			catch(NumberFormatException e){
-				area.add((Interest)ListController.createItem(em, id, ItemFactory.INTEREST));
-			}
+	try{
+		area.add((Interest)FieldValueController.getFieldValueById(em, Long.parseLong(id), FieldFactory.INTEREST));
+	}
+	catch(NumberFormatException e){
+		area.add((Interest)FieldValueController.createFieldValue(em, id, FieldFactory.INTEREST));
+	}
 		}
 	for (String id : skillIdList){
 		if (id.length()>0){
-			try{
-				reqSkills.add((Skill) ListController.getItemById(em, Long.parseLong(id), ItemFactory.SKILL));
-			}
-			catch(NumberFormatException e){
-				reqSkills.add((Skill)ListController.createItem(em, id, ItemFactory.SKILL));
-			}
+	try{
+		reqSkills.add((Skill) FieldValueController.getFieldValueById(em, Long.parseLong(id), FieldFactory.SKILL));
+	}
+	catch(NumberFormatException e){
+		reqSkills.add((Skill)FieldValueController.createFieldValue(em, id, FieldFactory.SKILL));
+	}
 		}
 	}
    if (p == null){
    ProjectController.createProject(em, request.getParameter("title"), request.getParameter("project_description"), 
-			request.getParameter("project_url"), r,area,reqSkills);
+	request.getParameter("project_url"), r,area,reqSkills);
    }
    else{
 	   ProjectController.updateProject(em, p, request.getParameter("title"), request.getParameter("project_description"), 
-				request.getParameter("project_url"), r,area,reqSkills);
+		request.getParameter("project_url"), r,area,reqSkills);
    } 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
-   response.setHeader("Location", "researcher-projects.jsp"); 
+   response.setHeader("Location", "researcher-projects.jsp");
 %>
 
 

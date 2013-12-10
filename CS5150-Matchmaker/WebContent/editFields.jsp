@@ -7,20 +7,20 @@
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
-JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
 Researcher r = ResearcherController.getResearcherByNetID(em,(String)session.getAttribute("currentUser"));
 String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
-String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
+String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
 for(String auto_attr: autocomplete_attr){
-	jsonArrAll.put(ListController.getItemJson(em, auto_attr));
+	jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
 //	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
 }
- %>
+%>
 <script type="text/javascript">
 	var autocomplete_attr = Array("research_area", "required_skills");
 	var jsonArrAll = <%= jsonArrAll %>;

@@ -14,11 +14,11 @@
 	String category = request.getParameter("mydropdown");
 	List<LatestAddition> additions;
 	if (category == null || category.equals("recents")) {
-		additions = ListController.getLatestAddedFields(em);
+		additions = FieldValueController.getLatestAddedFields(em);
 		category = "Recent Additions";
 	}
 	else {
-		additions = ListController.getLatestAddedFields(em, category);
+		additions = FieldValueController.getLatestAddedFields(em, category);
 	}
 %>
 <%if(category.equals("recents")) {

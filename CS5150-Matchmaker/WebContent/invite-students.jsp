@@ -11,9 +11,9 @@
 	<%
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		EntityManager em = emf.createEntityManager();
-		JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
-		JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-		JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+		JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
+		JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+		JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
 
 		Researcher r = ResearcherController.getResearcherByNetID(em, (String)session.getAttribute("currentUser"));
 		List<Student> hiddenStudents = r.getSettings().getHiddenStudents();

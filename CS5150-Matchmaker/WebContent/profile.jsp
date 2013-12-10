@@ -6,20 +6,21 @@
 <%@page
         import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
-<%         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+<%
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
          EntityManager em = emf.createEntityManager();
          Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
          
          
          String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
-         String[] autocomplete_attr = {ItemFactory.MAJOR, ItemFactory.MINOR, ItemFactory.COLLEGE, ItemFactory.SKILL
-                         , ItemFactory.INTEREST};
+         String[] autocomplete_attr = {FieldFactory.MAJOR, FieldFactory.MINOR, FieldFactory.COLLEGE, FieldFactory.SKILL
+                         , FieldFactory.INTEREST};
          JSONArray jsonArrAll = new JSONArray();
          JSONArray jsonArrStud = new JSONArray();
          for(String auto_attr: autocomplete_attr){
-                 jsonArrAll.put(ListController.getItemJson(em, auto_attr));
+                 jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
                  if(s!=null){
-                 	jsonArrStud.put(ListController.getObjectJson(s.getListAttribute(auto_attr)));
+                 	jsonArrStud.put(FieldValueController.getObjectJson(s.getListAttribute(auto_attr)));
                  }
          }
 %>

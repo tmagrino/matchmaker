@@ -27,6 +27,8 @@ public class Researcher implements Serializable {
 	private String netID;
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
+	@Column(name = "WEBPAGE", nullable = true)
+	private String webpage;
 	@ManyToMany
 	@JoinTable(
 			name = "RESEARCH_AREA_TABLE",
@@ -34,11 +36,8 @@ public class Researcher implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="AREA_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> researchArea;
-	@Column(name = "WEBPAGE", nullable = true)
-	private String webpage;
 	@OneToOne (mappedBy = "researcher")
 	private User user;
-	
 	@ManyToMany(mappedBy = "researchers")
 	private List<Project> projects;
 	@ManyToMany
@@ -50,9 +49,6 @@ public class Researcher implements Serializable {
 	private List<Department> departments;
 	@OneToOne (mappedBy = "researcher", cascade = CascadeType.ALL)
 	private ResearcherSettings settings;
-	
-
-
 	
 	public Researcher() {
 		
@@ -90,11 +86,11 @@ public class Researcher implements Serializable {
 		}
 	}
 	
-	public List<? extends MultipleItem> getListAttribute(String attr) {
+	public List<? extends FieldValue> getListAttribute(String attr) {
 		switch (attr.toLowerCase()) {
-			case ItemFactory.DEPARTMENT:
+			case FieldFactory.DEPARTMENT:
 				return departments;
-			case ItemFactory.INTEREST:
+			case FieldFactory.INTEREST:
 				return researchArea;
 			default:
 				System.out.println("Invalid attribute " + attr);
@@ -107,7 +103,6 @@ public class Researcher implements Serializable {
 		for (Department d : departments) {
 			res.append(d.getDescription());
 			res.append(", ");
-			
 		}
 		if (res.length() >= 2) {
 			return res.substring(0, res.length() -2);
@@ -158,46 +153,6 @@ public class Researcher implements Serializable {
 		this.email = email;
 	}
 	
-	public List<Department> getDepartments() {
-		return departments;
-	}
-	
-	void addDepartment(Department d) {
-		this.departments.add(d);
-	}
-	
-	void removeDepartment(Department d) {
-		if(this.departments.remove(d)){
-			if (d.getResearchers().contains(this)){
-				d.removeResearcher(this);
-			}
-		}
-	}
-	
-	void removeDepartments() {
-		this.departments = new ArrayList<Department>();
-	}
-	
-	public List<Interest> getResearchArea() {
-		return researchArea;
-	}
-	void addResearchArea(Interest area){
-		this.researchArea.add(area);
-	}
-	public void setResearchArea(List<Interest> researchArea) {
-		this.researchArea = researchArea;
-	}
-	void removeResearchArea(Interest area){
-		if (this.researchArea.remove(area)) {
-			if (area.getResearchers().contains(this)) {
-				area.removeResearcher(this);
-			}
-		}
-	}
-	void removeResearchAreas(){
-		this.researchArea = new ArrayList<Interest>();
-	}
-
 	public String getWebpage() {
 		return webpage;
 	}
@@ -205,42 +160,37 @@ public class Researcher implements Serializable {
 	public void setWebpage(String webpage) {
 		this.webpage = webpage;
 	}
-
-	public List<Project> getProjects() {
-		return projects;
+	
+	public List<Interest> getResearchArea() {
+		return researchArea;
 	}
-
-	public void setProjects(List<Project> projects) {
-		this.projects = projects;
+	
+	void setResearchArea(List<Interest> areas) {
+		researchArea = areas;
 	}
-	public void addProject(Project proj) {
-		if (projects == null) {projects = new ArrayList<Project>();}
-		if (!projects.contains(proj)) {
-			this.projects.add(proj);
-			if (!proj.getResearchers().contains(this)) {
-				proj.addResearcher(this);
+	
+	void addResearchArea(Interest area){
+		if (!researchArea.contains(area)) {
+			researchArea.add(area);
+			if (!area.getResearchers().contains((this))) {
+				area.addResearcher(this);
 			}
 		}
 	}
 	
-	public void removeProject(Project proj) {
-		if (projects.remove(proj)) {
-			if (proj.getResearchers().contains(this)) {
-				proj.removeResearcher(this);
+	void removeResearchArea(Interest area){
+		if (this.researchArea.remove(area)) {
+			if (area.getResearchers().contains(this)) {
+				area.removeResearcher(this);
 			}
 		}
 	}
-	public void removeProjects() {
-		for (Project p : projects){
-			p.removeResearcher(this);
+	void removeResearchAreas() {
+		for (Interest i : researchArea) {
+			i.getResearchers().remove(this);
 		}
-		projects = new ArrayList<Project>();
-		
 	}
 	
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 	/**
 	 * @return the user
 	 */
@@ -248,19 +198,6 @@ public class Researcher implements Serializable {
 		return user;
 	}
 	
-	
-	public ResearcherSettings getSettings() {
-		return settings;
-	}
-
-	void setSettings(ResearcherSettings settings) {
-		this.settings = settings;
-	}
-
-	void setDepartments(List<Department> departments) {
-		this.departments = departments;
-	}
-
 	/**
 	 * @param user the user to set
 	 */
@@ -278,5 +215,70 @@ public class Researcher implements Serializable {
 		if (user.getResearcher() != this) {
 			user.setResearcher(this);
 		}
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void addProject(Project proj) {
+		if (!projects.contains(proj)) {
+			this.projects.add(proj);
+			if (!proj.getResearchers().contains(this)) {
+				proj.addResearcher(this);
+			}
+		}
+	}
+	
+	public void removeProject(Project proj) {
+		if (projects.remove(proj)) {
+			if (proj.getResearchers().contains(this)) {
+				proj.removeResearcher(this);
+			}
+		}
+	}
+	public void removeProjects() {
+		for (Project p : projects) {
+			p.getResearchers().remove(this);
+		}
+	}
+	
+	public List<Department> getDepartments() {
+		return departments;
+	}
+	
+	void addDepartment(Department d) {
+		if (!departments.contains(d)) {
+			departments.add(d);
+			if (!d.getResearchers().contains(this)) {
+				d.addResearcher(this);
+			}
+		}
+	}
+	
+	void removeDepartment(Department d) {
+		if(this.departments.remove(d)){
+			if (d.getResearchers().contains(this)){
+				d.removeResearcher(this);
+			}
+		}
+	}
+	
+	void removeDepartments() {
+		for (Department d : departments) {
+			d.getResearchers().remove(this);
+		}
+	}
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+	
+	public ResearcherSettings getSettings() {
+		return settings;
+	}
+
+	void setSettings(ResearcherSettings settings) {
+		this.settings = settings;
 	}
 }

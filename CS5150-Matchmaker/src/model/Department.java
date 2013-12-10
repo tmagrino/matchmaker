@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "DEPARTMENT")
-public class Department extends MultipleItem {
+public class Department extends FieldValue {
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -33,7 +33,7 @@ public class Department extends MultipleItem {
 	}
 	
 	public List<Researcher> getResearchers() {
-		return researchers.subList(0, researchers.size());
+		return researchers;
 	}
 	
 	void setDescription(String name) {
@@ -58,29 +58,32 @@ public class Department extends MultipleItem {
 	}
 
 	void removeResearchers() {
-		researchers = new ArrayList<Researcher>();
-	}
-
-	public int compareTo(MultipleItem o) {
-		return getDescription().compareTo(o.getDescription());
-	}	
-
-	@Override
-	void removeStudents() {
 		for (Researcher r : researchers) {
 			r.getDepartments().remove(this);
 		}
 	}
-
-	@Override
+	
+	void removeElements() {
+		removeResearchers();
+	}
+	
 	void addStudent(Student s) {
-		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
+	
 	void removeStudent(Student s) {
-		// TODO Auto-generated method stub
 		
 	}
+	
+	void addProject(Project p) {
+		
+	}
+	
+	void removeProject(Project p) {
+		
+	}
+	
+	public int compareTo(FieldValue o) {
+		return getDescription().compareTo(o.getDescription());
+	}	
 }

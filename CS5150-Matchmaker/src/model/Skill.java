@@ -36,7 +36,7 @@ import java.util.List;
  *   
  */
 @Entity(name = "SKILL")
-public class Skill extends MultipleItem{
+public class Skill extends FieldValue {
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -45,6 +45,8 @@ public class Skill extends MultipleItem{
 	
 	@ManyToMany(mappedBy = "skills")
 	private List<Student> students;
+	@ManyToMany (mappedBy = "requiredSkills")
+	private List<Project> projects;
 	
 	public Skill() {
 		
@@ -63,7 +65,7 @@ public class Skill extends MultipleItem{
 	}
 	
 	public List<Student> getStudents() {
-		return students.subList(0, students.size());
+		return students;
 	}
 	
 	void setDescription(String name) {
@@ -86,15 +88,55 @@ public class Skill extends MultipleItem{
 			}
 		}
 	}
-	@Override
+
 	void removeStudents() {
 		for (Student s : students) {
 			s.getSkills().remove(this);
 		}
 	}
 	
+	public List<Project> getProjects() {
+		return this.projects;
+	}
+	
+	void addProject(Project p) {
+		if (!projects.contains(p)) {
+			projects.add(p);
+			if (!p.getRequiredSkills().contains(this)) {
+				p.addRequiredSkill(this);
+			}
+		}
+	}
+	
+	void removeProject(Project p) {
+		if (projects.remove(p)) {
+			if (p.getRequiredSkills().contains(this)) {
+				p.removeRequiredSkill(this);
+			}
+		}
+	}
+	
+	void removeProjects() {
+		for (Project p : projects) {
+			p.getRequiredSkills().remove(this);
+		}
+	}
+	
+	void addResearcher(Researcher r) {
+		
+	}
+	
+	void removeResearcher(Researcher r) {
+		
+	}
+	
+	void removeElements() {
+		removeStudents();
+		removeProjects();
+	}
+	
 	@Override
-	public int compareTo(MultipleItem o) {
+	public int compareTo(FieldValue o) {
 		return getDescription().compareTo(o.getDescription());
 	}
 }

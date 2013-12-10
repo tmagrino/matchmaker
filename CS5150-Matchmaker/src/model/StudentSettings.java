@@ -45,14 +45,27 @@ public class StudentSettings {
 		return hiddenProjects;
 	}
 	
-	public void addProject(Project p) {
+	void addProject(Project p) {
 		if (!hiddenProjects.contains(p)) {
 			hiddenProjects.add(p);
+			if (p.getHiddenBy().contains(this)) {
+				p.addHidden(this);
+			}
 		}
 	}
 	
-	public void removeProject(Project p) {
-		hiddenProjects.remove(p);
+	void removeProject(Project p) {
+		if (hiddenProjects.remove(p)) {
+			if (p.getHiddenBy().contains(this)) {
+				p.removeHidden(this);
+			}
+		}
+	}
+	
+	void removeProjects() {
+		for (Project p : hiddenProjects) {
+			p.getHiddenBy().remove(this);
+		}
 	}
 	
 	public Student getStudent() {
