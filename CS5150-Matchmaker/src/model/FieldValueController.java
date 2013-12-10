@@ -196,7 +196,7 @@ public class FieldValueController{
 	 */
 	public static FieldValue getItemByDescription(EntityManager em, 
 			String description, String type) {
-		System.out.println("Description is: "+description);
+		System.out.println("Searching for "+type+": "+description);
         String query = FieldFactory.getQuery(type)+ 
         		" where m.description = \""+description+"\"";
 		@SuppressWarnings("unchecked")
@@ -213,13 +213,14 @@ public class FieldValueController{
 	
 	public static List<LatestAddition> getLatestAddedFields(EntityManager em) {
 		
+		System.out.println("Looking up ALL additions");
 		String query = "select a from LATESTADDITION a";
 		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
 		return items;
 	}
 	
 	public static List<LatestAddition> getLatestAddedFields(EntityManager em, String type) {
-		
+		System.out.println("Looking up all "+type+" additions");
 		String query = "select a from LATESTADDITION a where a.type = \""+type+"\"";
 		List<LatestAddition> items = (List<LatestAddition>) em.createQuery(query).getResultList();
 		return items;

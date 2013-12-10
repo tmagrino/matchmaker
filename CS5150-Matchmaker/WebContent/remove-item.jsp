@@ -15,14 +15,13 @@
    String category = request.getParameter("category");
    String type = request.getParameter("type");
    String description = request.getParameter("desc");
-   System.out.println(category);
-   System.out.println(type);
-   System.out.println(description);
+   System.out.println("--------DELETING ITEM--------");
+   System.out.println(type+": "+description);
    FieldValue item = FieldValueController.getItemByDescription(em, description, type);
    FieldValueController.removeFieldValue(em, item);
    
    response.setStatus(response.SC_MOVED_TEMPORARILY); 
-   
+   System.out.println("--------DELETED-----------");
    if (category == null) {
 	   response.setHeader("Location", "latestAdditions.jsp"); 
    }
