@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@page import="java.util.*,model.*,model.Student, model.StudentController,model.Researcher,model.ResearcherController,javax.persistence.*"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -15,16 +15,32 @@
 <script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 <script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
 <script src="js/jquery.autoSuggest.js" type="text/javascript"></script>
-<title>Clear Session</title>
+
+<title>Insert title here</title>
 </head>
-<!--[if IE 7]>         <body class="lt-ie10 lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <body class="lt-ie10 lt-ie9"> <![endif]-->
-<!--[if IE 9]>         <body class="lt-ie10"> <![endif]-->
-<!--[if gt IE 9]><!-->
 <body>
-<%
-session.invalidate();
-response.sendRedirect("login.jsp");
-%>
+
+<div id="top-bar" class="clearfix">
+<center><font color="#ffffff"><span class="navlink_course" id="navlink_course_overview">
+
+<b>Current Login: <%=session.getAttribute("currentUser") %></b>
+</span></font></center>
+</div>
+
+<center><b>
+Please exit your browser and sign out of SideCar to clear your credentials.<p>If you authenticate using CUWebLogin, please be sure to read the guidelines<br> on how to <a href='http://www.cit.cornell.edu/services/identity/cuweblogin/more.html'>clear your CUWebLogin credentials</a>.</p>
+</b></center>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

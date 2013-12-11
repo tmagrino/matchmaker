@@ -113,7 +113,7 @@
 			  
 			  
 			  %>
-				<li class="login-link"><a href="clearsession.jsp">sign out</a></li>
+				<li class="login-link"><a href="signout.jsp">sign out</a></li>
 		</ul>
 	</div>
 	<% if(! request.getParameter("stud_or_prof").equals("header")){ %>
