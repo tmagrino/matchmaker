@@ -119,4 +119,10 @@ public class College extends FieldValue{
 	public int compareTo(FieldValue o) {
 		return getDescription().compareTo(o.getDescription());
 	}
+
+	@Override
+	List<Researcher> getResearchers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

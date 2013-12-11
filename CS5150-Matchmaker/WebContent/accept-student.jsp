@@ -12,8 +12,7 @@
    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
    
    ApplicationController.approveApplication(em, a);
-   String body = "Your project application to project " + a.getApplicationProject().getName() + " has been accepted. You can check it out here: \n " + a.getApplicationProject().getURL();
-   Email.sendAcceptingMessage(a.getStudentApplicant(),"Your project application has been accepted", body);
+   Email.sendAcceptingMessage(a.getStudentApplicant(),a);
    response.setStatus(response.SC_MOVED_TEMPORARILY);
    response.setHeader("Location", "project-applications.jsp"); 
   

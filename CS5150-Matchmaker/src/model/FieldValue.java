@@ -1,5 +1,7 @@
 package model;
 
+import java.util.List;
+
 public abstract class FieldValue implements Comparable<FieldValue>{
 	public abstract	long getId();
 	public abstract String getDescription();
@@ -11,4 +13,6 @@ public abstract class FieldValue implements Comparable<FieldValue>{
 	abstract void removeResearcher(Researcher r);
 	abstract void removeProject(Project p);
 	abstract void removeElements();
+	abstract List<Student> getStudents();
+	abstract List<Researcher> getResearchers();
 }

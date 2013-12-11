@@ -85,5 +85,11 @@ public class Department extends FieldValue {
 	
 	public int compareTo(FieldValue o) {
 		return getDescription().compareTo(o.getDescription());
+	}
+
+	@Override
+	List<Student> getStudents() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

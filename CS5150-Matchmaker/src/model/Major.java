@@ -121,4 +121,10 @@ public class Major extends FieldValue {
 		// TODO Auto-generated method stub
 		return getDescription().compareTo(o.getDescription());
 	}
+
+	@Override
+	List<Researcher> getResearchers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

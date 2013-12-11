@@ -8,20 +8,30 @@
 </head>
 <body>
 <%
-	System.out.println("HIII");
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+
+   EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    
    String category = request.getParameter("category");
    String type = request.getParameter("type");
    String description = request.getParameter("desc");
-   System.out.println("--------DELETING ITEM--------");
-   System.out.println(type+": "+description);
    FieldValue item = FieldValueController.getItemByDescription(em, description, type);
+   List<Student> students = FieldValueController.getStudents(item);
+   List<Researcher> researchers = FieldValueController.getResearchers(item);
+   if (students != null){
+	   for (Student s : students){
+		   Email.sendDeleteItemMessage(s,description,type);
+	   }
+   }
+   if (researchers != null){
+	   for (Researcher r : researchers){
+		   Email.sendDeleteItemMessage(r,description,type);
+	   }
+   }
    FieldValueController.removeFieldValue(em, item);
    
    response.setStatus(response.SC_MOVED_TEMPORARILY); 
-   System.out.println("--------DELETED-----------");
+ 
    if (category == null) {
 	   response.setHeader("Location", "latestAdditions.jsp"); 
    }

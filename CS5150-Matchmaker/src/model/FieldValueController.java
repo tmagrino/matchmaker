@@ -297,6 +297,11 @@ public class FieldValueController{
 		return items_obj;
 	}
 	
-	
+	public static List<Student> getStudents(FieldValue field){
+		return field.getStudents();
+	}
+	public static List<Researcher> getResearchers(FieldValue field){
+		return field.getResearchers();
+	}
 
 }
