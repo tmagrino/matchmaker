@@ -34,6 +34,7 @@
 	   if (gpa <= 4.3 && gpa != s.getGpa())
 	   StudentController.editGPA(em, s, gpa);
    }
+   System.out.println(request.getParameter("as_values_major"));
    if (request.getParameter("as_values_major").length()>0){
 	   StudentController.update(em,s,request.getParameter("as_values_major"),FieldFactory.MAJOR); 
    }
@@ -55,19 +56,7 @@
 %>
 
 
-<%
-// int nCourses = Integer.parseInt(request.getParameter("nVals"));
-// for(int i = 0; i<nCourses; i++){
-// 	Course cobj = new Course();
-// 	cobj.setCoursenum(request.getParameter("coursenum-"+i));
-// 	cobj.setTitle(request.getParameter("title-"+i));
-// 	cobj.setGrade(request.getParameter("grade-"+i));
-// 	cobj.setSemester(request.getParameter("semester-"+i));
-// 	courselist.add(cobj);
-// }
 
-
-%>
 
 </body>
 </html>

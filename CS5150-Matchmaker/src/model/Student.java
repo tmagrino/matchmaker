@@ -474,6 +474,7 @@ public class Student implements Serializable {
 		for (College c : colleges) {
 			c.getStudents().remove(this);
 		}
+		colleges = new ArrayList<College>();
 	}
 	
 	void addMajor(Major major) {
@@ -516,6 +517,8 @@ public class Student implements Serializable {
 		for (Major m : majors) {
 			m.getStudents().remove(this);
 		}
+		majors = new ArrayList<Major>();
+		
 	}
 	
 	void addMinor(Minor minor) {
@@ -539,6 +542,7 @@ public class Student implements Serializable {
 		for (Minor m : minors) {
 			m.getStudents().remove(this);
 		}
+		minors = new ArrayList<Minor>();
 	}
 	
 	void addSkill(Skill skill) {
@@ -562,6 +566,7 @@ public class Student implements Serializable {
 		for (Skill s : skills) {
 			s.getStudents().remove(this);
 		}
+		skills = new ArrayList<Skill>();
 	}
 	
 	void addInterest(Interest interest) {
@@ -585,6 +590,7 @@ public class Student implements Serializable {
 		for (Interest i : interests) {
 			i.getStudents().remove(this);
 		}
+		interests = new ArrayList<Interest>();
 	}
 	
 	void addExperience(Experience exp) {

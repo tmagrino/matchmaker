@@ -199,6 +199,7 @@ public class Project implements Serializable {
 		for (Interest a : project_area) {
 			a.getProjects().remove(this);
 		}
+		project_area = new ArrayList<Interest>();
 	}
 	
 	public List<Skill> getRequiredSkills() {
@@ -226,6 +227,7 @@ public class Project implements Serializable {
 		for (Skill s : requiredSkills) {
 			s.getProjects().remove(this);
 		}
+		requiredSkills = new ArrayList<Skill>();
 	}
 
 	public List<Application> getApplications() {
@@ -244,9 +246,18 @@ public class Project implements Serializable {
 	void removeApplication(Application app) {
 		if (this.applications.remove(app)) {
 			if (app.getApplicationProject() == this) {
+				app.getStudentApplicant().removeApplication(app);
+				app.getApplicationProject().removeApplication(app);
 				app.setApplicationProject(null);
 			}
 		}
+	}
+	void removeApplications(){
+		for (Application app : applications){
+			app.getStudentApplicant().removeApplication(app);
+			app.setApplicationProject(null);
+		}
+		applications = new ArrayList<Application>();
 	}
 	
 	public List<StudentSettings> getHiddenBy() {

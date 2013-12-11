@@ -73,13 +73,12 @@ public class ProjectController {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		for (Application a : p.getApplications()) {
-			ApplicationController.deleteApplication(em, a);
-		}
+		p.removeApplications();
 		p.removeRequiredSkills();
 		p.removeResearchers();
 		p.removeProjectAreas();
 		p.removeHiddenBys();
+		
 		
 		em.remove(p);
 		tx.commit();
@@ -139,12 +138,7 @@ public class ProjectController {
 	}
 	
 	public static void removeApplication(EntityManager em, Project p, Application a) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
 		ApplicationController.deleteApplication(em, a);
-		
-		tx.commit();
 	}
 	
 	public static void addResearcher(EntityManager em, Project p, Researcher r) {

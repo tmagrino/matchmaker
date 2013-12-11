@@ -26,7 +26,7 @@ for(String auto_attr: autocomplete_attr){
 <div class="content">
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
-	<h1>My Projects</h1>
+	<h1>Add new project</h1>
 	<form name="profile" action="save-project-changes.jsp">
 		<table class="info">
 			<tr>

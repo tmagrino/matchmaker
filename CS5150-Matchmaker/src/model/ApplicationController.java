@@ -35,10 +35,7 @@ public class ApplicationController {
 		tx.begin();
 		
 		if (a != null) {
-			a.getStudentApplicant().removeApplication(a);
-			a.setStudentApplicant(null);
 			a.getApplicationProject().removeApplication(a);
-			a.setApplicationProject(null);;
 			em.remove(a);
 		}
 		

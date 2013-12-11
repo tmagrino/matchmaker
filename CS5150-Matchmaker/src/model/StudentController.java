@@ -45,14 +45,7 @@ public class StudentController {
 			s.removeMajors();
 			s.removeMinors();
 			s.removeSkills();
-			/*for (Experience e : s.getPriorExperience()) {
-				em.remove(e);
-			}
-			s.getPriorExperience().clear();
-			for (Course c : s.getTranscript()) {
-				em.remove(c);
-			}
-			s.getTranscript().clear();*/
+
 			for (Application a : s.getApplications()) {
 				ApplicationController.deleteApplication(em, a);
 			}

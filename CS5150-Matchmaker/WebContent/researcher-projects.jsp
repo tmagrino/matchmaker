@@ -31,7 +31,9 @@
 				        	boolean hasApplicants = false;
 				        %>
 						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a></h1>
+							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a>
+							<a class"actionButton delete" href="remove-project.jsp?id=<%=p.getId()%>"><img class="delete" src="images/Delete.png" alt="delete" border="0"
+				alt="Delete application" /></a></h1>
 							<div class="search-container">
 								<input class="search-text" type="text" placeholder="Search..."/>
 								<input type="submit" value="Filter"/>

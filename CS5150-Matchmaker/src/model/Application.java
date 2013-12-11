@@ -93,11 +93,7 @@ public class Application implements Serializable {
 
 	void setApplicationProject(Project applicationProject) {
 		if (applicationProject == null) {
-			if (this.applicationProject != null) {
-				Project p  = this.applicationProject;
-				this.applicationProject = null;
-				p.removeApplication(this);
-			}
+			this.applicationProject = null;
 		}
 		else {
 			this.applicationProject = applicationProject;
