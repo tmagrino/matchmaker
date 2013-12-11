@@ -18,26 +18,15 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import model.*;
 
 public class PopulateDatabase {
-
+	
 	public static void main(String[] args) {
+		populateDB();
+	}
+
+	public static void populateDB() {
 		Scanner in;
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		EntityManager em = emf.createEntityManager();
