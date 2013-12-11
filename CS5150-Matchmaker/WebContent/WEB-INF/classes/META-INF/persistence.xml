@@ -17,6 +17,7 @@
 		<class>model.Department</class>
 		<class>model.LatestAddition</class>
 		<class>model.ResearcherSettings</class>
+		<class>model.ProfileImage</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>

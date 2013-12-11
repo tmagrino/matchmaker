@@ -50,7 +50,7 @@
                                     	<td class="attr-label"><h2>New User: </h2></td>
 	                                   	<td class="field">
 	                                    	 <p class="editable">
-	                                    	 	<input name="NewUser" value="" type="text" />
+	                                    	 	<input name="NewUser" value="" placeholder="What is your name?" type="text" />
 	                                    	 </p>
                                     	 </td>
                             		</tr>

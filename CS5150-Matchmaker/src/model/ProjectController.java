@@ -159,6 +159,17 @@ public class ProjectController {
 		tx.commit();
 	}
 	
+	public static boolean meetsRequirements(Project p, Student s) {
+		List<Skill> skills = p.getRequiredSkills();
+		for (Skill skl : skills) {
+			if (!s.getSkills().contains(skl)) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	public static List<Project> getProjectList(EntityManager em) {
         try {
         String query = "select r from Project r";

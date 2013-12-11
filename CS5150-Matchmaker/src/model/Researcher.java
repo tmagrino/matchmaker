@@ -49,6 +49,9 @@ public class Researcher implements Serializable {
 	private List<Department> departments;
 	@OneToOne (mappedBy = "researcher", cascade = CascadeType.ALL)
 	private ResearcherSettings settings;
+	@OneToOne
+	@JoinColumn
+	private ProfileImage photo;
 	
 	public Researcher() {
 		
@@ -280,5 +283,16 @@ public class Researcher implements Serializable {
 
 	void setSettings(ResearcherSettings settings) {
 		this.settings = settings;
+	}
+
+	public ProfileImage getPhoto() {
+		return photo;
+	}
+	
+	void setPhoto(ProfileImage img) {
+		photo = img;
+		if (img.getResearcher() != this) {
+			img.setResearcher(this);
+		}
 	}
 }
