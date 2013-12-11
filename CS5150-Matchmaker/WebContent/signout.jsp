@@ -23,7 +23,12 @@
 <div id="top-bar" class="clearfix">
 <center><font color="#ffffff"><span class="navlink_course" id="navlink_course_overview">
 
-<b>Current Login: <%=session.getAttribute("currentUser") %></b>
+<b>Current Login: <%
+if(session.getAttribute("adminUser") != null){%>
+	<%=session.getAttribute("adminUser")%>
+<%}else{%>
+	<%=session.getAttribute("currentUser")%>	
+<%}%></b>
 </span></font></center>
 </div>
 
