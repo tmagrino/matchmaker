@@ -89,12 +89,15 @@ Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 	else {		
 %>
 	<table class="additions_table">
-		<tr class="no-results">
-			<th></th>
-			<th>Type</th>
-			<th>Description</th>
-			<th>Date Added</th>
-		</tr>
+		<thead>
+			<tr>
+				<th class="empty"></th>
+				<th class="header">Type</th>
+				<th class="header">Description</th>
+				<th class="header">Date Added</th>
+			</tr>
+		</thead>
+		<tbody>
 		<% 
 			for (LatestAddition add : additions) {
 				String cssClasses = add.getType().replaceAll(" ", "_").toLowerCase() + " "
@@ -122,6 +125,7 @@ Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 			}
 		}
 	%>
+	</tbody>
 </table>
 <jsp:include page="pager.jsp" />
 </div>

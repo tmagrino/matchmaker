@@ -31,7 +31,6 @@
 </script>
 
 <div class="content">
-    <!--     <h1>My Profile</h1> -->
         <div id="all-major" class="hidden" title="All Major Suggestions"></div>
         <div id="all-minor" class="hidden" title="All Minor Suggestions"></div>
         <div id="all-college" class="hidden" title="All College Suggestions"></div>
@@ -69,7 +68,6 @@
                                                 <p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
                                                         <% if(attr.equals("Year")){ %>
                                                                 <select name = "year">
-                                                                        <option value="">---</option>
                                                                 <% String year_val = s.getAttribute(attr); %>
                                                                 <% for(int i = 1; i<=5; i++){ 
                                                                         String i_str = Integer.toString(i);

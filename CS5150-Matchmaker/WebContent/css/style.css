@@ -4,7 +4,7 @@ body,html {
 }
 
 .page,.wrapper,#container,.sidebar,#sidenav,.main,.content {
-	min-height: 500px;
+	min-height: 630px;
 }
 
 .page {

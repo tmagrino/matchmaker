@@ -1,6 +1,6 @@
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="stud"/>
-    <jsp:param name="top_selected" value="profile"/>
+    <jsp:param name="top_selected" value="project"/>
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 

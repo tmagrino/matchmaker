@@ -138,10 +138,9 @@ function hideProject()
 
 function sortTable()
 {
-	var proj_list = $(".project-list");
+	var proj_list = $(".project-list, .additions_table");
 	if(proj_list.length == 0){ return;}
-	proj_list.tablesorter()
-	.tablesorterPager({container: $("#pager"), positionFixed: false});
+	proj_list.tablesorter().tablesorterPager({container: $("#pager"), positionFixed: true});
 }
 
 function initTabLinks(){

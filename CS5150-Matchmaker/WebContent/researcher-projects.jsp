@@ -86,7 +86,6 @@
 						
 						<br>
 						<%}%>
-						<jsp:include page="pager.jsp"/>
 						<br>
 						
 					</div>				

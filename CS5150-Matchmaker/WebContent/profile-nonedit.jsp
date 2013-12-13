@@ -1,6 +1,6 @@
 <jsp:include page="header.jsp">
         <jsp:param name="stud_or_prof" value="researcher" />
-        <jsp:param name="top_selected" value="profile" />
+        <jsp:param name="top_selected" value="students" />
 </jsp:include>
 <%@page
         import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
@@ -19,6 +19,7 @@
 <div class="content">
        
         <div class="photo-info clearfix">
+        	<form name="profile" action="#" method="GET">
                         <table class="info">
                                 <tr>
                                         <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
@@ -48,7 +49,8 @@
 	                                </tr>
 	                             <% } %>
                         </table>
-                        <FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
+            	<FORM><INPUT Type="button" VALUE="Back" onClick="history.go(-1);return true;"></FORM>
+        	</form>
 
         </div>
 </div>

@@ -99,7 +99,7 @@
         	%>
         	<br />
         	<br />
-        	<h1>No students have applyed yet. Invite students <a href="invite-students.jsp">here</a>.</h1>
+        	<h1>No students have applied yet. Invite students <a href="invite-students.jsp">here</a>.</h1>
         	<%
         }
  
@@ -107,11 +107,11 @@
         %>
 
 
-	
+	<br />
+		<jsp:include page="pager.jsp"/>
+	<br />
 
 </div>
-<br />
-<jsp:include page="pager.jsp"/>
-<br />
+
 </body>
 </html>
