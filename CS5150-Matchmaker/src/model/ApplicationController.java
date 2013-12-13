@@ -13,10 +13,15 @@ public class ApplicationController {
 	public static Application createApplication(EntityManager em, Student s, Project p, 
 			String studentResponse) {
 		EntityTransaction tx = em.getTransaction();
+		
+		
 		for (Application a : s.getApplications()) {
 			if (a.getApplicationProject() == p) {
 				return null;
 			}
+		}
+		if (s == null || p == null) {
+			return null;
 		}
 		
 		tx.begin();
