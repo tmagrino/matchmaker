@@ -32,7 +32,7 @@ function initAutosuggest()
 			prefill = jsonArrStud[index].items;
 		if(value.length){
 			value.autoSuggest(jsonArrAll[index].items, {selectedItemProp: "name", searchObjProps: "name",  
-				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: prefill});
+				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: prefill, neverSubmit: true });
 		}
 	});
 }
@@ -155,7 +155,7 @@ function sortTable()
 {
 	var proj_list = $(".project-list, .additions_table");
 	if(proj_list.length == 0){ return;}
-	proj_list.tablesorter({sortForce:[[4, 0]]}).tablesorterPager({container: $("#pager"), positionFixed: true});
+	proj_list.tablesorter({sortForce:[[4, 1]]}).tablesorterPager({container: $("#pager"), positionFixed: true});
 }
 
 function initTabLinks(){
