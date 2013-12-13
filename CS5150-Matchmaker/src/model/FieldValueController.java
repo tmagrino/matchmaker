@@ -20,6 +20,9 @@ public class FieldValueController{
 	public static FieldValue createFieldValue(EntityManager em, String description, 
 			String type) throws InstantiationException, IllegalAccessException {
 		EntityTransaction tx = em.getTransaction();
+		if (getItemByDescription(em, type, description) != null) {
+			return null;
+		}
 		tx.begin();
 		
 		FieldValue m = (FieldValue) FieldFactory.createField(type, description);
