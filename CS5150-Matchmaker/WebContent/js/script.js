@@ -7,6 +7,15 @@ function doPagination() {
 	});
 }
 
+/*function pageChange(){
+	if($("input[name=NewUser]").val() == ''){
+		$(window).on('beforeunload', function(){ 
+			return false;
+		});
+	}
+	
+}*/
+
 function initAutosuggest()
 {
 	if(typeof autocomplete_attr === 'undefined' || autocomplete_attr == null){return;}
@@ -81,6 +90,11 @@ function handleAddCourse(){
 	addbtn.click(function(){
 		courseTable.append("<tr>"+tableRowHtml+"</tr>");
 		initSideHeight();
+	});	$(window).on('beforeunload', function(){ 
+		if($("input[name=NewUser]").val() == ''){
+			alert($("input[name=NewUser]").val());
+			return false;
+		}
 	});
 }
 
@@ -97,6 +111,7 @@ function validateFormSubmit()
 		var emailEl = $("input[name=email]");
 		if(emailEl.length){
 			if(!IsEmail(emailEl.val())){
+				alert('Invalid email. Correct this in order to save changes.');
 				e.preventDefault();
 				return false;
 			}
@@ -156,7 +171,12 @@ function initApplyButton()
 	var applyBtn = $("a.apply");
 	applyBtn.click(function(){
 		var apply_form = $(".apply-form");
-		var id = $(this).attr("id");
+		var id = $(this).attr("id");	$(window).on('beforeunload', function(){ 
+			if($("input[name=NewUser]").val() == ''){
+				alert($("input[name=NewUser]").val());
+				return false;
+			}
+		});
 		if(id[0] == "a")
 			$("input[name=app-id]", apply_form).val(id.substring(1));
 		else
@@ -256,4 +276,5 @@ $(document).ready(function(){
 	initFilterType();
 	initInvite();
 	initSelectRole();
+	pageChange();
 });
