@@ -272,6 +272,16 @@ function initSelectRole(){
 	});
 }
 
+function initConfirmDelete()
+{
+	var deleteButton = $(".actionButton.delete");
+	if(deleteButton.length == 0){return;}
+	deleteButton.click(function(){
+		var resp = confirm("Are you sure you want to delete this?");
+		return resp;
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	initViewSuggestion();
@@ -285,5 +295,6 @@ $(document).ready(function(){
 	initFilterType();
 	initInvite();
 	initSelectRole();
+	initConfirmDelete();
 	//pageChange();
 });
