@@ -65,8 +65,7 @@
 						<h3 class="subheading">&nbsp;&nbsp;Search User</h3>
 						<ul class="project-list">
 							<li class="clearfix">
-								<div class="accounts">
-								 	
+								<div class="accounts">	
 								 	<form action="admin-searchUser.jsp" method="Get">
 								 	<font size ="4"><b>Search By Net ID : </b></font>
 								 	<%if(netID != null) {%>
@@ -86,9 +85,8 @@
 									<% if((netID != null || name != null) && u != null) {
 								 	%>
 									
-									<table cellspacing=5 cellpadding=10 border=0>
+									<table id="usersearch" cellspacing=5 cellpadding=10 border=0>
 									<tr>
-										<td valign="top"><img src="images/blank.png" height=150 width=150/></td>
 										<td>
 								 		<table cellspacing=10 cellpadding=10 align=center border=0>
 								 		<tr><td><h3>Name:</h3></td>

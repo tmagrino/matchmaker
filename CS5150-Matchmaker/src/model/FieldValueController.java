@@ -68,8 +68,12 @@ public class FieldValueController{
 		
         @SuppressWarnings("unchecked")
         List<FieldValue> itens = (List<FieldValue>) em.createQuery(query).getResultList();
-        
-        return itens.get(0);
+        try {
+        	return itens.get(0);
+        }
+        catch (Exception e) {
+        	return null;
+        }
 	}
 	/**
 	 * Rename a given Item.
