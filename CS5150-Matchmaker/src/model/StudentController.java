@@ -107,7 +107,12 @@ public class StudentController {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		s.setGpa(gpa);
+		if (gpa < 0) {
+			s.setGpa(0);
+		}
+		else {
+			s.setGpa(gpa);
+		}
 		
 		tx.commit();
 	}
