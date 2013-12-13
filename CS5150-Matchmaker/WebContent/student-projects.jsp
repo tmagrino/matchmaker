@@ -148,18 +148,14 @@ var interestData = <%=jsonInterest%>;
 		<td class = "buttonTD">
 			<p>
 				<% 
-					if (ProjectController.meetsRequirements(p, s)) {
-						%>
+					if (!ProjectController.meetsRequirements(p, s)) {
+						%><p>Requirements not met</p><%
+						
+					}
+				%>
 						<a id="<%=p.getId()%>" class="actionButton apply"
 								href="#">Apply</a>&nbsp;
 						<%
-					}
-					else {
-						%><p>Requirements not met</p><%
-					}
-				%>
-				
-				<%
 					if (hid && showHidden) {
 				%><a class="actionButton unhide"
 					href="unhideProject.jsp?id=<%=p.getId()%>">Unhide</a>
