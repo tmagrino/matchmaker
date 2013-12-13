@@ -60,7 +60,7 @@
 %>
 			<div class="content">
 						<h3 class="subheading">&nbsp;&nbsp;Search User</h3>
-						<ul class="project-list">
+						<ul class="searchUser">
 							<li class="clearfix">
 								<div class="accounts">	
 								 	<form action="admin-searchUser.jsp" method="Get">
@@ -82,40 +82,66 @@
 									<% if((netID != null || name != null) && u != null) {
 								 	%>
 									
-									<table id="usersearch" cellspacing=5 cellpadding=10 width="100%">
-									<tr>
-										<td>
-								 		<table cellspacing=10 cellpadding=10 align=center width="100%">
-								 		<tr><td><h3>Name:</h3></td>
-								 		<td><p class = "read-only" size=35><%= u.getName()%></p></td>
+								 	<table cellspacing=10 cellpadding=10 align=center width="100%">
+								 		<tr>
+								 			<td><h3>Name:</h3></td>
+								 			<td><p class = "read-only" size=35><%= u.getName()%></p></td>
 										</tr>
-										<tr><td><h3>NetID:</h3></td>
+										<tr>
+											<td><h3>NetID:</h3></td>
 									 		<td><p class = "read-only" size=35><%= u.getNetid()%></p></td>
 										</tr>
-									    <tr><td><h3>Role:</h3></td>
-										 <td align="left" rowspan="2">
-										 <form action="update-Role.jsp" method="Get">
-											 	<% if(isStudent){%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student" checked="checked"/>Student &nbsp;&nbsp;
-										 		</li>
-										 		<% } else {%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student"/>Student &nbsp;&nbsp;</li>
-										 		<% }%>
-										 		<% if(isResearcher){ %>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Researcher</li>
-										 		<%} else{ %>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Researcher</li>
-										 		<% }%>
-										 		<% if(isAdmin){ %>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin" checked="checked"/>Administrator</li>
-										 		<%} else{%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin"/>Administrator</li>
-										 		<%} %>
-										 		<p><br><br><input type="submit" value="Update Roles" size=20  style="width: 10em; height:2em"/>
-										</form> 		
-									 	</td>
-									 	
+									    <tr>
+									    	<td>
+									    		<h3>Role:</h3>
+									    		<br>
+									    		<div class="status">
+													<% if(isStudent){
+														session.setAttribute("currentUser", s.getNetID());
+													%>
+											 		<form action="profile.jsp" method="get">
+											 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
+														<input type="submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
+													</form>
+											 		<%} else if(isResearcher){
+											 			session.setAttribute("currentUser", r.getNetID());
+											 			%>
+											 		<form action="researcher-profile.jsp" method="get">
+											 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
+														<input type="submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
+													</form>
+													<%} else if(u!= null && u.isAdmin()){
+											 			session.setAttribute("currentUser", u.getNetid());
+											 			%>
+											 		<form action="admin-searchUser.jsp" method="get">
+											 			<input type="hidden" name="netId" value="<%=u.getNetid() %>">
+														<input type="submit" value="Act as User" size=20  style="width: 10em; height:2em"/>
+													</form>
+													<%}%>
+												</div>
+									    	</td>
+										 	<td align="left" rowspan="2">
+											 	<form action="update-Role.jsp" method="Get">
+												 	<% if(isStudent){%>
+											 			<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student" checked="checked"/>Student &nbsp;&nbsp;
+											 		<% } else {%>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student"/>Student &nbsp;&nbsp;
+											 		<% }%>
+											 		<% if(isResearcher){ %>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Researcher
+											 		<%} else{ %>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Researcher
+											 		<% }%>
+											 		<% if(isAdmin){ %>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin" checked="checked"/>Administrator
+											 		<%} else{%>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin"/>Administrator
+											 		<%} %>
+											 		<p><br><input type="submit" value="Update Roles" size=20  style="width: 10em; height:2em"/>
+												</form> 		
+									 	 </td>
 										</tr>
+									<%-- 	
 										<tr>
 											<td align="center">
 											<div class="status">
@@ -142,17 +168,15 @@
 												</form>
 												<%}%>
 											</div>
-											</td>
-											<td align="center">
+											</td> --%>
+										<!-- 	<td align="center">
 											<div class="status">
 												
 											</div> 
-											</td>
+											</td> -->
 										</tr>
 									</table>
-									</td>
-									</tr>
-									</table>
+
 									<% } else if(searchCompleted){ %>
 									<h3><i>No User found</i></h3>
 									<%} %>
