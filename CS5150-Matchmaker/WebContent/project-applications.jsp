@@ -66,7 +66,12 @@
 		<tr class="<%= cssClasses %>">
 			<td>
 			<%	
+				
 				if (a.getStatus() == ApplicationStatus.Pending) {
+			%>
+				<% if(!ProjectController.meetsRequirements(p, s)) {
+					%><p>Does not meet requirements</p><%
+				}
 			%>
 				<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>&studinvite=false">Accept</a>&nbsp;
 				<a class="actionButton reject" href="reject-student.jsp?id=<%=a.getId()%>">Reject</a>
