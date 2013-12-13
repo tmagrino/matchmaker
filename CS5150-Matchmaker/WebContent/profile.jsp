@@ -81,7 +81,7 @@
                                                                          <%} %>
                                                                 <% } %>
                                                         </select>
-                                                        <% } else{ %>
+                                                        <%	 } else{ %>
                                                         <input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
                                                                 value="<%=s.getAttribute(attr) %>" type="text" />
                                                         <% } %>

@@ -20,9 +20,13 @@ public class FieldValueController{
 	public static FieldValue createFieldValue(EntityManager em, String description, 
 			String type) throws InstantiationException, IllegalAccessException {
 		EntityTransaction tx = em.getTransaction();
+		System.out.println("Creating a field");
+		System.out.println("Searching if "+type+":"+description+" exists");
 		if (getItemByDescription(em, description, type) != null) {
+			System.out.println("IT exists");
 			return null;
 		}
+		System.out.println("Doesn't exist, creating");
 		tx.begin();
 		
 		FieldValue m = (FieldValue) FieldFactory.createField(type, description);
@@ -31,6 +35,7 @@ public class FieldValueController{
 		em.persist(m);
 		em.persist(addition);
 		tx.commit();
+		System.out.println("Created");
 		return m;
 	}
 	/**

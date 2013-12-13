@@ -39,6 +39,7 @@
 		   
 	   }
    }
+   System.out.println("Updating student profile");			
    System.out.println(request.getParameter("as_values_major"));
    if (request.getParameter("as_values_major").length()>0){
 	   StudentController.update(em,s,request.getParameter("as_values_major"),FieldFactory.MAJOR); 
