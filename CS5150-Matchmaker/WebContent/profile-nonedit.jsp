@@ -36,7 +36,7 @@
                                 <% } %>
                                 <% if(request.getParameter("appid") != null && request.getParameter("appid").length() > 0){ %>
 	                                <tr>
-	                                	<td class="attr-label">Student Description:</td>
+	                                	<td class="attr-label">Student Response:</td>
 	                                	<td class="field">
 	                                		<p class="read-only">
 	                                			<%
