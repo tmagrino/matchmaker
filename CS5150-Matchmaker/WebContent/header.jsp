@@ -7,10 +7,10 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet" type="text/css" href="css/jPages.css">
 <link rel="stylesheet" type="text/css" href="css/autoSuggest.css">
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
 <script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
@@ -49,10 +49,6 @@
 		 	}
 		 	
 		 	System.out.println("currentUser : "+currentUser);
-		 	
-		 	
-		 	
-		 	
 		 	
 			if(stud_prof.equals("stud")){ 
 				Student s = StudentController.getStudentByNetID(em,currentUser);
