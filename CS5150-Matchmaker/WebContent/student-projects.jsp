@@ -89,6 +89,7 @@ var interestData = <%=jsonInterest%>;
 </form>
 
 <h1>Search New Projects</h1>
+
 <%
 	if (showHidden) {
 %>
@@ -142,15 +143,21 @@ var interestData = <%=jsonInterest%>;
 	<tr class="<%=cssClasses%>">
 		<td class = "buttonTD">
 			<p>
-				<a id="<%=p.getId()%>" class="actionButton apply"
-					href="#">Apply</a>&nbsp;
-				<%
+				<% 
+					if (!ProjectController.meetsRequirements(p, s)) {
+						%><p>Requirements not met</p><%
+						
+					}
+				%>
+						<a id="<%=p.getId()%>" class="actionButton apply"
+								href="#">Apply</a>&nbsp;
+						<%
 					if (hid && showHidden) {
 				%><a class="actionButton unhide"
 					href="unhideProject.jsp?id=<%=p.getId()%>">Unhide</a>
 				<%
 					}
-				                      	else {
+				    else {
 				%><a class="actionButton hide"
 					href="hideProject.jsp?id=<%=p.getId()%>
                       		<%if (showHidden) {%>&amp;showhidden=yes<%}%>

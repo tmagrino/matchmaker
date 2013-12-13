@@ -19,7 +19,6 @@
 <div class="content">
        
         <div class="photo-info clearfix">
-                <img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
                         <table class="info">
                                 <tr>
                                         <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>

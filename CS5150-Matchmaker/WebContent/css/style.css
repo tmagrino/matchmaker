@@ -124,6 +124,7 @@ img.avatar {
 form[name=profile] {
 	float: right;
 	width: 770px;
+	margin-left: 200px;
 }
 .project-list ul.as-selections li.as-original input[type=text] {
 	width: 153px;
@@ -426,7 +427,7 @@ ul {
 }
 .search-container input[type=submit]{
 	text-indent: -9999px;
-	background: url(../images/search.png) no-repeat;
+	background: url(../images/search.png) no-repeat -4px -4px;
 	width: 33px;
 	height: 33px;
 	border: 0;
@@ -470,8 +471,10 @@ body .ui-dialog .ui-dialog-content{
 	width: 445px;
 	height: 345px;
 }
-input[type="submit"] {
+input[type="submit"].save{
 	width: 115px;
+	margin-left: 30%;
+	margin-bottom: 10px;
 }
 .newUser{
 	background-color: #FFFFFF;

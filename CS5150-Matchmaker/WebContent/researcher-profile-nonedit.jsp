@@ -17,7 +17,6 @@
 <div class="content">
 	<!-- <h1>My Profile</h1> -->
 	<div class="photo-info clearfix">
-		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="#" method="GET">
 			<table class="info">
 				<tr>

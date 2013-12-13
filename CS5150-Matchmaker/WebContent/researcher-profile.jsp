@@ -32,7 +32,6 @@
 	<div id="all-department" class="hidden" title="All Department Suggestions"></div>
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
-		<img class="avatar" src="images/avatar-male.jpg" alt="avatar" />
 		<form name="profile" action="save-researcher-profile-changes.jsp" method="GET">
 			<table class="info">
 				<%if(!(r.getName().equals("New User"))){ %>
@@ -79,7 +78,7 @@
 				</tr>
 				<% } %>
 			</table>
-			<input type="submit" value="Save Changes" />
+			<input class="save" type="submit" value="Save Changes" />
 		</form>
 	</div>
 </div>
