@@ -13,15 +13,13 @@ public class ApplicationController {
 	public static Application createApplication(EntityManager em, Student s, Project p, 
 			String studentResponse) {
 		EntityTransaction tx = em.getTransaction();
-		
-		
+		if (s == null || p == null) {
+			return null;
+		}
 		for (Application a : s.getApplications()) {
 			if (a.getApplicationProject() == p) {
 				return null;
 			}
-		}
-		if (s == null || p == null) {
-			return null;
 		}
 		
 		tx.begin();
@@ -50,6 +48,9 @@ public class ApplicationController {
 	public static void approveApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
+		if (a == null) {
+			return;
+		}
 		
 		a.setStatus(ApplicationStatus.Accepted);
 		
@@ -57,6 +58,9 @@ public class ApplicationController {
 	}
 	public static void inviteApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
+		if (a == null) {
+			return;
+		}
 		tx.begin();
 		
 		a.setStatus(ApplicationStatus.Invited);
@@ -65,6 +69,9 @@ public class ApplicationController {
 	}
 	public static void acceptInvitation(EntityManager em, Application a, String response){
 		EntityTransaction tx = em.getTransaction();
+		if (a == null) {
+			return;
+		}
 		tx.begin();
 		
 		a.setStatus(ApplicationStatus.Pending);
@@ -75,6 +82,9 @@ public class ApplicationController {
 	
 	public static void declineApplication(EntityManager em, Application a) {
 		EntityTransaction tx = em.getTransaction();
+		if (a == null) {
+			return;
+		}
 		tx.begin();
 		
 		a.setStatus(ApplicationStatus.Declined);
@@ -84,6 +94,9 @@ public class ApplicationController {
 	
 	public static void editStudentResponse(EntityManager em, Application a, String response) {
 		EntityTransaction tx = em.getTransaction();
+		if (a == null) {
+			return;
+		}
 		tx.begin();
 		
 		a.setStudentResponse(response);
@@ -121,6 +134,9 @@ public class ApplicationController {
 	
 	public static Application getApplication(EntityManager em, Student s, Project p){
 		List<Application> allApps = s.getApplications();
+		if (s == null || p == null) {
+			return null;
+		}
 		for (Application a : allApps){
 			if(a.getStudentApplicant() == null || a.getApplicationProject() == null)
 				return null;

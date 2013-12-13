@@ -81,6 +81,9 @@ public class FieldValueController{
 	public static void renameFieldValue(EntityManager em, FieldValue item, 
 			String newDescription) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.setDescription(newDescription);
@@ -93,6 +96,9 @@ public class FieldValueController{
 	 */
 	public static void addStudent(EntityManager em, FieldValue item, Student s) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null || s == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.addStudent(s);
@@ -104,6 +110,9 @@ public class FieldValueController{
 	 */
 	public static void removeStudent(EntityManager em, FieldValue item, Student s) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null || s == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.removeStudent(s);
@@ -116,6 +125,9 @@ public class FieldValueController{
 	 */
 	public static void addResearcher(EntityManager em, FieldValue item, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null || r == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.addResearcher(r);
@@ -129,6 +141,9 @@ public class FieldValueController{
 	public static void removeResearcher(EntityManager em, 
 			FieldValue item, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null || r == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.removeResearcher(r);
@@ -141,6 +156,9 @@ public class FieldValueController{
 	 */
 	public static void addProject(EntityManager em, FieldValue item, Project p) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null || p == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.addProject(p);
@@ -153,6 +171,9 @@ public class FieldValueController{
 	 */
 	public static void removeProject(EntityManager em, FieldValue item, Project p) {
 		EntityTransaction tx = em.getTransaction();
+		if (item == null || p == null) {
+			return;
+		}
 		tx.begin();
 		
 		item.removeProject(p);
@@ -302,10 +323,15 @@ public class FieldValueController{
 	}
 	
 	public static List<Student> getStudents(FieldValue field){
+		if (field == null) {
+			return null;
+		}
 		return field.getStudents();
 	}
-	public static List<Researcher> getResearchers(FieldValue field){
+	public static List<Researcher> getResearchers(FieldValue field) {
+		if (field == null) {
+			return null;
+		}
 		return field.getResearchers();
 	}
-
 }
