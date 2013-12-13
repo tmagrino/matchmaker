@@ -16,7 +16,7 @@
 <script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
 <script src="js/jquery.autoSuggest.js" type="text/javascript"></script>
 
-<title>Insert title here</title>
+<title>Matchmaker for Student Research</title>
 </head>
 <body>
 
