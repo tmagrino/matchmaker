@@ -33,19 +33,19 @@
  	
  	if(!isStudent && request.getParameter("studentRole") != null){
 		Student student = StudentController.createStudent(em, u.getName(), u.getNetid(), 0.0, u.getEmail(),  null, null, null, null, null, null, null, null, u);
-		%> New Student role has been added!!<%
+		%><h3>New Student role has been added!!</h3></p><%
  	} %>
  	<%
  	if(!isResearcher && request.getParameter("researcherRole") != null){ 
 	 	List<Interest> area = null;
    	 	Researcher researcher = ResearcherController.createResearcher(em, u.getName(), u.getNetid(), u.getEmail(), null, "", area, u);
-   	 %> New Researcher role has been added!!<%
+   	 %><h3>New Researcher role has been added!!</h3><%
  		
  	}%>
  	<% 
  	if(!isAdmin && request.getParameter("adminRole") != null){
  		UserController.setAdmin(em, u, true);
- 		%> New Administrator has been added!!<% 
+ 		%><h3>New Administrator has been added!!</h3><% 
  	}
  	%>
 </body>

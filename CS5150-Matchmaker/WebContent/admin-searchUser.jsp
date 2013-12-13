@@ -96,7 +96,7 @@
 									 		<td><p class = "read-only" size=35><%= u.getNetid()%></p></td>
 										</tr>
 									    <tr><td><h3>Role:</h3></td>
-										 <td align="left">
+										 <td align="left" rowspan="2">
 										 <form action="update-Role.jsp" method="Get">
 											 	<% if(isStudent){%>
 										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student" checked="checked"/>Student &nbsp;&nbsp;
@@ -114,7 +114,7 @@
 										 		<%} else{%>
 										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin"/>Administrator</li>
 										 		<%} %>
-										 		<input type="submit" value="Update Roles"/>
+										 		<p><br><br><input type="submit" value="Update Roles" size=20  style="width: 10em; height:2em"/>
 										</form> 		
 									 	</td>
 									 	
