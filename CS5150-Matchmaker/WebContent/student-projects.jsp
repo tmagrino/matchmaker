@@ -72,7 +72,7 @@ var interestData = <%=jsonInterest%>;
 			}
 		%>
 		</td>
-		<td title = "<%=p.getURL()%>"><a href="//http://<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getURL()%>"><a href="<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%=FieldFactory.shortenString(p.getDescription())%></td>
 		<%
 			}
