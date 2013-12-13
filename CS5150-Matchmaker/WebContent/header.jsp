@@ -47,17 +47,7 @@
 		 		currentUser = (String) session.getAttribute("adminUser");
 		 		stud_prof = "admin";
 		 	}
-		 	
-<<<<<<< HEAD
-		 	System.out.println("currentUser : "+currentUser);
-=======
 		 	//System.out.println("currentUser : "+currentUser);
-		 	
-		 	
-		 	
-		 	
->>>>>>> branch 'master' of https://github.com/jkahuja/CS5150-Matchmaker.git
-		 	
 			if(stud_prof.equals("stud")){ 
 				Student s = StudentController.getStudentByNetID(em,currentUser);
 				if(s != null){%>

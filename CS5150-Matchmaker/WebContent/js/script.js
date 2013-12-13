@@ -226,6 +226,14 @@ function initInvite()
 	});
 }
 
+function initSelectRole(){
+	var account_name = $("span.account-name");
+	if(account_name.length == 0){ return;}
+	$(account_name).click(function(){
+		$("input[type=radio]", $(this).prev()).prop('checked', true);
+	});
+}
+
 $(document).ready(function(){
 	initAutosuggest();
 	initViewSuggestion();
@@ -238,4 +246,5 @@ $(document).ready(function(){
 	hideProject();
 	initFilterType();
 	initInvite();
+	initSelectRole();
 });
