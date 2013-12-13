@@ -11,9 +11,6 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	
-	
-	
 	String netID = request.getParameter("netID");
 	String name = request.getParameter("name");
 	
@@ -85,10 +82,10 @@
 									<% if((netID != null || name != null) && u != null) {
 								 	%>
 									
-									<table id="usersearch" cellspacing=5 cellpadding=10 border=0>
+									<table id="usersearch" cellspacing=5 cellpadding=10 width="100%">
 									<tr>
 										<td>
-								 		<table cellspacing=10 cellpadding=10 align=center border=0>
+								 		<table cellspacing=10 cellpadding=10 align=center width="100%">
 								 		<tr><td><h3>Name:</h3></td>
 								 		<td><p class = "read-only" size=35><%= u.getName()%></p></td>
 										</tr>
@@ -96,26 +93,31 @@
 									 		<td><p class = "read-only" size=35><%= u.getNetid()%></p></td>
 										</tr>
 									    <tr><td><h3>Role:</h3></td>
-										 <td align="left">
+										 <td align="left" rowspan="2">
+										 <form action="update-Role.jsp" method="Get">
 											 	<% if(isStudent){%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Student" checked="checked" colspan = ""/>Student &nbsp;&nbsp;</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student" checked="checked"/>Student &nbsp;&nbsp;
+										 		</li>
 										 		<% } else {%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Student"/>Student &nbsp;&nbsp;</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student"/>Student &nbsp;&nbsp;</li>
 										 		<% }%>
 										 		<% if(isResearcher){ %>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Researcher" checked="checked"/>Researcher</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Researcher</li>
 										 		<%} else{ %>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Researcher"/>Researcher</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Researcher</li>
 										 		<% }%>
 										 		<% if(isAdmin){ %>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Admin" checked="checked"/>Administrator</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin" checked="checked"/>Administrator</li>
 										 		<%} else{%>
-										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="role" value="Admin"/>Administrator</li>
+										 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin"/>Administrator</li>
 										 		<%} %>
+										 		<p><br><br><input type="submit" value="Update Roles" size=20  style="width: 10em; height:2em"/>
+										</form> 		
 									 	</td>
+									 	
 										</tr>
 										<tr>
-											<td colspan=2 align="center">
+											<td align="center">
 											<div class="status">
 												<% if(isStudent){
 													session.setAttribute("currentUser", s.getNetID());
@@ -141,13 +143,10 @@
 												<%}%>
 											</div>
 											</td>
-											<td>
-											<!-- <div class="status">
-												<form action="admin-update-role.jsp" method="Get">
-													<input type="hidden" name="hiddenNetID" value="<%=netID%>">
-													<input type="Submit" value="Update User Roles" size=20  style="width: 10em; height:2em"/>
-												</form>
-											</div> -->
+											<td align="center">
+											<div class="status">
+												
+											</div> 
 											</td>
 										</tr>
 									</table>
