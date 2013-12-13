@@ -279,6 +279,22 @@ public class ServletPopulateDB implements ServletContextListener {
 				System.out.println("Error:  "+e);
 			}
 		}
+		// Admins
+		try {
+
+			File myfile = new File(context.getRealPath("/AdminsList"));
+			in = new Scanner(new FileReader(myfile));
+			while (in.hasNextLine()) {
+				String netid = in.nextLine();
+				User u = UserController.findUser(em, netid);
+				if (u != null) {
+					UserController.setAdmin(em, u, true);
+				}
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Error: "+e);
+		}
 		em.close();
 		emf.close();
 	}

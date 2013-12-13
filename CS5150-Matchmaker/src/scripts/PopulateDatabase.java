@@ -217,7 +217,6 @@ public class PopulateDatabase {
 				System.out.println("Error:  "+e);
 			}
 		}
-		
 		// Projects
 		//String name, String description,
 		//String url, Researcher researcher, List<Interest> area, List<Skill> skills
@@ -258,6 +257,21 @@ public class PopulateDatabase {
 			catch (Exception e) {
 				System.out.println("Error:  "+e);
 			}
+		}
+		//Admins
+		try {
+			File myfile = new File("AdminsList");
+			in = new Scanner(new FileReader(myfile));
+			while (in.hasNextLine()) {
+				String netid = in.nextLine();
+				User u = UserController.findUser(em, netid);
+				if (u != null) {
+					UserController.setAdmin(em, u, true);
+				}
+			}
+		}
+		catch (Exception e) {
+			System.out.println("Error: "+e);
 		}
 		em.close();
 		emf.close();

@@ -89,6 +89,11 @@ var interestData = <%=jsonInterest%>;
 </form>
 
 <h1>Search New Projects</h1>
+<form action="student-projects.jsp">
+	<input type="checkbox" onclick="handleclick(this);" name="option1" value="Hidden Projects"
+		<% if (showHidden) {%>checked<%}%>/>Show hidden projects<br>
+	<input type="checkbox" name="option2" value="Eligible Projects"/>Show eligible projects<br>
+</form>
 <%
 	if (showHidden) {
 %>
@@ -142,15 +147,25 @@ var interestData = <%=jsonInterest%>;
 	<tr class="<%=cssClasses%>">
 		<td class = "buttonTD">
 			<p>
-				<a id="<%=p.getId()%>" class="actionButton apply"
-					href="#">Apply</a>&nbsp;
+				<% 
+					if (ProjectController.meetsRequirements(p, s)) {
+						%>
+						<a id="<%=p.getId()%>" class="actionButton apply"
+								href="#">Apply</a>&nbsp;
+						<%
+					}
+					else {
+						%><p>Requirements not met</p><%
+					}
+				%>
+				
 				<%
 					if (hid && showHidden) {
 				%><a class="actionButton unhide"
 					href="unhideProject.jsp?id=<%=p.getId()%>">Unhide</a>
 				<%
 					}
-				                      	else {
+				    else {
 				%><a class="actionButton hide"
 					href="hideProject.jsp?id=<%=p.getId()%>
                       		<%if (showHidden) {%>&amp;showhidden=yes<%}%>
