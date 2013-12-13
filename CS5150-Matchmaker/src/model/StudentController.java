@@ -20,6 +20,9 @@ public class StudentController {
 			List<Experience> priorExperience, List<Interest> interests,
 			List<Course> transcript, User user) {
 		EntityTransaction tx = em.getTransaction();
+		if (user == null) {
+			return null;
+		}
 		tx.begin();
 		
 		Student s = new Student(name, netID, gpa, email, year, colleges, majors,
@@ -87,6 +90,9 @@ public class StudentController {
 	
 	public static void editName(EntityManager em, Student s, String name) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.setName(name);
@@ -96,6 +102,9 @@ public class StudentController {
 	
 	public static void editEmail(EntityManager em, Student s, String email) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.setEmail(email);
@@ -105,15 +114,26 @@ public class StudentController {
 	
 	public static void editGPA(EntityManager em, Student s, double gpa) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null) {
+			return;
+		}
 		tx.begin();
 		
-		s.setGpa(gpa);
+		if (gpa < 0) {
+			s.setGpa(0);
+		}
+		else {
+			s.setGpa(gpa);
+		}
 		
 		tx.commit();
 	}
 	
 	public static void editYear(EntityManager em, Student s, Year year) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.setYear(year);
@@ -123,6 +143,9 @@ public class StudentController {
 	
 	public static void addCollege(EntityManager em, Student s, College c) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.addCollege(c);
@@ -132,6 +155,9 @@ public class StudentController {
 	
 	public static void removeCollege(EntityManager em, Student s, College c) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || c == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeCollege(c);
@@ -141,6 +167,9 @@ public class StudentController {
 	
 	public static void addMajor(EntityManager em, Student s, Major m) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || m == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.addMajor(m);
@@ -150,6 +179,9 @@ public class StudentController {
 	
 	public static void removeMajor(EntityManager em, Student s, Major m) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || m == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeMajor(m);
@@ -158,6 +190,9 @@ public class StudentController {
 	}
 	public static void update(EntityManager em, Student s, String ids, String type) 
 			throws InstantiationException, IllegalAccessException {
+		if (s == null) {
+			return;
+		}
 		String[] idList =ids.split(",");
 		s.remove(type);
 		for (String id : idList)
@@ -173,9 +208,7 @@ public class StudentController {
 	}
 	
 	private static void add(EntityManager em, Student s, FieldValue item) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		if (item == null) {
+		if (item == null || s == null) {
 			return;
 		}
 		
@@ -194,12 +227,13 @@ public class StudentController {
 		if (item instanceof Interest){
 			s.addInterest((Interest) item );
 		}
-		tx.commit();
-		
 	}
 
 	public static void addMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || m == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.addMinor(m);
@@ -208,6 +242,9 @@ public class StudentController {
 	}
 	public static void removeMinor(EntityManager em, Student s, Minor m) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || m == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeMinor(m);
@@ -217,6 +254,9 @@ public class StudentController {
 
 	public static void addSkill(EntityManager em, Student s, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || sk == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.addSkill(sk);
@@ -226,6 +266,9 @@ public class StudentController {
 	
 	public static void removeSkill(EntityManager em, Student s, Skill sk) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || sk == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeSkill(sk);
@@ -235,6 +278,9 @@ public class StudentController {
 	
 	public static void addInterest(EntityManager em, Student s, Interest i) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || i == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.addInterest(i);
@@ -244,6 +290,9 @@ public class StudentController {
 	
 	public static void removeInterest(EntityManager em, Student s, Interest i) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || i == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeInterest(i);
@@ -254,6 +303,9 @@ public class StudentController {
 	public static Experience createExperience(EntityManager em, Student s, Date startDate, Date endDate, String jobTitle, String location,
 			String description) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || startDate == null) {
+			return null;
+		}
 		tx.begin();
 		
 		Experience exp = new Experience(startDate, endDate, jobTitle, location,
@@ -266,6 +318,9 @@ public class StudentController {
 	
 	public void removeExperience(EntityManager em, Student s, Experience e) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || e == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeExperience(e);
@@ -273,8 +328,12 @@ public class StudentController {
 		tx.commit();
 	}
 	
-	public static void editExperienceStartDate(EntityManager em, Experience e, Date startDate) {
+	public static void editExperienceStartDate(EntityManager em, Experience e, 
+			Date startDate) {
 		EntityTransaction tx = em.getTransaction();
+		if (e == null || startDate == null) {
+			return;
+		}
 		tx.begin();
 		
 		e.setStartDate(startDate);
@@ -284,6 +343,9 @@ public class StudentController {
 	
 	public static void editExperienceEndDate(EntityManager em, Experience e, Date endDate) {
 		EntityTransaction tx = em.getTransaction();
+		if (e == null || endDate == null) {
+			return;
+		}
 		tx.begin();
 		
 		e.setStartDate(endDate);
@@ -293,6 +355,9 @@ public class StudentController {
 	
 	public static void editExperienceJobTitle(EntityManager em, Experience e, String jobTitle) {
 		EntityTransaction tx = em.getTransaction();
+		if (e == null) {
+			return;
+		}
 		tx.begin();
 		
 		e.setJobTitle(jobTitle);
@@ -302,6 +367,9 @@ public class StudentController {
 	
 	public static void editExperienceLocation(EntityManager em, Experience e, String location) {
 		EntityTransaction tx = em.getTransaction();
+		if (e == null) {
+			return;
+		}
 		tx.begin();
 		
 		e.setLocation(location);
@@ -311,6 +379,9 @@ public class StudentController {
 	
 	public static void editExperienceDescription(EntityManager em, Experience e, String description) {
 		EntityTransaction tx = em.getTransaction();
+		if (e == null) {
+			return;
+		}
 		tx.begin();
 		
 		e.setDescription(description);
@@ -320,6 +391,9 @@ public class StudentController {
 	
 	public static void editCourseNum(EntityManager em, Course c, String coursenum) {
 		EntityTransaction tx = em.getTransaction();
+		if (c == null) {
+			return;
+		}
 		tx.begin();
 		
 		c.setCoursenum(coursenum);
@@ -329,6 +403,9 @@ public class StudentController {
 	
 	public static void editCourseTitle(EntityManager em, Course c, String title) {
 		EntityTransaction tx = em.getTransaction();
+		if (c == null) {
+			return;
+		}
 		tx.begin();
 		
 		c.setTitle(title);
@@ -338,6 +415,9 @@ public class StudentController {
 	
 	public static void editCourseGrade(EntityManager em, Course c, String grade) {
 		EntityTransaction tx = em.getTransaction();
+		if (c == null) {
+			return;
+		}
 		tx.begin();
 		
 		c.setGrade(grade);
@@ -347,6 +427,9 @@ public class StudentController {
 	
 	public static void editCourseSemester(EntityManager em, Course c, String semester) {
 		EntityTransaction tx = em.getTransaction();
+		if (c == null) {
+			return;
+		}
 		tx.begin();
 		
 		c.setSemester(semester);
@@ -356,6 +439,9 @@ public class StudentController {
 	
 	public static void addApplication(EntityManager em, Student s, Application a) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || a == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.addApplication(a);
@@ -365,6 +451,9 @@ public class StudentController {
 	
 	public static void removeApplication(EntityManager em, Student s, Application a) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || a == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.removeApplication(a);
@@ -374,6 +463,9 @@ public class StudentController {
 	
 	public static void addHiddenProject(EntityManager em, Student s, Project p) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || p == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.getSettings().addProject(p);
@@ -383,6 +475,9 @@ public class StudentController {
 	
 	public static void removeHiddenProject(EntityManager em, Student s, Project p) {
 		EntityTransaction tx = em.getTransaction();
+		if (s == null || p == null) {
+			return;
+		}
 		tx.begin();
 		
 		s.getSettings().removeProject(p);
@@ -391,7 +486,9 @@ public class StudentController {
 	}
 	
 	public static List<Long> getStudentProjects(EntityManager em, Student s){
-		
+		if (s == null) {
+			return null;
+		}
 		try {
 			
 			String query = "select a.applicationProject from APPLICATION A where a.studentApplicant = " 

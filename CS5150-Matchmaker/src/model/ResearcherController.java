@@ -14,6 +14,10 @@ public class ResearcherController {
 			String netID,String email, List<Department> departments,
 			String webpage, List<Interest> researchArea, User user) {
         EntityTransaction tx = em.getTransaction();
+        if (user == null) {
+        	return null;
+        }
+        
 		tx.begin();
         
         Researcher r = new Researcher(name, netID, email, departments,
@@ -32,6 +36,9 @@ public class ResearcherController {
 			String netID,String email, List<Department> departments,
 			String webpage, Interest researchArea, User user) {
         EntityTransaction tx = em.getTransaction();
+        if (user == null) {
+        	return null;
+        }
         List<Interest> areas = new ArrayList<Interest>();
         areas.add(researchArea);
 		tx.begin();
@@ -71,6 +78,9 @@ public class ResearcherController {
 	
 	public static void addHiddenStudent(EntityManager em, Researcher r, Student s) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null || s == null) {
+			return;
+		}
 		tx.begin();
 		
 		r.getSettings().addStudent(s);
@@ -80,6 +90,9 @@ public class ResearcherController {
 	
 	public static void removeHiddenStudent(EntityManager em, Researcher r, Student s) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null || s == null) {
+			
+		}
 		tx.begin();
 		
 		r.getSettings().removeStudent(s);
@@ -126,7 +139,9 @@ public class ResearcherController {
 	}
 	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
 			String department, List<Interest> researchArea, String webpage) {
-		
+		if (researcher == null) {
+			return;
+		}
 		researcher.setName(name);
 		researcher.setNetID(netID);
 		researcher.setEmail(email);
@@ -145,6 +160,9 @@ public class ResearcherController {
 	
 	public static void addProject(EntityManager em,Researcher r, Project p) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null || p == null) {
+			return;
+		}
 		tx.begin();
 		
 		r.addProject(p);
@@ -154,6 +172,9 @@ public class ResearcherController {
 	
 	public static void editName(EntityManager em, Researcher r, String name) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null) {
+			return;
+		}
 		tx.begin();
 		
 		r.setName(name);
@@ -162,6 +183,9 @@ public class ResearcherController {
 	}
 	public static void editEmail(EntityManager em, Researcher r, String email) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null) {
+			return;
+		}
 		tx.begin();
 		
 		r.setEmail(email);
@@ -170,6 +194,9 @@ public class ResearcherController {
 	}
 	public static void editWebpage(EntityManager em, Researcher r, String webpage) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null) {
+			return;
+		}
 		tx.begin();
 		
 		r.setWebpage(webpage);
@@ -177,6 +204,9 @@ public class ResearcherController {
 		tx.commit();
 	}
 	public static void editDepartments(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
+		if (r == null) {
+			return;
+		}
 		r.removeDepartments();
 		String[] idList = ids.split(",");
 
@@ -194,14 +224,19 @@ public class ResearcherController {
 		
 		
 	}
-	private static void addDepartment(EntityManager em, Researcher r, Department dep){
+	private static void addDepartment(EntityManager em, Researcher r, Department dep) {
 		EntityTransaction tx = em.getTransaction();
+		if (r == null) {
+			return;
+		}
 		tx.begin();
 		r.addDepartment(dep);
 		tx.commit();
 	}
 		public static void editArea(EntityManager em, Researcher r, String ids) throws InstantiationException, IllegalAccessException {
-			
+			if (r == null) {
+				return;
+			}
 			r.removeResearchAreas();
 			String[] idList = ids.split(",");
 			
@@ -221,6 +256,9 @@ public class ResearcherController {
 		}
 		private static void addArea(EntityManager em, Researcher r, Interest a){
 			EntityTransaction tx = em.getTransaction();
+			if (r == null || a == null) {
+				return;
+			}
 			tx.begin();
 			r.addResearchArea(a);
 			tx.commit();

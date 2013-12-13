@@ -61,6 +61,9 @@ public class ProjectController {
 	
 	public static void deleteProject(EntityManager em, Project p) {
 		EntityTransaction tx = em.getTransaction();
+		if (p == null) {
+			return;
+		}
 		tx.begin();
 		
 		p.removeApplications();
@@ -77,6 +80,9 @@ public class ProjectController {
 	public static Project updateProject(EntityManager em ,Project p, String name, String description,
 			String url, List<Researcher> researcher, List<Interest> area, List<Skill> skills){
 		EntityTransaction tx = em.getTransaction();
+		if (p == null) {
+			return null;
+		}
 		tx.begin();
 
 		p.updateProject(name,description,url,researcher,area,skills);
@@ -89,6 +95,9 @@ public class ProjectController {
 	public static Project updateProject(EntityManager em ,Project p, String name, String description,
 			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
 		EntityTransaction tx = em.getTransaction();
+		if (p == null || researcher == null) {
+			return null;
+		}
 		tx.begin();
 
 		p.updateProject(name,description,url,researcher,area,skills);
@@ -102,6 +111,9 @@ public class ProjectController {
 	
 	public static void editName(EntityManager em, Project p, String name) {
 		EntityTransaction tx = em.getTransaction();
+		if (p == null) {
+			return;
+		}
 		tx.begin();
 		
 		p.setName(name);
@@ -111,6 +123,9 @@ public class ProjectController {
 	
 	public static void editDescription(EntityManager em, Project p, String desc) {
 		EntityTransaction tx = em.getTransaction();
+		if (p == null) {
+			return;
+		}
 		tx.begin();
 		
 		p.setDescription(desc);
@@ -120,6 +135,9 @@ public class ProjectController {
 	
 	public static void editURL(EntityManager em, Project p, String url) {
 		EntityTransaction tx = em.getTransaction();
+		if (p == null) {
+			return;
+		}
 		tx.begin();
 		
 		p.setURL(url);
@@ -128,11 +146,17 @@ public class ProjectController {
 	}
 	
 	public static void removeApplication(EntityManager em, Project p, Application a) {
+		if (p == null || a == null) {
+			return;
+		}
 		ApplicationController.deleteApplication(em, a);
 	}
 	
 	public static void addResearcher(EntityManager em, Project p, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
+		if (p == null || r == null) {
+			return;
+		}
 		tx.begin();
 		
 		p.addResearcher(r);
@@ -142,6 +166,9 @@ public class ProjectController {
 	
 	public static void removeResearcher(EntityManager em, Project p, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
+		if (p == null || r == null) {
+			return;
+		}
 		tx.begin();
 		
 		p.removeResearcher(r);
@@ -150,6 +177,9 @@ public class ProjectController {
 	}
 	
 	public static boolean meetsRequirements(Project p, Student s) {
+		if (s == null) {
+			return false;
+		}
 		List<Skill> skills = p.getRequiredSkills();
 		for (Skill skl : skills) {
 			if (!s.getSkills().contains(skl)) {
@@ -188,7 +218,9 @@ public class ProjectController {
 	public static void removeDeclinedApplications(EntityManager em,
 			Project p) {
 		EntityTransaction tx = em.getTransaction();
-		
+		if (p == null) {
+			return;
+		}
 		tx.begin();
 		List<Application> declined = new LinkedList<Application>();
 		for (Application a : p.getApplications()) {
@@ -204,6 +236,9 @@ public class ProjectController {
 		tx.commit();
 	}
 	public static String getAttribute(Project p, String type) {
+		if (p == null) {
+			return null;
+		}
 		switch (type) {
 			case TITLE:
 				return p.getName();

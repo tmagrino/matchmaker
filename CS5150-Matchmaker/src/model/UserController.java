@@ -43,6 +43,9 @@ public class UserController {
 	
 	public static void setName(EntityManager em, User u, String name) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null) {
+	    	return;
+	    }
 	    tx.begin();
 		u.setName(name);
 		tx.commit();
@@ -50,6 +53,9 @@ public class UserController {
 	
 	public static void setEmail(EntityManager em, User u, String email) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null) {
+	    	return;
+	    }
 	    tx.begin();
 		u.setEmail(email);
 		tx.commit();
@@ -57,6 +63,9 @@ public class UserController {
 	
 	public static void setAdmin(EntityManager em, User u, boolean makeAdmin) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null) {
+	    	return;
+	    }
 	    tx.begin();
 		u.setAdmin(makeAdmin);
 		tx.commit();
@@ -64,6 +73,9 @@ public class UserController {
 	
 	public static void setStudent(EntityManager em, User u, Student stud) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null || stud == null) {
+	    	return;
+	    }
 	    tx.begin();
 		u.setStudent(stud);
 		tx.commit();
@@ -71,6 +83,9 @@ public class UserController {
 	
 	public static void setResearcher(EntityManager em, User u, Researcher r) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null || r == null) {
+	    	return;
+	    }
 	    tx.begin();
 		u.setResearcher(r);
 		tx.commit();
@@ -78,6 +93,9 @@ public class UserController {
 	
 	public static void removeStudent(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null) {
+	    	return;
+	    }
 	    tx.begin();
 		Student s = u.setStudent(null);
 		em.remove(s);
@@ -86,6 +104,9 @@ public class UserController {
 	
 	public static void removeResearcher(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
+	    if (u == null) {
+	    	return;
+	    }
 	    tx.begin();
 		Researcher r = u.setResearcher(null);
 		em.remove(r);

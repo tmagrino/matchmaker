@@ -138,10 +138,9 @@ function hideProject()
 
 function sortTable()
 {
-	var proj_list = $(".project-list");
+	var proj_list = $(".project-list, .additions_table");
 	if(proj_list.length == 0){ return;}
-	proj_list.tablesorter()
-	.tablesorterPager({container: $("#pager"), positionFixed: false});
+	proj_list.tablesorter().tablesorterPager({container: $("#pager"), positionFixed: true});
 }
 
 function initTabLinks(){
@@ -175,17 +174,28 @@ function initFilterType()
 {
 	var searchbox = $("form#filter-list .search-text");
 	if(searchbox.length == 0){return;}
+	var selector = null;
+	var no_results = null;
 	$("form#filter-list").submit(function(){
 		return false;
 	});
-	$(searchbox).keyup(function(){ 
+	$(searchbox).keyup(function(){
+		if($(".project-list tbody tr").length > 0){
+			selector = ".project-list tbody tr";
+			no_results = ".project-list";
+		}
+		if($(".additions_table tbody tr").length > 0){
+			selector = ".additions_table tbody tr";
+			no_results = ".additions_table";
+		}
+		if(selector == null){ return; }
 		var searchVals = new Array();
 		var searchInput = $(this).val().trim().toLowerCase();
 		if(!searchInput){
-			$(".project-list tbody tr").not(".hidden").show();
+			$(selector).not(".hidden").show();
 		}
 		else{
-			$(".project-list tbody tr").hide();
+			$(selector).hide();
 			var quotedInputArr = searchInput.match(/"(.*?)"/);
 			if(quotedInputArr){
 				$.each(quotedInputArr, function(idx, quotedInput){
@@ -199,12 +209,11 @@ function initFilterType()
 				$.each(searchSplit, function(idx, val){
 					searchVals.push(val);
 				});
-			var selector = ".project-list tbody tr";
 			if(searchVals.length > 0)
 				$.each(searchVals, function(idx, val){
 					selector += "[class*="+val+"]";
 				});
-			$(selector+", .project-list tr.no-results").not(".hidden").show();
+			$(selector+", " + no_results + " tr.no-results").not(".hidden").show();
 		}
 	});
 }
