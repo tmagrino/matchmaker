@@ -65,8 +65,7 @@
 						<h3 class="subheading">&nbsp;&nbsp;Search User</h3>
 						<ul class="project-list">
 							<li class="clearfix">
-								<div class="accounts">
-								 	
+								<div class="accounts">	
 								 	<form action="admin-searchUser.jsp" method="Get">
 								 	<font size ="4"><b>Search By Net ID : </b></font>
 								 	<%if(netID != null) {%>
