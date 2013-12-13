@@ -29,10 +29,15 @@
 	   
 	   StudentController.editYear(em, s, YearController.getYear(request.getParameter("year")));
    }
-   if (request.getParameter("gpa").length()>0){
-	   double gpa = Double.parseDouble(request.getParameter("gpa").replace(",","."));
-	   if (gpa <= 4.3 && gpa != s.getGpa())
-	   StudentController.editGPA(em, s, gpa);
+   if (request.getParameter("gpa").length()>0) {
+	   try {
+	   	double gpa = Double.parseDouble(request.getParameter("gpa").replace(",","."));
+	   	if (gpa <= 4.3 && gpa != s.getGpa())
+	 	   StudentController.editGPA(em, s, gpa);
+	   }
+	   catch (Exception e) {
+		   
+	   }
    }
    System.out.println(request.getParameter("as_values_major"));
    if (request.getParameter("as_values_major").length()>0){
