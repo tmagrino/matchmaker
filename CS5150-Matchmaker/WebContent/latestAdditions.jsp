@@ -104,7 +104,7 @@ Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 	                    + add.getName().replaceAll(" ", "_").toLowerCase();
 				%>
 					<tr class="<%=cssClasses %>">
-						<td> 
+						<td class="admin-button"> 
 							<a class="actionButton remove" href="remove-item.jsp?type=
 								<%= add.getType() %>&desc=<%= add.getName() %>
 								<% 

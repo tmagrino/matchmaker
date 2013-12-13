@@ -222,23 +222,33 @@ form .info textarea {
 }
 
 /* -- Results table styles -- */
-.project-list {
+.project-list,
+.additions_table {
 	border-collapse: collapse;
 	border: 1px solid #ddd;
 	/* margin: 0px;
 	padding: 0; */
 }
 
-.project-list td,.project-list th {
+.project-list td,
+.project-list th,
+.additions_table td,
+.additions_table th {
 	text-align: center;
 	width: 180px;
 	border-bottom: 1px solid #ddd;
 	border-right: 1px solid #ddd;
 }
 
-.project-list th {
+.project-list th,
+.additions_table th {
 	font-weight: bold;
 	font-style: italic;
+}
+
+.content .additions_table td,
+.content .additions_table th{
+	width: 323px;
 }
 
 #pager {
@@ -484,6 +494,10 @@ input[type="submit"].save{
 
 td.buttonTD{
 	width: 220px;
+}
+.content .additions_table td.admin-button,
+.content .additions_table th.empty{
+	width: 100px;
 }
 
 #top-bar .login-nav .change-role {
