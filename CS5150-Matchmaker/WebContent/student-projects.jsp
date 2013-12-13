@@ -89,11 +89,7 @@ var interestData = <%=jsonInterest%>;
 </form>
 
 <h1>Search New Projects</h1>
-<form action="student-projects.jsp">
-	<input type="checkbox" onclick="handleclick(this);" name="option1" value="Hidden Projects"
-		<% if (showHidden) {%>checked<%}%>/>Show hidden projects<br>
-	<input type="checkbox" name="option2" value="Eligible Projects"/>Show eligible projects<br>
-</form>
+
 <%
 	if (showHidden) {
 %>
