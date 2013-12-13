@@ -162,7 +162,7 @@ public class StudentController {
 		s.remove(type);
 		for (String id : idList)
 			if (id.length()>0){
-				try{
+				try {
 					StudentController.add(em, s, FieldValueController.getFieldValueById(em,Long.parseLong(id),type));
 				}
 				catch(NumberFormatException e){
@@ -175,6 +175,9 @@ public class StudentController {
 	private static void add(EntityManager em, Student s, FieldValue item) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
+		if (item == null) {
+			return;
+		}
 		
 		if(item instanceof Major){
 			s.addMajor((Major) item);
