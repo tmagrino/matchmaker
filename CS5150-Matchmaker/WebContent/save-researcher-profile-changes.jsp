@@ -23,14 +23,15 @@
    }
    if (request.getParameter("url").length()>0 && 
 		   r.getWebpage() != request.getParameter("url")){
-	   
 	   ResearcherController.editWebpage(em, r, request.getParameter("url"));
    }
 
+   System.out.println("Research areas");
    System.out.println(request.getParameter("as_values_research_area"));
+   System.out.println("Departments");
    System.out.println(request.getParameter("as_values_department"));
    if (request.getParameter("as_values_research_area").length()>0){
-	   ResearcherController.editArea(em, r, request.getParameter("as_values_research_area")); 
+	   ResearcherController.editArea(em, r, request.getParameter("as_values_research_area")	); 
    }
    if (request.getParameter("as_values_department").length()>0){
 	   ResearcherController.editDepartments(em, r,request.getParameter("as_values_department")); 

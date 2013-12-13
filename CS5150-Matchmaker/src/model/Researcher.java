@@ -271,6 +271,7 @@ public class Researcher implements Serializable {
 		for (Department d : departments) {
 			d.getResearchers().remove(this);
 		}
+		departments = new ArrayList<Department>();
 	}
 	
 	public static long getSerialversionuid() {

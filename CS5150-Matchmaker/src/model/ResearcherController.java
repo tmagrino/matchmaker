@@ -138,20 +138,32 @@ public class ResearcherController {
         }
 	}
 	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
-			String department, List<Interest> researchArea, String webpage) {
+			String departments, List<Interest> researchArea, String webpage) throws NumberFormatException, InstantiationException, IllegalAccessException {
 		if (researcher == null) {
 			return;
 		}
+		EntityTransaction tx = em.getTransaction();
+        
+        tx.begin();
 		researcher.setName(name);
 		researcher.setNetID(netID);
 		researcher.setEmail(email);
-		researcher.addDepartment((Department) FieldValueController.getItemByDescription( em,  department, FieldFactory.DEPARTMENT));
+		researcher.removeDepartments();
+		String[] idList = departments.split(",");
+		for (String id : idList) {
+			Department dep = (Department) FieldValueController.getFieldValueById(em, Long.parseLong(id), FieldFactory.DEPARTMENT);
+			if (dep == null) {
+				System.out.println("wierd bug");
+			}
+			else {
+				researcher.addDepartment(dep);
+			}
+		}
 		researcher.setResearchArea(researchArea);
+		
 		researcher.setWebpage(webpage);
 		
-        EntityTransaction tx = em.getTransaction();
         
-        tx.begin();
         String deleteQuery = "delete from RESEARCHER where id = " + researcher.getId();
         em.createQuery(deleteQuery);
         em.persist(researcher);

@@ -190,12 +190,13 @@ public class StudentController {
 	}
 	public static void update(EntityManager em, Student s, String ids, String type) 
 			throws InstantiationException, IllegalAccessException {
+		System.out.println("Updating "+type);
 		if (s == null) {
 			return;
 		}
 		String[] idList =ids.split(",");
 		s.remove(type);
-		for (String id : idList)
+		for (String id : idList) {
 			if (id.length()>0){
 				try {
 					StudentController.add(em, s, FieldValueController.getFieldValueById(em,Long.parseLong(id),type));
@@ -204,7 +205,7 @@ public class StudentController {
 					StudentController.add(em, s, FieldValueController.createFieldValue(em, id, type));
 				}
 			}
-		
+		}
 	}
 	
 	private static void add(EntityManager em, Student s, FieldValue item) {
@@ -213,19 +214,19 @@ public class StudentController {
 		}
 		
 		if(item instanceof Major){
-			s.addMajor((Major) item);
+			addMajor(em, s, (Major)item);
 		}
 		if(item instanceof Minor){
-			s.addMinor((Minor) item);
+			addMinor(em, s, (Minor) item);
 		}
 		if (item instanceof College){
-			s.addCollege((College) item );
+			addCollege(em, s, (College) item );
 		}
 		if (item instanceof Skill){
-			s.addSkill((Skill) item );
+			addSkill(em, s, (Skill) item );
 		}
 		if (item instanceof Interest){
-			s.addInterest((Interest) item );
+			addInterest(em, s, (Interest) item );
 		}
 	}
 
