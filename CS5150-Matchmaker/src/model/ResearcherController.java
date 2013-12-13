@@ -137,38 +137,6 @@ public class ResearcherController {
         	return null;
         }
 	}
-	public static void updateResearcher(EntityManager em, Researcher researcher, String name, String netID, String email,
-			String departments, List<Interest> researchArea, String webpage) throws NumberFormatException, InstantiationException, IllegalAccessException {
-		if (researcher == null) {
-			return;
-		}
-		EntityTransaction tx = em.getTransaction();
-        
-        tx.begin();
-		researcher.setName(name);
-		researcher.setNetID(netID);
-		researcher.setEmail(email);
-		researcher.removeDepartments();
-		String[] idList = departments.split(",");
-		for (String id : idList) {
-			Department dep = (Department) FieldValueController.getFieldValueById(em, Long.parseLong(id), FieldFactory.DEPARTMENT);
-			if (dep == null) {
-				System.out.println("wierd bug");
-			}
-			else {
-				researcher.addDepartment(dep);
-			}
-		}
-		researcher.setResearchArea(researchArea);
-		
-		researcher.setWebpage(webpage);
-		
-        
-        String deleteQuery = "delete from RESEARCHER where id = " + researcher.getId();
-        em.createQuery(deleteQuery);
-        em.persist(researcher);
-        tx.commit();
-	}
 	
 	public static void addProject(EntityManager em,Researcher r, Project p) {
 		EntityTransaction tx = em.getTransaction();
@@ -219,7 +187,12 @@ public class ResearcherController {
 		if (r == null) {
 			return;
 		}
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
 		r.removeDepartments();
+		tx.commit();
+		System.out.println("Deleted all departments");
+		System.out.println(r.getDepartments().size());
 		String[] idList = ids.split(",");
 
 		for (String id : idList){
@@ -233,8 +206,6 @@ public class ResearcherController {
 				}
 			}
 		}
-		
-		
 	}
 	private static void addDepartment(EntityManager em, Researcher r, Department dep) {
 		EntityTransaction tx = em.getTransaction();
@@ -249,7 +220,10 @@ public class ResearcherController {
 			if (r == null) {
 				return;
 			}
+			EntityTransaction tx = em.getTransaction();
+			tx.begin();
 			r.removeResearchAreas();
+			tx.commit();
 			String[] idList = ids.split(",");
 			
 			for (String id : idList){
