@@ -7,10 +7,7 @@
 <%@
 	page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
 %>
- 	<%
- 	
- 	
- 	
+<%
  	Boolean updatedRole = false;
  	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
     EntityManager em = emf.createEntityManager();
@@ -35,28 +32,30 @@
  		isAdmin = true;
  	}
  	
+ 	String searchDisplay = "";
  	if(!isStudent && request.getParameter("studentRole") != null){
  		updatedRole = true;
 		Student student = StudentController.createStudent(em, u.getName(), u.getNetid(), 0.0, u.getEmail(),  null, null, null, null, null, null, null, null, u);
-		%><h3>New Student role has been added.</h3><%
- 	} %>
- 	<%
+		searchDisplay += "<br>New Student role has been added for the user.";
+ 	}
+ 	
  	if(!isResearcher && request.getParameter("researcherRole") != null){
  		updatedRole = true;
 	 	List<Interest> area = null;
    	 	Researcher researcher = ResearcherController.createResearcher(em, u.getName(), u.getNetid(), u.getEmail(), null, "", area, u);
-   	 %><h3>New Researcher role has been added.</h3><%
- 		
- 	}%>
- 	<% 
+   		searchDisplay += "<br>New Researcher role has been added for the user.";
+ 	}
+ 	
  	if(!isAdmin && request.getParameter("adminRole") != null){
  		updatedRole = true;
  		UserController.setAdmin(em, u, true);
- 		%><h3>New Administrator has been added.</h3><% 
+ 		searchDisplay += "<br>New Administrator role has been added for the user.";
  	}
  	
- 	if(!updatedRole){%>
- 		<h3>No new roles have been added.</h3><%}
- 	%>
+ 	if(!updatedRole){
+ 		searchDisplay+="";
+ 	}
+ 	response.sendRedirect("admin-searchUser.jsp?searchDisplay="+searchDisplay+"&netID="+request.getParameter("userNetID")+"&name="+request.getParameter("userName"));
+%>
 </body>
 </html>

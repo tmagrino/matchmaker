@@ -20,6 +20,9 @@
 		jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
 		if(r != null)
 	jsonArrStud.put(FieldValueController.getObjectJson(r.getListAttribute(auto_attr)));
+     	User usr = UserController.findUser(em, r.getNetID());
+     	UserController.setName(em, usr, r.getName());
+
 	}
 %>
 <script type="text/javascript">

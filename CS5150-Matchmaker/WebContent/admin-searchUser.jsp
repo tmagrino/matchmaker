@@ -59,6 +59,7 @@
 	
 %>
 			<div class="content">
+						<h4 class="subheading"><i>&nbsp;&nbsp;<%=(request.getParameter("searchDisplay") == null) ? "" : request.getParameter("searchDisplay")%></i></h4>
 						<h3 class="subheading">&nbsp;&nbsp;Search User</h3>
 						<ul class="searchUser">
 							<li class="clearfix">
@@ -137,6 +138,8 @@
 											 		<%} else{%>
 											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin"/>Administrator
 											 		<%} %>
+											 		<input type="hidden" name="userNetID" value="<%=request.getParameter("netID") %>" />
+											 		<input type="hidden" name="userName" value="<%=request.getParameter("name") %>"/>
 											 		<p><br><input type="submit" value="Update Roles" size=20  style="width: 10em; height:2em"/>
 												</form> 		
 									 	 </td>
@@ -178,7 +181,7 @@
 									</table>
 
 									<% } else if(searchCompleted){ %>
-									<h3><i>No User found</i></h3>
+									<h4 class="subheading"><i>No User found</i></h4>
 									<%} %>
 							</div>
 							</li>
