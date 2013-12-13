@@ -11,7 +11,7 @@
 	
 	Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id"));
 	
-	String[] attributes = {"Email", "URL", "Departments", "Research Area"};
+	String[] attributes = {"Email", "URL", "Department", "Research Area"};
 %>
 
 <div class="content">
