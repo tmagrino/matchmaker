@@ -8,6 +8,7 @@
 	page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
 %>
  	<%
+ 	
  	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
     EntityManager em = emf.createEntityManager();
  	

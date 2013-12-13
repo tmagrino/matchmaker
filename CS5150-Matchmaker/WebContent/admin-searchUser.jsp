@@ -11,9 +11,6 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	
-	
-	
 	String netID = request.getParameter("netID");
 	String name = request.getParameter("name");
 	
