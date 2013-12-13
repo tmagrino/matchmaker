@@ -24,13 +24,12 @@
         List<Project> projs = r.getProjects(); 
         boolean hasApplications = false;
         if (projs.size() == 0){
-       %><td colspan="7"><h1>You have no projects! Would you like to 
-       			<a href="proj-profile.jsp">add a new project?</a> </h1></td>
-        
-        <%}else{
+        	response.setStatus(response.SC_MOVED_TEMPORARILY);
+        	response.setHeader("Location", "proj-profile.jsp");
+        }else{
 			%>
-		<a href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="invite-students.jsp">Show all available Students</a>
+		<a class="actionButton add-new" href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a class="filter-button" href="invite-students.jsp">Show all available students</a>
 		<%
 		List<Application> apps;
 		List<Application> declinedApps;
@@ -109,13 +108,13 @@
         }
  
 	}
-        %>
+     
 
-
+	if(hasApplications){ %>
 	<br />
 		<jsp:include page="pager.jsp"/>
 	<br />
-
+	<% } %>
 </div>
 
 </body>

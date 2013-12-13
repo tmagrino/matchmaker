@@ -32,7 +32,7 @@ function initAutosuggest()
 			prefill = jsonArrStud[index].items;
 		if(value.length){
 			value.autoSuggest(jsonArrAll[index].items, {selectedItemProp: "name", searchObjProps: "name",  
-				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: prefill, neverSubmit: true });
+				startText: "", emptyText: emptyTextOpt, asHtmlID: autocomplete_attr[index], preFill: prefill, neverSubmit: true});
 		}
 	});
 }

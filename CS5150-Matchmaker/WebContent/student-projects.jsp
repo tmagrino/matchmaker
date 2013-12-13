@@ -55,7 +55,7 @@ var interestData = <%=jsonInterest%>;
 			<%
 				}
 			%>&nbsp;
-			<a class"actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
+			<a class="actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
 				<%if (showHidden) {%>&amp;showhidden=yes<%}%>
 			">
 				<img class="delete" src="images/Delete.png" alt="delete" border="0"
@@ -96,7 +96,7 @@ var interestData = <%=jsonInterest%>;
 %>
 <br />
 <p>
-	<font size="2"><i>Displaying hidden projects</i><a href="student-projects.jsp?showhidden=no"> Hide Projects</a></font>
+	<span class="hidden-message">Displaying hidden projects</span> <a class="filter-button hide" href="student-projects.jsp?showhidden=no"> Hide Projects</a></font>
 </p>
 <%
 	}
@@ -104,7 +104,7 @@ var interestData = <%=jsonInterest%>;
 %>
 	<br />
 	<p>
-		<font size="2"><i><a href="student-projects.jsp?showhidden=yes"> Show hidden projects</a></i></font>
+		<a class="filter-button hide" href="student-projects.jsp?showhidden=yes"> Show hidden projects</a>
 	</p>
 	<%
 		}

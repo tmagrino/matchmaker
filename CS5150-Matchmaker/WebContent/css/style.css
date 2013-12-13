@@ -394,8 +394,9 @@ ul {
 }
 
 .actionButton {
+	padding: 5px;
 	display: inline-block;
-	width: 50px;
+	width: auto;
 	height: 20px;
 	text-decoration: none;
 	color: white;
@@ -406,25 +407,38 @@ ul {
 }
 
 .actionButton.hide, 
-.actionButton.remove {
+.actionButton.remove,
+.actionButton.add-new {
 	background-color: #000099;
-	width: 65px;
 }
-
 .actionButton.unhide{
 	background-color: #FF8C00;
-	width: 65px;
-}
-
-.actionButton.remove{
-	width: 60px;
 }
 
 .actionButton.apply,
 .actionButton.accept,
 .actionButton.invite {
 	background-color: #006633;
-	width: 65px;
+}
+
+.actionButton.hide,
+.filter-button.hide{
+	font-style: italic;
+}
+.filter-button.hide{
+	margin-bottom: 10px;
+}
+.hidden-message{
+	margin-right: 6px;
+	font-style: italic;
+}
+.filter-button{
+	text-decoration: none;
+	background-color: #000;
+	color: white;
+	width: auto;
+	display: inline-block;
+	padding: 4px;
 }
 .placeholder{
 	display: inline-block;

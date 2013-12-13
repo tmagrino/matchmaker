@@ -56,7 +56,7 @@
  	}
  	
  	if(!updatedRole){%>
- 		<h3>New new roles have been added.</h3><%}
+ 		<h3>No new roles have been added.</h3><%}
  	%>
 </body>
 </html>

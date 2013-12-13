@@ -25,7 +25,7 @@
 		var skillsData = <%= jsonSkills %>;
 		var interestData = <%= jsonInterest %>;
 	</script>
-	<a href="project-applications.jsp">Show applications</a>
+	<a class="filter-button" href="project-applications.jsp">Show applications</a>
 	<form name="filter-list" id="filter-list" class="clearfix">
 		<h1>Students</h1>    
 		<div class="search-container">
@@ -38,14 +38,14 @@
 		if (showHidden) {
 	%>
 		<br /><p>
-		<font size="2"><i>Displaying hidden projects</i><a href="invite-students.jsp?showhidden=no"> Hide Students</a></font>
+		<span class="hidden-message">Displaying hidden projects</span><a class="filter-button hide" href="invite-students.jsp?showhidden=no"> Hide Students</a>
 		</p>
 	<%
 		}
 		else {
 	%>
 		<br /><p>
-		<font size="2"><i><a href="invite-students.jsp?showhidden=yes"> Show hidden students</a></i></font>
+			<a class="filter-button hide" href="invite-students.jsp?showhidden=yes"> Show hidden students</a>
 		</p>
 	<%
 		}
