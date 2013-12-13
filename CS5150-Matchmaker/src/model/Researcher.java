@@ -192,6 +192,7 @@ public class Researcher implements Serializable {
 		for (Interest i : researchArea) {
 			i.getResearchers().remove(this);
 		}
+		researchArea = new ArrayList<Interest>();
 	}
 	
 	/**
@@ -244,6 +245,7 @@ public class Researcher implements Serializable {
 		for (Project p : projects) {
 			p.getResearchers().remove(this);
 		}
+		projects = new ArrayList<Project>();
 	}
 	
 	public List<Department> getDepartments() {
