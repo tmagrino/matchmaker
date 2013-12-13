@@ -22,23 +22,19 @@ public class ProjectController {
 
 	public static Project createProject(EntityManager em , String name, String description,
 			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
-		String newurl = url;
-		
 		if (description == null) {
 			description = "";
 		}
-		if (url.startsWith("http://")) {
-			newurl = url.substring(7);
-		}
-		else if (url.startsWith("https://")) {
-			newurl = url.substring(8);
+
+		if (researcher == null) {
+			return null;
 		}
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		ArrayList<Researcher> rlist = new ArrayList<Researcher>();
 		rlist.add(researcher);
 
-		Project p = new Project(name,description,newurl,rlist,area,skills);
+		Project p = new Project(name,description,url,rlist,area,skills);
 		researcher.addProject(p);
 		em.persist(p);
 		
