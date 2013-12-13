@@ -208,8 +208,6 @@ public class StudentController {
 	}
 	
 	private static void add(EntityManager em, Student s, FieldValue item) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
 		if (item == null || s == null) {
 			return;
 		}
@@ -229,8 +227,6 @@ public class StudentController {
 		if (item instanceof Interest){
 			s.addInterest((Interest) item );
 		}
-		tx.commit();
-		
 	}
 
 	public static void addMinor(EntityManager em, Student s, Minor m) {
