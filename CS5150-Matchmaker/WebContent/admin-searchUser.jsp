@@ -86,9 +86,8 @@
 									<% if((netID != null || name != null) && u != null) {
 								 	%>
 									
-									<table cellspacing=5 cellpadding=10 border=0>
+									<table id="usersearch" cellspacing=5 cellpadding=10 border=0>
 									<tr>
-										<td valign="top"><img src="images/blank.png" height=150 width=150/></td>
 										<td>
 								 		<table cellspacing=10 cellpadding=10 align=center border=0>
 								 		<tr><td><h3>Name:</h3></td>
