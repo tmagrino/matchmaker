@@ -137,6 +137,7 @@ public class User {
 		}
 		else {
 			this.student = student;
+			this.name = student.getName();
 			if (student.getUser() != this) {
 				student.setUser(this);
 			}
@@ -160,6 +161,7 @@ public class User {
 		}
 		else {
 			this.researcher = researcher;
+			this.name = researcher.getName();
 			if (researcher.getUser() != this) {
 				researcher.setUser(this);
 			}
