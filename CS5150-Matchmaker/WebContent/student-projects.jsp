@@ -178,7 +178,7 @@ var interestData = <%=jsonInterest%>;
 			}
 		%>
 		</td>
-		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getURL()%>"><a href="<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
 		<td title = "<%=p.getDescription()%>"><%=FieldFactory.shortenString(p.getDescription())%></td>
 		<td title = "<%=p.getAreaString()%>"><%=FieldFactory.shortenString(p.getAreaString())%></td>
 		<td title = "<%=p.getSkillString()%>"><%=FieldFactory.shortenString(p.getSkillString())%></td>

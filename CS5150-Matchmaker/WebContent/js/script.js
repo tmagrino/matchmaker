@@ -155,7 +155,7 @@ function sortTable()
 {
 	var proj_list = $(".project-list, .additions_table");
 	if(proj_list.length == 0){ return;}
-	proj_list.tablesorter().tablesorterPager({container: $("#pager"), positionFixed: true});
+	proj_list.tablesorter({sortForce:[[4, 0]]}).tablesorterPager({container: $("#pager"), positionFixed: true});
 }
 
 function initTabLinks(){
