@@ -155,7 +155,12 @@ function sortTable()
 {
 	var proj_list = $(".project-list, .additions_table");
 	if(proj_list.length == 0){ return;}
-	proj_list.tablesorter({sortForce:[[4, 1]]}).tablesorterPager({container: $("#pager"), positionFixed: true});
+	proj_list.tablesorter().tablesorterPager({container: $("#pager"), positionFixed: true});
+	var defaultSort = $(".default-sort");
+	if(defaultSort.length > 0){
+		defaultSort.trigger("click");
+		defaultSort.trigger("click");
+	}
 }
 
 function initTabLinks(){
@@ -280,5 +285,5 @@ $(document).ready(function(){
 	initFilterType();
 	initInvite();
 	initSelectRole();
-	pageChange();
+	//pageChange();
 });

@@ -94,7 +94,7 @@ Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 				<th class="empty"></th>
 				<th class="header">Type</th>
 				<th class="header">Description</th>
-				<th class="header">Date Added</th>
+				<th class="header default-sort">Date Added</th>
 			</tr>
 		</thead>
 		<tbody>
