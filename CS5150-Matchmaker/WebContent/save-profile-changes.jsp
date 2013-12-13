@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+<%
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    String netId = (String) session.getAttribute("currentUser");
    Student s = StudentController.getStudentByNetID(em,netId);
@@ -33,40 +34,29 @@
 	   if (gpa <= 4.3 && gpa != s.getGpa())
 	   StudentController.editGPA(em, s, gpa);
    }
+   System.out.println(request.getParameter("as_values_major"));
    if (request.getParameter("as_values_major").length()>0){
-	   StudentController.update(em,s,request.getParameter("as_values_major"),ItemFactory.MAJOR); 
+	   StudentController.update(em,s,request.getParameter("as_values_major"),FieldFactory.MAJOR); 
    }
    if (request.getParameter("as_values_minor").length()>0){
-	   StudentController.update(em,s,request.getParameter("as_values_minor"),ItemFactory.MINOR); 
+	   StudentController.update(em,s,request.getParameter("as_values_minor"),FieldFactory.MINOR); 
    }
    if (request.getParameter("as_values_skills").length()>0){
-	   StudentController.update(em,s,request.getParameter("as_values_skills"),ItemFactory.SKILL); 
+	   StudentController.update(em,s,request.getParameter("as_values_skills"),FieldFactory.SKILL); 
    }
    if (request.getParameter("as_values_research_interests").length()>0){
-	   StudentController.update(em,s,request.getParameter("as_values_research_interests"),ItemFactory.INTEREST); 
+	   StudentController.update(em,s,request.getParameter("as_values_research_interests"),FieldFactory.INTEREST); 
    }
    if (request.getParameter("as_values_college").length()>0){
-	   StudentController.update(em,s,request.getParameter("as_values_college"),ItemFactory.COLLEGE); 
+	   StudentController.update(em,s,request.getParameter("as_values_college"),FieldFactory.COLLEGE); 
    }
 
    response.setStatus(response.SC_MOVED_TEMPORARILY);
-   response.setHeader("Location", "profile.jsp"); 
+   response.setHeader("Location", "profile.jsp");
 %>
 
 
-<%
-// int nCourses = Integer.parseInt(request.getParameter("nVals"));
-// for(int i = 0; i<nCourses; i++){
-// 	Course cobj = new Course();
-// 	cobj.setCoursenum(request.getParameter("coursenum-"+i));
-// 	cobj.setTitle(request.getParameter("title-"+i));
-// 	cobj.setGrade(request.getParameter("grade-"+i));
-// 	cobj.setSemester(request.getParameter("semester-"+i));
-// 	courselist.add(cobj);
-// }
 
-
-%>
 
 </body>
 </html>

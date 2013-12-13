@@ -110,7 +110,8 @@ public class Student implements Serializable {
 	private List<Application> applications;
 	@OneToOne (mappedBy = "student", cascade = CascadeType.ALL)
 	private StudentSettings settings;
-	
+	@ManyToMany (mappedBy = "hiddenStudents")
+	private List<ResearcherSettings> hiddenByResearcher;
 
 	// Constructors
 	public Student() 
@@ -131,13 +132,55 @@ public class Student implements Serializable {
 		this.gpa = gpa;
 		this.email = email;
 		this.year = year;
-		this.colleges = colleges;
-		this.majors = majors;
-		this.minors = minors;
-		this.skills = skills;
-		this.priorExperience = priorExperience;
-		this.interests = interests;
-		this.transcript = transcript;
+		
+		if (colleges == null) {
+			this.colleges = new ArrayList<College>();
+		}
+		else {
+			this.colleges = colleges;
+		}
+		
+		if (majors == null) {
+			this.majors = new ArrayList<Major>();
+		}
+		else {
+			this.majors = majors;
+		}
+		
+		if (minors == null) {
+			this.minors = new ArrayList<Minor>();
+		}
+		else {
+			this.minors = minors;
+		}
+		
+		if (skills == null) {
+			this.skills = new ArrayList<Skill>();
+		}
+		else {
+			this.skills = skills;
+		}
+		
+		if (interests == null) {
+			this.interests = new ArrayList<Interest>();
+		}
+		else {
+			this.interests = interests;
+		}
+		
+		if (priorExperience == null) {
+			this.priorExperience = new ArrayList<Experience>();
+		}
+		else {
+			this.priorExperience = priorExperience;
+		}
+
+		if (transcript == null) {
+			this.transcript = new ArrayList<Course>();
+		}
+		else {
+			this.transcript = transcript;
+		}
 		this.user = user;
 	}
 	
@@ -154,17 +197,17 @@ public class Student implements Serializable {
 			case "year":
 				if(year != null) return year.toString();
 				else return "1";
-			case ItemFactory.COLLEGE:
+			case FieldFactory.COLLEGE:
 				return getString(getColleges());
-			case ItemFactory.MAJOR:
+			case FieldFactory.MAJOR:
 				return getString(getMajors());
-			case ItemFactory.MINOR:
+			case FieldFactory.MINOR:
 				return getString(getMinors());
-			case ItemFactory.SKILL:
+			case FieldFactory.SKILL:
 				return getString(getSkills());
 			case "skills":
 				return getString(getSkills());
-			case ItemFactory.INTEREST:
+			case FieldFactory.INTEREST:
 				return getString(getInterests());
 			case "research interests":
 				return getString(getInterests());
@@ -174,17 +217,17 @@ public class Student implements Serializable {
 		}
 	}
 	
-	public List<? extends MultipleItem> getListAttribute(String attr) {
+	public List<? extends FieldValue> getListAttribute(String attr) {
 		switch (attr.toLowerCase()) {
-			case ItemFactory.COLLEGE:
+			case FieldFactory.COLLEGE:
 				return getColleges();
-			case ItemFactory.MAJOR:
+			case FieldFactory.MAJOR:
 				return getMajors();
-			case ItemFactory.MINOR:
+			case FieldFactory.MINOR:
 				return getMinors();
-			case ItemFactory.SKILL:
+			case FieldFactory.SKILL:
 				return getSkills();
-			case ItemFactory.INTEREST:
+			case FieldFactory.INTEREST:
 				return getInterests();
 			default:
 				System.out.println("Invalid attribute " + attr);
@@ -376,11 +419,11 @@ public class Student implements Serializable {
 	/**
 	 * Return a String version of a collection with elements separated by commas
 	 */
-	public String getString(List<? extends MultipleItem> collection) {
+	public String getString(List<? extends FieldValue> collection) {
 		if (collection.size() > 0) {
 			Collections.sort(collection);
 			StringBuilder builder = new StringBuilder();
-			for (MultipleItem i : collection){
+			for (FieldValue i : collection){
 				builder.append(i.getDescription() + ", ");
 			}
 			builder.deleteCharAt(builder.length() - 2);
@@ -391,12 +434,12 @@ public class Student implements Serializable {
 	/**
 	 * Return a truncated version of a collection string
 	 */
-	public String getTruncatedString(List<? extends MultipleItem> collection){
+	public String getTruncatedString(List<? extends FieldValue> collection){
 		if (collection.size() > 0) {
 			int subSequenceSize = 16;
 			Collections.sort(collection);
 			StringBuilder builder = new StringBuilder();
-			for (MultipleItem i : collection){
+			for (FieldValue i : collection){
 				builder.append(i.getDescription() + ", ");
 				if (builder.length() > subSequenceSize+1){
 					return builder.toString().subSequence(0, subSequenceSize) + "...";
@@ -428,6 +471,9 @@ public class Student implements Serializable {
 	}
 	
 	void removeColleges() {
+		for (College c : colleges) {
+			c.getStudents().remove(this);
+		}
 		colleges = new ArrayList<College>();
 	}
 	
@@ -449,26 +495,30 @@ public class Student implements Serializable {
 	}
 	
 	void remove(String type){
-		if(type.toLowerCase() == ItemFactory.MAJOR){
+		if(type.toLowerCase() == FieldFactory.MAJOR){
 			this.removeMajors();
 		}
-		if(type.toLowerCase() == ItemFactory.MINOR){
+		if(type.toLowerCase() == FieldFactory.MINOR){
 			this.removeMinors();
 		}
-		if (type.toLowerCase() == ItemFactory.COLLEGE){
+		if (type.toLowerCase() == FieldFactory.COLLEGE){
 			this.removeColleges();
 		}
-		if (type.toLowerCase() == ItemFactory.SKILL){
+		if (type.toLowerCase() == FieldFactory.SKILL){
 			this.removeSkills();
 		}
-		if (type.toLowerCase() == ItemFactory.INTEREST){
+		if (type.toLowerCase() == FieldFactory.INTEREST){
 			this.removeInterests();
 		}
 		
 		
 	}
 	void removeMajors() {
+		for (Major m : majors) {
+			m.getStudents().remove(this);
+		}
 		majors = new ArrayList<Major>();
+		
 	}
 	
 	void addMinor(Minor minor) {
@@ -489,6 +539,9 @@ public class Student implements Serializable {
 	}
 	
 	void removeMinors() {
+		for (Minor m : minors) {
+			m.getStudents().remove(this);
+		}
 		minors = new ArrayList<Minor>();
 	}
 	
@@ -510,6 +563,9 @@ public class Student implements Serializable {
 	}
 	
 	void removeSkills() {
+		for (Skill s : skills) {
+			s.getStudents().remove(this);
+		}
 		skills = new ArrayList<Skill>();
 	}
 	
@@ -531,6 +587,9 @@ public class Student implements Serializable {
 	}
 	
 	void removeInterests() {
+		for (Interest i : interests) {
+			i.getStudents().remove(this);
+		}
 		interests = new ArrayList<Interest>();
 	}
 	
@@ -542,24 +601,12 @@ public class Student implements Serializable {
 		priorExperience.remove(exp);
 	}
 	
-	void removeExperiences() {
-		for (Experience e: priorExperience) {
-			removeExperience(e);
-		}
-	}
-	
 	void addCourse(Course c) {
 		transcript.add(c);
 	}
 	
 	void removeCourse(Course c) {
 		transcript.remove(c);
-	}
-	
-	void removeCourses() {
-		for (Course c : transcript) {
-			removeCourse(c);
-		}
 	}
 	
 	void addApplication(Application app) {
@@ -578,15 +625,38 @@ public class Student implements Serializable {
 			}
 		}
 	}
-	
-	void removeApplications() {
-		applications = new ArrayList<Application>();
-	}
 
 	/**
 	 * @param settings the settings to set
 	 */
 	void setSettings(StudentSettings settings) {
 		this.settings = settings;
-	}	
+	}
+
+	public List<ResearcherSettings> getHiddenByResearcher() {
+		return hiddenByResearcher;
+	}
+
+	void addHiddenByResearcher(ResearcherSettings r) {
+		if (!hiddenByResearcher.contains(r)) {
+			hiddenByResearcher.add(r);
+			if (!r.getHiddenStudents().contains(this)) {
+				r.addStudent(this);
+			}
+		}
+	}
+	
+	void removeHiddenByResearcher(ResearcherSettings r) {
+		if (hiddenByResearcher.remove(r)) {
+			if (r.getHiddenStudents().contains(this)) {
+				r.removeStudent(this);
+			}
+		}
+	}
+	
+	void removeHiddenByResearchers() {
+		for (ResearcherSettings r : hiddenByResearcher) {
+			r.getHiddenStudents().remove(this);
+		}
+	}
 }

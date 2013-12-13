@@ -18,38 +18,27 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import model.*;
 
 public class PopulateDatabase {
-
+	
 	public static void main(String[] args) {
+		populateDB();
+	}
+
+	public static void populateDB() {
 		Scanner in;
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		EntityManager em = emf.createEntityManager();
 		// Majors
-		if (ListController.getItensList(em, ItemFactory.MAJOR).size() == 0) {
+		if (FieldValueController.getListOfType(em, FieldFactory.MAJOR).size() == 0) {
 			try {
 				File myfile = new File("MajorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.MAJOR);
+					FieldValueController.createFieldValue(em, str, FieldFactory.MAJOR);
 				}
 			}
 			catch (Exception e) {
@@ -57,14 +46,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Minors
-		if (ListController.getItensList(em, ItemFactory.MINOR).size() == 0)  {
+		if (FieldValueController.getListOfType(em, FieldFactory.MINOR).size() == 0)  {
 			try {
 				File myfile = new File("MinorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.MINOR);
+					FieldValueController.createFieldValue(em, str, FieldFactory.MINOR);
 				}
 			}
 			catch (Exception e) {
@@ -72,14 +61,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Colleges
-		if (ListController.getItensList(em, ItemFactory.COLLEGE).size() == 0){
+		if (FieldValueController.getListOfType(em, FieldFactory.COLLEGE).size() == 0){
 			try {
 				File myfile = new File("CollegesList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.COLLEGE);
+					FieldValueController.createFieldValue(em, str, FieldFactory.COLLEGE);
 				}
 			}
 			catch (Exception e) {
@@ -87,14 +76,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Interests
-		if (ListController.getItensList(em, ItemFactory.INTEREST).size() == 0){
+		if (FieldValueController.getListOfType(em, FieldFactory.INTEREST).size() == 0){
 			try {
 				File myfile = new File("InterestsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.INTEREST);
+					FieldValueController.createFieldValue(em, str, FieldFactory.INTEREST);
 				}
 			}
 			catch (Exception e) {
@@ -102,14 +91,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Skills
-		if (ListController.getItensList(em, ItemFactory.SKILL).size() == 0){
+		if (FieldValueController.getListOfType(em, FieldFactory.SKILL).size() == 0){
 			try {
 				File myfile = new File("SkillsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.SKILL);
+					FieldValueController.createFieldValue(em, str, FieldFactory.SKILL);
 				}
 			}
 			catch (Exception e) {
@@ -117,14 +106,14 @@ public class PopulateDatabase {
 			}
 		}
 		// Departments
-		if (ListController.getItensList(em, ItemFactory.DEPARTMENT).size() == 0){
+		if (FieldValueController.getListOfType(em, FieldFactory.DEPARTMENT).size() == 0){
 			try {
 				File myfile = new File("DepartmentsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
 					System.out.println(str);
-					ListController.createItem(em, str, ItemFactory.DEPARTMENT);
+					FieldValueController.createFieldValue(em, str, FieldFactory.DEPARTMENT);
 				}
 			}
 			catch (Exception e) {
@@ -150,36 +139,36 @@ public class PopulateDatabase {
 					String[] cols = studentStrings[5].split(";");
 					LinkedList<College> colleges = new LinkedList<College>();
 					for (String s : cols) {
-						colleges.add((College) ListController.getItemByDescription(em, s, 
-								ItemFactory.COLLEGE));
+						colleges.add((College) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.COLLEGE));
 					}
 					// Majors
 					String[] majs = studentStrings[6].split(";");
 					LinkedList<Major> majors = new LinkedList<Major>();
 					for (String s : majs) {
-						majors.add((Major) ListController.getItemByDescription(em, s, 
-								ItemFactory.MAJOR));
+						majors.add((Major) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.MAJOR));
 					}
 					// Minors
 					String[] mins = studentStrings[7].split(";");
 					LinkedList<Minor> minors = new LinkedList<Minor>();
 					for (String s : mins) {
-						minors.add((Minor) ListController.getItemByDescription(em, s, 
-								ItemFactory.MINOR));
+						minors.add((Minor) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.MINOR));
 					}
 					// Skills
 					String[] skls = studentStrings[8].split(";");
 					LinkedList<Skill> skills = new LinkedList<Skill>();
 					for (String s : skls) {
-						skills.add((Skill) ListController.getItemByDescription(em, s, 
-								ItemFactory.SKILL));
+						skills.add((Skill) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.SKILL));
 					}
 					// Interests
 					String[] ints = studentStrings[9].split(";");
 					LinkedList<Interest> interests = new LinkedList<Interest>();
 					for (String s : ints) {
-						interests.add((Interest) ListController.getItemByDescription(em, s, 
-								ItemFactory.INTEREST));
+						interests.add((Interest) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.INTEREST));
 					}
 					// Prior Experience TODO:
 					LinkedList<Experience> priorExperience= new LinkedList<Experience>();
@@ -213,11 +202,11 @@ public class PopulateDatabase {
 					String[] deps = researcherStrings[3].split(";");
 					LinkedList<Department> departments = new LinkedList<Department>();
 					for (String s : deps) {
-						departments.add((Department) ListController.getItemByDescription(em, s, 
-								ItemFactory.DEPARTMENT));
+						departments.add((Department) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.DEPARTMENT));
 					}
 					String webpage = researcherStrings[4];
-					Interest researchArea = (Interest) ListController.getItemByDescription(em, "Machine Learning", ItemFactory.AREA);
+					Interest researchArea = (Interest) FieldValueController.getItemByDescription(em, "Machine Learning", FieldFactory.INTEREST);
 					
 					User user = UserController.createUser(em, name, email, netID);
 					Researcher r = ResearcherController.createResearcher(em,name, netID, 
@@ -253,15 +242,15 @@ public class PopulateDatabase {
 					String[] inters = projectStrings[4].split(";");
 					LinkedList<Interest> interests = new LinkedList<Interest>();
 					for (String s : inters) {
-						interests.add((Interest) ListController.getItemByDescription(em, s, 
-								ItemFactory.INTEREST));
+						interests.add((Interest) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.INTEREST));
 					}
 					
 					String[] skls = projectStrings[5].split(";");
 					LinkedList<Skill> skills = new LinkedList<Skill>();
 					for (String s : skls) {
-						skills.add((Skill) ListController.getItemByDescription(em, s, 
-								ItemFactory.SKILL));
+						skills.add((Skill) FieldValueController.getItemByDescription(em, s, 
+								FieldFactory.SKILL));
 					}
 					Project p = ProjectController.createProject(em, name, desc, url, researchers, interests, skills);
 				}

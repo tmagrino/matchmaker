@@ -37,7 +37,7 @@ import java.util.List;
  */
 
 @Entity(name = "MINOR")
-public class Minor extends MultipleItem{
+public class Minor extends FieldValue {
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -55,7 +55,7 @@ public class Minor extends MultipleItem{
 		this.description = name;
 	}
 	
-	public long getId(){
+	public long getId() {
 		return id;
 	}
 	
@@ -64,13 +64,13 @@ public class Minor extends MultipleItem{
 	}
 	
 	public List<Student> getStudents() {
-		return students.subList(0, students.size());
+		return students;
 	}
 	
 	void setDescription(String name) {
 		this.description = name;
 	}
-	@Override
+	
 	void addStudent(Student s) {
 		if (!students.contains(s)) {
 			students.add(s);
@@ -79,7 +79,7 @@ public class Minor extends MultipleItem{
 			}
 		}
 	}
-	@Override
+	
 	void removeStudent(Student s) {
 		if (this.students.remove(s)) {
 			if (s.getMinors().contains(this)) {
@@ -87,16 +87,42 @@ public class Minor extends MultipleItem{
 			}
 		}
 	}
-	@Override
+	
 	void removeStudents() {
 		for (Student s : students) {
 			s.getMinors().remove(this);
 		}
 	}
+	
+	void removeElements() {
+		removeStudents();
+	}
+	
+	void addResearcher(Researcher r) {
+		
+	}
+	
+	void removeResearcher(Researcher r) {
+		
+	}
+
+	void addProject(Project p) {
+		
+	}
+	
+	void removeProject(Project p) {
+		
+	}
 
 	@Override
-	public int compareTo(MultipleItem o) {
+	public int compareTo(FieldValue o) {
 		
 		return getDescription().compareTo(o.getDescription());
+	}
+
+	@Override
+	List<Researcher> getResearchers() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

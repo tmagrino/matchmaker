@@ -20,8 +20,7 @@ import javax.persistence.OneToOne;
  * - Search filters
  */
 @Entity
-public class ResearcherSettings {
-	
+public class ResearcherSettings {	
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -45,14 +44,27 @@ public class ResearcherSettings {
 		return hiddenStudents;
 	}
 	
-	public void addStudent(Student s) {
+	void addStudent(Student s) {
 		if (!hiddenStudents.contains(s)) {
 			hiddenStudents.add(s);
+			if (!s.getHiddenByResearcher().contains(this)) {
+				s.addHiddenByResearcher(this);
+			}
 		}
 	}
 	
-	public void removeStudent(Student s) {
-		hiddenStudents.remove(s);
+	void removeStudent(Student s) {
+		if (hiddenStudents.remove(s)) {
+			if (s.getHiddenByResearcher().contains(this)) {
+				s.removeHiddenByResearcher(this);
+			}
+		}
+	}
+	
+	void removeStudents() {
+		for (Student s : hiddenStudents) {
+			s.getHiddenByResearcher().remove(this);
+		}
 	}
 	
 	public Researcher getResearcher() {

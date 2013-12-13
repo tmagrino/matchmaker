@@ -16,8 +16,8 @@
  
 	   Application a = ApplicationController.createApplication(em, s, p, "Invited Student");
 	   ApplicationController.inviteApplication(em, a);   
-	   String body = "You have been invited to project " + a.getApplicationProject().getName() + ". You can check it out here: \n " + a.getApplicationProject().getURL();
-	   Email.sendAcceptingMessage(a.getStudentApplicant(),"You have been invited to a project", body);
+	   
+	   Email.sendInvitationMessage(a.getStudentApplicant(),a);
    }
    response.setStatus(response.SC_MOVED_TEMPORARILY);
   

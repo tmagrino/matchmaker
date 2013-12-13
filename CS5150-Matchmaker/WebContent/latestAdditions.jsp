@@ -11,25 +11,35 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
+	String[] options = {"major", "minor", "interest", "skill", "college",
+			"department"
+	};
+	List<String> ops = Arrays.asList(options);
+	String set = request.getParameter("category");
 	String category = request.getParameter("mydropdown");
 	List<LatestAddition> additions;
+	System.out.println("Loaded latestAddition, drop-down = "+category+" , url = "+set);
 	if (category == null || category.equals("recents")) {
-		additions = ListController.getLatestAddedFields(em);
-		category = "Recent Additions";
+		if (set == null || !ops.contains(set)) { 
+			System.out.println("Setting to recents");
+			category = "recents";
+			additions = FieldValueController.getLatestAddedFields(em);
+		}
+		else {
+			category = set;
+			additions = FieldValueController.getLatestAddedFields(em, category);
+		}
 	}
 	else {
-		additions = ListController.getLatestAddedFields(em, category);
+		additions = FieldValueController.getLatestAddedFields(em, category);
 	}
 %>
-<%if(category.equals("recents")) {
-category =  "Recent Additions";} %>
-<h1><%=category.toUpperCase() %> : </h1>
 
 <form action="latestAdditions.jsp">
-Select Category To be Displayed : <select name="mydropdown" onchange="this.form.submit()">
-	<option value="recents" <% if(category.equals("recents")){%>selected<%} %>>Recent Additions</option>
+Category:<br /><select name="mydropdown" onchange="this.form.submit()">
+	<option value="recents" <% if(category.equals("recents")){%>selected<%} %>>All</option>
 	<option value="college" <% if(category.equals("college")){%>selected<%} %>>Colleges</option>
-	<option value="department" <% if(category.equals("department")){%>selected<%} %>>Department</option>
+	<option value="department" <% if(category.equals("department")){%>selected<%} %>>Departments</option>
 	<option value="interest" <% if(category.equals("interest")){%>selected<%} %>>Interests</option>
 	<option value="major" <% if(category.equals("major")){%>selected<%} %>>Majors</option>
 	<option value="minor" <% if(category.equals("minor")){%>selected<%} %>>Minors</option>
@@ -38,20 +48,48 @@ Select Category To be Displayed : <select name="mydropdown" onchange="this.form.
 </form>
 
 <br />
-<table class="additions_table">
-	<tr>
-		<th></th>
-		<th>Type</th>
-		<th>Description</th>
-		<th>Date Added</th>
-	</tr>
-	<% 
-		if (additions.size() == 0) {
-			%>
-				<td colspan="4">No additions have been made</td>
-			<%
-		}
-		else {
+<% 
+	if (category.equals("recents")) {
+		%><h1>All</h1><%
+	}
+	else if (category.equals("college")) {
+		%><h1>Colleges</h1><%
+	}
+	else if (category.equals("department")) {
+		%><h1>Departments</h1><%
+	}
+	else if (category.equals("interest")) {
+		%><h1>Interests</h1><%
+	}
+	else if (category.equals("major")) {
+		%><h1>Majors</h1><%
+	}
+	else if (category.equals("minor")) {
+		%><h1>Minors</h1><%
+	}
+	else if (category.equals("skill")) {
+		%><h1>Skills</h1><%
+	}
+	else {
+			
+	}
+%>
+<%
+	if (additions.size() == 0) {
+		%>
+			<p>No <%= category %> found</p>
+		<%
+	}
+	else {		
+%>
+	<table class="additions_table">
+		<tr>
+			<th></th>
+			<th>Type</th>
+			<th>Description</th>
+			<th>Date Added</th>
+		</tr>
+		<% 
 			for (LatestAddition add : additions) {
 				%>
 					<tr>
@@ -63,7 +101,7 @@ Select Category To be Displayed : <select name="mydropdown" onchange="this.form.
 										%>&category=<%= category %>
 								<%
 									}
-									
+								
 								%>
 								">Remove
 							</a>
@@ -71,8 +109,7 @@ Select Category To be Displayed : <select name="mydropdown" onchange="this.form.
 						<td><%= ("" + add.getType().charAt(0)).toUpperCase() + add.getType().substring(1) %> </td>
 						<td><%= add.getName() %> </td>
 						<td><%= add.getSubmissionDate() %> </td>
-					</tr>
-				
+					</tr>	
 				<%
 			}
 		}

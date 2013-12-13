@@ -5,25 +5,24 @@
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
 Project p = ProjectController.getProjectById(em,request.getParameter("id"));
-JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
 Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
 String[] attributes = {ProjectController.TITLE, ProjectController.AREA, 
 		ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};
-String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
+String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
 
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrProj = new JSONArray();
 
-jsonArrAll.put(ListController.getItemJson(em, ItemFactory.INTEREST));
-jsonArrAll.put(ListController.getItemJson(em, ItemFactory.SKILL)); 
-jsonArrProj.put(ProjectController.getObjectJson(p.getArea()));
-jsonArrProj.put(ProjectController.getObjectJson(p.getSkills()));
-
- %>
+jsonArrAll.put(FieldValueController.getItemJson(em, FieldFactory.INTEREST));
+jsonArrAll.put(FieldValueController.getItemJson(em, FieldFactory.SKILL)); 
+jsonArrProj.put(ProjectController.getObjectJson(p.getProjectAreas()));
+jsonArrProj.put(ProjectController.getObjectJson(p.getRequiredSkills()));
+%>
 <script type="text/javascript">
 	var autocomplete_attr = Array("research_area", "required_skills");
 	var jsonArrAll = <%= jsonArrAll %>;

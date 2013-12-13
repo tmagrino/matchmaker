@@ -32,23 +32,31 @@
 			EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 		 	EntityManager em = emf.createEntityManager();
 		 	String currentUser = (String) session.getAttribute("currentUser");
-		 	System.out.println("---------------Set by currentUser-------------------");
+		 	//System.out.println("---------------Set by currentUser-------------------");
 		 	Integer numRoles = (Integer) session.getAttribute("numberOfRoles");
 		 	if(currentUser == null){
 		 		currentUser = request.getParameter("netId");
-		 		System.out.println("---------------Set by currentUser-------------------");
+		 		//System.out.println("---------------Set by currentUser-------------------");
 		 		//session.setAttribute("currentUser", currentUser);
 		 	}
 		 	
 		 	String stud_prof = request.getParameter("stud_or_prof");
-		 	System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
+		 	//System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
 		 	if(session.getAttribute("adminUser") != null){
-		 		System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
+		 		//System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
 		 		currentUser = (String) session.getAttribute("adminUser");
 		 		stud_prof = "admin";
 		 	}
 		 	
+<<<<<<< HEAD
 		 	System.out.println("currentUser : "+currentUser);
+=======
+		 	//System.out.println("currentUser : "+currentUser);
+		 	
+		 	
+		 	
+		 	
+>>>>>>> branch 'master' of https://github.com/jkahuja/CS5150-Matchmaker.git
 		 	
 			if(stud_prof.equals("stud")){ 
 				Student s = StudentController.getStudentByNetID(em,currentUser);
@@ -109,7 +117,7 @@
 			  
 			  
 			  %>
-				<li class="login-link"><a href="clearsession.jsp">sign out</a></li>
+				<li class="login-link"><a href="signout.jsp">sign out</a></li>
 		</ul>
 	</div>
 	<% if(! request.getParameter("stud_or_prof").equals("header")){ %>

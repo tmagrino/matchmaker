@@ -55,8 +55,13 @@ public class ResearcherController {
 		
 		if (r != null) {
 			r.removeDepartments();
+			r.removeResearchAreas();
 			r.removeProjects();
 			r.getUser().setResearcher(null);
+			r.getSettings().removeStudents();
+			r.getSettings().setResearcher(null);
+			r.setSettings(null);
+			em.remove(r.getSettings());
 			em.remove(r);
 		}
 		tx.commit();
@@ -125,7 +130,7 @@ public class ResearcherController {
 		researcher.setName(name);
 		researcher.setNetID(netID);
 		researcher.setEmail(email);
-		researcher.addDepartment((Department) ListController.getItemByDescription( em,  department, ItemFactory.DEPARTMENT));
+		researcher.addDepartment((Department) FieldValueController.getItemByDescription( em,  department, FieldFactory.DEPARTMENT));
 		researcher.setResearchArea(researchArea);
 		researcher.setWebpage(webpage);
 		
@@ -137,6 +142,7 @@ public class ResearcherController {
         em.persist(researcher);
         tx.commit();
 	}
+	
 	public static void addProject(EntityManager em,Researcher r, Project p) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
@@ -178,10 +184,10 @@ public class ResearcherController {
 			if (id.length()>0){
 				try{
 			
-					addDepartment(em,r,(Department) ListController.getItemById(em,Long.parseLong(id),ItemFactory.DEPARTMENT));
+					addDepartment(em,r,(Department) FieldValueController.getFieldValueById(em,Long.parseLong(id),FieldFactory.DEPARTMENT));
 				}
 				catch(NumberFormatException e){
-					addDepartment(em,r,(Department) ListController.createItem(em, id, ItemFactory.DEPARTMENT));
+					addDepartment(em,r,(Department) FieldValueController.createFieldValue(em, id, FieldFactory.DEPARTMENT));
 				}
 			}
 		}
@@ -202,11 +208,11 @@ public class ResearcherController {
 			for (String id : idList){
 				if (id.length()>0){
 					try{
-						addArea(em,r,(Interest) ListController.getItemById(em,Long.parseLong(id),ItemFactory.AREA));
+						addArea(em,r,(Interest) FieldValueController.getFieldValueById(em,Long.parseLong(id),FieldFactory.INTEREST));
 					}
 					catch(NumberFormatException e){
 
-						addArea(em,r,(Interest) ListController.createItem(em, id, ItemFactory.AREA));
+						addArea(em,r,(Interest) FieldValueController.createFieldValue(em, id, FieldFactory.INTEREST));
 					}
 				}
 			}

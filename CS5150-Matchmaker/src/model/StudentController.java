@@ -45,19 +45,17 @@ public class StudentController {
 			s.removeMajors();
 			s.removeMinors();
 			s.removeSkills();
-			for (Experience e : s.getPriorExperience()) {
-				em.remove(e);
+
+			for (Application a : s.getApplications()) {
+				ApplicationController.deleteApplication(em, a);
 			}
-			s.getPriorExperience().clear();
-			for (Course c : s.getTranscript()) {
-				em.remove(c);
-			}
-			s.getTranscript().clear();
-			s.removeApplications();
 			s.getUser().setStudent(null);
+			s.getSettings().removeProjects();
+			s.getSettings().setStudent(null);
+			s.setSettings(null);
+			em.remove(s.getSettings());
 			em.remove(s);
 		}
-		
 		tx.commit();
 	}
 	
@@ -165,16 +163,16 @@ public class StudentController {
 		for (String id : idList)
 			if (id.length()>0){
 				try{
-					StudentController.add(em, s, ListController.getItemById(em,Long.parseLong(id),type));
+					StudentController.add(em, s, FieldValueController.getFieldValueById(em,Long.parseLong(id),type));
 				}
 				catch(NumberFormatException e){
-					StudentController.add(em, s, ListController.createItem(em, id, type));
+					StudentController.add(em, s, FieldValueController.createFieldValue(em, id, type));
 				}
 			}
 		
 	}
 	
-	private static void add(EntityManager em, Student s, MultipleItem item) {
+	private static void add(EntityManager em, Student s, FieldValue item) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		

@@ -7,14 +7,14 @@
 					<div class="content">
 						<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 						<%
-						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-					 	EntityManager em = emf.createEntityManager();
-					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
-				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-				        Student s = StudentController.getStudentByNetID(em,request.getParameter("netId"));
-				        List<Project> allProjects = ProjectController.getProjectList(em);
-				         %>
+							EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+													 	EntityManager em = emf.createEntityManager();
+													 	JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
+												        JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+												        JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
+												        Student s = StudentController.getStudentByNetID(em,request.getParameter("netId"));
+												        List<Project> allProjects = ProjectController.getProjectList(em);
+						%>
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
 				        	var skillsData = <%= jsonSkills %>;

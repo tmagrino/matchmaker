@@ -17,9 +17,9 @@
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
-	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
-	JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-	JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+	JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
+	JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+	JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
 	Student s = StudentController.getStudentByNetID(em,(String)session.getAttribute("currentUser"));
 	List<Application> allApplications = s.getApplications();
 	List<Project> hiddenProjects = s.getSettings().getHiddenProjects();
@@ -28,9 +28,9 @@
 %>
 
 <script type="text/javascript">
-var majorData = <%= jsonMajor %>;
-var skillsData = <%= jsonSkills %>;
-var interestData = <%= jsonInterest %>;
+var majorData = <%=jsonMajor%>;
+var skillsData = <%=jsonSkills%>;
+var interestData = <%=jsonInterest%>;
 </script>
 
 <h1>My Applications</h1><br />
@@ -38,25 +38,25 @@ var interestData = <%= jsonInterest %>;
 	<jsp:include page="app-filters.jsp"/>
 	<%
 		if (allApplications.size() == 0) {
-		%>
+	%>
 			<tr class="no-results"><td colspan="5"><i>No applications found</i></td></tr>	
 		<%
-		}
-		for(Application a : allApplications) {
-            Project p = a.getApplicationProject();
-    %>
+				}
+					for(Application a : allApplications) {
+			            Project p = a.getApplicationProject();
+			%>
 	<tr>
 		<td>
 			<%=a.getStatus()%>&nbsp;
-			<%if (a.getStatus() == ApplicationStatus.Invited){ %>
-				<a id="a<%=a.getId() %>"class="actionButton apply" href = "#">Apply</a>
-			<%} %>&nbsp;
+			<%
+				if (a.getStatus() == ApplicationStatus.Invited){
+			%>
+				<a id="a<%=a.getId()%>"class="actionButton apply" href = "#">Apply</a>
+			<%
+				}
+			%>&nbsp;
 			<a class"actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
-				<%
-					if (showHidden) {
-						%>&amp;showhidden=yes<%
-					}
-				%>
+				<%if (showHidden) {%>&amp;showhidden=yes<%}%>
 			">
 				<img class="delete" src="images/Delete.png" alt="delete" border="0"
 				alt="Delete application" />
@@ -64,19 +64,19 @@ var interestData = <%= jsonInterest %>;
 		</td>
 		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
 		<td>
-		<%	
+		<%
 			for (Researcher r : p.getResearchers()) {
 		%>
 			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
-		<% 
+		<%
 			}
 		%>
 		</td>
-		<td title = "<%=p.getURL() %>"><a href="//http://<%=p.getURL()%>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
-		<td title = "<%=p.getDescription()%>"><%= ItemFactory.shortenString(p.getDescription())%></td>
+		<td title = "<%=p.getURL()%>"><a href="//http://<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getDescription()%>"><%=FieldFactory.shortenString(p.getDescription())%></td>
 		<%
-        }
-         %>
+			}
+		%>
 	</tr>
 </table>
 <br />
@@ -99,85 +99,81 @@ var interestData = <%= jsonInterest %>;
 <%
 	}
 	else{
-		%>
+%>
 	<br />
 	<p>
 		<font size="2"><i><a href="student-projects.jsp?showhidden=yes"> Show hidden projects</a></i></font>
 	</p>
 	<%
-	}
-%>
+		}
+	%>
 
 <table class="project-list">
 	<jsp:include page="proj-filters.jsp" />
 	<%
 		List<Project> allProjects = ProjectController.getProjectList(em);
-        List<Long> studProjs = StudentController.getStudentProjects(em,s);
-        boolean atLeastOne = false;
-        for (Project p : allProjects) {
-        	boolean applied = false;
-          	boolean hid = false;
-          	for (Application a : allApplications) {
-          		if (a.getApplicationProject() == p) {
-          			applied = true;
-          			break;
-          		}
-          	}
-          	if (applied) {
-          		continue;
-          	}
-          	if (hiddenProjects.contains(p)) {
-          		hid = true;
-          	}
-          	if (!showHidden && hid) {
-          		continue;
-          	}
-          	atLeastOne = true;
-          	String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
-                    + p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
-                     + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
-                     + p.getAreaString().replaceAll(" ", "_").toLowerCase() + " "
-                     + p.getSkillString().replaceAll(" ", "_").toLowerCase();
-    %>
-	<tr class="<%= cssClasses %>">
+	        List<Long> studProjs = StudentController.getStudentProjects(em,s);
+	        boolean atLeastOne = false;
+	        for (Project p : allProjects) {
+	        	boolean applied = false;
+	          	boolean hid = false;
+	          	for (Application a : allApplications) {
+	          		if (a.getApplicationProject() == p) {
+	          			applied = true;
+	          			break;
+	          		}
+	          	}
+	          	if (applied) {
+	          		continue;
+	          	}
+	          	if (hiddenProjects.contains(p)) {
+	          		hid = true;
+	          	}
+	          	if (!showHidden && hid) {
+	          		continue;
+	          	}
+	          	atLeastOne = true;
+	          	String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
+	                    + p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
+	                     + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
+	                     + p.getAreaString().replaceAll(" ", "_").toLowerCase() + " "
+	                     + p.getSkillString().replaceAll(" ", "_").toLowerCase();
+	%>
+	<tr class="<%=cssClasses%>">
 		<td class = "buttonTD">
 			<p>
 				<a id="<%=p.getId()%>" class="actionButton apply"
 					href="#">Apply</a>&nbsp;
 				<%
-                      	if (hid && showHidden) {
-                      		%><a class="actionButton unhide"
+					if (hid && showHidden) {
+				%><a class="actionButton unhide"
 					href="unhideProject.jsp?id=<%=p.getId()%>">Unhide</a>
 				<%
-                      	}
-                      	else {
-                      		%><a class="actionButton hide"
+					}
+				                      	else {
+				%><a class="actionButton hide"
 					href="hideProject.jsp?id=<%=p.getId()%>
-                      		<% 
-                      		if (showHidden) {
-                      			%>&amp;showhidden=yes<%
-                      		}
-                      		%>
+                      		<%if (showHidden) {%>&amp;showhidden=yes<%}%>
                       		">Hide</a>
 				<%
-                      	}
-                      	%>
+					}
+				%>
 			</p>
 		</td>
 		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
 		<td>
-		<% 
+		<%
 			for (Researcher r : p.getResearchers()) {
 		%>
 			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
-		<% 
-        	}
+		<%
+			}
 		%>
 		</td>
-		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL() %>"><%=ItemFactory.shortenString(p.getURL())%></a></td>
-		<td title = "<%=p.getDescription()%>"><%=ItemFactory.shortenString(p.getDescription())%></td>
-		<td title = "<%=p.getAreaString()%>"><%= ItemFactory.shortenString(p.getAreaString())%></td>
-		<td title = "<%=p.getSkillString()%>"><%= ItemFactory.shortenString(p.getSkillString())%></td>
+		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
+		<td title = "<%=p.getDescription()%>"><%=FieldFactory.shortenString(p.getDescription())%></td>
+		<td title = "<%=p.getAreaString()%>"><%=FieldFactory.shortenString(p.getAreaString())%></td>
+		<td title = "<%=p.getSkillString()%>"><%=FieldFactory.shortenString(p.getSkillString())%></td>
 	</tr>
 
 	<%

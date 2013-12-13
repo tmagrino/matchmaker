@@ -5,19 +5,19 @@
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 EntityManager em = emf.createEntityManager();
-JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
+JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
 Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
 String[] attributes = {ProjectController.TITLE, ProjectController.AREA, 
-		ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};String[] autocomplete_attr = {ItemFactory.INTEREST, ItemFactory.SKILL};
+		ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
 for(String auto_attr: autocomplete_attr){
-	jsonArrAll.put(ListController.getItemJson(em, auto_attr));
+	jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
 }
- %>
+%>
 <script type="text/javascript">
 	var autocomplete_attr = Array("research_area", "required_skills");
 	var jsonArrAll = <%= jsonArrAll %>;
@@ -26,7 +26,7 @@ for(String auto_attr: autocomplete_attr){
 <div class="content">
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
-	<h1>My Projects</h1>
+	<h1>Add new project</h1>
 	<form name="profile" action="save-project-changes.jsp">
 		<table class="info">
 			<tr>

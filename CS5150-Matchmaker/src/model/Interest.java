@@ -40,7 +40,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity(name = "INTEREST")
-public class Interest extends MultipleItem{
+public class Interest extends FieldValue{
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
@@ -52,6 +52,9 @@ public class Interest extends MultipleItem{
 	
 	@ManyToMany(mappedBy = "researchArea")
 	private List<Researcher> researchers;
+	
+	@ManyToMany(mappedBy = "project_area")
+	private List<Project> projects;
 	
 	public Interest() {
 		
@@ -96,16 +99,11 @@ public class Interest extends MultipleItem{
 			}
 		}
 	}
-	@Override
+	
 	void removeStudents() {
 		for (Student s : students) {
 			s.getInterests().remove(this);
 		}
-	}
-
-	@Override
-	public int compareTo(MultipleItem o) {
-		return getDescription().compareTo(o.getDescription());
 	}
 	
 	void addResearcher(Researcher r) {
@@ -123,5 +121,46 @@ public class Interest extends MultipleItem{
 				r.removeResearchArea(this);
 			}
 		}
+	}
+	
+	void removeResearchers() {
+		for (Researcher r : researchers) {
+			r.getResearchArea().remove(this);
+		}
+	}
+	
+	public List<Project> getProjects() {
+		return projects;
+	}
+	
+	void addProject(Project p) {
+		if (!projects.contains(p)) {
+			projects.add(p);
+			if (!p.getProjectAreas().contains((this))) {
+				p.addProjectArea(this);
+			}
+		}
+	}
+	
+	void removeProject(Project p) {
+		if (projects.remove(p)) {
+			if (p.getProjectAreas().contains(this)) {
+				p.removeProjectArea(this);
+			}
+		}
+	}
+	
+	void removeProjects() {
+		
+	}
+	
+	void removeElements() {
+		removeStudents();
+		removeResearchers();
+		removeProjects();
+	}
+	
+	public int compareTo(FieldValue o) {
+		return getDescription().compareTo(o.getDescription());
 	}
 }

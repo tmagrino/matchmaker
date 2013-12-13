@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -67,15 +68,31 @@ public class ProjectController {
 		tx.commit();
 		return p;
 	}
+	
+	public static void deleteProject(EntityManager em, Project p) {
+		EntityTransaction tx = em.getTransaction();
+		tx.begin();
+		
+		p.removeApplications();
+		p.removeRequiredSkills();
+		p.removeResearchers();
+		p.removeProjectAreas();
+		p.removeHiddenBys();
+		
+		
+		em.remove(p);
+		tx.commit();
+	}
+
 	public static Project updateProject(EntityManager em ,Project p, String name, String description,
 			String url, List<Researcher> researcher, List<Interest> area, List<Skill> skills){
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		
+
 		p.updateProject(name,description,url,researcher,area,skills);
-		
+
 		em.persist(p);
-		
+
 		tx.commit();
 		return p;
 	}
@@ -83,23 +100,15 @@ public class ProjectController {
 			String url, Researcher researcher, List<Interest> area, List<Skill> skills){
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		
+
 		p.updateProject(name,description,url,researcher,area,skills);
-		
+
 		em.persist(p);
-		
+
 		tx.commit();
 		return p;
 	}
 	
-	public static void deleteProject(EntityManager em, Project p) {
-		for (Application a : p.getApplications())
-			em.remove(a);
-		p.removeApplications();
-		p.removeResearchers();
-		em.remove(p);
-		
-	}
 	
 	public static void editName(EntityManager em, Project p, String name) {
 		EntityTransaction tx = em.getTransaction();
@@ -119,22 +128,17 @@ public class ProjectController {
 		tx.commit();
 	}
 	
-	public static void addApplication(EntityManager em, Project p, Application a) {
+	public static void editURL(EntityManager em, Project p, String url) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		
-		p.addApplication(a);
+		p.setURL(url);
 		
 		tx.commit();
 	}
 	
 	public static void removeApplication(EntityManager em, Project p, Application a) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
-		
-		p.removeApplication(a);
-		
-		tx.commit();
+		ApplicationController.deleteApplication(em, a);
 	}
 	
 	public static void addResearcher(EntityManager em, Project p, Researcher r) {
@@ -155,27 +159,28 @@ public class ProjectController {
 		tx.commit();
 	}
 	
-	public static void editYear(EntityManager em, Student s, Year year) {
-		EntityTransaction tx = em.getTransaction();
-		tx.begin();
+	public static boolean meetsRequirements(Project p, Student s) {
+		List<Skill> skills = p.getRequiredSkills();
+		for (Skill skl : skills) {
+			if (!s.getSkills().contains(skl)) {
+				return false;
+			}
+		}
 		
-		s.setYear(year);
-		
-		tx.commit();
+		return true;
 	}
 	
 	public static List<Project> getProjectList(EntityManager em) {
-        EntityTransaction tx = em.getTransaction();
         try {
         String query = "select r from Project r";
         List<Project> mylist = (List<Project>) em.createQuery(query).getResultList();
-        
         	return mylist;
         }
         catch (Exception e) {
         	return new ArrayList<Project>();
         }
 	}
+	
 	public static Project getProjectById(EntityManager em,String id) {
         EntityTransaction tx = em.getTransaction();
         try {
@@ -189,40 +194,48 @@ public class ProjectController {
         	return null;
         }
 	}
-	public static List<Application> removeDeclinedApplications(List<Application> apps){
-		List<Application> declined = new ArrayList<Application>();
-		for (Application a : apps){
-			if (a.getStatus() == ApplicationStatus.Declined){
+	
+	public static void removeDeclinedApplications(EntityManager em,
+			Project p) {
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+		List<Application> declined = new LinkedList<Application>();
+		for (Application a : p.getApplications()) {
+			if (a.getStatus() == ApplicationStatus.Declined) {
 				declined.add(a);
 			}
 		}
-		apps.removeAll(declined);
-		return apps;
+		
+		for (Application a : declined) {
+			ApplicationController.deleteApplication(em, a);
+		}
+		
+		tx.commit();
 	}
-	public static String getAttribute(Project p, String type){
-		if (type == TITLE){
-			return p.getName();
+	public static String getAttribute(Project p, String type) {
+		switch (type) {
+			case TITLE:
+				return p.getName();
+			case AREA:
+				return p.getAreaString();
+			case SKILL:
+				return p.getSkillString();
+			case URL:
+				return p.getURL();
+			case DESCRIPTION:
+				return p.getDescription();
+			default:
+				return null;
 		}
-		if (type == AREA){
-			return p.getAreaString();
-		}
-		if (type == SKILL){
-			return p.getSkillString();
-		}
-		if (type == URL){
-			return p.getURL();
-		}
-		if (type == DESCRIPTION){
-			return p.getDescription();
-		}
-		return null;
 	}
-	public static JSONObject getObjectJson(List<? extends MultipleItem> collection) {
+	
+	public static JSONObject getObjectJson(List<? extends FieldValue> collection) {
 		if(collection.size() > 0){
 			Collections.sort(collection);
 		}
 		JSONArray jsonArray = new JSONArray();
-		for (MultipleItem t : collection){
+		for (FieldValue t : collection){
 			JSONObject jsonObject= new JSONObject();
 			try {
 				jsonObject.put("value", String.valueOf(t.getId()));

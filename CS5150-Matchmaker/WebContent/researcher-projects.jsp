@@ -5,12 +5,12 @@
 <%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 					<div class="content">
 						<%
-						EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-					 	EntityManager em = emf.createEntityManager();
-					 	JSONObject jsonMajor = ListController.getItemJson(em,ItemFactory.MAJOR);
-				        JSONObject jsonSkills = ListController.getItemJson(em,ItemFactory.SKILL);
-				        JSONObject jsonInterest = ListController.getItemJson(em,ItemFactory.INTEREST);
-				         %>
+							EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+													 	EntityManager em = emf.createEntityManager();
+													 	JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
+												        JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+												        JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
+						%>
 				        
 				        <script type="text/javascript">
 				        	var majorData = <%= jsonMajor %>;
@@ -31,7 +31,9 @@
 				        	boolean hasApplicants = false;
 				        %>
 						<form name="filter-list" id="filter-list" class="clearfix">
-							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a></h1>
+							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a>
+							<a class"actionButton delete" href="remove-project.jsp?id=<%=p.getId()%>"><img class="delete" src="images/Delete.png" alt="delete" border="0"
+				alt="Delete application" /></a></h1>
 							<div class="search-container">
 								<input class="search-text" type="text" placeholder="Search..."/>
 								<input type="submit" value="Filter"/>
