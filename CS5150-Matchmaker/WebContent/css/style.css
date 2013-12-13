@@ -222,6 +222,18 @@ form .info textarea {
 }
 
 /* -- Results table styles -- */
+.searchUser table{
+	border-collapse: collapse;
+	border: 1px solid #ddd;
+}
+.searchUser td,
+.searchUser th{
+	text-align: center;
+	width: 180px;
+	border-bottom: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+
 .project-list,
 .additions_table {
 	border-collapse: collapse;
