@@ -102,10 +102,11 @@
 				<% if(has_avail_proj){ %>
 				<div id="invite-form-<%=s.getNetID() %>" class="invite-form hidden" title="Invite Students">
 					<form method="get" action="send-invitation.jsp">
-						<p>Select which project you would like to invite the student to</p>
+						<p>Select which project you would like to invite the student to:</p>
 						<% for(Project p: projs){ 
 								if(ApplicationController.getApplication(em, s, p) == null){ %>
-									<input type="radio" name="proj-id" value="<%= p.getId() %>"><%= p.getName() %>	
+									<input type="radio" name="proj-id" value="<%= p.getId() %>"><%= p.getName() %>
+									<br>	
 						<%  	} 	
 						    } %>
 							<input type="hidden" name="stud-id">
