@@ -9,6 +9,8 @@
 %>
  	<%
  	
+ 	
+ 	
  	Boolean updatedRole = false;
  	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
     EntityManager em = emf.createEntityManager();
