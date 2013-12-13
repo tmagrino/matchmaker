@@ -235,6 +235,10 @@ function initFilterType()
 				});
 			$(selector+", " + no_results + " tr.no-results").not(".hidden").show();
 		}
+		var nResultsContainer = $(".search-container .num-results")
+		if(nResultsContainer.length == 0) {return;}
+		var nResults = $(selector).length;
+		$(".search-container .num-results").html(nResults + " result(s) found");
 	});
 }
 

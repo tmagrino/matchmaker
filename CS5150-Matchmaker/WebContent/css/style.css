@@ -424,9 +424,14 @@ ul {
 .search-container{
 	margin: 1px 1px 1px 0;
 	float: right;
-	width: 457px;
+	width: 561px;
 	/* background-color: #ab1a2a; */
 	padding-left: 5px;
+}
+.search-container .num-results{
+	margin-right: 10px;
+	width: 120px;
+	display: inline-block;
 }
 .search-container input[type=text]{
 	border: 0;

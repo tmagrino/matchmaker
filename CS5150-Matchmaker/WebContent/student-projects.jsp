@@ -83,6 +83,7 @@ var interestData = <%=jsonInterest%>;
 
 <form name="filter-list" id="filter-list" class="clearfix" action="">
 	<div class="search-container">
+		<span class="num-results"></span>
 		<input class="search-text" type="text" placeholder="Search" /> <input type="submit"
 			value="Filter" />
 	</div>
@@ -187,8 +188,7 @@ var interestData = <%=jsonInterest%>;
 		} 
         if (!atLeastOne) {
     %>
-	<td colspan="7"><i>No available projects. </i> 
-	</td>
+	<td colspan="7"><i>No available projects. </i></td>
 	<%
         }
     %>
