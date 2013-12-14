@@ -93,6 +93,13 @@
  			searchDisplay += "<br>No Administrator role found for the user.";
  		}
  	}
+ 	
+ 	if(request.getParameter("studentRole") == null 
+ 		   && request.getParameter("researcherRole") == null
+ 				&& request.getParameter("adminRole") == null){
+ 			UserController.deleteUser(em, user);	
+ 	}
+ 	
  	if(!updatedRole){
  		searchDisplay+="";
  	}
