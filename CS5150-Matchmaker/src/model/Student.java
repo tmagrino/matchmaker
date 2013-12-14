@@ -625,6 +625,14 @@ public class Student implements Serializable {
 			}
 		}
 	}
+	
+	void removeApplications(){
+		for (Application a : applications) {
+			a.setStudentApplicant(null);
+			a.getApplicationProject().removeApplication(a);
+		}
+		applications = new ArrayList<Application>();
+	}
 
 	/**
 	 * @param settings the settings to set

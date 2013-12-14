@@ -215,9 +215,11 @@ public class Researcher implements Serializable {
 				}
 			}
 		}
+		else{
 		this.user = user;
 		if (user.getResearcher() != this) {
 			user.setResearcher(this);
+		}
 		}
 	}
 

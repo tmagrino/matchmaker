@@ -41,25 +41,30 @@ public class StudentController {
 	public static void removeStudent(EntityManager em, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		
+		User u = null;
 		if (s != null) {
+			u = s.getUser();
 			s.removeColleges();
 			s.removeInterests();
 			s.removeMajors();
 			s.removeMinors();
 			s.removeSkills();
-
-			for (Application a : s.getApplications()) {
-				ApplicationController.deleteApplication(em, a);
-			}
+			s.removeApplications();
 			s.getUser().setStudent(null);
 			s.getSettings().removeProjects();
 			s.getSettings().setStudent(null);
 			s.setSettings(null);
-			em.remove(s.getSettings());
+			
 			em.remove(s);
+			
+
 		}
 		tx.commit();
+		if (u != null){
+			if (!u.isAdmin && u.getResearcher() == null){
+				UserController.deleteUser(em, u);
+			}
+		}
 	}
 	
 	public static Student getStudentByNetID(EntityManager em, String netid) {

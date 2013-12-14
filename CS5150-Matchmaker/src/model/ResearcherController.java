@@ -59,8 +59,9 @@ public class ResearcherController {
 	public static void deleteResearcher(EntityManager em, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		
+		User u = null;
 		if (r != null) {
+			u = r.getUser();
 			r.removeDepartments();
 			r.removeResearchAreas();
 			r.removeProjects();
@@ -68,10 +69,14 @@ public class ResearcherController {
 			r.getSettings().removeStudents();
 			r.getSettings().setResearcher(null);
 			r.setSettings(null);
-			em.remove(r.getSettings());
 			em.remove(r);
 		}
 		tx.commit();
+		if (u != null){
+			if (!u.isAdmin && u.getStudent()== null){
+				UserController.deleteUser(em, u);
+			}
+		}
 	}
 	
 
