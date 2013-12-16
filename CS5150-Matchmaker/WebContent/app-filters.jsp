@@ -1,10 +1,10 @@
 <thead>
 	<tr>
-		<th>Status</th>
-		<th>Project Name</th>
-		<th>Project Leader(s)</th>
-		<th>Project URL</th>
-		<th>Description</th>
+		<th class="app-status">Status</th>
+		<th class="app-name">Project Name</th>
+		<th class="app-proj-lead">Project Leader(s)</th>
+		<th class="app-url">Project URL</th>
+		<th class="app-desc">Description</th>
 	</tr>
 </thead>
 <tbody>

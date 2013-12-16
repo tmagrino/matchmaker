@@ -182,7 +182,9 @@ function initTitleAttr(){
 	var searchEls = $(".searchable tbody tr td");
 	if(searchEls.length == 0) {return;}
 	searchEls.each(function(){
-		$(this).attr("title", $(this).text())
+		if(!$(this).hasClass("no-title")){
+			$(this).attr("title", $(this).text());
+		}
 	})
 }
 

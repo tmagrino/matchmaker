@@ -26,10 +26,9 @@
     	Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
         List<Project> projs = r.getProjects(); 
         boolean hasApplications = false;
-        if (projs.size() == 0){
-        	response.setStatus(response.SC_MOVED_TEMPORARILY);
-        	response.setHeader("Location", "proj-profile.jsp");
-        }else{
+        if (projs.size() == 0){ %>
+        	<h1>You have no projects! Would you like to <a href="proj-profile.jsp">add a new project?</a></h1>
+        <% }else{
 			%>
 		<a class="actionButton add-new" href="proj-profile.jsp">Add New Project</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a class="filter-button" href="invite-students.jsp">Show all available students</a>
@@ -47,7 +46,7 @@
 				s = a.getStudentApplicant();
 		%>
 		<tr>
-			<td>
+			<td class="no-title">
 			<%	
 				
 				if (a.getStatus() == ApplicationStatus.Pending) {

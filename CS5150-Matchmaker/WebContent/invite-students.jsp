@@ -60,7 +60,7 @@
 				}
 		%>
 		<tr>
-			<td>
+			<td class="no-title">
 				<%  
 					List<Project> projs = r.getProjects(); 
 					Boolean has_avail_proj = false;

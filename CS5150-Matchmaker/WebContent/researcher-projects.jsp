@@ -44,7 +44,7 @@
 											s = a.getStudentApplicant();
 											%>
 											<tr>
-												<td>
+												<td class="no-title">
 													<a class="actionButton remove" href="remove-student.jsp?id=<%=a.getId()%>">Remove</a>
 												</td>
 												<td><p><a href="profile-nonedit.jsp?studid=<%=s.getNetID()%>"><%=s.getName()%></a></p></td>

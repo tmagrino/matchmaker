@@ -41,7 +41,7 @@ var interestData = <%=jsonInterest%>;
 			            Project p = a.getApplicationProject();
 			%>
 	<tr>
-		<td>
+		<td class="no-title">
 			<%=a.getStatus()%>&nbsp;
 			<%
 				if (a.getStatus() == ApplicationStatus.Invited){
@@ -125,7 +125,7 @@ var interestData = <%=jsonInterest%>;
 	          	atLeastOne = true;
 	%>
 	<tr>
-		<td class = "buttonTD">
+		<td class = "buttonTD no-title">
 				<% 
 					if (!ProjectController.meetsRequirements(p, s)) {
 						%><p class="req-msg">Requirements not met</p><%

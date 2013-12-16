@@ -45,7 +45,7 @@ body,html {
 }
 
 .wrapper {
-	width: 1000px;
+	width: 1100px;
 	margin: 0 auto;
 }
 
@@ -561,10 +561,25 @@ td.buttonTD{
 .content table.searchable,
 .dataTables_wrapper{
 	margin-bottom: 20px;
+	width: 100%;
 }
 table.dataTable thead th.sorting_disabled{
 	cursor: default;
 }
-.content table.dataTable td{
+.content table.dataTable td,
+.content table.dataTable th{
 	padding: 0px;
+}
+.content table.dataTable td p{
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	max-height: 30px;
+	max-width: 150px;
+	padding: 0;
+	margin: 0;
+}
+.content table.dataTable td p.req-msg{
+	margin: 0 auto;
+	max-width: none;
 }
