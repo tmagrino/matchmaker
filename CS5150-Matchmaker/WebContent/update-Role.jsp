@@ -43,9 +43,7 @@
   			UserController.deleteUser(em, user);
   		}else{
   			StudentController.removeStudent(em, student);
-  			searchDisplay += "<br>Student profile has been removed for the user.";
   			ResearcherController.deleteResearcher(em, researcher);
-  			searchDisplay += "<br>Researcher profile has been removed for the user";
   		}
   	}
  	
