@@ -11,7 +11,7 @@
 	page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
 %>
 <%
- 	Boolean updatedRole = false;
+ 	
  	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
     EntityManager em = emf.createEntityManager();
  	
@@ -20,79 +20,74 @@
  	Researcher researcher = ResearcherController.getResearcherByNetID(em, netID);
  	User user = UserController.findUser(em, netID);
  	
- 	Boolean isStudent = false;
- 	if(student!= null){
- 		isStudent = true;
- 	}
- 	
- 	Boolean isResearcher = false;
- 	if(researcher!= null){
- 		isResearcher = true;
- 	}
- 	
- 	Boolean isAdmin = false;
- 	if(user!= null && user.isAdmin()){
- 		isAdmin = true;
- 	}
+ 	boolean updatedRole = false;
+ 	boolean isStudent = (student != null);
+ 	boolean isResearcher = (researcher != null);
+ 	boolean isAdmin = (user != null && user.isAdmin());
  	
  	String searchDisplay = "";
- 	if(request.getParameter("studentRole") == null 
-  		   && request.getParameter("researcherRole") == null
-  				&& request.getParameter("adminRole") == null){
-  		if(!isAdmin){
-  			UserController.deleteUser(em, user);
-  		}else{
-  			StudentController.removeStudent(em, student);
-  			ResearcherController.deleteResearcher(em, researcher);
-  		}
-  	}
- 	
- 	if(!isStudent && request.getParameter("studentRole") != null){ // Add a student role
+	// Add roles
+ 	// Add a student role
+ 	if (!isStudent && request.getParameter("studentRole") != null) { 
  		updatedRole = true;
 		Student stud = StudentController.createStudent(em, user.getName(), user.getNetid(), 0.0, user.getEmail(),  null, null, null, null, null, null, null, null, user);
-		searchDisplay += "<br>New Student role has been added for the user.";
+		searchDisplay += "<br>Student profile has been added for "+user.getName();
  	}
  	
- 	if(isStudent && request.getParameter("studentRole") == null){   // Remove a student role
- 		updatedRole = true;
- 		if(student != null){
- 			StudentController.removeStudent(em, student);
- 			searchDisplay += "<br>Student profile has been removed for the user.";
- 		}
- 	}
+ 	// Add a researcher role
+  	if (!isResearcher && request.getParameter("researcherRole") != null){ 
+  		updatedRole = true;
+ 	 	List<Interest> area = null;
+    	 	Researcher researcherPL = ResearcherController.createResearcher(em, user.getName(), user.getNetid(), user.getEmail(), null, "", area, user);
+    		searchDisplay += "<br>Project Leader profile has been added for "+user.getName();
+  	}
  	
- 	if(!isResearcher && request.getParameter("researcherRole") != null){ // Add a researcher role
- 		updatedRole = true;
-	 	List<Interest> area = null;
-   	 	Researcher researcherPL = ResearcherController.createResearcher(em, user.getName(), user.getNetid(), user.getEmail(), null, "", area, user);
-   		searchDisplay += "<br>New Researcher role has been added for the user.";
- 	}
- 	
- 	if(isResearcher && request.getParameter("researcherRole") == null){   // Remove a researcher role
- 		updatedRole = true;
- 		if(researcher != null){
- 			ResearcherController.deleteResearcher(em, researcher);
- 			searchDisplay += "<br>Researcher profile has been removed for the user";
- 		}
- 	}
- 	if(!isAdmin && request.getParameter("adminRole") != null){ // Add an admin role
+ 	// Add an admin role
+  	if(!isAdmin && request.getParameter("adminRole") != null) { 
  		updatedRole = true;
  		if(user!= null){
  			UserController.setAdmin(em, user, true);
- 			searchDisplay += "<br>New Administrator role has been added for the user.";
+ 			searchDisplay += "<br>Administrator rights has been added for "+user.getName();
  		}
  	}
  	
- 	if(isAdmin && request.getParameter("adminRole") == null){   // Remove an admin role
- 		if(user!= null){
- 			if(session.getAttribute("adminUser")!= null && 
- 					user.getNetid().equalsIgnoreCase((String)session.getAttribute("adminUser"))){
- 				searchDisplay += "<br>Cannot Remove your own Administrator profile";
- 			}
- 			else{
- 				UserController.setAdmin(em, user, false);
- 				searchDisplay += "<br>Administrator rights are revoked for the user.";
- 			}
+ 	// Remove roles
+ 	if (request.getParameter("studentRole") == null && 
+ 		request.getParameter("researcherRole") == null && 
+ 		request.getParameter("adminRole") == null) {
+  		if (!isAdmin && (session.getAttribute("adminUser")!= null && 
+  	 			!(user.getNetid().equalsIgnoreCase((String)session.getAttribute("adminUser"))))) {
+  			UserController.deleteUser(em, user);
+  		}
+  		else { // Changing own user's role
+  				StudentController.removeStudent(em, student);
+  				ResearcherController.deleteResearcher(em, researcher);
+  		}
+  	}
+	
+    // Remove a student role
+ 	if (isStudent && request.getParameter("studentRole") == null) {
+ 		updatedRole = true;
+ 		StudentController.removeStudent(em, student);
+ 		searchDisplay += "<br>Student profile has been removed for "+user.getName();
+ 	}
+ 	
+    // Remove a researcher role
+ 	if (isResearcher && request.getParameter("researcherRole") == null) {
+ 		updatedRole = true;
+ 		ResearcherController.deleteResearcher(em, researcher);
+ 		searchDisplay += "<br>Project Leader profile has been removed for "+user.getName();
+ 	}
+ 	
+ 	// Remove an admin role
+ 	if (isAdmin && request.getParameter("adminRole") == null) {
+ 		if (session.getAttribute("adminUser")!= null && 
+ 			user.getNetid().equalsIgnoreCase((String)session.getAttribute("adminUser"))) {
+ 			searchDisplay += "<br>Cannot Remove your own Administrator profile";
+ 		}
+ 		else {
+ 			UserController.setAdmin(em, user, false);
+ 			searchDisplay += "<br>Administrator rights are revoked for "+user.getName();
  		}
  	}
  	
