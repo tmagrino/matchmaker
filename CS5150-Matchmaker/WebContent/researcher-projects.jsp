@@ -36,44 +36,28 @@
 							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a>
 							<a class="actionButton delete" href="remove-project.jsp?id=<%=p.getId()%>"><img class="delete" src="images/Delete.png" alt="delete" border="0"
 					alt="Delete application" /></a></h1>
-							<table class="project-list searchable" data-empty="No students have been accepted yet">
-								<thead>
-									<tr>
-										<th class="empty"></th>
-										<th>Name</th>
-										<th>GPA</th>
-										<th>Major</th>
-										<th>Year</th>
-										<th>Skills</th>
-										<th>Research Interests</th>
-									</tr>
-								</thead>
-								<tbody>
+							<table class="project-list searchable researcher-projects" data-empty="No students have been accepted yet">
+								<jsp:include page="stud-filters.jsp"/>
 									<%for (Application a : students){
 										if (a.getStatus() == ApplicationStatus.Accepted){
 											hasApplicants = true;
 											s = a.getStudentApplicant();
-											String cssClasses = s.getName().replaceAll(" ", "_").toLowerCase() + " "
-								                    + s.getString(s.getMajors()).replaceAll(" ", "_").toLowerCase() + " "
-								                     + s.getString(s.getSkills()).replaceAll(" ", "_").toLowerCase() + " "
-								                     + s.getString(s.getInterests()).replaceAll(" ", "_").toLowerCase() + " "
-								                     + s.getNetID().replaceAll(" ", "_").toLowerCase();
 											%>
-											<tr class="<%= cssClasses %>">
+											<tr>
 												<td>
 													<a class="actionButton remove" href="remove-student.jsp?id=<%=a.getId()%>">Remove</a>
 												</td>
-												<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID()%>"><%=s.getName()%></a></td>
-												<td><%=s.getGpa() %></a></td>
-												<td><%=s.getString(s.getMajors()) %></td>
-												<td><%=s.getYear() %></td>
-												<td><%=s.getString(s.getSkills()) %></td>
-												<td><%=s.getString(s.getInterests()) %></td>
+												<td><p><a href="profile-nonedit.jsp?studid=<%=s.getNetID()%>"><%=s.getName()%></a></p></td>
+												<td><p><%=s.getGpa() %></p></td>
+												<td><p><%=s.getString(s.getMajors()) %></p></td>
+												<td><p><%=s.getYear() %></p></td>
+												<td><p><%=s.getString(s.getSkills()) %></p></td>
+												<td><p><%=s.getString(s.getInterests()) %></p></td>
 											</tr>
-										</tbody>
 									<%}
 									}
 									%>
+								</tbody>
 							</table>
 							
 							<br>

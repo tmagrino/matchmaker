@@ -53,7 +53,7 @@
 				if (a.getStatus() == ApplicationStatus.Pending) {
 			%>
 				<% if(!ProjectController.meetsRequirements(p, s)) {
-					%><p>Does not meet requirements</p><%
+					%><p class="req-msg">Does not meet requirements</p><%
 				}
 			%>
 				<a class="actionButton accept" href="accept-student.jsp?id=<%=a.getId()%>&studinvite=false">Accept</a>&nbsp;
@@ -69,12 +69,12 @@
 				}
 			%>
 			</td>	
-			<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>&appid=<%=a.getId() %>"> <%= s.getName() %>  </a></td> </td>
-			<td><%=s.getGpa() %></td>
-			<td><%=s.getString(s.getMajors()) %></td>
-			<td><%=s.getYear() %></td>
-			<td><%=s.getString(s.getSkills()) %></td>
-			<td><%=s.getString(s.getInterests()) %></td>
+			<td><p><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>&appid=<%=a.getId() %>"> <%= s.getName() %>  </a></p></td>
+			<td><p><%=s.getGpa() %></p></td>
+			<td><p><%=s.getString(s.getMajors()) %></p></td>
+			<td><p><%=s.getYear() %></p></td>
+			<td><p><%=s.getString(s.getSkills()) %></p></td>
+			<td><p><%=s.getString(s.getInterests()) %></p></td>
 		</tr>
 		<%	} %>
 		</tbody>

@@ -163,16 +163,27 @@ function sortTable()
 		$(el).dataTable({
 			"sPaginationType": "full_numbers",
 			"aoColumnDefs": [
-			     {"bSortable":false, "aTargets": ["empty"]}
+			     {"bSortable":false, "aTargets": ["empty"]},
+			     {"sWidth": "15%", "aTargets": ["proj-desc", "proj-research-area", "proj-skills", "app-desc", "stud-skills", "stud-research-area"]},
+			     {"sWidth": "12%", "aTargets": ["proj-url"]}
 			 ],
 			 "sDom": "ifrtlp",
 			 "oLanguage": {
 			      "sEmptyTable": emptyLang
-			  }
+			  },
+			  "bAutoWidth": false
 		});
 	});
 	$(".dataTables_wrapper").addClass("clearfix");
 	console.log($(".dataTables_wrapper").length);
+}
+
+function initTitleAttr(){
+	var searchEls = $(".searchable tbody tr td");
+	if(searchEls.length == 0) {return;}
+	searchEls.each(function(){
+		$(this).attr("title", $(this).text())
+	})
 }
 
 function initTabLinks(){
@@ -247,6 +258,7 @@ $(document).ready(function(){
 	initViewSuggestion();
 	initApplyButton();
 	sortTable();
+	initTitleAttr();
 	EditField();
 	handleAddCourse();
 	validateFormSubmit();

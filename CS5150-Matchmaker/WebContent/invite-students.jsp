@@ -60,7 +60,7 @@
 				}
 		%>
 		<tr>
-			<td><p>
+			<td>
 				<%  
 					List<Project> projs = r.getProjects(); 
 					Boolean has_avail_proj = false;
@@ -90,7 +90,6 @@
 				<%
                 }
                	%>
-				</p>
 				<% if(has_avail_proj){ %>
 				<div id="invite-form-<%=s.getNetID() %>" class="invite-form hidden" title="Invite Students">
 					<form method="get" action="send-invitation.jsp">
@@ -107,12 +106,12 @@
 				 </div>
 				 <% } %>
 			</td>
-			<td><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>"><%= s.getName()%></a></td>
-			<td><%=s.getGpa() %></td>
-			<td><%=s.getString(s.getMajors()) %></td>
-			<td><%=s.getYear() %></td>
-			<td><%=s.getString(s.getSkills()) %></td>
-			<td><%=s.getString(s.getInterests()) %></td>
+			<td><p><a href="profile-nonedit.jsp?studid=<%=s.getNetID() %>"><%= s.getName()%></a></p></td>
+			<td><p><%=s.getGpa() %></p></td>
+			<td><p><%=s.getString(s.getMajors()) %></p></td>
+			<td><p><%=s.getYear() %></p></td>
+			<td><p><%=s.getString(s.getSkills()) %></p></td>
+			<td><p><%=s.getString(s.getInterests()) %></p></td>
 		</tr>
 								<%} %>
 								</tbody>

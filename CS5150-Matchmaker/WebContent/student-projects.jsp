@@ -35,7 +35,7 @@ var interestData = <%=jsonInterest%>;
 
 <h1>My Applications</h1><br />
 <table class="project-list searchable" data-empty="No applications found">
-	<jsp:include page="app-filters.jsp"/>
+	<jsp:include page="proj-filters.jsp"/>
 	<%
 					for(Application a : allApplications) {
 			            Project p = a.getApplicationProject();
@@ -57,18 +57,20 @@ var interestData = <%=jsonInterest%>;
 				alt="Delete application" />
 			</a>
 		</td>
-		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
+		<td><p><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></p></td>
 		<td>
 		<%
 			for (Researcher r : p.getResearchers()) {
 		%>
-			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
+			<p><a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a></p>
 		<%
 			}
 		%>
 		</td>
-		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
-		<td title = "<%=p.getDescription()%>"><%=FieldFactory.shortenString(p.getDescription())%></td>
+		<td><p><a href="//<%=p.getURL()%>"><%=p.getURL()%></a></p></td>
+		<td><p><%=p.getDescription()%></p></td>
+		<td><p><%=p.getAreaString()%></p></td>
+		<td><p><%=p.getSkillString()%></p></td>
 		<%
 			}
 		%>
@@ -124,10 +126,9 @@ var interestData = <%=jsonInterest%>;
 	%>
 	<tr>
 		<td class = "buttonTD">
-			<p>
 				<% 
 					if (!ProjectController.meetsRequirements(p, s)) {
-						%><p>Requirements not met</p><%
+						%><p class="req-msg">Requirements not met</p><%
 						
 					}
 				%>
@@ -147,7 +148,6 @@ var interestData = <%=jsonInterest%>;
 				<%
 					}
 				%>
-			</p>
 		</td>
 		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
 		<td>
@@ -159,19 +159,19 @@ var interestData = <%=jsonInterest%>;
 			}
 		%>
 		</td>
-		<td title = "<%=p.getURL()%>"><a href="//<%=p.getURL()%>"><%=FieldFactory.shortenString(p.getURL())%></a></td>
-		<td title = "<%=p.getDescription()%>"><%=FieldFactory.shortenString(p.getDescription())%></td>
-		<td title = "<%=p.getAreaString()%>"><%=FieldFactory.shortenString(p.getAreaString())%></td>
-		<td title = "<%=p.getSkillString()%>"><%=FieldFactory.shortenString(p.getSkillString())%></td>
+		<td><p><a href="//<%=p.getURL()%>"><%=p.getURL()%></a></p></td>
+		<td><p><%=p.getDescription()%></p></td>
+		<td><p><%=p.getAreaString()%></p></td>
+		<td><p><%=p.getSkillString()%></p></td>
 	</tr>
 
 	<% } %>
 	    </tbody>
 </table>
 </div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<body></body>
-<html></html>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
