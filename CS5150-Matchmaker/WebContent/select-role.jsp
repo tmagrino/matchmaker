@@ -194,6 +194,20 @@
 			  	</form>
 			  	</li>
 			  <% }%>
+			  <%if (isResearcher){ %>
+			  <li>
+			  <form action="researcher-profile.jsp" method="get">
+			  <button type="submit" id="choose-account-1">
+			  	<img class="account-image" alt=""
+			                 src="images/blank.png">
+			  		<span class="account-name"><%= u.getName() %></span>
+			  		<span class="account-email" id="account-email-1">
+			  		Project Leader
+			  		</span>
+			  		</button>
+			  	</form>
+			  		</li>
+			  <%}%>
 			  <% if(isStudent){ %>
 			   
 			  <li><form action="profile.jsp" method="get"><button type="submit" id="choose-account-0">
@@ -205,27 +219,13 @@
 			  		</button></form>
 			  		</li>
 			  <%}%>
-			  <%if (isResearcher){ %>
-			  <li>
-			  <form action="researcher-profile.jsp" method="get">
-			  <button type="submit" id="choose-account-1">
-			  	<img class="account-image" alt=""
-			                 src="images/blank.png">
-			  		<span class="account-name"><%= u.getName() %></span>
-			  		<span class="account-email" id="account-email-1">
-			  		Project Lead
-			  		</span>
-			  		</button>
-			  	</form>
-			  		</li>
-			  <%}%>
 			  
 			   <%if (u == null){ %>
 
 			   
 			   <li>
 					<form action="createUser.jsp">
-							<h3>Are you a Student or a Project Lead?</h3>
+							<h3>Are you a Student or a Project Leader?</h3>
 							<p>
 								<label for="pic1">	
 									<input type="radio" name="role" value="student" id="pic1"> 
