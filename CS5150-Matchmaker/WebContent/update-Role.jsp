@@ -36,6 +36,19 @@
  	}
  	
  	String searchDisplay = "";
+ 	if(request.getParameter("studentRole") == null 
+  		   && request.getParameter("researcherRole") == null
+  				&& request.getParameter("adminRole") == null){
+  		if(!isAdmin){
+  			UserController.deleteUser(em, user);
+  		}else{
+  			StudentController.removeStudent(em, student);
+  			searchDisplay += "<br>Student profile has been removed for the user.";
+  			ResearcherController.deleteResearcher(em, researcher);
+  			searchDisplay += "<br>Researcher profile has been removed for the user";
+  		}
+  	}
+ 	
  	if(!isStudent && request.getParameter("studentRole") != null){ // Add a student role
  		updatedRole = true;
 		Student stud = StudentController.createStudent(em, user.getName(), user.getNetid(), 0.0, user.getEmail(),  null, null, null, null, null, null, null, null, user);
@@ -47,9 +60,6 @@
  		if(student != null){
  			StudentController.removeStudent(em, student);
  			searchDisplay += "<br>Student profile has been removed for the user.";
- 		}
- 		else{
- 			searchDisplay += "<br>No Student profile found for the user";
  		}
  	}
  	
@@ -66,9 +76,6 @@
  			ResearcherController.deleteResearcher(em, researcher);
  			searchDisplay += "<br>Researcher profile has been removed for the user";
  		}
- 		else{
- 			searchDisplay += "<br>No Researcher profile found for the user";
- 		}
  	}
  	if(!isAdmin && request.getParameter("adminRole") != null){ // Add an admin role
  		updatedRole = true;
@@ -76,31 +83,19 @@
  			UserController.setAdmin(em, user, true);
  			searchDisplay += "<br>New Administrator role has been added for the user.";
  		}
- 		else{
- 			searchDisplay += "<br>No Administrator role found for the user.";
- 		}
  	}
  	
  	if(isAdmin && request.getParameter("adminRole") == null){   // Remove an admin role
  		if(user!= null){
  			if(session.getAttribute("adminUser")!= null && 
  					user.getNetid().equalsIgnoreCase((String)session.getAttribute("adminUser"))){
- 				searchDisplay += "Cannot Remove your own Administrator profile";
+ 				searchDisplay += "<br>Cannot Remove your own Administrator profile";
  			}
  			else{
  				UserController.setAdmin(em, user, false);
  				searchDisplay += "<br>Administrator rights are revoked for the user.";
  			}
  		}
- 		else{
- 			searchDisplay += "<br>No Administrator role found for the user.";
- 		}
- 	}
- 	
- 	if(request.getParameter("studentRole") == null 
- 		   && request.getParameter("researcherRole") == null
- 				&& request.getParameter("adminRole") == null){
- 			UserController.deleteUser(em, user);	
  	}
  	
  	if(!updatedRole){
