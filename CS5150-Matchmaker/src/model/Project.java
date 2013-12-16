@@ -288,9 +288,11 @@ public class Project implements Serializable {
 	List<Application> removeApplications() {
 		List<Application> toDelete = new ArrayList<Application>();
 		for (Application app : applications){
-			app.getStudentApplicant().removeApplication(app);
-			app.setApplicationProject(null);
 			toDelete.add(app);
+		}
+		for (Application app : toDelete) {
+			app.setApplicationProject(null);
+			app.getStudentApplicant().removeApplication(app);
 		}
 		applications = new ArrayList<Application>();
 		return toDelete;
