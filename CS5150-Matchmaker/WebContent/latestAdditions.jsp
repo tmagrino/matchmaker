@@ -1,3 +1,6 @@
+<%--
+	This page is used to display all the latest vocabulary additions on the pages.
+--%> 
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="admin" />
 	<jsp:param name="sidebar_type" value="stud-profile" />

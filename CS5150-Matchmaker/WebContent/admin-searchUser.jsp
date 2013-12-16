@@ -1,3 +1,8 @@
+<%--
+	 This page is used for the Administrator to search for the users 
+	 The admin can also act as user or can add/delete accounts.
+--%>
+
 <% session.setAttribute("page", "adminSearch"); %>
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>

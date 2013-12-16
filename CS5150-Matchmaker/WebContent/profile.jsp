@@ -1,4 +1,6 @@
-<!-- Profile for Students created -->
+<%--
+	This page is an editable profile page for Students.
+ --%>
 <jsp:include page="header.jsp">
         <jsp:param name="stud_or_prof" value="stud" />
         <jsp:param name="top_selected" value="profile" />

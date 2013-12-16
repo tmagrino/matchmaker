@@ -1,4 +1,7 @@
-<!-- Code for adding new users -->
+<%--
+	This page is used to check whether user is having any current role.  
+	It is also used to redirect to the profile pages on the basis of the student, researcher. 
+--%>
 <%@page
         import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

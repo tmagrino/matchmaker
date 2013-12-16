@@ -1,3 +1,6 @@
+<%--
+  	This page is used for deleting student applications from the project 
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*,model.*,javax.persistence.*"%>

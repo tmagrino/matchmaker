@@ -1,3 +1,7 @@
+<%--
+	This page is used to edit the profile page of the project for created by the 
+	Project Lead. 
+ --%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="researcher" />
 	<jsp:param name="top_selected" value="project" />

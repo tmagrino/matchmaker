@@ -1,4 +1,7 @@
-<!-- Project profile page -->
+<%--
+	This page is uneditable profile page which can be displayed to all the users from
+	the search page.
+ --%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="stud" />
 	<jsp:param name="top_selected" value="project" />

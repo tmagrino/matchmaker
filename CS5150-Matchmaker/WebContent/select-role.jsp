@@ -1,3 +1,6 @@
+<%--
+	This page allows you to select the role on the basis of the number of role a user has
+ --%>
 <%@page
 	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%	 

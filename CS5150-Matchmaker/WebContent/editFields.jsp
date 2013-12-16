@@ -1,3 +1,6 @@
+<%--
+	This page allows you to edit the fields on your project profile.
+ --%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="admin" />
 	<jsp:param name="sidebar_type" value="stud-profile" />

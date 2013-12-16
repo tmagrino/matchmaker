@@ -1,3 +1,6 @@
+<%--
+	Displays all the new projects to the users
+ --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="stud"/>
     <jsp:param name="sidebar_type" value="stud-project"/>

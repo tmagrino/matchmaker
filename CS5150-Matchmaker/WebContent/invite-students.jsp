@@ -1,3 +1,6 @@
+<%--
+	This page allows the project lead to invite students to his/her projects.
+ --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
     <jsp:param name="sidebar_type" value="researcher-students"/>

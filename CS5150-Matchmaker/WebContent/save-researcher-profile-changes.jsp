@@ -1,3 +1,6 @@
+<%--
+	This page allows you save profile changes by the researcher
+ --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*,model.*,javax.persistence.*"%>

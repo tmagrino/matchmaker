@@ -1,3 +1,6 @@
+<%-- 
+	This page is an uneditable profile page displayed to the student. 
+--%>
 <jsp:include page="header.jsp">
         <jsp:param name="stud_or_prof" value="researcher" />
         <jsp:param name="top_selected" value="students" />

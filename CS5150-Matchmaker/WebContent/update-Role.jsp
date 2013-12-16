@@ -1,3 +1,6 @@
+<%--
+	This page allows you to update the roles of other users by Administrator.
+ --%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="admin" />
 	<jsp:param name="sidebar_type" value="stud-profile" />

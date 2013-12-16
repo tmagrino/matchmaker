@@ -1,3 +1,4 @@
+<!-- This page is used for pagination on different pages-->
 <div id="pager" class="pager">
 	<form>
 		<img src="images/first.png" class="first arrow" /> <img

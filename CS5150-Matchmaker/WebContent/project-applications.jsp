@@ -1,3 +1,6 @@
+<%--
+	This page is the applications page for all the projects
+ --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
     <jsp:param name="top_selected" value="students"/>

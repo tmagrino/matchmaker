@@ -1,3 +1,6 @@
+<%--
+	This page is editable profile page for the project.
+ --%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="researcher" />
 	<jsp:param name="top_selected" value="project" />

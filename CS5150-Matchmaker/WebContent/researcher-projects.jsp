@@ -1,3 +1,6 @@
+<%--
+	This is projects which are displayed for the researcher.
+ --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
     <jsp:param name="top_selected" value="project"/>

@@ -1,3 +1,6 @@
+<%--
+	This page is a sidebar navigation page for all users.
+ --%>
 <% if(request.getParameter("sidebar_type").equals("researcher-profile")){ %>
 	<li class="first">
 		<a <% if(request.getParameter("sidebar_selected").equals("view")){ %>class="selected"<% } %> href="researcher-profile.jsp">View Profile</a>

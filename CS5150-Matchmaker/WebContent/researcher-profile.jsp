@@ -1,3 +1,6 @@
+<%--
+	This is editable researcher profile page for the researcher.
+ --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
     <jsp:param name="top_selected" value="profile"/>
@@ -8,6 +11,7 @@
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	
+
 	String currentuser = (String) session.getAttribute("currentUser");
 	
 	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 

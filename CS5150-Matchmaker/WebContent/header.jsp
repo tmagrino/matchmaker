@@ -1,3 +1,7 @@
+<%--
+	This page is reusable header page used in all of the jsps.
+	Depending upon the roles of the person, the information is displayed in the header page.
+ --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.*,model.*,model.Student, model.StudentController,model.Researcher,model.ResearcherController,javax.persistence.*"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

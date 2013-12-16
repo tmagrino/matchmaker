@@ -1,3 +1,6 @@
+<%-- This page is used for Accepting Students to the projects 
+	 It is used to get the application and send email to the applicant
+--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*,model.*,javax.persistence.*"%>
@@ -7,7 +10,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+<%
+   EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
    EntityManager em = emf.createEntityManager();
    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
    

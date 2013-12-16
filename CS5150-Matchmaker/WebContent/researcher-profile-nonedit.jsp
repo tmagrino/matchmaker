@@ -1,3 +1,6 @@
+<%--
+	This is uneditable researcher profile page that can be seen by the student
+ --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="stud"/>
     <jsp:param name="top_selected" value="project"/>

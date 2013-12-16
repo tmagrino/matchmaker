@@ -1,3 +1,6 @@
+<%--
+	This page is an intermediate page used to reject a Student.
+ --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@page import="java.util.*,model.*,javax.persistence.*"%>
