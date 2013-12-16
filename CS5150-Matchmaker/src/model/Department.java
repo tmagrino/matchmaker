@@ -77,8 +77,8 @@ public class Department extends FieldValue {
 	}
 	
 	/**
-	 * Adds a {@link Researcher} to this College. Updates both sides of the Researcher
-	 * and College relationship.
+	 * Adds a {@link Researcher} to this Department. Updates both sides of the Researcher
+	 * and Department relationship.
 	 * 
 	 * @param r the {@link Researcher} to add to this Department
 	 */
@@ -92,8 +92,8 @@ public class Department extends FieldValue {
 	}
 	
 	/**
-	 * Removes a {@link Researcher} from this College. Updates both sides of the Researcher
-	 * and College relationship.
+	 * Removes a {@link Researcher} from this Department. Updates both sides of the Researcher
+	 * and Department relationship.
 	 * 
 	 * @param r the {@link Researcher} to remove from this Department
 	 */

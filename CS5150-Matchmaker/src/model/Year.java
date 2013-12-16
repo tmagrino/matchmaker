@@ -1,9 +1,12 @@
 package model;
 
-/*
- *  This class represents the year a student
+/**
+ * This class represents the year a student
  *  is currently in.
  * 
+ * @author Leonardo Neves
+ * @author Jan Cardenas
+ *
  */
 
 public enum Year {
