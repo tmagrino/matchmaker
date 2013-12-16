@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Persistant JPA Entity Class
  * <p>
- * Represents a College within the University
+ * A {@link FieldValue} representing a College within the University
  * <p>
  * Follows the Model-View-Controller software pattern. Because of field and method
  * visibilities, only getter methods can be accessed externally. 
