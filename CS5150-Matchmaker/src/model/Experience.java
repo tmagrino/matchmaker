@@ -2,15 +2,23 @@ package model;
 
 import java.util.Date;
 import java.io.Serializable;
+
 import javax.persistence.*;
+
 import java.util.List;
 
-/*
- * This class represents a prior experience a student
- * has had
+/**
  * 
- * http://en.wikibooks.org/wiki/Java_Persistence/ElementCollection
+ * Represents an experience that a {@link Student} has experienced, such
+ * as an intership or a job.
+ * <p>
+ * Not in use
+ * 
+ * @author Jan Cardenas
+ * @author Leonardo Neves
+ *
  */
+
 @Embeddable
 public class Experience {
 	@Temporal(TemporalType.DATE)

@@ -2,6 +2,14 @@ package model;
 
 import java.util.List;
 
+/**
+ * Abstract class used to facilitate operations of field values on the website 
+ * 
+ * @author Leonardo Neves
+ * @author Jan Cardenas
+ *
+ */
+
 public abstract class FieldValue implements Comparable<FieldValue>{
 	public abstract	long getId();
 	public abstract String getDescription();

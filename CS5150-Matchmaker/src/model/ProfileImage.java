@@ -1,9 +1,13 @@
 package model;
 
-/*
+/**
  * 
+ * Represents a profile photo for a {@link Researcher}
+ * <p>
  * Modified version of bovinemagnet's code
  * https://github.com/bovinemagnet/JPAandEJB-JPAImageExample/tree/master/src/main/java/au/com/sup/jpatest
+ * <p>
+ * Not in use
  * 
  */
 
