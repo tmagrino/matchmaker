@@ -63,7 +63,6 @@ public class StudentController {
 			s.setUser(null);
 			s.getSettings().removeProjects();
 			s.getSettings().setStudent(null);
-			s.setSettings(null);
 			
 			// Remove entities from database
 			em.remove(s.getSettings());

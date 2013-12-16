@@ -64,7 +64,6 @@ public class ResearcherController {
 			r.getUser().setResearcher(null);
 			r.getSettings().removeStudents();
 			r.getSettings().setResearcher(null);
-			r.setSettings(null);
 			
 			// Remove entities from database
 			em.remove(r.getSettings());
