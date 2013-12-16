@@ -45,7 +45,6 @@ public class ResearcherController {
 	public static void deleteResearcher(EntityManager em, Researcher r) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		User u = null;
 		if (r != null) {
 			// Delete projects if sole project leader
 			List<Project> toDelete = r.removeProjects();
@@ -60,7 +59,6 @@ public class ResearcherController {
 			// Removes incoming pointers to researcher
 			r.removeDepartments();
 			r.removeResearchAreas();
-			u = r.getUser();
 			r.getUser().setResearcher(null);
 			r.getSettings().removeStudents();
 			r.getSettings().setResearcher(null);
@@ -68,14 +66,12 @@ public class ResearcherController {
 			// Remove entities from database
 			em.remove(r.getSettings());
 			em.remove(r);
+			System.out.println("Removed researcher");
+		}
+		else {
+			System.out.println("Null researcher");
 		}
 		tx.commit();
-		// Remove user if it has no further roles
-		if (u != null) {
-			if (u.getStudent() == null && !u.isAdmin) {
-				UserController.deleteUser(em, u);
-			}
-		}
 	}
 	
 	public static void addHiddenStudent(EntityManager em, Researcher r, Student s) {

@@ -41,7 +41,6 @@ public class StudentController {
 	public static void removeStudent(EntityManager em, Student s) {
 		EntityTransaction tx = em.getTransaction();
 		tx.begin();
-		User u = null;
 		if (s != null) {
 			// Remove Applications
 			List<Application> toDelete = s.removeApplications();
@@ -58,7 +57,6 @@ public class StudentController {
 			s.removeMinors();
 			s.removeSkills();
 			s.removeHiddenByResearchers();
-			u = s.getUser();
 			s.getUser().setStudent(null);
 			s.setUser(null);
 			s.getSettings().removeProjects();
@@ -67,14 +65,9 @@ public class StudentController {
 			// Remove entities from database
 			em.remove(s.getSettings());
 			em.remove(s);
+			System.out.println("Removed student");
 		}
 		tx.commit();
-		// Remove user if it has no further roles
-		if (u != null) {
-			if (u.getResearcher() == null && !u.isAdmin) {
-				UserController.deleteUser(em, u);
-			}
-		}
 	}
 	
 	public static Student getStudentByNetID(EntityManager em, String netid) {

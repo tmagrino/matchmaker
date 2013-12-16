@@ -12,8 +12,11 @@ public class UserController {
 	public static User createUser(EntityManager em, String name, String email, String netid) {
 	    EntityTransaction tx = em.getTransaction();
 	    tx.begin();
-		User u = new User(name, email, netid);
-		em.persist(u);
+	    User u = findUser(em,netid);
+	    if (u == null) {
+	    	u = new User(name, email, netid);
+			em.persist(u);
+	    }
 		tx.commit();
 		return u;
 	}
@@ -21,13 +24,23 @@ public class UserController {
 	public static void deleteUser(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
 		if (u != null) {
-			StudentController.removeStudent(em, u.getStudent());
-			ResearcherController.deleteResearcher(em, u.getResearcher());
+			Student s = u.getStudent();
+			Researcher r = u.getResearcher();
+			System.out.println(s);
+			System.out.println(r);
+			StudentController.removeStudent(em, s);
+			System.out.println("Got here");
+			ResearcherController.deleteResearcher(em, r);
+			System.out.println("And here!");
+			if (u.getStudent() != null || u.getResearcher() != null) {
+				System.out.println("Student or Researcher not deleted");
+			}
 			if (u != null && u.isAdmin) {
 				tx.begin();
 				u.setStudent(null);
 				u.setResearcher(null);
 				em.remove(u);
+				System.out.println("Removed user");
 				tx.commit();
 			}
 		}

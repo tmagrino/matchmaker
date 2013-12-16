@@ -56,7 +56,8 @@
  			user.getNetid().equalsIgnoreCase((String)session.getAttribute("adminUser"))) {
  			StudentController.removeStudent(em, student);
 			ResearcherController.deleteResearcher(em, researcher);
-			User test = UserController.findUser(em, netID);
+			Student test = StudentController.getStudentByNetID(em, netID);
+			Researcher test2 = ResearcherController.getResearcherByNetID(em, netID);
 	  		if (test == null) {
 	  			searchDisplay += "<br>Cannot Remove your own Administrator rights";
 				searchDisplay += "<br>Your Student and Project Leader profile has been removed";
@@ -86,29 +87,6 @@
   				}
   			}
  		}
-  		if (!isAdmin && (session.getAttribute("adminUser") != null && 
-  	 			!(user.getNetid().equalsIgnoreCase((String)session.getAttribute("adminUser"))))) {
-  			UserController.deleteUser(em, user);
-  			User test = UserController.findUser(em, netID);
-  			if (test == null) {
-  				searchDisplay += "<br>"+name+"'s User has been deleted";
-  			}
-  			else {
-  				searchDisplay += "<br>Error removing all of "+name+"'s profiles";
-  			}
-  		}
-  		else { // Changing own user's role
-  				StudentController.removeStudent(em, student);
-  				ResearcherController.deleteResearcher(em, researcher);
-  				User test = UserController.findUser(em, netID);
-  	  			if (test == null) {
-  	  			searchDisplay += "<br>Cannot Remove your own Administrator rights";
-  				searchDisplay += "<br>Your Student and Project Leader profile has been removed";
-  	  			}
-  	  			else {
-  	  				searchDisplay += "<br>Error removing your profiles";
-  	  			}
-  		}
   	}
     else { 
     	// Remove a student role
