@@ -1,37 +1,68 @@
 package model;
 
-import java.io.Serializable;
-
 import javax.persistence.*;
-
-import java.util.ArrayList;
 import java.util.List;
+/**
+ * Persistant JPA Entity Class
+ * <p>
+ * Represents a department within the University
+ * <p>
+ * Follows the Model-View-Controller software pattern. Because of field and method
+ * visibilities, only getter methods can be accessed externally. 
+ * To create or alter instances of this class, use {@link FieldValueController}.
+ * 
+ * @author Jan Cardenas
+ * @author Leonardo Neves
+ *
+ */
 
 @Entity(name = "DEPARTMENT")
 public class Department extends FieldValue {
+	// Persistent Fields
+	// ID in the DEPARTMENT table of the database
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	// Name of this Department
 	@Column(name="DEPARTMENT")
 	private String description;
+	
+	// List of the researchers within this Department
 	@ManyToMany(mappedBy = "departments")
 	private List<Researcher> researchers;
 	
-	public Department() {
+	Department() {
 		
 	}
 	
+	/**
+	 * Creates a Department
+	 * 
+	 * @param name the name of this Department
+	 */
 	Department(String name) {
 		this.description = name;
 	}
+	
+	/**
+	 * 
+	 * @return the id of this Department in the DEPARTMENT table of the database
+	 */
 	public long getId(){
 		return id;
 	}
 	
+	/**
+	 * @return the name of this Department
+	 */
 	public String getDescription() {
 		return this.description;
 	}
 	
+	/**
+	 * @return the {@link Researcher
+	 */
 	public List<Researcher> getResearchers() {
 		return researchers;
 	}

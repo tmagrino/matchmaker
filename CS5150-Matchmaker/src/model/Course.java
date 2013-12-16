@@ -2,6 +2,17 @@ package model;
 
 import javax.persistence.Embeddable;
 
+/**
+ * 
+ * Represents a class course that a {@link Student} has completed.
+ * <p>
+ * Not in use
+ * 
+ * @author Jan Cardenas
+ * @author Leonardo Neves
+ *
+ */
+
 @Embeddable
 public class Course{
 	private String coursenum;
@@ -47,11 +58,7 @@ public class Course{
 	public void setSemester(String semester){
 		this.semester = semester;
 	}
-
-
 	public int compareTo(Course o) {
 		 return getTitle().compareTo(o.getTitle());
 	}
-
-
 }
