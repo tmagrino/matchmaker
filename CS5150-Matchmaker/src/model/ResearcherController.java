@@ -39,7 +39,7 @@ public class ResearcherController {
         List<Interest> areas = new ArrayList<Interest>();
         areas.add(researchArea);
 		return createResearcher(em, name, netID, email, departments, webpage, 
-				researchArea, user);
+				areas, user);
 	}
 	
 	public static void deleteResearcher(EntityManager em, Researcher r) {

@@ -17,8 +17,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
-/* 
- * A student's application to a Project
+/**
+ * Persistant JPA Entity Class
+ * <p>
+ * Represents a Student's application to a Project
+ * 
+ * @author Jan Cardenas
+ * @author Leonardo Neves
+ *
  */
 @Entity(name = "APPLICATION")
 public class Application implements Serializable {
