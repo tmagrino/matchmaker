@@ -5,15 +5,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="stylesheet" type="text/css" href="css/jPages.css">
 <link rel="stylesheet" type="text/css" href="css/autoSuggest.css">
-<link rel="stylesheet" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="css/jquery.dataTables.css" />
 <script src="//code.jquery.com/jquery-1.9.1.js"></script>
 <script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<script src="//code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
-<script src="js/jquery.tablesorter.min.js" type="text/javascript"></script>
-<script src="js/jquery.tablesorter.pager.js" type="text/javascript"></script>
+<script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="js/jquery.autoSuggest.js" type="text/javascript"></script>
 <title>Matchmaker - Profile</title>
 </head>
@@ -115,7 +113,7 @@
 		<div class="wrapper">
 			<div id="container">
 				<div class="main">
-					<div class="nav">
+					<div class="nav clearfix">
 						<ul class="tabrow">
 						<% if(request.getParameter("stud_or_prof").equals("stud")){ %>
 						<li
@@ -132,13 +130,13 @@
 							class="selected" <% } %>><a href="researcher-profile.jsp">My
 								Profile</a></li>
 						<li
-							<% if(request.getParameter("top_selected").equals("project")){ %>
-							class="selected" <% } %>><a href="researcher-projects.jsp">My
-								Projects</a></li>
-						<li
 							<% if(request.getParameter("top_selected").equals("students")){ %>
 							class="selected" <% } %>><a href="project-applications.jsp">Students</a>
 						</li>
+						<li
+							<% if(request.getParameter("top_selected").equals("project")){ %>
+							class="selected" <% } %>><a href="researcher-projects.jsp">My
+								Projects</a></li>
 						<% } else if(request.getParameter("stud_or_prof").equals("admin")){ %>
 						<li
 							<% if(request.getParameter("top_selected").equals("profile")){ %>

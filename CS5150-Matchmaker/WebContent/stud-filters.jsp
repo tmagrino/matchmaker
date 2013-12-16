@@ -1,6 +1,6 @@
 <thead>
 	<tr>
-		<th class="empty"></th>
+		<th></th>
 		<th>Name</th>
 		<th>GPA</th>
 		<th>Major</th>

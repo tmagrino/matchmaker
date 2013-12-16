@@ -34,14 +34,9 @@ var interestData = <%=jsonInterest%>;
 </script>
 
 <h1>My Applications</h1><br />
-<table class="project-list">
+<table class="project-list searchable" data-empty="No applications found">
 	<jsp:include page="app-filters.jsp"/>
 	<%
-		if (allApplications.size() == 0) {
-	%>
-			<tr class="no-results"><td colspan="5"><i>No applications found</i></td></tr>	
-		<%
-				}
 					for(Application a : allApplications) {
 			            Project p = a.getApplicationProject();
 			%>
@@ -79,15 +74,6 @@ var interestData = <%=jsonInterest%>;
 		%>
 	</tr>
 </table>
-<br />
-
-<form name="filter-list" id="filter-list" class="clearfix" action="">
-	<div class="search-container">
-		<span class="num-results"></span>
-		<input class="search-text" type="text" placeholder="Search" /> <input type="submit"
-			value="Filter" />
-	</div>
-</form>
 
 <h1>Search New Projects</h1>
 
@@ -110,7 +96,7 @@ var interestData = <%=jsonInterest%>;
 		}
 	%>
 
-<table class="project-list">
+<table class="project-list searchable" data-empty="No available projects">
 	<jsp:include page="proj-filters.jsp" />
 	<%
 		List<Project> allProjects = ProjectController.getProjectList(em);
@@ -135,13 +121,8 @@ var interestData = <%=jsonInterest%>;
 	          		continue;
 	          	}
 	          	atLeastOne = true;
-	          	String cssClasses = p.getName().replaceAll(" ", "_").toLowerCase() + " "
-	                    + p.getResearchersString().replaceAll(" ", "_").toLowerCase() + " "
-	                     + p.getDescription().replaceAll(" ", "_").toLowerCase() + " "
-	                     + p.getAreaString().replaceAll(" ", "_").toLowerCase() + " "
-	                     + p.getSkillString().replaceAll(" ", "_").toLowerCase();
 	%>
-	<tr class="<%=cssClasses%>">
+	<tr>
 		<td class = "buttonTD">
 			<p>
 				<% 
@@ -184,16 +165,9 @@ var interestData = <%=jsonInterest%>;
 		<td title = "<%=p.getSkillString()%>"><%=FieldFactory.shortenString(p.getSkillString())%></td>
 	</tr>
 
-	<%
-		} 
-        if (!atLeastOne) {
-    %>
-	<td colspan="7"><i>No available projects. </i></td>
-	<%
-        }
-    %>
+	<% } %>
+	    </tbody>
 </table>
-<jsp:include page="pager.jsp" />
 </div>
 <div></div>
 <div></div>

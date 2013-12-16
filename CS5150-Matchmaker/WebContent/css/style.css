@@ -1,6 +1,5 @@
 body,html {
 	margin: 0;
-	height: 100%;
 }
 
 .page,.wrapper,#container,.sidebar,#sidenav,.main,.content {
@@ -12,7 +11,6 @@ body,html {
 }
 
 .wrapper,#container {
-	height: 100%;
 	padding-bottom: 15px;
 	padding-top: 2.1%;
 	text-align: left;
@@ -47,7 +45,7 @@ body,html {
 }
 
 .wrapper {
-	width: 1100px;
+	width: 1000px;
 	margin: 0 auto;
 }
 
@@ -59,12 +57,8 @@ body,html {
 	padding: 1px 10px;
 	text-align: center;
 }
-.main {
-	height: 100%;
-}
 .nav{
-	float: left;
-	width: 1094px;
+	width: 100%;
 	height: 15px;
 	background-color: #ECECEC;
 }
@@ -72,7 +66,7 @@ body,html {
 	background-color: #ECECEC;
 	padding-left: 10px;
 	padding-right: 10px;
-	height: 100%;
+	overflow:auto;
 }
 td.attr-label{
 	width: 135px;	
@@ -122,8 +116,6 @@ img.avatar {
 }
 
 form[name=profile] {
-	float: right;
-	width: 770px;
 	margin-left: 200px;
 }
 .project-list ul.as-selections li.as-original input[type=text] {
@@ -276,10 +268,9 @@ form .arrow {
 /* --- Tab styles from http://css-tricks.com/better-tabs-with-round-out-borders/ --- */
 .tabrow {
 	text-align: center;
-	margin: 0;
+	margin: 0 5px 0 0;
 	padding: 0;
 	line-height: 1px;
-	position: relative;
 	float: right;
 	display: block;
 	width: auto;
@@ -393,7 +384,8 @@ ul {
 	border-collapse: collapse;
 }
 
-.actionButton {
+.actionButton,
+.filter-button {
 	padding: 5px;
 	display: inline-block;
 	width: auto;
@@ -402,14 +394,19 @@ ul {
 	color: white;
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
-	border-radius: 10px; /* future proofing */
-	-khtml-border-radius: 10px; /* for old Konqueror browsers */
+	border-radius: 10px; 
+	-khtml-border-radius: 10px; 
 }
-
+.filter-button{
+	background-color: #000;
+}
 .actionButton.hide, 
 .actionButton.remove,
 .actionButton.add-new {
 	background-color: #000099;
+}
+.actionButton.add-new{
+	margin-bottom: 20px;
 }
 .actionButton.unhide{
 	background-color: #FF8C00;
@@ -432,14 +429,6 @@ ul {
 	margin-right: 6px;
 	font-style: italic;
 }
-.filter-button{
-	text-decoration: none;
-	background-color: #000;
-	color: white;
-	width: auto;
-	display: inline-block;
-	padding: 4px;
-}
 .placeholder{
 	display: inline-block;
 	width:65px;
@@ -451,7 +440,6 @@ ul {
 	margin: 1px 1px 1px 0;
 	float: right;
 	width: 561px;
-	/* background-color: #ab1a2a; */
 	padding-left: 5px;
 }
 .search-container .num-results{
@@ -485,10 +473,10 @@ table.project-list .header.headerSortDown{
 table.project-list .header.empty{
 	background: none;
 }
-#filter-list h1{
+.filter-list h1{
 	float: left;
 }
-#filter-list{
+.filter-list{
 	width: 100%;
 }
 h1{
@@ -566,4 +554,17 @@ td.buttonTD{
 }
 #usersearch {
 	margin: 0 auto;
+}
+#container table.dataTable tr.odd{
+	background-color: #ECECEC;
+}
+.content table.searchable,
+.dataTables_wrapper{
+	margin-bottom: 20px;
+}
+table.dataTable thead th.sorting_disabled{
+	cursor: default;
+}
+.content table.dataTable td{
+	padding: 0px;
 }

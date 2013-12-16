@@ -30,16 +30,10 @@
 					        	students = p.getApplications();
 					        	boolean hasApplicants = false;
 					        %>
-							<form name="filter-list" id="filter-list" class="clearfix">
-								<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a>
-								<a class="actionButton delete" href="remove-project.jsp?id=<%=p.getId()%>"><img class="delete" src="images/Delete.png" alt="delete" border="0"
+							<h1><a href="edit-proj-profile.jsp?id=<%=p.getId()%>"><%=p.getName() %></a>
+							<a class="actionButton delete" href="remove-project.jsp?id=<%=p.getId()%>"><img class="delete" src="images/Delete.png" alt="delete" border="0"
 					alt="Delete application" /></a></h1>
-								<div class="search-container">
-									<input class="search-text" type="text" placeholder="Search..."/>
-									<input type="submit" value="Filter"/>
-								</div>
-							</form>
-							<table class="project-list">
+							<table class="project-list searchable" data-empty="No students have been accepted yet">
 								<thead>
 									<tr>
 										<th class="empty"></th>
@@ -73,15 +67,10 @@
 												<td><%=s.getString(s.getSkills()) %></td>
 												<td><%=s.getString(s.getInterests()) %></td>
 											</tr>
+										</tbody>
 									<%}
 									}
-									if (!hasApplicants) { %>
-									<td colspan = "7"><i>No students have been accepted yet.</i></td>
-									 <%
-					        }
 									%>
-									
-								</tbody>
 							</table>
 							
 							<br>

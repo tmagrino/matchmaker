@@ -26,19 +26,13 @@
 		var interestData = <%= jsonInterest %>;
 	</script>
 	<a class="filter-button" href="project-applications.jsp">Show applications</a>
-	<form name="filter-list" id="filter-list" class="clearfix">
-		<h1>Students</h1>    
-		<div class="search-container">
-			<input class="search-text" type="text" placeholder="Search..."/>
-			<input type="submit" value="Filter"/>
-		</div>
-	</form>
+	<h1>Students</h1>    
 	
 	<%
 		if (showHidden) {
 	%>
 		<br /><p>
-		<span class="hidden-message">Displaying hidden projects</span><a class="filter-button hide" href="invite-students.jsp?showhidden=no"> Hide Students</a>
+		<span class="hidden-message">Displaying hidden students</span><a class="filter-button hide" href="invite-students.jsp?showhidden=no"> Hide Students</a>
 		</p>
 	<%
 		}
@@ -51,23 +45,18 @@
 		}
 	%>
 	
-	<table class="project-list">
+	<table class="project-list searchable">
 		<jsp:include page="stud-filters.jsp"/>
 		<%
 			List<Student> studentList = new ArrayList<Student>();
 			studentList = StudentController.getAllStudents(em);
 			for (Student s : studentList) {
-				String cssClasses = s.getName().replaceAll(" ", "_").toLowerCase() + " "
-					+ s.getString(s.getMajors()).replaceAll(" ", "_").toLowerCase() + " "
-					+ s.getString(s.getSkills()).replaceAll(" ", "_").toLowerCase() + " "
-					+ s.getString(s.getInterests()).replaceAll(" ", "_").toLowerCase() + " "
-					+ s.getNetID().replaceAll(" ", "_").toLowerCase();
 				boolean hid = hiddenStudents.contains(s);
 				if (hid && !showHidden) {
 					continue;
 				}
 		%>
-		<tr class="<%=cssClasses %>">
+		<tr>
 			<td><p>
 				<%  
 					List<Project> projs = r.getProjects(); 
@@ -126,7 +115,6 @@
 								</tbody>
 							</table>
 						</form>
-						<jsp:include page="pager.jsp"/>
 					</div>				
 				</div>
 			</div>

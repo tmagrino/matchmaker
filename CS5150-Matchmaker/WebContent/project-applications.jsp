@@ -34,35 +34,16 @@
 		List<Application> apps;
 		List<Application> declinedApps;
 		Student s;
-        for (Project p : projs) {
-       		apps = p.getApplications();
-       		//apps = 	ProjectController.removeDeclinedApplications(apps);
-       		
-       		if (apps.size() != 0){
-       		hasApplications = true;
-         %>
-     
-    <form name="filter-list" id="filter-list" class="clearfix">
-    <h1><%=p.getName() %></h1>    
-		<div class="search-container">
-			<input class="search-text" type="text" placeholder="Search..."/>
-			<input type="submit" value="Filter"/>
-		</div>
-	</form>
-    <table class="project-list">
-    
-
-	
+        for (Project p : projs) { %>
+    <h1><%=p.getName() %></h1> 
+    <table class="project-list searchable" data-empty="No students have applied yet.  Invite students <a href=&quot;invite-students.jsp&quot>here</a>">
+    	<jsp:include page="stud-filters.jsp"/>
 		<%	
+			apps = p.getApplications();
 			for (Application a : apps) {
 				s = a.getStudentApplicant();
-				String cssClasses = s.getName().replaceAll(" ", "_").toLowerCase() + " "
-	                    + s.getString(s.getMajors()).replaceAll(" ", "_").toLowerCase() + " "
-	                     + s.getString(s.getSkills()).replaceAll(" ", "_").toLowerCase() + " "
-	                     + s.getString(s.getInterests()).replaceAll(" ", "_").toLowerCase() + " "
-	                     + s.getNetID().replaceAll(" ", "_").toLowerCase();
 		%>
-		<tr class="<%= cssClasses %>">
+		<tr>
 			<td>
 			<%	
 				
@@ -96,25 +77,8 @@
 		</tbody>
 
 	</table>
-	<br />
-		<%  }
-        }
-        if (!hasApplications){
-        	%>
-        	<br />
-        	<br />
-        	<h1>No students have applied yet. Invite students <a href="invite-students.jsp">here</a>.</h1>
-        	<%
-        }
- 
-	}
-     
-
-	if(hasApplications){ %>
-	<br />
-		<jsp:include page="pager.jsp"/>
-	<br />
-	<% } %>
+	<%	} 
+     }%>
 </div>
 
 </body>

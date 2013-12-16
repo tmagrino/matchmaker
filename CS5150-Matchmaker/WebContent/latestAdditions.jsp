@@ -34,13 +34,7 @@
 		additions = FieldValueController.getLatestAddedFields(em, category);
 	}
 %>
-<form name="filter-list" id="filter-list" class="clearfix">
-   <h1>Vocabulary</h1>    
-	<div class="search-container">
-		<input class="search-text" type="text" placeholder="Search..."/>
-		<input type="submit" value="Filter"/>
-	</div>
-</form>
+<h1>Vocabulary</h1> 
 <form action="latestAdditions.jsp">
 Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 	<option value="recents" <% if(category.equals("recents")){%>selected<%} %>>All</option>
@@ -88,7 +82,7 @@ Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 	}
 	else {		
 %>
-	<table class="additions_table">
+	<table class="additions_table searchable">
 		<thead>
 			<tr>
 				<th class="empty"></th>
@@ -127,11 +121,10 @@ Category:<br /><select name="mydropdown" onchange="this.form.submit()">
 	%>
 	</tbody>
 </table>
-<jsp:include page="pager.jsp" />
 </div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<body></body>
-<html></html>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>
