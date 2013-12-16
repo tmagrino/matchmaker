@@ -238,7 +238,7 @@
 									<input type="radio" name="role" value="researcher" id="pic2">
 									<img class="account-image" alt="" src="images/blank.png" />
 								</label> 
-			                 	<span class="account-name">Project Lead</span>
+			                 	<span class="account-name">Project Leader</span>
 							</p>
 							&nbsp;&nbsp;<input type="submit" value="Submit">
 							<FORM><INPUT Type="button" VALUE="Cancel" onClick="history.go(-1);return true;"></FORM>

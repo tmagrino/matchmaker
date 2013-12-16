@@ -133,9 +133,9 @@
 											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student"/>Student &nbsp;&nbsp;
 											 		<% }%>
 											 		<% if(isResearcher){ %>
-											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Researcher
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Project Leader
 											 		<%} else{ %>
-											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Researcher
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Project Leader
 											 		<% }%>
 											 		<% if(isAdmin){ %>
 											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin" checked="checked"/>Administrator
