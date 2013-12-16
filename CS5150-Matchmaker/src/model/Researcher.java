@@ -16,12 +16,13 @@ import java.util.List;
 @NamedQuery(name="Researcher.findAll", query="SELECT r FROM Researcher r")
 public class Researcher implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private static final int MAX_NAME_CHARS = 75;
 
 	// Persistent Fields
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@Column(name = "NAME", nullable = false, length = 75)
+	@Column(name = "NAME", nullable = false, length = MAX_NAME_CHARS)
 	private String name;
 	@Column(name = "NETID", nullable = false, length = 10)
 	private String netID;
@@ -60,7 +61,12 @@ public class Researcher implements Serializable {
 	public Researcher(String name,String netID,String email, 
 			List<Department> departments,
 			String webpage, List<Interest> researchArea) {
-		this.name = name;
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
 		this.netID = netID;
 		this.email = email;
 		this.departments = departments;
@@ -137,7 +143,12 @@ public class Researcher implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
 	}
 
 	public String getNetID() {

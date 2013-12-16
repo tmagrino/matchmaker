@@ -14,7 +14,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 /**
  * The persistent class for the Project database table.
  * 
@@ -24,16 +23,18 @@ import org.json.JSONObject;
 @NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private static final int MAX_DESCRIPTION_CHARS = 1000000;
+	private static final int MAX_NAME_CHARS = 200;
 
 	// Persistent Fields
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "NAME", nullable = false, length = 75)
+	@Column(name = "NAME", nullable = false, length = MAX_NAME_CHARS)
 	private String name;
 	@Column(name = "URL")
 	private String url;
-	@Column(name = "DESCRIPTION", nullable = false)
+	@Column(name = "DESCRIPTION", nullable = false, length = MAX_DESCRIPTION_CHARS)
 	private String description;
 	@ManyToMany
 	@JoinTable(
@@ -69,8 +70,18 @@ public class Project implements Serializable {
 	public Project(String name, String description, String url, 
 			List<Researcher> res, List<Interest> area
 			, List<Skill> skills) {
-		this.name = name;
-		this.description = description;
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
+		if (description.length() >= MAX_DESCRIPTION_CHARS) {
+			this.description = description.substring(0, MAX_DESCRIPTION_CHARS);
+		}
+		else {
+			this.description = description;
+		}
 		if (res == null) {
 			this.researchers = new ArrayList<Researcher>();
 		}
@@ -99,22 +110,32 @@ public class Project implements Serializable {
 	public void updateProject(String name, String description, String url, List<Researcher> res, List<Interest> area
 			, List<Skill> skills){
 		if (name != null && name != ""){
-		this.name = name;
+			if (name.length() >= MAX_NAME_CHARS) {
+				this.name = name.substring(0, MAX_NAME_CHARS);
+			}
+			else {
+				this.name = name;
+			}
 		}
-		if (description != null && description != ""){
-		this.description = description;
+		if (description != null && description != "") {
+			if (description.length() >= MAX_DESCRIPTION_CHARS) {
+				this.description = description.substring(0, MAX_DESCRIPTION_CHARS);
+			}
+			else {
+				this.description = description;
+			}
 		}
 		if (res != null && !res.isEmpty()){
-		this.researchers = res;
+			this.researchers = res;
 		}
 		if (url != null && url != ""){
-		this.url = url;
+			this.url = url;
 		}
 		if (area != null && !area.isEmpty()){
-		this.project_area = area;
+			this.project_area = area;
 		}
 		if (skills != null && !skills.isEmpty()){
-		this.requiredSkills = skills;
+			this.requiredSkills = skills;
 		}
 	}
 	
@@ -136,7 +157,12 @@ public class Project implements Serializable {
 	}
 
 	public void setName(String name) {
-		this.name = name;
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
 	}
 
 	public String getDescription() {
@@ -144,7 +170,12 @@ public class Project implements Serializable {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		if (description.length() >= MAX_DESCRIPTION_CHARS) {
+			this.description = description.substring(0, MAX_DESCRIPTION_CHARS);
+		}
+		else {
+			this.description = description;
+		}
 	}
 
 	public List<Researcher> getResearchers() {
@@ -328,5 +359,4 @@ public class Project implements Serializable {
 			builder.deleteCharAt(builder.length() - 2);
 		return builder.toString();
 	}
-	
 }

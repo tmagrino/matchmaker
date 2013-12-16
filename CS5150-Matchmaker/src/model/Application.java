@@ -23,6 +23,7 @@ import javax.persistence.TemporalType;
 @Entity(name = "APPLICATION")
 public class Application implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private static final int MAX_RESPONSE_CHARS = 1000000;
 	
 	// Persistent Fields
 	@Id @Column(name = "ID", nullable = false)
@@ -36,7 +37,7 @@ public class Application implements Serializable {
 	private Project applicationProject;
 	@Column(name = "STATUS")
 	private ApplicationStatus status;
-	@Column(name = "STUD_DATA")
+	@Column(name = "STUD_DATA", length = MAX_RESPONSE_CHARS)
 	private String studentResponse;
 	@Column(name = "SUBMITTED")
 	@Temporal(TemporalType.DATE)
@@ -51,7 +52,12 @@ public class Application implements Serializable {
 		this.studentApplicant = owner;
 		this.applicationProject = project;
 		this.status = ApplicationStatus.Pending;
-		this.studentResponse = studentResponse;
+		if (studentResponse.length() >= MAX_RESPONSE_CHARS) {
+			this.studentResponse = studentResponse.substring(0, MAX_RESPONSE_CHARS);
+		}
+		else {
+			this.studentResponse = studentResponse;
+		}
 		this.submissionDate = new Date();
 	}
 	
@@ -120,7 +126,12 @@ public class Application implements Serializable {
 
 
 	void setStudentResponse(String studentResponse) {
-		this.studentResponse = studentResponse;
+		if (studentResponse.length() >= MAX_RESPONSE_CHARS) {
+			this.studentResponse = studentResponse.substring(0, MAX_RESPONSE_CHARS);
+		}
+		else {
+			this.studentResponse = studentResponse;
+		}
 	}
 
 

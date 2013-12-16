@@ -43,12 +43,13 @@ import java.util.List;
 //@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
 public class Student implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private static final int MAX_NAME_CHARS = 75;
 	
 	// Persistent Fields
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "NAME", nullable = false, length = 75)
+	@Column(name = "NAME", nullable = false, length = MAX_NAME_CHARS)
 	private String name;
 	@Column(name = "NETID", nullable = false, length = 10)
 	private String netID;
@@ -127,7 +128,12 @@ public class Student implements Serializable {
 			List<Minor> minors, List<Skill> skills,
 			List<Experience> priorExperience, List<Interest> interests,
 			List<Course> transcript, User user) {
-		this.name = name;
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
 		this.netID = netID;
 		this.gpa = gpa;
 		this.email = email;
@@ -365,7 +371,12 @@ public class Student implements Serializable {
 	 * @param name the name to set
 	 */
 	void setName(String name) {
-		this.name = name;
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
 	}
 
 	/**
