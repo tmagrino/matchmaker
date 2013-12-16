@@ -642,7 +642,6 @@ public class Student implements Serializable {
 	List<Application> removeApplications() {
 		List<Application> toDelete = new ArrayList<Application>();
 		for (Application a : applications) {
-			a.setStudentApplicant(null);
 			if (a.getApplicationProject() != null) {
 				a.setApplicationProject(null);
 			}

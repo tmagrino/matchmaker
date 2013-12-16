@@ -32,19 +32,30 @@ public class Application implements Serializable {
 	private static final int MAX_RESPONSE_CHARS = 2000;
 	
 	// Persistent Fields
+	// ID in APPLICATION table
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	// Student associated with this application
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "STUD_ID")
 	private Student studentApplicant;
+	
+	// Project associated with this application
 	@ManyToOne (cascade = CascadeType.ALL)
 	@JoinColumn(name = "PROJ_ID")
 	private Project applicationProject;
+	
+	// Status of application
 	@Column(name = "STATUS")
 	private ApplicationStatus status;
+	
+	// Student's message to the project leaders
 	@Column(name = "STUD_DATA", length = MAX_RESPONSE_CHARS)
 	private String studentResponse;
+	
+	// Date submitted
 	@Column(name = "SUBMITTED")
 	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
@@ -53,6 +64,7 @@ public class Application implements Serializable {
 
 	}
 
+	
 	public Application(Student owner, Project project, 
 			String studentResponse) {
 		this.studentApplicant = owner;
