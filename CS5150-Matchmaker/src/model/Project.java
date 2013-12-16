@@ -203,6 +203,7 @@ public class Project implements Serializable {
 		for (Researcher r : researchers) {
 			r.getProjects().remove(this);
 		}
+		researchers = new ArrayList<Researcher>();
 	}
 	
 	public List<Interest> getProjectAreas() {
@@ -283,12 +284,16 @@ public class Project implements Serializable {
 			}
 		}
 	}
-	void removeApplications(){
+	
+	List<Application> removeApplications() {
+		List<Application> toDelete = new ArrayList<Application>();
 		for (Application app : applications){
 			app.getStudentApplicant().removeApplication(app);
 			app.setApplicationProject(null);
+			toDelete.add(app);
 		}
 		applications = new ArrayList<Application>();
+		return toDelete;
 	}
 	
 	public List<StudentSettings> getHiddenBy() {
@@ -316,6 +321,7 @@ public class Project implements Serializable {
 		for (StudentSettings s : hiddenBy) {
 			s.getHiddenProjects().remove(this);
 		}
+		hiddenBy = new ArrayList<StudentSettings>();
 	}
 
 	public String getURL(){

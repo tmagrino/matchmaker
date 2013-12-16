@@ -35,25 +35,11 @@ public class ResearcherController {
 	public static Researcher createResearcher(EntityManager em, String name,
 			String netID,String email, List<Department> departments,
 			String webpage, Interest researchArea, User user) {
-        EntityTransaction tx = em.getTransaction();
-        if (user == null) {
-        	return null;
-        }
+
         List<Interest> areas = new ArrayList<Interest>();
         areas.add(researchArea);
-		tx.begin();
-        
-        Researcher r = new Researcher(name, netID, email, departments,
-        				webpage, areas);
-        ResearcherSettings settings = new ResearcherSettings();
-        r.setSettings(settings);
-		settings.setResearcher(r);
-        user.setResearcher(r);
-        em.persist(r);
-        em.persist(settings);
-        
-		tx.commit();
-		return r;
+		return createResearcher(em, name, netID, email, departments, webpage, 
+				researchArea, user);
 	}
 	
 	public static void deleteResearcher(EntityManager em, Researcher r) {
@@ -61,25 +47,37 @@ public class ResearcherController {
 		tx.begin();
 		User u = null;
 		if (r != null) {
-			u = r.getUser();
+			// Delete projects if sole project leader
+			List<Project> toDelete = r.removeProjects();
+			tx.commit();
+			for (Project p : toDelete) {
+				if (p.getResearchers().size() == 0) {
+					ProjectController.deleteProject(em, p);
+				}
+			}
+			tx.begin();
+			
+			// Removes incoming pointers to researcher
 			r.removeDepartments();
 			r.removeResearchAreas();
-			r.removeProjects();
+			u = r.getUser();
 			r.getUser().setResearcher(null);
 			r.getSettings().removeStudents();
 			r.getSettings().setResearcher(null);
 			r.setSettings(null);
+			
+			// Remove entities from database
+			em.remove(r.getSettings());
 			em.remove(r);
 		}
 		tx.commit();
-		if (u != null){
-			if (!u.isAdmin && u.getStudent()== null){
+		// Remove user if it has no further roles
+		if (u != null) {
+			if (u.getStudent() == null && !u.isAdmin) {
 				UserController.deleteUser(em, u);
 			}
 		}
 	}
-	
-
 	
 	public static void addHiddenStudent(EntityManager em, Researcher r, Student s) {
 		EntityTransaction tx = em.getTransaction();

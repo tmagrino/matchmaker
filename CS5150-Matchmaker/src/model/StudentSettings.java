@@ -66,6 +66,7 @@ public class StudentSettings {
 		for (Project p : hiddenProjects) {
 			p.getHiddenBy().remove(this);
 		}
+		hiddenProjects = new ArrayList<Project>();
 	}
 	
 	public Student getStudent() {

@@ -43,25 +43,36 @@ public class StudentController {
 		tx.begin();
 		User u = null;
 		if (s != null) {
-			u = s.getUser();
+			// Remove Applications
+			List<Application> toDelete = s.removeApplications();
+			tx.commit();
+			for (Application a : toDelete) {
+				ApplicationController.deleteApplication(em, a);
+			}
+			tx.begin();
+			
+			// Remove incoming pointers
 			s.removeColleges();
 			s.removeInterests();
 			s.removeMajors();
 			s.removeMinors();
 			s.removeSkills();
-			s.removeApplications();
+			s.removeHiddenByResearchers();
+			u = s.getUser();
 			s.getUser().setStudent(null);
+			s.setUser(null);
 			s.getSettings().removeProjects();
 			s.getSettings().setStudent(null);
 			s.setSettings(null);
 			
+			// Remove entities from database
+			em.remove(s.getSettings());
 			em.remove(s);
-			
-
 		}
 		tx.commit();
-		if (u != null){
-			if (!u.isAdmin && u.getResearcher() == null){
+		// Remove user if it has no further roles
+		if (u != null) {
+			if (u.getResearcher() == null && !u.isAdmin) {
 				UserController.deleteUser(em, u);
 			}
 		}

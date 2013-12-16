@@ -65,13 +65,19 @@ public class ProjectController {
 			return;
 		}
 		tx.begin();
-		
-		p.removeApplications();
+	
+		// Delete applications
+		List<Application> toDelete = p.removeApplications();
+		tx.commit();
+		for (Application a : toDelete) {
+			ApplicationController.deleteApplication(em, a);
+		}
+		tx.begin();
+		// Remove pointers to this project
 		p.removeRequiredSkills();
 		p.removeResearchers();
 		p.removeProjectAreas();
 		p.removeHiddenBys();
-		
 		
 		em.remove(p);
 		tx.commit();

@@ -371,12 +371,12 @@ public class Student implements Serializable {
 	 * @param name the name to set
 	 */
 	void setName(String name) {
+		String fixedName = name;
 		if (name.length() >= MAX_NAME_CHARS) {
-			this.name = name.substring(0, MAX_NAME_CHARS);
+			fixedName = name.substring(0, MAX_NAME_CHARS);
 		}
-		else {
-			this.name = name;
-		}
+		this.name = fixedName;
+		user.setName(fixedName);
 	}
 
 	/**
@@ -384,6 +384,7 @@ public class Student implements Serializable {
 	 */
 	void setNetID(String netID) {
 		this.netID = netID;
+		user.setNetid(netID);
 	}
 
 	/**
@@ -398,6 +399,7 @@ public class Student implements Serializable {
 	 */
 	void setEmail(String email) {
 		this.email = email;
+		user.setEmail(email);
 	}
 
 	/**
@@ -637,12 +639,16 @@ public class Student implements Serializable {
 		}
 	}
 	
-	void removeApplications(){
+	List<Application> removeApplications() {
+		List<Application> toDelete = new ArrayList<Application>();
 		for (Application a : applications) {
 			a.setStudentApplicant(null);
-			a.getApplicationProject().removeApplication(a);
+			if (a.getApplicationProject() != null) {
+				a.getApplicationProject().removeApplication(a);
+			}
 		}
 		applications = new ArrayList<Application>();
+		return toDelete;
 	}
 
 	/**
@@ -677,5 +683,6 @@ public class Student implements Serializable {
 		for (ResearcherSettings r : hiddenByResearcher) {
 			r.getHiddenStudents().remove(this);
 		}
+		hiddenByResearcher = new ArrayList<ResearcherSettings>();
 	}
 }

@@ -65,6 +65,7 @@ public class ResearcherSettings {
 		for (Student s : hiddenStudents) {
 			s.getHiddenByResearcher().remove(this);
 		}
+		hiddenStudents = new ArrayList<Student>();
 	}
 	
 	public Researcher getResearcher() {

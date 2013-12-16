@@ -143,12 +143,12 @@ public class Researcher implements Serializable {
 	}
 
 	public void setName(String name) {
+		String fixedName = name;
 		if (name.length() >= MAX_NAME_CHARS) {
-			this.name = name.substring(0, MAX_NAME_CHARS);
+			fixedName = name.substring(0, MAX_NAME_CHARS);
 		}
-		else {
-			this.name = name;
-		}
+		this.name = fixedName;
+		user.setName(fixedName);
 	}
 
 	public String getNetID() {
@@ -157,6 +157,7 @@ public class Researcher implements Serializable {
 
 	public void setNetID(String netID) {
 		this.netID = netID;
+		user.setNetid(netID);
 	}
 	
 	public String getEmail() {
@@ -165,6 +166,7 @@ public class Researcher implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+		user.setEmail(email);
 	}
 	
 	public String getWebpage() {
@@ -226,11 +228,11 @@ public class Researcher implements Serializable {
 				}
 			}
 		}
-		else{
-		this.user = user;
-		if (user.getResearcher() != this) {
-			user.setResearcher(this);
-		}
+		else {
+			this.user = user;
+			if (user.getResearcher() != this) {
+				user.setResearcher(this);
+			}
 		}
 	}
 
@@ -238,7 +240,7 @@ public class Researcher implements Serializable {
 		return projects;
 	}
 
-	public void addProject(Project proj) {
+	void addProject(Project proj) {
 		if (!projects.contains(proj)) {
 			this.projects.add(proj);
 			if (!proj.getResearchers().contains(this)) {
@@ -247,18 +249,21 @@ public class Researcher implements Serializable {
 		}
 	}
 	
-	public void removeProject(Project proj) {
+	void removeProject(Project proj) {
 		if (projects.remove(proj)) {
 			if (proj.getResearchers().contains(this)) {
 				proj.removeResearcher(this);
 			}
 		}
 	}
-	public void removeProjects() {
+	List<Project> removeProjects() {
+		List<Project> toDelete = new ArrayList<Project>();
 		for (Project p : projects) {
 			p.getResearchers().remove(this);
+			toDelete.add(p);
 		}
 		projects = new ArrayList<Project>();
+		return toDelete;
 	}
 	
 	public List<Department> getDepartments() {
