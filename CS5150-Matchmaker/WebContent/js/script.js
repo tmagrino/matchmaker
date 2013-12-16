@@ -112,8 +112,11 @@ function validateFormSubmit()
 		var emailEl = $("input[name=email]");
 		if(emailEl.length){
 			if(!IsEmail(emailEl.val())){
-				alert('Invalid email. Correct this in order to save changes.');
+				emailEl.addClass("invalid-email");
 				is_valid = false;
+			}
+			else if(emailEl.hasClass("invalid-email")){
+				emailEl.removeClass("invalid-email");
 			}
 		}
 		var textElReq = $(".required input[type=text]").not($(".as-selections input[type=text]"));

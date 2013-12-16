@@ -14,7 +14,8 @@
 
 	String currentuser = (String) session.getAttribute("currentUser");
 	
-	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser); 
+	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser);
+	Set<String> req_attr = new HashSet<String>(Arrays.asList("Email", "URL", "Department")); 
 	String[] attributes = {"Email", "URL", "Department", "Research Area"};
 	// Update Research Area function to retrieve Interest objects.
 	String[] autocomplete_attr = {FieldFactory.DEPARTMENT, FieldFactory.INTEREST};
@@ -56,8 +57,8 @@
                                     	 </td>
                             		</tr>
                                 <% }
-				for(String attr: attributes){ %>
-				<tr>
+				for(String attr: attributes){ %> 
+					<tr <%= req_attr.contains(attr) ? "class=\"required\"" : "" %>>
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
 						<% if(r != null && r.getAttribute(attr) != null){ %>

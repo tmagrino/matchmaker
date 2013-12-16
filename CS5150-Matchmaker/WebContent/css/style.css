@@ -586,6 +586,7 @@ p.error-msg{
 	display: none;
 }
 
-#container .has-error{
+#container .has-error,
+#container .invalid-email{
 	border: 2px solid red;
 }
