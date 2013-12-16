@@ -183,7 +183,7 @@ function initTitleAttr(){
 	if(searchEls.length == 0) {return;}
 	searchEls.each(function(){
 		if(!$(this).hasClass("no-title")){
-			$(this).attr("title", $(this).text());
+			$(this).attr("title", $(this).text().trim());
 		}
 	})
 }
@@ -263,7 +263,7 @@ $(document).ready(function(){
 	initTitleAttr();
 	EditField();
 	handleAddCourse();
-	validateFormSubmit();
+	//validateFormSubmit();
 	initTabLinks();
 	hideProject();
 	initInvite();
