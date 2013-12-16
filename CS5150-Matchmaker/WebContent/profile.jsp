@@ -13,7 +13,7 @@
          EntityManager em = emf.createEntityManager();
          Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
          
-         
+         Set<String> req_attr = new HashSet<String>(Arrays.asList("Email", "Major", "Year", "College", "GPA")); 
          String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
          String[] autocomplete_attr = {FieldFactory.MAJOR, FieldFactory.MINOR, FieldFactory.COLLEGE, FieldFactory.SKILL
                          , FieldFactory.INTEREST};
@@ -42,6 +42,7 @@
         <div id="all-research_interests" class="hidden" title="All Interest Suggestions"></div>
         <div class="photo-info">
                 <form name="profile" action="save-profile-changes.jsp" method="GET">
+                		<p class="error-msg">Errors were found.  Please correct the errors before saving.</p>
                         <table class="info">
                                 <%if(!(s.getName().equals("New User"))){ %>
 	                                <tr>
@@ -59,7 +60,7 @@
                                 <% }
                       
                                 for(String attr: attributes){ %>
-                                <tr>
+                                <tr <%= req_attr.contains(attr) ? "class=\"required\"" : "" %>>
                                         <td class="attr-label"><%=attr %>:</td>
                                         <td class="field">
                                                 <% if(s != null && s.getAttribute(attr) != null){ %>

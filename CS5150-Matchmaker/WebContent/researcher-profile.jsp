@@ -40,6 +40,7 @@
 	<div id="all-research_area" class="hidden" title="All Research Area Suggestions"></div>
 	<div class="photo-info clearfix">
 		<form name="profile" action="save-researcher-profile-changes.jsp" method="GET">
+			<p class="error-msg">Errors were found.  Please correct the errors before saving.</p>
 			<table class="info">
 				<%if(!(r.getName().equals("New User"))){ %>
 	                                <tr>

@@ -105,34 +105,42 @@ function IsEmail(email) {
 
 function validateFormSubmit()
 {
-	var formEl = $("form");
+	var formEl = $("form[name=profile]");
 	if(formEl.length == 0){return;}
 	formEl.submit(function(e){
+		var is_valid = true;
 		var emailEl = $("input[name=email]");
 		if(emailEl.length){
 			if(!IsEmail(emailEl.val())){
 				alert('Invalid email. Correct this in order to save changes.');
-				e.preventDefault();
-				return false;
+				is_valid = false;
 			}
 		}
 		var textElReq = $(".required input[type=text]").not($(".as-selections input[type=text]"));
-		var hiddenElReq = $(".required .as-selections input[type=hidden]");
+		var hiddenElReq = $(".required .as-selections");
 		if(textElReq.length){
 			textElReq.each(function(index, el){
 				if($(el).val().length == 0){
-					e.preventDefault();
-					return false;
+					$(el).addClass("has-error");
+					is_valid = false;
+				}
+				else if($(el).hasClass("has-error")){
+					$(el).removeClass("has-error");	
 				}
 			});
 		}
 		if(hiddenElReq.length){
 			hiddenElReq.each(function(index, el){
-				if($(el).val().length == 0){
-					e.preventDefault();
-					return false;
+				if($("li.as-selection-item", $(el)).length == 0){
+					$(el).addClass("has-error");
+					is_valid = false;
 				}
 			});
+		}
+		if(!is_valid){
+			$("p.error-msg").show();
+			e.preventDefault();
+			return false;
 		}
 	});
 }
@@ -263,7 +271,7 @@ $(document).ready(function(){
 	initTitleAttr();
 	EditField();
 	handleAddCourse();
-	//validateFormSubmit();
+	validateFormSubmit();
 	initTabLinks();
 	hideProject();
 	initInvite();

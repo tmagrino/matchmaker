@@ -31,6 +31,7 @@ for(String auto_attr: autocomplete_attr){
 	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
 	<h1>Add new project</h1>
 	<form name="profile" action="save-project-changes.jsp">
+		<p class="error-msg">Errors were found.  Please correct the errors before saving.</p>
 		<table class="info">
 			<tr>
 				<td class="attr-label" colspan="3"><h2><%=r.getName() %></h2></td>

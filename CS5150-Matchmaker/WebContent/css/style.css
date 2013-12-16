@@ -135,7 +135,7 @@ form .info textarea {
 	width: 512px;
 }
 
-.required label:after {
+.required .attr-label:after {
 	content: " *";
 	color: red;
 }
@@ -578,4 +578,14 @@ table.dataTable thead th.sorting_disabled{
 .content table.dataTable td p.req-msg{
 	margin: 0 auto;
 	max-width: none;
+}
+p.error-msg{
+	color: red;
+	font-weight: bold;
+	margin-bottom: 10px;
+	display: none;
+}
+
+#container .has-error{
+	border: 2px solid red;
 }
