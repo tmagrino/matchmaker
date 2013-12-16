@@ -429,10 +429,6 @@ ul {
 	margin-right: 6px;
 	font-style: italic;
 }
-.placeholder{
-	display: inline-block;
-	width:65px;
-}
 .actionButton.reject{
 	background-color: #ab1a2a;
 }

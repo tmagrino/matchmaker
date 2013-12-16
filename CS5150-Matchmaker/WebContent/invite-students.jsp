@@ -71,7 +71,7 @@
 						}
 					}
 					if(!has_avail_proj){ %>
-						<a class="placeholder">Invited</a>
+						Invited
 					<%}else{ %>
 						<a id=<%=s.getNetID() %> class="actionButton invite" href="send-invitation.jsp?id=<%=s.getNetID()%>">Invite</a>
 				<%   }
