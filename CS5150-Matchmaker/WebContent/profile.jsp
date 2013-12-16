@@ -63,13 +63,13 @@
                                         <td class="attr-label"><%=attr %>:</td>
                                         <td class="field">
                                                 <% if(s != null && s.getAttribute(attr) != null){ %>
-                                                <p class="read-only <%= s.getAttribute(attr) == "" ? "hidden" : "" %>">
+                                                <p class="read-only <%= s.getAttribute(attr).equals("") ? "hidden" : "" %>">
                                                         <%=s.getAttribute(attr) %>
-                                                        <a class="edit-btn <%= s.getAttribute(attr).length() > 80 ? "extended" : "" %>" href="#"> 
+                                                        <a class="edit-btn <%= s.getAttribute(attr) != null && s.getAttribute(attr).length() > 80 ? "extended" : "" %>" href="#"> 
                                                                 <img src="images/pencil_small.png" alt="edit" />
                                                         </a>
                                                 </p>
-                                                <p class="editable <%= s.getAttribute(attr) != "" ? "hidden" : "" %>">
+                                                <p class="editable <%= s.getAttribute(attr).equals("") ? "" : "hidden" %>">
                                                         <% if(attr.equals("Year")){ %>
                                                                 <select name = "year">
                                                                 <% String year_val = s.getAttribute(attr); %>
