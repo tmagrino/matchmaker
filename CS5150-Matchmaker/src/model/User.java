@@ -4,12 +4,13 @@ import javax.persistence.*;
 
 @Entity (name = "USER")
 public class User {
+	private static final int MAX_NAME_CHARS = 75;
 
 	// Persistent Fields
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Column(name = "NAME", nullable = false, length = 75)
+	@Column(name = "NAME", nullable = false, length = MAX_NAME_CHARS)
 	private String name;
 	@Column(name = "EMAIL", nullable = false)
 	private String email;
@@ -29,6 +30,12 @@ public class User {
 	}
 	
 	User(String name, String email, String netid) {
+		if (name.length() >= MAX_NAME_CHARS) {
+			this.name = name.substring(0, MAX_NAME_CHARS);
+		}
+		else {
+			this.name = name;
+		}
 		this.name = name;
 		this.email = email;
 		this.netid = netid;

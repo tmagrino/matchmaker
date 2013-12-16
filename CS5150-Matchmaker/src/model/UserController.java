@@ -20,13 +20,17 @@ public class UserController {
 	
 	public static void deleteUser(EntityManager em, User u) {
 	    EntityTransaction tx = em.getTransaction();
-	    tx.begin();
 		if (u != null) {
-			u.setStudent(null);
-			u.setResearcher(null);
-			em.remove(u);
+			StudentController.removeStudent(em, u.getStudent());
+			ResearcherController.deleteResearcher(em, u.getResearcher());
+			if (u != null && u.isAdmin) {
+				tx.begin();
+				u.setStudent(null);
+				u.setResearcher(null);
+				em.remove(u);
+				tx.commit();
+			}
 		}
-		tx.commit();
 	}
 	
 	@SuppressWarnings("unchecked")
