@@ -23,27 +23,27 @@
  	boolean isStudent = (student != null);
  	boolean isResearcher = (researcher != null);
  	boolean isAdmin = (user != null && user.isAdmin());
- 	
  	String searchDisplay = "";
+
 	// Add roles
  	// Add a student role
  	if (!isStudent && request.getParameter("studentRole") != null) { 
 		Student stud = StudentController.createStudent(em, user.getName(), user.getNetid(), 0.0, user.getEmail(),  null, null, null, null, null, null, null, null, user);
-		searchDisplay += "<br>Student profile has been added for "+user.getName();
+		searchDisplay += "<br>New Student role has been added for the user.";
  	}
- 	
+ 
  	// Add a researcher role
   	if (!isResearcher && request.getParameter("researcherRole") != null){ 
  	 	List<Interest> area = null;
     	 	Researcher researcherPL = ResearcherController.createResearcher(em, user.getName(), user.getNetid(), user.getEmail(), null, "", area, user);
     		searchDisplay += "<br>Project Leader profile has been added for "+user.getName();
   	}
- 	
+
  	// Add an admin role
   	if(!isAdmin && request.getParameter("adminRole") != null) { 
  		if(user!= null){
  			UserController.setAdmin(em, user, true);
- 			searchDisplay += "<br>Administrator rights has been added for "+user.getName();
+ 			searchDisplay += "<br>New Administrator role has been added for the user.";
  		}
  	}
 
@@ -88,7 +88,7 @@
  				searchDisplay += "<br>Error removing "+name+"'s Student profile";	
  			}
  		}
- 	
+    	
  	   // Remove a researcher role
 		if (isResearcher && request.getParameter("researcherRole") == null) {
  			ResearcherController.deleteResearcher(em, researcher);
@@ -113,7 +113,7 @@
  			}
  		}
     }
- 	
+ 
  	response.sendRedirect("admin-searchUser.jsp?searchDisplay="+searchDisplay+"&netID="+request.getParameter("userNetID")+"&name="+request.getParameter("userName"));
 %>
 </body>
