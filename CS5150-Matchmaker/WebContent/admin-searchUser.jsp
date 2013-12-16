@@ -127,21 +127,21 @@
 									    	</td>
 										 	<td align="left" rowspan="2">
 											 	<form action="update-Role.jsp" method="Get">
-												 	<% if(isStudent){%>
-											 			<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student" checked="checked"/>Student &nbsp;&nbsp;
-											 		<% } else {%>
-											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student"/>Student &nbsp;&nbsp;
-											 		<% }%>
-											 		<% if(isResearcher){ %>
-											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Project Leader
-											 		<%} else{ %>
-											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Project Leader
-											 		<% }%>
 											 		<% if(isAdmin){ %>
 											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin" checked="checked"/>Administrator
 											 		<%} else{%>
 											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="adminRole" value="Admin"/>Administrator
 											 		<%} %>
+											 		<% if(isResearcher){ %>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher" checked="checked"/>Project Leader
+											 		<%} else{ %>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="researcherRole" value="Researcher"/>Project Leader
+											 		<% }%>
+											 		<% if(isStudent){%>
+											 			<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student" checked="checked"/>Student &nbsp;&nbsp;
+											 		<% } else {%>
+											 		<p align="left">&nbsp;&nbsp;<input type="checkbox" name="studentRole" value="Student"/>Student &nbsp;&nbsp;
+											 		<% }%>
 											 		<input type="hidden" name="userNetID" value="<%=request.getParameter("netID") %>" />
 											 		<input type="hidden" name="userName" value="<%=request.getParameter("name") %>"/>
 											 		<p><br><input type="submit" value="Update Roles" size=20  style="width: 10em; height:2em"/>
