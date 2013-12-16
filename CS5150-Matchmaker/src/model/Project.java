@@ -23,7 +23,7 @@ import org.json.JSONObject;
 @NamedQuery(name="Project.findAll", query="SELECT p FROM Project p")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private static final int MAX_DESCRIPTION_CHARS = 1000000;
+	private static final int MAX_DESCRIPTION_CHARS = 21844;
 	private static final int MAX_NAME_CHARS = 200;
 
 	// Persistent Fields

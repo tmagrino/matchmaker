@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
 /**
  * Persistant JPA Entity Class
  * <p>
- * Represents a Student's application to a Project
+ * Represents a {@link Student}'s application to a {@link Project}
  * 
  * @author Jan Cardenas
  * @author Leonardo Neves
@@ -29,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity(name = "APPLICATION")
 public class Application implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private static final int MAX_RESPONSE_CHARS = 1000000;
+	private static final int MAX_RESPONSE_CHARS = 21844;
 	
 	// Persistent Fields
 	@Id @Column(name = "ID", nullable = false)
