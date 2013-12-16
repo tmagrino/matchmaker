@@ -4,74 +4,90 @@ import java.io.Serializable;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/*
- *  This table in the database will keep track of all
- *  possible colleges/schools a student can choose in 
- *  their profile and which ones a professor can filter
- *  by in their searches
- *  
- *   Table: COLLEGE
- *   
- *   |  ID  |    COLLEGE/SCHOOl      				    |
- *   |  1   | College_of_Agriculture_and_Life_Science   |
- *   |  2   | College_of_Architecture_Art_and_Planning  |
- *   |  3   | College_of_Arts_and_Sciences       		|
- *   |  4   | College_of_Engineering         			|
- *   |  5   | School_of_Hotel_Administration            |
- *   |  6   | College_of_Human_Ecology                  |
- *   |  7   | School_of_Industrial_and_Labor_Relations  |
- *   | ...  |  ...                                      |
- *   
- *   
- *   Table: COLLEGES_TABLE
- *   
- *   | STUD_ID | COLLEGE_ID |
- *   |    1    |     3    |
- *   |    1    |     2   |
- *   |    2    |     5   |
- *   |    3    |     5   |
- *   |    4    |     4   |
- *   |    5    |     1   |
- *   |    6    |     1   |
- *   |   ...   |    ...   |
+/**
+ * Persistant JPA Entity Class
+ * <p>
+ * Represents a College within the University
+ * <p>
+ * Follows the Model-View-Controller software pattern. Because of field and method
+ * visibilities, only getter methods can be accessed externally. 
+ * To create or alter instances of this class, use {@link FieldValueController}.
+ * 
+ * @author Jan Cardenas
+ * @author Leonardo Neves
+ *
  */
 
 @Entity(name = "COLLEGE")
-public class College extends FieldValue{
+public class College extends FieldValue {
+	// Persistent Fields
+	// ID in COLLEGE table of the database
 	@Id @Column(name="ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	// Name of the College
 	@Column(name="COLLEGE_SCHOOL")
 	private String description;
 	
+	// List of the students within this College
 	@ManyToMany(mappedBy = "colleges")
 	private List<Student> students;
 	
-	public College() {
+	College() {
 		
 	}
 	
+	/**
+	 * 
+	 * Creates a College
+	 * 
+	 * @param name the name of the College
+	 */
 	College(String name) {
 		this.description = name;
 	}
+	
+	/**
+	 * @return the ID of this instance in the College table of the database
+	 */
 	public long getId(){
 		return id;
 	}
 	
+	/**
+	 * 
+	 * @return the name of this College
+	 */
 	public String getDescription() {
 		return this.description;
 	}
 	
+	/**
+	 * 
+	 * @return the {@link Student}s within this College
+	 */
 	public List<Student> getStudents() {
 		return students;
 	}
 	
+	/**
+	 * 
+	 * @param name the name to set to this College
+	 */
 	void setDescription(String name) {
 		this.description = name;
 	}
 	
+	/**
+	 * Adds a {@link Student} to this College. Updates both sides of the Student
+	 * and College relationship.
+	 * 
+	 * @param s the {@link Student} to add to this College
+	 */
 	void addStudent(Student s) {
 		if (!students.contains(s)) {
 			students.add(s);
@@ -81,6 +97,12 @@ public class College extends FieldValue{
 		}
 	}
 	
+	/**
+	 * Removes a {@link Student} from this College. Updates both sides of the Student
+	 * and College relationship.
+	 * 
+	 * @param s the {@link Student} to remove from this College
+	 */
 	void removeStudent(Student s) {
 		if (this.students.remove(s)) {
 			if (s.getColleges().contains(this)) {
@@ -89,40 +111,65 @@ public class College extends FieldValue{
 		}
 	}
 	
+	/**
+	 * Removes all students from this College
+	 */
 	void removeStudents() {
 		for (Student s : students) {
 			s.getColleges().remove(this);
 		}
+		students = new ArrayList<>();
 	}
 	
+	/**
+	 * Not used for this class
+	 */
 	void addResearcher(Researcher r) {
 		
 	}
 	
+	/**
+	 * Not used for this class
+	 */
 	void removeResearcher(Researcher r) {
 		
 	}
 	
+	/**
+	 * Not used for this class
+	 */
 	void addProject(Project p) {
 		
 	}
 
+	/**
+	 * Not used for this class
+	 */
 	void removeProject(Project p) {
 		
 	}
 	
+	/**
+	 * Removes all {@link Student}s from this College
+	 */
 	void removeElements() {
 		removeStudents();
 	}
 	
+	/**
+	 * Compares this College to another {@link FieldValue}
+	 * @param o the {@link FieldValue} to be compared to
+	 */
 	@Override
 	public int compareTo(FieldValue o) {
 		return getDescription().compareTo(o.getDescription());
 	}
 
+	/**
+	 * Not used for this class
+	 */
 	@Override
 	List<Researcher> getResearchers() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

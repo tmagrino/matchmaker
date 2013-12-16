@@ -21,6 +21,10 @@ import javax.persistence.TemporalType;
  * Persistant JPA Entity Class
  * <p>
  * Represents a {@link Student}'s Application to a {@link Project}
+ * <p>
+ * Follows the Model-View-Controller software pattern. Because of field and method
+ * visibilities, only getter methods can be accessed. To create or alter instances
+ * of this class, use {@link ApplicationController}.
  * 
  * @author Jan Cardenas
  * @author Leonardo Neves
@@ -60,7 +64,7 @@ public class Application implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date submissionDate;
 	
-	public Application() {
+	Application() {
 
 	}
 
