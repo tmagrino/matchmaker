@@ -140,12 +140,29 @@ function validateFormSubmit()
 				}
 			});
 		}
+		if($("input[name=project_url").length > 0){
+			if(checkProjectValid() == false){
+				is_valid = false;
+			}
+		}
 		if(!is_valid){
 			$("p.error-msg").show();
 			e.preventDefault();
 			return false;
 		}
 	});
+}
+
+function checkProjectValid()
+{
+	var urlField = $("input[name=project_url]");
+	var descField = $("textarea[name=project_description]");
+	if((urlField.val() != null && urlField.val().length > 0) || (descField.val() != null && descField.val().length > 0)){
+		return true;
+	}
+	urlField.addClass("has-error");
+	descField.addClass("has-error");
+	return false;
 }
 
 function hideProject()

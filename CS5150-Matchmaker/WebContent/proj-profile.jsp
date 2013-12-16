@@ -13,8 +13,10 @@ EntityManager em = emf.createEntityManager();
 JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
 JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
 Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+Set<String> req_attr = new HashSet<String>(Arrays.asList(ProjectController.TITLE)); 
 String[] attributes = {ProjectController.TITLE, ProjectController.AREA, 
-		ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
+		ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};
+String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
 JSONArray jsonArrAll = new JSONArray();
 JSONArray jsonArrStud = new JSONArray();
 for(String auto_attr: autocomplete_attr){
@@ -31,13 +33,14 @@ for(String auto_attr: autocomplete_attr){
 	<div id="all-required_skills" class="hidden" title="All Skills Suggestions"></div>
 	<h1>Add new project</h1>
 	<form name="profile" action="save-project-changes.jsp">
+		<p>Note: Either the Project URL field or the Project Description field is required.</p>
 		<p class="error-msg">Errors were found.  Please correct the errors before saving.</p>
 		<table class="info">
 			<tr>
 				<td class="attr-label" colspan="3"><h2><%=r.getName() %></h2></td>
 			</tr>
 			<% for(String attr: attributes){ %>
-				<tr>
+				<tr <%= req_attr.contains(attr) ? "class=\"required\"" : "" %>>
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
 						
@@ -49,9 +52,6 @@ for(String auto_attr: autocomplete_attr){
 							<input name="<%=attr.replaceAll(" ", "_").toLowerCase() %>"
 								type="text" />
 							<% } %>
-						</p>
-						<p class="other hidden">
-							<input name="<%=attr.replaceAll(" ", "_").toLowerCase()+"_other" %>" type="text" />
 						</p>
 					</td>
 					<td>
