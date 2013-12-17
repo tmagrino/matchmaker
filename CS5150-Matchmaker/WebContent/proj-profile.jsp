@@ -5,23 +5,22 @@
 	<jsp:param name="stud_or_prof" value="researcher" />
 	<jsp:param name="top_selected" value="project" />
 </jsp:include>
-<%@page
-	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
+<%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-EntityManager em = emf.createEntityManager();
-JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
-JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
-Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
-Set<String> req_attr = new HashSet<String>(Arrays.asList(ProjectController.TITLE)); 
-String[] attributes = {ProjectController.TITLE, ProjectController.AREA, 
-		ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};
-String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
-JSONArray jsonArrAll = new JSONArray();
-JSONArray jsonArrStud = new JSONArray();
-for(String auto_attr: autocomplete_attr){
-	jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
-}
+	EntityManager em = emf.createEntityManager();
+	JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+	JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
+	Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+	Set<String> req_attr = new HashSet<String>(Arrays.asList(ProjectController.TITLE)); 
+	String[] attributes = {ProjectController.TITLE, ProjectController.AREA, 
+			ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};
+	String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
+	JSONArray jsonArrAll = new JSONArray();
+	JSONArray jsonArrStud = new JSONArray();
+	for(String auto_attr: autocomplete_attr){
+		jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
+	}
 %>
 <script type="text/javascript">
 	var autocomplete_attr = Array("research_area", "required_skills");
@@ -43,8 +42,6 @@ for(String auto_attr: autocomplete_attr){
 				<tr <%= req_attr.contains(attr) ? "class=\"required\"" : "" %>>
 					<td class="attr-label"><%=attr %>:</td>
 					<td class="field">
-						
-						</p>
 						<p class="editable">
 							<% if((attr).equals(ProjectController.DESCRIPTION)){ %>
 								<textarea name = "project_description"></textarea>
@@ -64,9 +61,4 @@ for(String auto_attr: autocomplete_attr){
 		<FORM><INPUT Type="button" VALUE="Cancel" onClick="history.go(-1);return true;"></FORM>
 	</form>
 </div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>
