@@ -15,6 +15,21 @@
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	String netID = request.getParameter("netID");
+	
+	
+	// Null User fix 
+	User user = UserController.findUser(em, netID);
+	
+	if(user == null){
+		response.sendRedirect("select-role.jsp");
+	}
+	else{
+		if(user!=null && !user.isAdmin()){
+			response.sendRedirect("select-role.jsp");
+		}
+	}
+	// End - Null User fix 
+	
 	String name = request.getParameter("name");
 	
 	Student s = null;
