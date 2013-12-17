@@ -27,6 +27,7 @@ import javax.persistence.TemporalType;
  * @author Leonardo Neves
  *
  */
+
 @Entity(name = "APPLICATION")
 public class Application implements Serializable {
 	private static final long serialVersionUID = 1L;

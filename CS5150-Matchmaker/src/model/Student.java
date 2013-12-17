@@ -17,28 +17,19 @@ import java.util.List;
 
 
 /**
- * The persistent class for the Student database table.
+ * Persistant JPA Entity Class
+ * <p>
+ * Represents a student
+ * <p>
+ * Follows the Model-View-Controller software pattern. Because of field and method
+ * visibilities, only getter methods can be accessed. To create or alter instances
+ * of this class, use {@link StudentController}.
  * 
+ * @author Jan Cardenas
+ * @author Leonardo Neves
+ *
  */
 
-/*
- *   Table: STUDENT
- *   
- *   |  ID  |      NAME    |   NETID  |  GPA  |  WEBPAGE            |  YEAR     |
- *   |  1   | Steve Carell | sc332    | 3.1   | www.stevecarell.com | Senior    |
- *   |  2   | Jim Carrey   | jc299    | 2.9   | www.jimcarrey.com   | Ph. D     |
- *   |  3   | Bob Bobson   | bb22     | 3.9   |                     | Graduate  |
- *   |      |              |          |       |                     |           |
- *   
- */
-
-
-/*
- * TODO:
- * Fix getters/setters to for the fields with tables
- * - http://en.wikibooks.org/wiki/Java_Persistence/OneToMany#Getters_and_Setters
- * Take another look at the constructor(s)
- */
 @Entity(name = "STUDENT")
 //@NamedQuery(name="Student.findAll", query="SELECT s FROM Student s")
 public class Student implements Serializable {
@@ -46,21 +37,36 @@ public class Student implements Serializable {
 	private static final int MAX_NAME_CHARS = 75;
 	
 	// Persistent Fields
+	// This Student's id in the STUDENT table of the database
 	@Id @Column(name = "ID", nullable = false)
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
+	
+	// Name of this Student
 	@Column(name = "NAME", nullable = false, length = MAX_NAME_CHARS)
 	private String name;
+	
+	// NetID of this Student
 	@Column(name = "NETID", nullable = false, length = 10)
 	private String netID;
+	
+	// GPA of this Student
 	@Column(name = "GPA", nullable = false)
 	private double gpa;
+	
+	// Email of this Student
 	@Column(name = "email", nullable = false)
 	private String email;
+	
+	// This Student's Year in school
 	@Column(name = "YEAR")
 	private Year year;
+	
+	// User associated with this Student
 	@OneToOne (mappedBy = "student")
 	private User user;
+	
+	// This Student's colleges
 	@ManyToMany
 	@JoinTable(
 			name = "COLLEGES_TABLE",
@@ -68,6 +74,8 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="COLLEGE_ID", referencedColumnName="ID")}
 	)
 	private List<College> colleges;
+	
+	// This Student's Majors
 	@ManyToMany
 	@JoinTable(
 			name = "MAJORS_TABLE",
@@ -75,6 +83,8 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="MAJOR_ID", referencedColumnName="ID")}
 	)
 	private List<Major> majors;
+	
+	// This Student's Minors
 	@ManyToMany
 	@JoinTable(
 			name = "MINORS_TABLE",
@@ -82,6 +92,8 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="MINOR_ID", referencedColumnName="ID")}
 	)
 	private List<Minor> minors;
+	
+	// This Student's Skills
 	@ManyToMany
 	@JoinTable(
 			name = "SKILLS_TABLE",
@@ -89,11 +101,15 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="SKILL_ID", referencedColumnName="ID")}
 	)
 	private List<Skill> skills;
+	
+	// This Student's Experiences
 	@ElementCollection
 	@CollectionTable(name = "EXPERIENCES",
 					 joinColumns = {@JoinColumn(name="STUD_ID")}
 					)
 	private List<Experience> priorExperience;
+	
+	// This Student's Interests
 	@ManyToMany
 	@JoinTable(
 			name = "STUDENTS_INTERESTS_TABLE",
@@ -101,27 +117,50 @@ public class Student implements Serializable {
 			inverseJoinColumns = {@JoinColumn(name="INTER_ID", referencedColumnName="ID")}
 	)
 	private List<Interest> interests;
+	
+	// This Student's completed classes 
 	@ElementCollection  
 	@CollectionTable (
 			name = "CLASSES_TABLE",
 			joinColumns = @JoinColumn(name = "OWNER_ID")
 		)
 	private List<Course> transcript;
+	
+	// This Student's applications to Projects
 	@OneToMany(mappedBy = "studentApplicant", cascade = CascadeType.ALL)
 	private List<Application> applications;
+	
+	// This Student's settings for the website
 	@OneToOne (mappedBy = "student", cascade = CascadeType.ALL)
 	private StudentSettings settings;
+	
+	// List of Researchers who have hidden this Student
 	@ManyToMany (mappedBy = "hiddenStudents")
 	private List<ResearcherSettings> hiddenByResearcher;
 
-	// Constructors
-	public Student() 
+	Student() 
 	{
 		
 	}
 	
 	/*
 	 * Formal constructor: no initial applications or settings
+	 */
+	/**
+	 * Creates a Student instance
+	 * @param name name of this Student
+	 * @param netID netID of this Student
+	 * @param gpa Grade Point Average
+	 * @param email email address
+	 * @param year {@link Year} in school
+	 * @param colleges List of {@link College}s
+	 * @param majors List of {@link Major}s
+	 * @param minors List of {@link Minor}s 
+	 * @param skills List of {@link Skill}s
+	 * @param priorExperience List of Experiences
+	 * @param interests List of {@link Interest}s
+	 * @param transcript List of completed {@link Course}s
+	 * @param user {@link User} associated with this Student
 	 */
 	Student(String name, String netID, double gpa, String email,
 			Year year, List<College> colleges, List<Major> majors,
@@ -190,6 +229,11 @@ public class Student implements Serializable {
 		this.user = user;
 	}
 	
+	/**
+	 * Gets an attribute from this Student. Used in JSP pages to iterate through attributes
+	 * @param attr String of one of this Student's attributes
+	 * @return the field that matches the given string
+	 */
 	public String getAttribute(String attr) {
 		switch (attr.toLowerCase()) {
 			case "name":
@@ -223,6 +267,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param attr
+	 * @return a List of one of this Student's attributes determined by the string given
+	 */
 	public List<? extends FieldValue> getListAttribute(String attr) {
 		switch (attr.toLowerCase()) {
 			case FieldFactory.COLLEGE:
@@ -242,133 +291,122 @@ public class Student implements Serializable {
 	}
 	
 	/**
-	 * @return the id
+	 * @return the id of this Student in the STUDENT table of the database
 	 */
 	public long getId() {
 		return id;
 	}
 
 	/**
-	 * @return the name
+	 * @return the name of this Student
 	 */
 	public String getName() {
 		return name;
 	}
 
 	/**
-	 * @return the netID
+	 * @return the netID of this Student
 	 */
 	public String getNetID() {
 		return netID;
 	}
 
 	/**
-	 * @return the gpa
+	 * @return the gpa of this Student
 	 */
 	public double getGpa() {
 		return gpa;
 	}
 
 	/**
-	 * @return the webpage
+	 * @return the email of this Student
 	 */
 	public String getEmail() {
 		return email;
 	}
 
 	/**
-	 * @return the year
+	 * @return the {@link Year} of this Student
 	 */
 	public Year getYear() {
 		return year;
 	}
 
 	/**
-	 * @return the serialversionuid
-	 */
-	static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	/**
-	 * @return the user
+	 * @return the {@link User} associated with this Student
 	 */
 	public User getUser() {
 		return user;
 	}
 
 	/**
-	 * @return the colleges
+	 * @return the {@link College}s this Student is enrolled in
 	 */
 	public List<College> getColleges() {
 		return colleges;
 	}
 
 	/**
-	 * @return the majors
+	 * @return the {@link Major}s this Student is enrolled in
 	 */
 	public List<Major> getMajors() {
 		return majors;
 	}
 
 	/**
-	 * @return the minors
+	 * @return the {@link Minor}s this Student is enrolled in
 	 */
 	public List<Minor> getMinors() {
 		return minors;
 	}
 
 	/**
-	 * @return the skills
+	 * @return the {@link Skill}s this Student has
 	 */
 	public List<Skill> getSkills() {
 		return skills;
 	}
 
 	/**
-	 * @return the priorExperience
+	 * @return the priorExperiences this Student has had
 	 */
 	public List<Experience> getPriorExperience() {
 		return priorExperience;
 	}
 
 	/**
-	 * @return the interests
+	 * @return the {@link Interest}s this Student has
 	 */
 	public List<Interest> getInterests() {
 		return interests;
 	}
 
 	/**
-	 * @return the transcript
+	 * @return the {@link Course}s this Student has completed
 	 */
 	public List<Course> getTranscript() {
 		return transcript;
 	}
 
 	/**
-	 * @return the applications
+	 * @return the {@link Application}s this Student has submitted
 	 */
 	public List<Application> getApplications() {
 		return applications;
 	}
 
 	/**
-	 * @return the settings
+	 * @return the {@link StudentSettings} this Student has for the website
 	 */
 	public StudentSettings getSettings() {
 		return settings;
 	}
-	
-	/**
-	 * @param id the id to set
-	 */
-	void setId(long id) {
-		this.id = id;
-	}
 
 	/**
-	 * @param name the name to set
+	 * Sets the name of the Student to the given name. Name is truncated if
+	 * longer than the name limit. Also updates the associated {@link User}'s
+	 * name.
+	 * @param name the name to set to this Student
 	 */
 	void setName(String name) {
 		String fixedName = name;
@@ -380,7 +418,9 @@ public class Student implements Serializable {
 	}
 
 	/**
-	 * @param netID the netID to set
+	 * Sets the netID of this Student to the given netID. Also updates the
+	 * associated {@link User}'s netID.
+	 * @param netID the netID to this Student
 	 */
 	void setNetID(String netID) {
 		this.netID = netID;
@@ -388,14 +428,16 @@ public class Student implements Serializable {
 	}
 
 	/**
-	 * @param gpa the gpa to set
+	 * @param gpa the gpa to set to this Student
 	 */
 	void setGpa(double gpa) {
 		this.gpa = gpa;
 	}
 
 	/**
-	 * @param webpage the webpage to set
+	 * Sets the email of this Student. Also updates the associated 
+	 * {@link User}'s email.
+	 * @param email the email to set to this Student
 	 */
 	void setEmail(String email) {
 		this.email = email;
@@ -403,14 +445,16 @@ public class Student implements Serializable {
 	}
 
 	/**
-	 * @param year the year to set
+	 * @param year the {@link Year} to set to this Student
 	 */
 	void setYear(Year year) {
 		this.year = year;
 	}
 
 	/**
-	 * @param user the user to set
+	 * Sets the {@link User} associated with this Student. Updates both sides
+	 * of the relationship.
+	 * @param user the {@link User} to associate with this Student
 	 */
 	void setUser(User user) {
 		if (user == null) {
@@ -429,6 +473,7 @@ public class Student implements Serializable {
 			}
 		}
 	}
+	
 	/**
 	 * Return a String version of a collection with elements separated by commas
 	 */
@@ -465,7 +510,11 @@ public class Student implements Serializable {
 	}
 
 	
-	
+	/**
+	 * Adds a {@link College} to this Student. Updates both sides of the Student/College
+	 * relationship.
+	 * @param college the {@link College} to add
+	 */
 	void addCollege(College college) {
 		if (!this.colleges.contains(college)) {
 			this.colleges.add(college);
@@ -475,6 +524,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link College} from this Student. Updates both sides of the Student/College
+	 * relationship.
+	 * @param college the {@link College} to remove
+	 */
 	void removeCollege(College college) {
 		if (this.colleges.remove(college)) {
 			if (college.getStudents().contains(this)) {
@@ -483,6 +537,9 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes all {@link College}s from this Student
+	 */
 	void removeColleges() {
 		for (College c : colleges) {
 			c.getStudents().remove(this);
@@ -490,6 +547,11 @@ public class Student implements Serializable {
 		colleges = new ArrayList<College>();
 	}
 	
+	/**
+	 * Adds a {@link Major} to this Student. Updates both sides of the Student/Major
+	 * relationship.
+	 * @param major the {@link Major} to add
+	 */
 	void addMajor(Major major) {
 		if (!this.majors.contains(major)) {
 			this.majors.add(major);
@@ -499,6 +561,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link Major} from this Student. Updates both sides of the Student/Major
+	 * relationship.
+	 * @param major the {@link Major} to remove
+	 */
 	void removeMajor(Major major) {
 		if (this.majors.remove(major)) {
 			if (major.getStudents().contains(this)) {
@@ -507,6 +574,10 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes all of one type of {@link FieldValue} from this Student
+	 * @param type the {@link FieldValue} type to remove
+	 */
 	void remove(String type){
 		if(type.toLowerCase() == FieldFactory.MAJOR){
 			this.removeMajors();
@@ -526,6 +597,10 @@ public class Student implements Serializable {
 		
 		
 	}
+	
+	/**
+	 * Removes all {@link Major}s from this Student
+	 */
 	void removeMajors() {
 		for (Major m : majors) {
 			m.getStudents().remove(this);
@@ -534,6 +609,11 @@ public class Student implements Serializable {
 		
 	}
 	
+	/**
+	 * Adds a {@link Minor} to this Student. Updates both sides of the Student/Minor
+	 * relationship.
+	 * @param minor the {@link Minor} to add
+	 */
 	void addMinor(Minor minor) {
 		if (!this.minors.contains(minor)) {
 			this.minors.add(minor);
@@ -543,6 +623,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link Major} from this Student. Updates both sides of the Student/Major
+	 * relationship.
+	 * @param minor the {@link Major} to remove
+	 */
 	void removeMinor(Minor minor) {
 		if (this.minors.remove(minor)) {
 			if (minor.getStudents().contains(this)) {
@@ -551,6 +636,9 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/** 
+	 * Removes all {@link Minor}s from this Student
+	 */
 	void removeMinors() {
 		for (Minor m : minors) {
 			m.getStudents().remove(this);
@@ -558,6 +646,11 @@ public class Student implements Serializable {
 		minors = new ArrayList<Minor>();
 	}
 	
+	/**
+	 * Adds a {@link Skill} to this Student. Updates both sides of the Student/Skill
+	 * relationship.
+	 * @param skill the {@link Skill} to add
+	 */
 	void addSkill(Skill skill) {
 		if (!this.skills.contains(skill)) {
 			this.skills.add(skill);
@@ -567,6 +660,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link Skill} from this Student. Updates both sides of the Student/Skill
+	 * relationship.
+	 * @param skill the {@link Skill} to remove
+	 */
 	void removeSkill(Skill skill) {
 		if (this.skills.remove(skill)) {
 			if (skill.getStudents().contains(this)) {
@@ -575,6 +673,9 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/** 
+	 * Removes all {@link Skill}s from this Student
+	 */
 	void removeSkills() {
 		for (Skill s : skills) {
 			s.getStudents().remove(this);
@@ -582,6 +683,11 @@ public class Student implements Serializable {
 		skills = new ArrayList<Skill>();
 	}
 	
+	/**
+	 * Adds an {@link Interest} to this Student. Updates both sides of the Student/Interest
+	 * relationship.
+	 * @param interest the {@link Interest} to add
+	 */
 	void addInterest(Interest interest) {
 		if (!this.interests.contains(interest)) {
 			this.interests.add(interest);
@@ -591,6 +697,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link Interest} from this Student. Updates both sides of the Student/Interest
+	 * relationship.
+	 * @param interest the {@link Interest} to remove
+	 */
 	void removeInterest(Interest interest) {
 		if (this.interests.remove(interest)) {
 			if (interest.getStudents().contains(this)) {
@@ -599,6 +710,9 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes all {@link Interest}s from this Student.
+	 */
 	void removeInterests() {
 		for (Interest i : interests) {
 			i.getStudents().remove(this);
@@ -606,22 +720,42 @@ public class Student implements Serializable {
 		interests = new ArrayList<Interest>();
 	}
 	
+	/**
+	 * @param exp the Experience to add
+	 */
 	void addExperience(Experience exp) {
 		priorExperience.add(exp);
 	}
 	
+	/**
+	 * 
+	 * @param exp the Experience to remove
+	 */
 	void removeExperience(Experience exp) {
 		priorExperience.remove(exp);
 	}
 	
+	/**
+	 * 
+	 * @param c the {@link Course} to add
+	 */
 	void addCourse(Course c) {
 		transcript.add(c);
 	}
 	
+	/**
+	 * 
+	 * @param c the {@link Course} to remove
+	 */
 	void removeCourse(Course c) {
 		transcript.remove(c);
 	}
 	
+	/**
+	 * Adds a {@link Application} to this Student. Updates both sides of the Student/Application
+	 * relationship.
+	 * @param app the {@link Application} to add
+	 */
 	void addApplication(Application app) {
 		if (!this.applications.contains(app)) {
 			this.applications.add(app);
@@ -631,6 +765,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link Application} from this Student. Updates both sides of the Student/Application
+	 * relationship.
+	 * @param app the {@link Application} to remove
+	 */
 	void removeApplication(Application app) {
 		if (this.applications.remove(app)) {
 			if (app.getStudentApplicant() == this) {
@@ -639,6 +778,10 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes all {@link Application}s from this Student
+	 * @return the {@link Application}s to be deleted by the Controller
+	 */
 	List<Application> removeApplications() {
 		List<Application> toDelete = new ArrayList<Application>();
 		for (Application a : applications) {
@@ -652,16 +795,25 @@ public class Student implements Serializable {
 	}
 
 	/**
-	 * @param settings the settings to set
+	 * @param settings the {@link StudentSettings} to set for this Student
 	 */
 	void setSettings(StudentSettings settings) {
 		this.settings = settings;
 	}
 
+	/**
+	 * 
+	 * @return the {@link ResearcherSettings} which have hidden this Student
+	 */
 	public List<ResearcherSettings> getHiddenByResearcher() {
 		return hiddenByResearcher;
 	}
 
+	/**
+	 * Adds a {@link ResearcherSettings} to this Student which is hiding this Student. 
+	 * Updates both sides of the Student/ResearcherSettings relationship.
+	 * @param r the {@link ResearcherSettings} to add
+	 */
 	void addHiddenByResearcher(ResearcherSettings r) {
 		if (!hiddenByResearcher.contains(r)) {
 			hiddenByResearcher.add(r);
@@ -671,6 +823,11 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes a {@link ResearcherSettings} to this Student which is hiding this Student. 
+	 * Updates both sides of the Student/ResearcherSettings relationship.
+	 * @param r the {@link ResearcherSettings} to remove
+	 */
 	void removeHiddenByResearcher(ResearcherSettings r) {
 		if (hiddenByResearcher.remove(r)) {
 			if (r.getHiddenStudents().contains(this)) {
@@ -679,6 +836,9 @@ public class Student implements Serializable {
 		}
 	}
 	
+	/**
+	 * Removes all {@link ResearcherSettings} from this Student
+	 */
 	void removeHiddenByResearchers() {
 		for (ResearcherSettings r : hiddenByResearcher) {
 			r.getHiddenStudents().remove(this);
