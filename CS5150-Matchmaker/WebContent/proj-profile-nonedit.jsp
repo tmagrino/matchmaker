@@ -23,7 +23,7 @@ String[] attributes = {"Research Area", "Required Skills", "Project URL", "Proje
 				<td class="attr-label" colspan="3"><h2><%=p.getName()%></h2>
 			</tr>
 			<tr>
-				<td class="attr-label" >Researcher(s) Name(s):</td>
+				<td class="attr-label" >Researcher Name(s):</td>
 				<td class="attr-label"><h1><% 
 			for (Researcher r : p.getResearchers()) {
 		%>
