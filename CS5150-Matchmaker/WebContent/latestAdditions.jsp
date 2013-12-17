@@ -3,12 +3,9 @@
 --%> 
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="admin" />
-	<jsp:param name="sidebar_type" value="stud-profile" />
-	<jsp:param name="sidebar_selected" value="view" />
 	<jsp:param name="top_selected" value="project" />
 </jsp:include>
-<%@page
-	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
+<%@page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
 
 <div class="content">
 <%
@@ -37,97 +34,91 @@
 		additions = FieldValueController.getLatestAddedFields(em, category);
 	}
 %>
-<h1>Vocabulary</h1> 
-<form action="latestAdditions.jsp">
-Category:<br /><select name="mydropdown" onchange="this.form.submit()">
-	<option value="recents" <% if(category.equals("recents")){%>selected<%} %>>All</option>
-	<option value="college" <% if(category.equals("college")){%>selected<%} %>>Colleges</option>
-	<option value="department" <% if(category.equals("department")){%>selected<%} %>>Departments</option>
-	<option value="interest" <% if(category.equals("interest")){%>selected<%} %>>Interests</option>
-	<option value="major" <% if(category.equals("major")){%>selected<%} %>>Majors</option>
-	<option value="minor" <% if(category.equals("minor")){%>selected<%} %>>Minors</option>
-	<option value="skill" <% if(category.equals("skill")){%>selected<%} %>>Skills</option>
-</select>
-</form>
-
-<br />
-<% 
-	if (category.equals("recents")) {
-		%><h1>All</h1><%
-	}
-	else if (category.equals("college")) {
-		%><h1>Colleges</h1><%
-	}
-	else if (category.equals("department")) {
-		%><h1>Departments</h1><%
-	}
-	else if (category.equals("interest")) {
-		%><h1>Interests</h1><%
-	}
-	else if (category.equals("major")) {
-		%><h1>Majors</h1><%
-	}
-	else if (category.equals("minor")) {
-		%><h1>Minors</h1><%
-	}
-	else if (category.equals("skill")) {
-		%><h1>Skills</h1><%
-	}
-	else {
-			
-	}
-%>
-<%
-	if (additions.size() == 0) {
-		%>
-			<p>No <%= category %> found</p>
-		<%
-	}
-	else {		
-%>
-	<table class="additions_table searchable">
-		<thead>
-			<tr>
-				<th class="empty"></th>
-				<th class="header">Type</th>
-				<th class="header">Description</th>
-				<th class="header default-sort">Date Added</th>
-			</tr>
-		</thead>
-		<tbody>
-		<% 
-			for (LatestAddition add : additions) {
-				String cssClasses = add.getType().replaceAll(" ", "_").toLowerCase() + " "
-	                    + add.getName().replaceAll(" ", "_").toLowerCase();
-				%>
-					<tr class="<%=cssClasses %>">
-						<td class="admin-button"> 
-							<a class="actionButton remove" href="remove-item.jsp?type=
-								<%= add.getType() %>&desc=<%= add.getName() %>
-								<% 
-									if (category != null) {
-										%>&category=<%= category %>
-								<%
-									}
-								
-								%>
-								">Remove
-							</a>
-						</td>
-						<td><%= ("" + add.getType().charAt(0)).toUpperCase() + add.getType().substring(1) %> </td>
-						<td><%= add.getName() %> </td>
-						<td><%= add.getSubmissionDate() %> </td>
-					</tr>	
-				<%
-			}
+	<h1>Vocabulary</h1> 
+	<form action="latestAdditions.jsp">
+		Category:<br /><select name="mydropdown" onchange="this.form.submit()">
+			<option value="recents" <% if(category.equals("recents")){%>selected<%} %>>All</option>
+			<option value="college" <% if(category.equals("college")){%>selected<%} %>>Colleges</option>
+			<option value="department" <% if(category.equals("department")){%>selected<%} %>>Departments</option>
+			<option value="interest" <% if(category.equals("interest")){%>selected<%} %>>Interests</option>
+			<option value="major" <% if(category.equals("major")){%>selected<%} %>>Majors</option>
+			<option value="minor" <% if(category.equals("minor")){%>selected<%} %>>Minors</option>
+			<option value="skill" <% if(category.equals("skill")){%>selected<%} %>>Skills</option>
+		</select>
+	</form>
+	<br />
+	<% 
+		if (category.equals("recents")) {
+			%><h1>All</h1><%
+		}
+		else if (category.equals("college")) {
+			%><h1>Colleges</h1><%
+		}
+		else if (category.equals("department")) {
+			%><h1>Departments</h1><%
+		}
+		else if (category.equals("interest")) {
+			%><h1>Interests</h1><%
+		}
+		else if (category.equals("major")) {
+			%><h1>Majors</h1><%
+		}
+		else if (category.equals("minor")) {
+			%><h1>Minors</h1><%
+		}
+		else if (category.equals("skill")) {
+			%><h1>Skills</h1><%
+		}
+		else {
+				
 		}
 	%>
-	</tbody>
-</table>
+	<%
+		if (additions.size() == 0) {
+			%>
+				<p>No <%= category %> found</p>
+			<%
+		}
+		else {		
+	%>
+		<table class="additions_table searchable">
+			<thead>
+				<tr>
+					<th class="empty"></th>
+					<th class="header">Type</th>
+					<th class="header">Description</th>
+					<th class="header default-sort">Date Added</th>
+				</tr>
+			</thead>
+			<tbody>
+			<% 
+				for (LatestAddition add : additions) {
+					String cssClasses = add.getType().replaceAll(" ", "_").toLowerCase() + " "
+		                    + add.getName().replaceAll(" ", "_").toLowerCase();
+					%>
+						<tr class="<%=cssClasses %>">
+							<td class="admin-button"> 
+								<a class="actionButton remove" href="remove-item.jsp?type=
+									<%= add.getType() %>&desc=<%= add.getName() %>
+									<% 
+										if (category != null) {
+											%>&category=<%= category %>
+									<%
+										}
+									
+									%>
+									">Remove
+								</a>
+							</td>
+							<td><%= ("" + add.getType().charAt(0)).toUpperCase() + add.getType().substring(1) %> </td>
+							<td><%= add.getName() %> </td>
+							<td><%= add.getSubmissionDate() %> </td>
+						</tr>	
+					<%
+				}
+			}
+		%>
+			</tbody>
+		</table>
 </div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>

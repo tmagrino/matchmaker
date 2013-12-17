@@ -3,8 +3,6 @@
  --%>
 <jsp:include page="header.jsp">
     <jsp:param name="stud_or_prof" value="researcher"/>
-    <jsp:param name="sidebar_type" value="researcher-students"/>
-    <jsp:param name="sidebar_selected" value="invite"/>
     <jsp:param name="top_selected" value="students"/>
 </jsp:include>
 <%@
@@ -113,14 +111,8 @@
 			<td><p><%=s.getString(s.getSkills()) %></p></td>
 			<td><p><%=s.getString(s.getInterests()) %></p></td>
 		</tr>
-								<%} %>
-								</tbody>
-							</table>
-						</form>
-					</div>				
-				</div>
-			</div>
-		</div>
-	</div>
-</body>
-</html>
+		<%} %>
+		</tbody>
+	</table>
+</div>				
+<jsp:include page="footer.jsp"></jsp:include>

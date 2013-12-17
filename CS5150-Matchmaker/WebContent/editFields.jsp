@@ -3,25 +3,21 @@
  --%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="admin" />
-	<jsp:param name="sidebar_type" value="stud-profile" />
-	<jsp:param name="sidebar_selected" value="view" />
 	<jsp:param name="top_selected" value="profile" />
 </jsp:include>
-<%@page
-	import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
+<%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-EntityManager em = emf.createEntityManager();
-JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
-JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
-Researcher r = ResearcherController.getResearcherByNetID(em,(String)session.getAttribute("currentUser"));
-String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
-String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
-JSONArray jsonArrAll = new JSONArray();
-JSONArray jsonArrStud = new JSONArray();
-for(String auto_attr: autocomplete_attr){
+	EntityManager em = emf.createEntityManager();
+	JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+	JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
+	Researcher r = ResearcherController.getResearcherByNetID(em,(String)session.getAttribute("currentUser"));
+	String[] attributes = {"Title", "Research Area", "Required Skills", "Project URL", "Project Description"};
+	String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
+	JSONArray jsonArrAll = new JSONArray();
+	JSONArray jsonArrStud = new JSONArray();
+	for(String auto_attr: autocomplete_attr){
 	jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
-//	jsonArrStud.put(r.getObjectJson(r.getListAttribute(auto_attr)));
 }
 %>
 <script type="text/javascript">
@@ -68,9 +64,4 @@ for(String auto_attr: autocomplete_attr){
 		<input type="submit" value="Save Changes"></input>
 	</form>
 </div>
-</div>
-</div>
-</div>
-</div>
-</body>
-</html>
+<jsp:include page="footer.jsp"></jsp:include>
