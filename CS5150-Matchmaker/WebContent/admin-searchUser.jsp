@@ -18,17 +18,18 @@
 	
 	
 	// Null User fix 
-	User user = UserController.findUser(em, netID);
-	
-	if(user == null){
-		response.sendRedirect("select-role.jsp");
-	}
-	else{
-		if(user!=null && !user.isAdmin()){
-			response.sendRedirect("select-role.jsp");
+		User user = UserController.findUser(em, netID);
+		
+		if(user == null && session.getAttribute("adminUser") == null){
+				response.sendRedirect("select-role.jsp");	
 		}
-	}
-	// End - Null User fix 
+		else{
+			if(user!=null && !user.isAdmin()){
+				response.sendRedirect("select-role.jsp");
+			}
+		}
+		
+		// End - Null User fix 
 	
 	String name = request.getParameter("name");
 	
