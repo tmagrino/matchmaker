@@ -2,7 +2,7 @@ CS5150-Matchmaker
 =================
 
 Set-up
-- Download Eclipse (latest version)
+- Download Eclipse (latest version of Enterprise Edition)
 - MySQL
 	- Download MySQL
 		- http://dev.mysql.com/downloads/mirror.php?id=414474
