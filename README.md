@@ -28,7 +28,8 @@ Set-up
 	- Window -> Customize Perspective -> Command Availability Tab -> Check the 'Git' box
 - Set up Project
 	- File -> Import -> Git -> Clone URI
-	- URI: https://github.com/jkahuja/CS5150-Matchmaker.git
+	/* - URI: https://github.com/jkahuja/CS5150-Matchmaker.git */
+	- URI: https://github.com/tmagrino/CS5150-Matchmaker.git
 	- Type in user and password from www.github.com
 	- Next -> Next -> Next -> Choose 'Import existing projects' -> Next -> Finish
  
