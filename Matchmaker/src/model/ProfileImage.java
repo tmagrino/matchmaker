@@ -22,7 +22,7 @@ import javax.persistence.*;
 
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
-import com.sun.istack.internal.logging.Logger;
+//import com.sun.istack.internal.logging.Logger;
 
 @Entity
 public class ProfileImage {

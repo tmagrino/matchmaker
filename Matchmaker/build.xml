@@ -192,6 +192,15 @@
       <include name="*.jar"/>
     </fileset>
 
+    <!-- Include local external jars -->
+    <fileset dir="${basedir}/external-jars">
+      <include name="*.jar"/>
+    </fileset>
+
+    <!-- Include jdk jars
+    <fileset dir="${java.home}/lib">
+      <include name="*.jar"/>
+    </fileset> -->
   </path>
 
 
