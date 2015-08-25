@@ -51,18 +51,22 @@
 							<p class="read-only">
 								<a href="//<%=ProjectController.getAttribute(p, attr)%>">
 								<%=ProjectController.getAttribute(p, attr)%></a>							
-									<a class="edit-btn <%= attr.length() > 80 ? "extended" : "" %>" href="#"> 
-										<img src="images/pencil_small.png" alt="edit" />
-									</a>
 							</p>
+                                                        <p>
+                                                          <a class="edit-btn <%= attr.length() > 80 ?  "extended" : "" %>" href="#">
+                                                            <img src="images/pencil_small.png" alt="edit" />
+                                                          </a>
+                                                        </p>
 						<%} else{ %>
 							<td class="field">
 								<p class="read-only">
 									<%=ProjectController.getAttribute(p, attr)  %>
+								</p>
+                                                                <p>
 									<a class="edit-btn <%= attr.length() > 80 ? "extended" : "" %>" href="#"> 
 										<img src="images/pencil_small.png" alt="edit" />
 									</a>
-								</p>
+                                                                </p>
 							<%} %>
 						<p class="editable hidden">
 							<% if((attr).equals(ProjectController.DESCRIPTION)){ %>

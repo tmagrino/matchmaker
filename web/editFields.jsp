@@ -39,6 +39,8 @@
 					<td class="field">
 						<p class="read-only">
 							<%=attr %>
+						</p>
+						<p>
 							<a class="edit-btn <%= attr.length() > 80 ? "extended" : "" %>" href="#"> 
 								<img src="images/pencil_small.png" alt="edit" />
 							</a>
