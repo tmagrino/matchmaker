@@ -6,6 +6,7 @@ import org.owasp.html.Sanitizers;
 /**
  * Sanitization utility methods for text values given by users.
  */
+//TODO: Might want another policy for *no* tags for things like names?
 public final class Sanitization {
 
   /**
@@ -54,4 +55,7 @@ public final class Sanitization {
   public static String sanitizeLongText(String inputText) {
     return LONG_POLICY.sanitize(inputText);
   }
+
+  /* Should not be instantiated */
+  private Sanitization() { }
 }

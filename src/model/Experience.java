@@ -7,6 +7,8 @@ import javax.persistence.*;
 
 import java.util.List;
 
+import util.Sanitization;
+
 /**
  * 
  * Represents an experience that a {@link Student} has experienced, such
@@ -39,7 +41,7 @@ public class Experience {
 		this.endDate = endDate;
 		this.jobTitle = jobTitle;
 		this.location = location;
-		this.description = description;
+		this.description = Sanitization.sanitizeLongText(description);
 	}
 
 	public Date getStartDate() {
@@ -79,6 +81,6 @@ public class Experience {
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		this.description = Sanitization.sanitizeLongText(description);
 	}
 }

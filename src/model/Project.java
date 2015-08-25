@@ -14,6 +14,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import util.Sanitization;
+
 /**
  * The persistent class for the Project database table.
  * 
@@ -77,11 +79,12 @@ public class Project implements Serializable {
 			this.name = name;
 		}
 		if (description.length() >= MAX_DESCRIPTION_CHARS) {
-			this.description = description.substring(0, MAX_DESCRIPTION_CHARS);
+			description = description.substring(0, MAX_DESCRIPTION_CHARS);
 		}
 		else {
-			this.description = description;
+			description = description;
 		}
+                this.description = Sanitization.sanitizeLongText(description);
 		if (res == null) {
 			this.researchers = new ArrayList<Researcher>();
 		}
@@ -119,11 +122,12 @@ public class Project implements Serializable {
 		}
 		if (description != null && description != "") {
 			if (description.length() >= MAX_DESCRIPTION_CHARS) {
-				this.description = description.substring(0, MAX_DESCRIPTION_CHARS);
+				description = description.substring(0, MAX_DESCRIPTION_CHARS);
 			}
 			else {
-				this.description = description;
+				description = description;
 			}
+                        this.description = Sanitization.sanitizeLongText(description);
 		}
 		if (res != null && !res.isEmpty()){
 			this.researchers = res;
@@ -171,11 +175,12 @@ public class Project implements Serializable {
 
 	public void setDescription(String description) {
 		if (description.length() >= MAX_DESCRIPTION_CHARS) {
-			this.description = description.substring(0, MAX_DESCRIPTION_CHARS);
+			description = description.substring(0, MAX_DESCRIPTION_CHARS);
 		}
 		else {
-			this.description = description;
+			description = description;
 		}
+                this.description = Sanitization.sanitizeLongText(description);
 	}
 
 	public List<Researcher> getResearchers() {

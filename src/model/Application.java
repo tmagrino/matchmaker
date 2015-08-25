@@ -12,6 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import util.Sanitization;
 
 
 /**
@@ -25,7 +26,7 @@ import javax.persistence.TemporalType;
  * 
  * @author Jan Cardenas
  * @author Leonardo Neves
- *
+ * @author Tom Magrino
  */
 
 @Entity(name = "APPLICATION")
@@ -80,11 +81,12 @@ public class Application implements Serializable {
 		this.applicationProject = project;
 		this.status = ApplicationStatus.Pending;
 		if (studentResponse.length() >= MAX_RESPONSE_CHARS) {
-			this.studentResponse = studentResponse.substring(0, MAX_RESPONSE_CHARS);
+			studentResponse = studentResponse.substring(0, MAX_RESPONSE_CHARS);
 		}
 		else {
-			this.studentResponse = studentResponse;
+			studentResponse = studentResponse;
 		}
+                this.studentResponse = Sanitization.sanitizeLongText(studentResponse);
 		this.submissionDate = new Date();
 	}
 	
@@ -190,11 +192,12 @@ public class Application implements Serializable {
 	 */
 	void setStudentResponse(String studentResponse) {
 		if (studentResponse.length() >= MAX_RESPONSE_CHARS) {
-			this.studentResponse = studentResponse.substring(0, MAX_RESPONSE_CHARS);
+			studentResponse = studentResponse.substring(0, MAX_RESPONSE_CHARS);
 		}
 		else {
-			this.studentResponse = studentResponse;
+			studentResponse = studentResponse;
 		}
+                this.studentResponse = Sanitization.sanitizeLongText(studentResponse);
 	}
 
 	/**
