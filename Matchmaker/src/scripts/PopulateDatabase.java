@@ -33,7 +33,7 @@ public class PopulateDatabase {
 		// Majors
 		if (FieldValueController.getListOfType(em, FieldFactory.MAJOR).size() == 0) {
 			try {
-				File myfile = new File("MajorsList");
+				File myfile = new File("init-lists/MajorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -48,7 +48,7 @@ public class PopulateDatabase {
 		// Minors
 		if (FieldValueController.getListOfType(em, FieldFactory.MINOR).size() == 0)  {
 			try {
-				File myfile = new File("MinorsList");
+				File myfile = new File("init-lists/MinorsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -63,7 +63,7 @@ public class PopulateDatabase {
 		// Colleges
 		if (FieldValueController.getListOfType(em, FieldFactory.COLLEGE).size() == 0){
 			try {
-				File myfile = new File("CollegesList");
+				File myfile = new File("init-lists/CollegesList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -78,7 +78,7 @@ public class PopulateDatabase {
 		// Interests
 		if (FieldValueController.getListOfType(em, FieldFactory.INTEREST).size() == 0){
 			try {
-				File myfile = new File("InterestsList");
+				File myfile = new File("init-lists/InterestsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -93,7 +93,7 @@ public class PopulateDatabase {
 		// Skills
 		if (FieldValueController.getListOfType(em, FieldFactory.SKILL).size() == 0){
 			try {
-				File myfile = new File("SkillsList");
+				File myfile = new File("init-lists/SkillsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -108,7 +108,7 @@ public class PopulateDatabase {
 		// Departments
 		if (FieldValueController.getListOfType(em, FieldFactory.DEPARTMENT).size() == 0){
 			try {
-				File myfile = new File("DepartmentsList");
+				File myfile = new File("init-lists/DepartmentsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -123,7 +123,7 @@ public class PopulateDatabase {
 		// Students
 		if (StudentController.getAllStudents(em).size()==0){
 			try {
-				File myfile = new File("StudentList");
+				File myfile = new File("init-lists/StudentList");
 				in = new Scanner(new FileReader(myfile));
 				int i = 1;
 				while (in.hasNextLine()) {
@@ -190,7 +190,7 @@ public class PopulateDatabase {
 		if (ResearcherController.getResearcherList(em).size()==0){
 			try {
 
-				File myfile = new File("ResearcherList");
+				File myfile = new File("init-lists/ResearcherList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -223,7 +223,7 @@ public class PopulateDatabase {
 		if (ProjectController.getProjectList(em).size()==0){
 			try {
 
-				File myfile = new File("ProjectsList");
+				File myfile = new File("init-lists/ProjectsList");
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -260,7 +260,7 @@ public class PopulateDatabase {
 		}
 		//Admins
 		try {
-			File myfile = new File("AdminsList");
+			File myfile = new File("init-lists/AdminsList");
 			in = new Scanner(new FileReader(myfile));
 			while (in.hasNextLine()) {
 				String netid = in.nextLine();

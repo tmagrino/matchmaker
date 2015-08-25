@@ -53,7 +53,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Majors
 		if (FieldValueController.getListOfType(em, FieldFactory.MAJOR).size() == 0) {
 			try {
-				File myfile = new File(context.getRealPath("/MajorsList"));
+				File myfile = new File(context.getRealPath("init-lists/MajorsList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -68,7 +68,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Minors
 		if (FieldValueController.getListOfType(em, FieldFactory.MINOR).size() == 0)  {
 			try {
-				File myfile = new File(context.getRealPath("/MinorsList"));
+				File myfile = new File(context.getRealPath("init-lists/MinorsList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -83,7 +83,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Colleges
 		if (FieldValueController.getListOfType(em, FieldFactory.COLLEGE).size() == 0){
 			try {
-				File myfile = new File(context.getRealPath("/CollegesList"));
+				File myfile = new File(context.getRealPath("init-lists/CollegesList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -98,7 +98,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Interests
 		if (FieldValueController.getListOfType(em, FieldFactory.INTEREST).size() == 0){
 			try {
-				File myfile = new File(context.getRealPath("/InterestsList"));
+				File myfile = new File(context.getRealPath("init-lists/InterestsList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -113,7 +113,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Skills
 		if (FieldValueController.getListOfType(em, FieldFactory.SKILL).size() == 0){
 			try {
-				File myfile = new File(context.getRealPath("/SkillsList"));
+				File myfile = new File(context.getRealPath("init-lists/SkillsList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -128,7 +128,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Departments
 		if (FieldValueController.getListOfType(em, FieldFactory.DEPARTMENT).size() == 0){
 			try {
-				File myfile = new File(context.getRealPath("/DepartmentsList"));
+				File myfile = new File(context.getRealPath("init-lists/DepartmentsList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -143,7 +143,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Students
 		if (StudentController.getAllStudents(em).size()==0){
 			try {
-				File myfile = new File(context.getRealPath("/StudentList"));
+				File myfile = new File(context.getRealPath("init-lists/StudentList"));
 				in = new Scanner(new FileReader(myfile));
 				int i = 1;
 				while (in.hasNextLine()) {
@@ -210,7 +210,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		if (ResearcherController.getResearcherList(em).size()==0){
 			try {
 
-				File myfile = new File(context.getRealPath("/ResearcherList"));
+				File myfile = new File(context.getRealPath("init-lists/ResearcherList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -244,7 +244,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		if (ProjectController.getProjectList(em).size()==0){
 			try {
 
-				File myfile = new File(context.getRealPath("/ProjectsList"));
+				File myfile = new File(context.getRealPath("init-lists/ProjectsList"));
 				in = new Scanner(new FileReader(myfile));
 				while (in.hasNextLine()) {
 					String str = in.nextLine();
@@ -282,7 +282,7 @@ public class ServletPopulateDB implements ServletContextListener {
 		// Admins
 		try {
 
-			File myfile = new File(context.getRealPath("/AdminsList"));
+			File myfile = new File(context.getRealPath("init-lists/AdminsList"));
 			in = new Scanner(new FileReader(myfile));
 			while (in.hasNextLine()) {
 				String netid = in.nextLine();
