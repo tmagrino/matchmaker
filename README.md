@@ -5,18 +5,22 @@ Set-up
 - Install MySQL
 - Create database
   - Run MySQL Command Line Client
+      
       ```
       > CREATE DATABASE matchmaker;
       > USE matchmaker;
       ```
+      
 - Set the database user and password in src/META-INF/persistence.xml
 - Install and start Apache Tomcat (ver. 7)
 - Copy build.properties.in to build.properties and set `catalina.home` to the
   location of tomcat
 - Build using the command:
+
     ```
     $ ant dist
     ```
+
 - Copy the *.war file from build/ to [tomcat installation]/webapps/
 - Deploy the webapp in tomcat
 
