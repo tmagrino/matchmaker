@@ -21,13 +21,12 @@
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
-			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.user" value="matchmaker"/>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.schema-generation.drop-source" value="script-then-metadata"/>
 			<property name="eclipselink.orm.validate.schema" value="false"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/>
-			<property name="javax.persistence.jdbc.password" value="root"/>
-			
+			<property name="javax.persistence.jdbc.password" value="matchmaker"/>
 		</properties>
 	</persistence-unit>
 </persistence>

@@ -1,0 +1,11 @@
+<Context>
+	<Resource name="jdbc/matchmaker"
+		auth="Container"
+		type="javax.sql.DataSource"
+		username="matchmaker"
+		password="matchmaker"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/matchmaker"
+		maxActive="15"
+		maxIdle="3"/>
+</Context>

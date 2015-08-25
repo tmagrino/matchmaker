@@ -5,12 +5,19 @@
 
 
 <web-app>
+	
+	<resource-ref>
+		<description>JDBC Connection</description>
+		<res-ref-name>jdbc/matchmaker</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
 	<listener>
 		<listener-class>scripts.ServletPopulateDB</listener-class>
 	</listener>
 	<welcome-file-list>
-	 	<welcome-file>select-role.jsp</welcome-file>
-	    <!-- <welcome-file>login.jsp</welcome-file> -->
+		<!--<welcome-file>select-role.jsp</welcome-file>-->
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
-	
 </web-app>
