@@ -20,59 +20,63 @@ import javax.persistence.OneToOne;
  * - Search filters
  */
 @Entity
-public class ResearcherSettings {	
-	@Id @Column(name = "ID", nullable = false)
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-	private Researcher researcher;
-	
-	@ManyToMany (cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "HIDDEN_STUDS",
-			joinColumns = {@JoinColumn(name="SET_ID", referencedColumnName="ID")},
-			inverseJoinColumns = {@JoinColumn(name="PROJ_ID", referencedColumnName="ID")}
-	)
-	private List<Student> hiddenStudents;
-	
-	public ResearcherSettings() {
-		hiddenStudents = new ArrayList<Student>();
-	}
-	
-	public List<Student> getHiddenStudents() {
-		return hiddenStudents;
-	}
-	
-	void addStudent(Student s) {
-		if (!hiddenStudents.contains(s)) {
-			hiddenStudents.add(s);
-			if (!s.getHiddenByResearcher().contains(this)) {
-				s.addHiddenByResearcher(this);
-			}
-		}
-	}
-	
-	void removeStudent(Student s) {
-		if (hiddenStudents.remove(s)) {
-			if (s.getHiddenByResearcher().contains(this)) {
-				s.removeHiddenByResearcher(this);
-			}
-		}
-	}
-	
-	void removeStudents() {
-		for (Student s : hiddenStudents) {
-			s.getHiddenByResearcher().remove(this);
-		}
-		hiddenStudents = new ArrayList<Student>();
-	}
-	
-	public Researcher getResearcher() {
-		return researcher;
-	}
-	
-	void setResearcher(Researcher r) {
-		researcher = r;
-	}
+public class ResearcherSettings {
+
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Researcher researcher;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "HIDDEN_STUDS",
+            joinColumns = {
+                @JoinColumn(name = "SET_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "PROJ_ID", referencedColumnName = "ID")}
+    )
+    private List<Student> hiddenStudents;
+
+    public ResearcherSettings() {
+        hiddenStudents = new ArrayList<Student>();
+    }
+
+    public List<Student> getHiddenStudents() {
+        return hiddenStudents;
+    }
+
+    void addStudent(Student s) {
+        if (!hiddenStudents.contains(s)) {
+            hiddenStudents.add(s);
+            if (!s.getHiddenByResearcher().contains(this)) {
+                s.addHiddenByResearcher(this);
+            }
+        }
+    }
+
+    void removeStudent(Student s) {
+        if (hiddenStudents.remove(s)) {
+            if (s.getHiddenByResearcher().contains(this)) {
+                s.removeHiddenByResearcher(this);
+            }
+        }
+    }
+
+    void removeStudents() {
+        for (Student s : hiddenStudents) {
+            s.getHiddenByResearcher().remove(this);
+        }
+        hiddenStudents = new ArrayList<Student>();
+    }
+
+    public Researcher getResearcher() {
+        return researcher;
+    }
+
+    void setResearcher(Researcher r) {
+        researcher = r;
+    }
 }
