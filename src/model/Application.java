@@ -70,10 +70,12 @@ public class Application implements Serializable {
      * Fully initializes an instance of an Application. Default
      * {@link ApplicationStatus} is "Pending"
      *
-     * @param owner the {@link Student} creating this application
-     * @param project the {@link Project} being applied to
-     * @param studentResponse {@link Student}'s additional message with the
-     * application
+     * @param owner 
+     *            the {@link Student} creating this application
+     * @param project 
+     *            the {@link Project} being applied to
+     * @param studentResponse 
+     *            {@link Student}'s additional message with the application
      */
     public Application(Student owner, Project project,
             String studentResponse) {
@@ -110,8 +112,8 @@ public class Application implements Serializable {
      * If the argument given is null, both sides of the relationship are also
      * set to null
      *
-     * @param studentApplicant the {@link Student} to be set as owner of this
-     * Application
+     * @param studentApplicant 
+     *            the {@link Student} to be set as owner of this Application
      */
     void setStudentApplicant(Student studentApplicant) {
         if (studentApplicant == null) {
@@ -142,8 +144,8 @@ public class Application implements Serializable {
      * If the argument given is null, both sides of the relationship are also
      * set to null
      *
-     * @param applicationProject the {@link Project} to be set to this
-     * Application
+     * @param applicationProject 
+     *            the {@link Project} to be set to this Application
      */
     void setApplicationProject(Project applicationProject) {
         if (applicationProject == null) {
@@ -169,7 +171,8 @@ public class Application implements Serializable {
 
     /**
      *
-     * @param status the {@link ApplicationStatus} to be set to this Application
+     * @param status 
+     *            the {@link ApplicationStatus} to be set to this Application
      */
     void setStatus(ApplicationStatus status) {
         this.status = status;
@@ -178,7 +181,7 @@ public class Application implements Serializable {
     /**
      *
      * @return this Application's {@link Student}'s message with this
-     * Application
+     *         Application
      */
     public String getStudentResponse() {
         return studentResponse;
@@ -188,7 +191,8 @@ public class Application implements Serializable {
      * Sets the message associated with this Application. Message is truncated
      * if too long.
      *
-     * @param studentResponse the message to be attached with this Application
+     * @param studentResponse 
+     *            the message to be attached with this Application
      */
     void setStudentResponse(String studentResponse) {
         if (studentResponse.length() > MAX_RESPONSE_CHARS) {
