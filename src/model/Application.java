@@ -77,8 +77,7 @@ public class Application implements Serializable {
      * @param studentResponse 
      *            {@link Student}'s additional message with the application
      */
-    public Application(Student owner, Project project,
-            String studentResponse) {
+    public Application(Student owner, Project project, String studentResponse) {
         this.studentApplicant = owner;
         this.applicationProject = project;
         this.status = ApplicationStatus.Pending;
