@@ -1,4 +1,0 @@
-catalina.home=/path/to/tomcat/install
-# It's not clear that I can use the below for `ant install` at the moment.
-manager.username=managersusername
-manager.password=managerspassword
