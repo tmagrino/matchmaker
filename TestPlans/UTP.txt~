@@ -1,0 +1,41 @@
+student login
+=============
+create new user - srd83
+subscribe to project
+withdraw project appln
+
+--todo
+accept invitation from prof
+edit profile (not needed)
+surfer
+
+prof login
+==========
+create project leader
+add new project
+del project
+approve student project
+reject student in project
+remove student after approving
+surfer
+
+---todo
+invite random student
+edit profile (not needed)
+
+admin (pending)
+=====
+update role of a user
+search user
+del vocab
+act as user
+
+bugs
+======
+in multithreaded testing, can add same project multiple times to same student
+
+Graph
+Slack - optimistic vs. pessimistic lock
+Throughput countert in 
+
+

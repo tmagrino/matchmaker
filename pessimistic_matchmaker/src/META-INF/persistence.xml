@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="test" transaction-type="RESOURCE_LOCAL">
+		<class>model.Project</class>
+		<class>model.Researcher</class>
+		<class>model.Student</class>
+		<class>model.Skill</class>
+		<class>model.Interest</class>
+		<class>model.College</class>
+		<class>model.Major</class>
+		<class>model.Minor</class>
+		<class>model.Application</class>
+		<class>model.Experience</class>
+		<class>model.StudentSettings</class>
+		<class>model.Course</class>
+		<class>model.User</class>
+		<class>model.Department</class>
+		<class>model.LatestAddition</class>
+		<class>model.ResearcherSettings</class>
+		<class>model.ProfileImage</class>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/matchmaker"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+			<property name="javax.persistence.schema-generation.drop-source" value="script-then-metadata"/>
+			<property name="eclipselink.orm.validate.schema" value="false"/>
+			<property name="javax.persistence.schema-generation.database.action" value="create"/>
+			<property name="javax.persistence.jdbc.password" value="amansng 948"/>
+		</properties>
+	</persistence-unit>
+</persistence>
