@@ -33,6 +33,15 @@ Development Notes
   - login.jsp for local testing
   - select-role.jsp for deployment with Cornell NetID
 
+TODO:
+- Loads of code clean up.
+- Make differences between testing and deployed versions as small as possible
+  (eg. make it possible to use the CUWebAuth fields in testing and make the
+  welcome page setting be determined by which build command is run.)
+- Make local configuration simpler and less error prone (eg. setting the
+  password in a local copy of persistence.xml to avoid committing password to
+  the repo...)
+
 Backend Notes
 - Major, Minor, Interest, and College classes are all entities in order to make
   them extensible by admins users.
