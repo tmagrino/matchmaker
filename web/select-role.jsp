@@ -10,7 +10,7 @@
 	 
 	 if(session.getAttribute("adminUser")!= null){
 		 session.setAttribute("currentUser", session.getAttribute("adminUser"));
-		 session.setAttribute("adminUser", null);
+		 //session.setAttribute("adminUser", null);
 	 }
 	 
 	 String netId = null;
@@ -20,8 +20,8 @@
 	 	session.setAttribute("currentUser", netId);
 	 }else{
 		 
-		 //netId = request.getHeader("CUWA_REMOTE_USER");
-		 netId = (String) request.getParameter("netId");
+		 netId = request.getHeader("CUWA_REMOTE_USER");
+		 //netId = (String) request.getParameter("netId");
 		 session.setAttribute("currentUser", netId);
 	 }
 	 
