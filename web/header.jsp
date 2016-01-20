@@ -39,10 +39,12 @@
 	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	 EntityManager em = emf.createEntityManager();
 	 
+         /*
 	 if(session.getAttribute("adminUser")!= null){
 		 session.setAttribute("currentUser", session.getAttribute("adminUser"));
 		 //session.setAttribute("adminUser", null);
 	 }
+         */
 	 
 	 String netId = null;
 	 

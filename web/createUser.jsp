@@ -3,8 +3,14 @@
 	It is also used to redirect to the profile pages on the basis of the student, researcher. 
 --%>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*" %>
+<jsp:include page="header.jsp">
+	<jsp:param name="stud_or_prof" value="header" />
+	<jsp:param name="sidebar_type" value="stud-profile" />
+	<jsp:param name="sidebar_selected" value="view" />
+	<jsp:param name="top_selected" value="profile" />
+</jsp:include>
 <%       
-	     EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
          EntityManager em = emf.createEntityManager();
          String role = request.getParameter("role");
          
@@ -26,3 +32,4 @@
 	         }
          }
 %>        
+<jsp:include page="footer.jsp"></jsp:include>
