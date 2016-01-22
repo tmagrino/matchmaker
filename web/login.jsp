@@ -13,7 +13,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <meta http-equiv="Content-Language" content="en-us" />
 <meta name="viewport"
-	content="width=device-width,initial-scale=1,maximum-scale=1"
+  content="width=device-width,initial-scale=1,maximum-scale=1"
 />
 
 <title>Cornell University Web Login</title>
@@ -228,135 +228,137 @@ fieldset {
 
 </head>
 <body onload="sf()" class="twocolumn">
-	<hr class="banner-separator" />
-	<div id="cu-identity">
-		<div id="cu-logo">
-			<img src="https://web4.login.cornell.edu/banner_1.jpg"
-				alt="Cornell University Logo"
-			/>
-		</div>
-	</div>
+  <hr class="banner-separator" />
+  <div id="cu-identity">
+    <div id="cu-logo">
+      <img src="https://web4.login.cornell.edu/banner_1.jpg"
+        alt="Cornell University Logo"
+      />
+    </div>
+  </div>
 
-	<div id="identity">
-		<h1>CUWebLogin</h1>
-	</div>
+  <div id="identity">
+    <h1>CUWebLogin</h1>
+  </div>
 
-	<div id="wrap">
-		<div id="content">
-			<!--Comments for automated stripping of CSS - DO NOT REMOVE -->
-			<!--WEBLOGINCSS -->
-			<!-- ++++++++++ -->
-			<!-- cut here for form.html -->
-			<FORM ACTION="select-role.jsp" METHOD="POST">
+  <div id="wrap">
+    <div id="content">
+      <!--Comments for automated stripping of CSS - DO NOT REMOVE -->
+      <!--WEBLOGINCSS -->
+      <!-- ++++++++++ -->
+      <!-- cut here for form.html -->
+      <FORM ACTION="select-role.jsp" METHOD="POST">
 
-				<!--reason text-->
-				<div id="reason">
-					<ul></ul>
-					<ul></ul>
-				</div>
-
-
-				<fieldset class="form-submit">
-					<div class="form-pair">
-						<div class="form-item">
-							<label for="netid">User ID:<!-- NetID --></label>
-						</div>
-						<div class="form-value">
-							<input NAME="netId" type="text" size="18" />
-						</div>
-					</div>
-
-					<div class="form-pair">
-						<div class="form-item">
-							<label for="password">Password:</label>
-						</div>
-						<div class="form-value">
-							<input id="password" name="password" type="password" size="18"
-								autocomplete="off"
-							/>
-						</div>
-					</div>
-
-					<!-- realm select if needed -->
-					<div class="form-pair">
-						<div class="form-item">
-							<label for="realm">ID Type: </label>
-						</div>
-						<div class="form-value">
-							<SELECT ID="realm" NAME="realm">
-								<OPTION VALUE='NetID'>NetID</OPTION>
-								<OPTION VALUE='WCMC-CWID'>WCMC-CWID</OPTION>
-								<OPTION VALUE='GuestID'>GuestID</OPTION>Apply Hide
-
-							</SELECT>
-						</div>
-					</div>
+        <!--reason text-->
+        <div id="reason">
+          <ul></ul>
+          <ul></ul>
+        </div>
 
 
-					<div class="form-pair">
-						<div class="form-value">
-							<input type="submit" class="input-submit" name="Submit"
-								value="Login" alt="Login"
-							/>
-						</div>
-					</div>
-				</fieldset>
-			</form>
+        <fieldset class="form-submit">
+          <div class="form-pair">
+            <div class="form-item">
+              <label for="netid">User ID:<!-- NetID --></label>
+            </div>
+            <div class="form-value">
+              <input NAME="netId" type="text" size="18" />
+            </div>
+          </div>
+
+          <div class="form-pair">
+            <div class="form-item">
+              <label for="password">Password:</label>
+            </div>
+            <div class="form-value">
+              <input id="password" name="password" type="password"
+                size="18" autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- realm select if needed -->
+          <div class="form-pair">
+            <div class="form-item">
+              <label for="realm">ID Type: </label>
+            </div>
+            <div class="form-value">
+              <SELECT ID="realm" NAME="realm">
+                <OPTION VALUE='NetID'>NetID</OPTION>
+                <OPTION VALUE='WCMC-CWID'>WCMC-CWID</OPTION>
+                <OPTION VALUE='GuestID'>GuestID</OPTION>Apply Hide
+
+              </SELECT>
+            </div>
+          </div>
 
 
-			<div id="offsetlinks">
-				<ul>
-					<li><a
-						href="http://www.it.cornell.edu/services/cuweblogin/about.cfm"
-					>What is this?</a></li>
-					<li><a
-						href="https://netid.cornell.edu/NetIDManagement/idtype.html"
-					>I forgot my password!</a></li>
-					<li><a href="http://www.it.cornell.edu/services/netid/faq.cfm">I
-							don't have a NetID, now what?</a></li>
-				</ul>
-			</div>
+          <div class="form-pair">
+            <div class="form-value">
+              <input type="submit" class="input-submit" name="Submit"
+                value="Login" alt="Login"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </form>
 
-			<div id="footer">
-				<div id="fc">
-					<div id="footer-content">
-						<p>
-							<a target="_blank"
-								href="http://www.it.cornApply  Hide
+
+      <div id="offsetlinks">
+        <ul>
+          <li><a
+            href="http://www.it.cornell.edu/services/cuweblogin/about.cfm"
+          >What is this?</a></li>
+          <li><a
+            href="https://netid.cornell.edu/NetIDManagement/idtype.html"
+          >I forgot my password!</a></li>
+          <li><a
+            href="http://www.it.cornell.edu/services/netid/faq.cfm"
+          >I don't have a NetID, now what?</a></li>
+        </ul>
+      </div>
+
+      <div id="footer">
+        <div id="fc">
+          <div id="footer-content">
+            <p>
+              <a target="_blank"
+                href="http://www.it.cornApply  Hide
      ell.edu/services/cuweblogin/safe.cfm#exit"
-							>To log out, you must Exit or Quit your browser.</a>
-						</p>
-						<p>
-							<strong>Caution:</strong> Always check your browser's address bar
-							before you enter your NetID password to make sure the address
-							starts with https://web*.login.cornell.edu/ (where web* is either
-							web1, web2, web3 or web4).
-						</p>
-						<p>
-							CUWebLogin is a component of Cornell University's central
-							authentication service. If you are unsure of the authenticity of
-							any online University service, please contact <a
-								href="http://it.cornell.edu/support/"
-							>the IT Service Desk.</a>
-						</p>
-						<p>This service and the services to which it provides access
-							are for authorized use only. Any attempt to gain unauthorized
-							access, or exceed authorized access, to online University
-							resources will be pursued, as applicable, under campus codes and
-							state or federal law.</p>
+              >To log out, you must Exit or Quit your browser.</a>
+            </p>
+            <p>
+              <strong>Caution:</strong> Always check your browser's
+              address bar before you enter your NetID password to make
+              sure the address starts with
+              https://web*.login.cornell.edu/ (where web* is either
+              web1, web2, web3 or web4).
+            </p>
+            <p>
+              CUWebLogin is a component of Cornell University's central
+              authentication service. If you are unsure of the
+              authenticity of any online University service, please
+              contact <a href="http://it.cornell.edu/support/">the
+                IT Service Desk.</a>
+            </p>
+            <p>This service and the services to which it provides
+              access are for authorized use only. Any attempt to gain
+              unauthorized access, or exceed authorized access, to
+              online University resources will be pursued, as
+              applicable, under campus codes and state or federal law.</p>
 
-						&copy; 2008 Cornell University. All Rights Reserved.
-					</div>
+            &copy; 2008 Cornell University. All Rights Reserved.
+          </div>
 
 
-					<!-- ++++++++++ -->
+          <!-- ++++++++++ -->
 
-				</div>
-				<!--content-->
-			</div>
-			<!--wrap-->
-		</div>
-	</div>
+        </div>
+        <!--content-->
+      </div>
+      <!--wrap-->
+    </div>
+  </div>
 
 </body>
 </html>

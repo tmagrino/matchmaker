@@ -2,14 +2,14 @@
 	This page allows you to update the roles of other users by Administrator.
  --%>
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="admin" />
-	<jsp:param name="sidebar_type" value="stud-profile" />
-	<jsp:param name="sidebar_selected" value="view" />
-	<jsp:param name="top_selected" value="profile" />
+  <jsp:param name="stud_or_prof" value="admin" />
+  <jsp:param name="sidebar_type" value="stud-profile" />
+  <jsp:param name="sidebar_selected" value="view" />
+  <jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%@
 	page
-	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
+  import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
 %>
 <%
  	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

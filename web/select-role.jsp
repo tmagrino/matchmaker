@@ -161,94 +161,99 @@ input[type=radio]:checked+img {
 </style>
 
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="header" />
-	<jsp:param name="sidebar_type" value="stud-profile" />
-	<jsp:param name="sidebar_selected" value="view" />
-	<jsp:param name="top_selected" value="profile" />
+  <jsp:param name="stud_or_prof" value="header" />
+  <jsp:param name="sidebar_type" value="stud-profile" />
+  <jsp:param name="sidebar_selected" value="view" />
+  <jsp:param name="top_selected" value="profile" />
 </jsp:include>
 
 <div class="content">
 
-	<table class="info" align="center" cellspacing="20" cellpadding="20">
-		<tr>
-			<td valign="bottom">
+  <table class="info" align="center" cellspacing="20" cellpadding="20">
+    <tr>
+      <td valign="bottom">
 
-				<div id="accountchooser-card" class="card accountchooser-card">
-					<% if (u != null){ %>
-					<h2 align="center">Choose an account</h2>
-					<% } %>
-					<ol class="accounts " id="account-list">
-						<% if (u != null && u.isAdmin()){ 
+        <div id="accountchooser-card" class="card accountchooser-card">
+          <% if (u != null){ %>
+          <h2 align="center">Choose an account</h2>
+          <% } %>
+          <ol class="accounts " id="account-list">
+            <% if (u != null && u.isAdmin()){ 
 			 	 %>
-						<li>
-							<form action="admin-searchUserRedirect.jsp" method="get">
-								<button type="submit" id="choose-account-1">
-									<img class="account-image" alt="" src="images/blank.png">
-									<span class="account-name"><%= u.getName() %></span> <span
-										class="account-email" id="account-email-1"
-									> Administrator </span>
-								</button>
-							</form>
-						</li>
-						<% }%>
-						<%if (isResearcher){ %>
-						<li>
-							<form action="researcher-profile.jsp" method="get">
-								<button type="submit" id="choose-account-1">
-									<img class="account-image" alt="" src="images/blank.png">
-									<span class="account-name"><%= u.getName() %></span> <span
-										class="account-email" id="account-email-1"
-									> Project Leader </span>
-								</button>
-							</form>
-						</li>
-						<%}%>
-						<% if(isStudent){ %>
+            <li>
+              <form action="admin-searchUserRedirect.jsp" method="get">
+                <button type="submit" id="choose-account-1">
+                  <img class="account-image" alt=""
+                    src="images/blank.png"
+                  > <span class="account-name"><%= u.getName() %></span>
+                  <span class="account-email" id="account-email-1">
+                    Administrator </span>
+                </button>
+              </form>
+            </li>
+            <% }%>
+            <%if (isResearcher){ %>
+            <li>
+              <form action="researcher-profile.jsp" method="get">
+                <button type="submit" id="choose-account-1">
+                  <img class="account-image" alt=""
+                    src="images/blank.png"
+                  > <span class="account-name"><%= u.getName() %></span>
+                  <span class="account-email" id="account-email-1">
+                    Project Leader </span>
+                </button>
+              </form>
+            </li>
+            <%}%>
+            <% if(isStudent){ %>
 
-						<li><form action="profile.jsp" method="get">
-								<button type="submit" id="choose-account-0">
-									<img class="account-image" src="images/blank.png"> <span
-										class="account-name"
-									><%= u.getName() %></span> <span class="account-email"
-										id="account-email-0"
-									> Student </span>
-								</button>
-							</form></li>
-						<%}%>
+            <li><form action="profile.jsp" method="get">
+                <button type="submit" id="choose-account-0">
+                  <img class="account-image" src="images/blank.png">
+                  <span class="account-name"><%= u.getName() %></span>
+                  <span class="account-email" id="account-email-0">
+                    Student </span>
+                </button>
+              </form></li>
+            <%}%>
 
-						<%if (u == null){ %>
+            <%if (u == null){ %>
 
 
-						<li>
-							<form action="createUser.jsp">
-								<h3>Are you a Student or a Project Leader?</h3>
-								<p>
-									<label for="pic1"> <input type="radio" name="role"
-										value="student" id="pic1"
-									> <img class="account-image" alt="" src="images/blank.png" />
-									</label> <span class="account-name">Student</span>
-								</p>
-								<p>
-									<label for="pic2"> <input type="radio" name="role"
-										value="researcher" id="pic2"
-									> <img class="account-image" alt="" src="images/blank.png" />
-									</label> <span class="account-name">Project Leader</span>
-								</p>
-								&nbsp;&nbsp;<input type="submit" value="Submit">
-								<FORM>
-									<INPUT Type="button" VALUE="Cancel"
-										onClick="history.go(-1);return true;"
-									>
-								</FORM>
-							</form>
+            <li>
+              <form action="createUser.jsp">
+                <h3>Are you a Student or a Project Leader?</h3>
+                <p>
+                  <label for="pic1"> <input type="radio"
+                    name="role" value="student" id="pic1"
+                  > <img class="account-image" alt=""
+                    src="images/blank.png"
+                  />
+                  </label> <span class="account-name">Student</span>
+                </p>
+                <p>
+                  <label for="pic2"> <input type="radio"
+                    name="role" value="researcher" id="pic2"
+                  > <img class="account-image" alt=""
+                    src="images/blank.png"
+                  />
+                  </label> <span class="account-name">Project Leader</span>
+                </p>
+                &nbsp;&nbsp;<input type="submit" value="Submit">
+                <FORM>
+                  <INPUT Type="button" VALUE="Cancel"
+                    onClick="history.go(-1);return true;"
+                  >
+                </FORM>
+              </form>
 
-						</li>
-						<% }%>
-					</ol>
-				</div>
-			</td>
-		</tr>
-	</table>
+            </li>
+            <% }%>
+          </ol>
+        </div>
+      </td>
+    </tr>
+  </table>
 </div>
 </body>
 </html>

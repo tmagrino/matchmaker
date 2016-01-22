@@ -4,10 +4,10 @@
 --%>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <jsp:include page="header.jsp">
-	<jsp:param name="stud_or_prof" value="header" />
-	<jsp:param name="sidebar_type" value="stud-profile" />
-	<jsp:param name="sidebar_selected" value="view" />
-	<jsp:param name="top_selected" value="profile" />
+  <jsp:param name="stud_or_prof" value="header" />
+  <jsp:param name="sidebar_type" value="stud-profile" />
+  <jsp:param name="sidebar_selected" value="view" />
+  <jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%       
          EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
