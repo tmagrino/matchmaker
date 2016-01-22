@@ -1,5 +1,5 @@
 <%--
-	This page is used to display all the latest vocabulary additions on the pages.
+  This page is used to display all the latest vocabulary additions on the pages.
 --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="admin" />
@@ -11,30 +11,26 @@
 
 <div class="content">
   <%
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	EntityManager em = emf.createEntityManager();
-	String[] options = {"major", "minor", "interest", "skill", "college",
-			"department"
-	};
-	List<String> ops = Arrays.asList(options);
-	String set = request.getParameter("category");
-	String category = request.getParameter("mydropdown");
-	List<LatestAddition> additions;
-	System.out.println("Loaded latestAddition, drop-down = "+category+" , url = "+set);
-	if (category == null || category.equals("recents")) {
-		if (set == null || !ops.contains(set)) { 
-			System.out.println("Setting to recents");
-			category = "recents";
-			additions = FieldValueController.getLatestAddedFields(em);
-		}
-		else {
-			category = set;
-			additions = FieldValueController.getLatestAddedFields(em, category);
-		}
-	}
-	else {
-		additions = FieldValueController.getLatestAddedFields(em, category);
-	}
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  String[] options = {"major", "minor", "interest", "skill", "college", "department"};
+  List<String> ops = Arrays.asList(options);
+  String set = request.getParameter("category");
+  String category = request.getParameter("mydropdown");
+  List<LatestAddition> additions;
+  System.out.println("Loaded latestAddition, drop-down = "+category+" , url = "+set);
+  if (category == null || category.equals("recents")) {
+    if (set == null || !ops.contains(set)) { 
+      System.out.println("Setting to recents");
+      category = "recents";
+      additions = FieldValueController.getLatestAddedFields(em);
+    } else {
+      category = set;
+      additions = FieldValueController.getLatestAddedFields(em, category);
+    }
+  } else {
+    additions = FieldValueController.getLatestAddedFields(em, category);
+  }
 %>
   <h1>Vocabulary</h1>
   <form action="latestAdditions.jsp">
@@ -66,50 +62,40 @@
   </form>
   <br />
   <% 
-		if (category.equals("recents")) {
-			%><h1>All</h1>
+    if (category.equals("recents")) {
+      %><h1>All</h1>
   <%
-		}
-		else if (category.equals("college")) {
-			%><h1>Colleges</h1>
+    } else if (category.equals("college")) {
+      %><h1>Colleges</h1>
   <%
-		}
-		else if (category.equals("department")) {
-			%><h1>Departments</h1>
+    } else if (category.equals("department")) {
+      %><h1>Departments</h1>
   <%
-		}
-		else if (category.equals("interest")) {
-			%><h1>Interests</h1>
+    } else if (category.equals("interest")) {
+      %><h1>Interests</h1>
   <%
-		}
-		else if (category.equals("major")) {
-			%><h1>Majors</h1>
+    } else if (category.equals("major")) {
+      %><h1>Majors</h1>
   <%
-		}
-		else if (category.equals("minor")) {
-			%><h1>Minors</h1>
+    } else if (category.equals("minor")) {
+      %><h1>Minors</h1>
   <%
-		}
-		else if (category.equals("skill")) {
-			%><h1>Skills</h1>
+    } else if (category.equals("skill")) {
+      %><h1>Skills</h1>
   <%
-		}
-		else {
-				
-		}
-	%>
+    } else { }
+  %>
   <%
-		if (additions.size() == 0) {
-			%>
+    if (additions.size() == 0) {
+      %>
   <p>
     No
     <%= category %>
     found
   </p>
   <%
-		}
-		else {		
-	%>
+    } else {    
+  %>
   <table class="additions_table searchable">
     <thead>
       <tr>
@@ -121,22 +107,22 @@
     </thead>
     <tbody>
       <% 
-				for (LatestAddition add : additions) {
-					String cssClasses = add.getType().replaceAll(" ", "_").toLowerCase() + " "
-		                    + add.getName().replaceAll(" ", "_").toLowerCase();
-					%>
+        for (LatestAddition add : additions) {
+          String cssClasses = add.getType().replaceAll(" ", "_").toLowerCase() + " "
+                        + add.getName().replaceAll(" ", "_").toLowerCase();
+          %>
       <tr class="<%=cssClasses %>">
         <td class="admin-button"><a class="actionButton remove"
           href="remove-item.jsp?type=
-									<%= add.getType() %>&desc=<%= add.getName() %>
-									<% 
-										if (category != null) {
-											%>&category=<%= category %>
-									<%
-										}
-									
-									%>
-									"
+                  <%= add.getType() %>&desc=<%= add.getName() %>
+                  <% 
+                    if (category != null) {
+                      %>&category=<%= category %>
+                  <%
+                    }
+                  
+                  %>
+                  "
         >Remove </a></td>
         <td><%= ("" + add.getType().charAt(0)).toUpperCase() + add.getType().substring(1) %>
         </td>
@@ -144,9 +130,9 @@
         <td><%= add.getSubmissionDate() %></td>
       </tr>
       <%
-				}
-			}
-		%>
+        }
+      }
+    %>
     </tbody>
   </table>
 </div>

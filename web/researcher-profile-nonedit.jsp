@@ -1,5 +1,5 @@
 <%--
-	This is uneditable researcher profile page that can be seen by the student
+  This is uneditable researcher profile page that can be seen by the student
  --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="stud" />
@@ -7,14 +7,15 @@
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
-<%	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	EntityManager em = emf.createEntityManager();
-	
-	Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
-	
-	Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id"));
-	
-	String[] attributes = {"Email", "URL", "Department", "Research Area"};
+<%
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  
+  Student s = StudentController.getStudentByNetID(em,(String) session.getAttribute("currentUser"));
+  
+  Researcher r = ResearcherController.getResearcherByNetID(em,(String)request.getParameter("id"));
+  
+  String[] attributes = {"Email", "URL", "Department", "Research Area"};
 %>
 
 <div class="content">

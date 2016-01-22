@@ -1,5 +1,5 @@
 <%--
-	This page allows you to remove the project 
+  This page allows you to remove the project 
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"
@@ -11,18 +11,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-  <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-   EntityManager em = emf.createEntityManager();
-   Project p = ProjectController.getProjectById(em, request.getParameter("id"));
-   ProjectController.deleteProject(em, p);
+  <%
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+    EntityManager em = emf.createEntityManager();
+    Project p = ProjectController.getProjectById(em, request.getParameter("id"));
+    ProjectController.deleteProject(em, p);
 
-   
-   response.setStatus(response.SC_MOVED_TEMPORARILY);  
-   response.setHeader("Location", "researcher-projects.jsp"); 
-
-	   
- 
-%>
+    
+    response.setStatus(response.SC_MOVED_TEMPORARILY);  
+    response.setHeader("Location", "researcher-projects.jsp"); 
+  %>
 
 </body>
 </html>

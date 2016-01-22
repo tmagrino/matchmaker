@@ -1,5 +1,5 @@
 <%--
-	This page is a sidebar navigation page for all users.
+  This page is a sidebar navigation page for all users.
  --%>
 <% if(request.getParameter("sidebar_type").equals("researcher-profile")){ %>
 <li class="first"><a

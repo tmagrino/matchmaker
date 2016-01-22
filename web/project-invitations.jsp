@@ -1,5 +1,5 @@
 <%--
-	This page contains all the invitations to the projects.
+  This page contains all the invitations to the projects.
 --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="stud" />
@@ -12,17 +12,17 @@
     import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
   %>
   <%
-							EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-													 	EntityManager em = emf.createEntityManager();
-													 	JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
-												        JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
-												        JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
-						%>
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+    EntityManager em = emf.createEntityManager();
+    JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
+    JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+    JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
+  %>
   <script type="text/javascript">
-				        	var majorData = <%= jsonMajor %>;
-				        	var skillsData = <%= jsonSkills %>;
-				        	var interestData = <%= jsonInterest %>;
-				        </script>
+    var majorData = <%= jsonMajor %>;
+    var skillsData = <%= jsonSkills %>;
+    var interestData = <%= jsonInterest %>;
+  </script>
   <h1>Projects</h1>
   <form name="filter-list" id="filter-list">
     <input type="submit" value="Filter" />

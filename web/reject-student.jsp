@@ -1,5 +1,5 @@
 <%--
-	This page is an intermediate page used to reject a Student.
+  This page is an intermediate page used to reject a Student.
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"
@@ -11,17 +11,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-  <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-   EntityManager em = emf.createEntityManager();
-   Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
-   ApplicationController.declineApplication(em, a);
-   Email.sendRejectionMessage(a.getStudentApplicant(),a);
-   response.setStatus(response.SC_MOVED_TEMPORARILY);
+  <%
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+    EntityManager em = emf.createEntityManager();
+    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
+    ApplicationController.declineApplication(em, a);
+    Email.sendRejectionMessage(a.getStudentApplicant(),a);
+    response.setStatus(response.SC_MOVED_TEMPORARILY);
   
-   response.setHeader("Location", "project-applications.jsp"); 
-
-	   
- 
+    response.setHeader("Location", "project-applications.jsp"); 
 %>
 
 </body>

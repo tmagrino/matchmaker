@@ -1,5 +1,5 @@
 <%-- 
-	This page is an uneditable profile page displayed to the student. 
+  This page is an uneditable profile page displayed to the student. 
 --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="researcher" />
@@ -7,15 +7,14 @@
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
-<%         EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-         EntityManager em = emf.createEntityManager();
-         Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
-         
-         Student s = StudentController.getStudentByNetID(em, (String) request.getParameter("studid"));
-         
-         String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
-        
-     
+<%
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+  
+  Student s = StudentController.getStudentByNetID(em, (String) request.getParameter("studid"));
+  
+  String[] attributes = {"Email", "Major", "Minor", "Year", "College", "GPA", "Skills", "Research Interests"};
 %>
 
 <div class="content">
@@ -27,7 +26,7 @@
           <td class="attr-label" colspan="3"><h2><%=s.getName() %></h2></td>
 
         </tr>
-        <% for(String attr: attributes){ %>
+        <% for(String attr : attributes){ %>
         <tr>
           <td class="attr-label"><%=attr %>:</td>
           <td class="field">
@@ -42,9 +41,7 @@
           <td class="attr-label">Student Response:</td>
           <td class="field">
             <p class="read-only">
-              <%
-	                                				Application a = ApplicationController.getApplicationById(em, request.getParameter("appid"));
-	                                			%>
+              <% Application a = ApplicationController.getApplicationById(em, request.getParameter("appid")); %>
               <%= a.getStudentResponse() %>
             </p>
           </td>

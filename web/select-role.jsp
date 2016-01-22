@@ -1,162 +1,162 @@
 <%--
-	This page allows you to select the role on the basis of the number of role a user has
+  This page allows you to select the role on the basis of the number of role a user has
  --%>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
-<%	 
+<%   
 
-	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	 EntityManager em = emf.createEntityManager();
-	 
-	 if(session.getAttribute("adminUser")!= null){
-		 session.setAttribute("currentUser", session.getAttribute("adminUser"));
-		 //session.setAttribute("adminUser", null);
-	 }
-	 
-	 String netId = null;
-	 
-	 if(session.getAttribute("currentUser") != null){
-		netId = (String) session.getAttribute("currentUser");  
-	 	session.setAttribute("currentUser", netId);
-	 }else{
-		 
-		 netId = request.getHeader("CUWA_REMOTE_USER");
-		 //netId = (String) request.getParameter("netId");
-		 session.setAttribute("currentUser", netId);
-	 }
-	 
-	 
-	 User u = UserController.findUser(em, netId);
-	 Student s = StudentController.getStudentByNetID(em, netId);
-	 Researcher r = ResearcherController.getResearcherByNetID(em, netId);
-	 
-	 
-	 int count = 0;
-	 Boolean isStudent = false;
-	 if(s != null){
-		 isStudent = true;
-		 count++;
-	 }
-	 
-	 Boolean isResearcher = false;
-	 if(r != null){
-		 isResearcher = true;
-		 count++;
-	 }
-	 
-	 if(u!=null && u.isAdmin()){
-		 count++;
-	 }
-	 
-	 if(count==1){
-		 if(isResearcher){
-			 response.sendRedirect("researcher-profile.jsp");
-		 }
-		 if(isStudent){
-			 response.sendRedirect("profile.jsp");
-		 }
-		 if(u.isAdmin()){ 
-			 response.sendRedirect("admin-searchUser.jsp");
-		 }
-	 }
-	
-	 session.setAttribute("numberOfRoles", count);
-	 
-	 
-	 
-	 
-	 
+   EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+   EntityManager em = emf.createEntityManager();
+   
+   if(session.getAttribute("adminUser")!= null){
+     session.setAttribute("currentUser", session.getAttribute("adminUser"));
+     //session.setAttribute("adminUser", null);
+   }
+   
+   String netId = null;
+   
+   if(session.getAttribute("currentUser") != null){
+    netId = (String) session.getAttribute("currentUser");  
+     session.setAttribute("currentUser", netId);
+   }else{
+     
+     netId = request.getHeader("CUWA_REMOTE_USER");
+     //netId = (String) request.getParameter("netId");
+     session.setAttribute("currentUser", netId);
+   }
+   
+   
+   User u = UserController.findUser(em, netId);
+   Student s = StudentController.getStudentByNetID(em, netId);
+   Researcher r = ResearcherController.getResearcherByNetID(em, netId);
+   
+   
+   int count = 0;
+   Boolean isStudent = false;
+   if(s != null){
+     isStudent = true;
+     count++;
+   }
+   
+   Boolean isResearcher = false;
+   if(r != null){
+     isResearcher = true;
+     count++;
+   }
+   
+   if(u!=null && u.isAdmin()){
+     count++;
+   }
+   
+   if(count==1){
+     if(isResearcher){
+       response.sendRedirect("researcher-profile.jsp");
+     }
+     if(isStudent){
+       response.sendRedirect("profile.jsp");
+     }
+     if(u.isAdmin()){ 
+       response.sendRedirect("admin-searchUser.jsp");
+     }
+   }
+  
+   session.setAttribute("numberOfRoles", count);
+   
+   
+   
+   
+   
 %>
 
 <style>
 html, body {
-	font-family: Arial, sans-serif;
-	background: #fff;
-	margin: 0;
-	padding: 0;
-	border: 0;
-	position: absolute;
-	height: 100%;
-	min-width: 100%;
-	font-size: 13px;
-	color: #404040;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  position: absolute;
+  height: 100%;
+  min-width: 100%;
+  font-size: 13px;
+  color: #404040;
 }
 
 .accountchooser-card ol li {
-	height: 76px;
-	border-top: 1px solid #d5d5d5;
-	list-style-type: none;
+  height: 76px;
+  border-top: 1px solid #d5d5d5;
+  list-style-type: none;
 }
 
 .accountchooser-card ol li button, .accountchooser-card ol li .remove-entry
-	{
-	padding: 15px 0;
-	display: block;
-	width: 100%;
-	height: 100%;
-	outline: none;
-	border: 0;
-	cursor: pointer;
-	text-align: left;
-	background: url(images/arrow_right.png) right center no-repeat;
-	background-size: 21px 21px;
-	list-style-type: none;
+  {
+  padding: 15px 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  background: url(images/arrow_right.png) right center no-repeat;
+  background-size: 21px 21px;
+  list-style-type: none;
 }
 
 .accountchooser-card ol li p {
-	padding: 15px 0;
-	display: block;
-	width: 100%;
-	height: 100%;
-	outline: none;
-	border: 0;
-	cursor: pointer;
-	text-align: left;
-	list-style-type: none;
+  padding: 15px 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  list-style-type: none;
 }
 
 .accountchooser-card ol li button img, .accountchooser-card ol li .remove-entry img,
-	.accountchooser-card ol li p label img {
-	float: left;
-	-moz-border-radius: 50%;
-	-webkit-border-radius: 50%;
-	border-radius: 50%;
-	height: 46px;
-	width: 46px;
-	list-style-type: none;
+  .accountchooser-card ol li p label img {
+  float: left;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  height: 46px;
+  width: 46px;
+  list-style-type: none;
 }
 
 .accountchooser-card ol li button span, .accountchooser-card ol li .remove-entry span,
-	.accountchooser-card ol li p span {
-	display: block;
-	margin-left: 58px;
-	padding-right: 20px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	list-style-type: none;
+  .accountchooser-card ol li p span {
+  display: block;
+  margin-left: 58px;
+  padding-right: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  list-style-type: none;
 }
 
 .accountchooser-card ol li button span.account-name,
-	.accountchooser-card ol li .remove-entry span.account-name,
-	.accountchooser-card ol li p span.account-name {
-	font-weight: bold;
-	font-size: 16px;
-	padding-top: 3px;
-	color: #427fed;
-	list-style-type: none;
+  .accountchooser-card ol li .remove-entry span.account-name,
+  .accountchooser-card ol li p span.account-name {
+  font-weight: bold;
+  font-size: 16px;
+  padding-top: 3px;
+  color: #427fed;
+  list-style-type: none;
 }
 
 input[type=radio] {
-	display: none;
+  display: none;
 }
 
 input[type=radio]+img {
-	cursor: pointer;
-	border: 2px solid transparent;
+  cursor: pointer;
+  border: 2px solid transparent;
 }
 
 input[type=radio]:checked+img {
-	border: 4px solid #ab1a2a;
+  border: 4px solid #ab1a2a;
 }
 </style>
 
@@ -178,8 +178,7 @@ input[type=radio]:checked+img {
           <h2 align="center">Choose an account</h2>
           <% } %>
           <ol class="accounts " id="account-list">
-            <% if (u != null && u.isAdmin()){ 
-			 	 %>
+            <% if (u != null && u.isAdmin()){ %>
             <li>
               <form action="admin-searchUserRedirect.jsp" method="get">
                 <button type="submit" id="choose-account-1">

@@ -1,6 +1,6 @@
 <%--
-	This page is reusable header page used in all of the jsps.
-	Depending upon the roles of the person, the information is displayed in the header page.
+  This page is reusable header page used in all of the jsps.
+  Depending upon the roles of the person, the information is displayed in the header page.
  --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
   pageEncoding="ISO-8859-1"
@@ -36,96 +36,89 @@
 
     <ul class="login-nav">
       <!-- This a Header page!! -->
-      <%	 
+      <%   
         // Dumb hack to make sure this exists at all times.
         if (session.getAttribute("page") == null) {
           session.setAttribute("page", "");
         }
 
-	 EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	 EntityManager em = emf.createEntityManager();
-	 
-         /*
-	 if(session.getAttribute("adminUser")!= null){
-		 session.setAttribute("currentUser", session.getAttribute("adminUser"));
-		 //session.setAttribute("adminUser", null);
-	 }
-         */
-	 
-	 String netId = null;
-	 
-	 if(session.getAttribute("currentUser") != null){
-		netId = (String) session.getAttribute("currentUser");  
-	 	session.setAttribute("currentUser", netId);
-	 }else{
-		 
-		 netId = request.getHeader("CUWA_REMOTE_USER");
-		 //netId = (String) request.getParameter("netId");
-		 session.setAttribute("currentUser", netId);
-	 }
-	 
-         User u = UserController.findUser(em, netId);
-         if (u != null && u.isAdmin()) {
-            session.setAttribute("adminUser", netId);
-         }
-         Student s = StudentController.getStudentByNetID(em, netId);
-         Researcher r = ResearcherController.getResearcherByNetID(em, netId);
-	 
-         if (session.getAttribute("numberOfRoles") == null) {
-           int count = 0;
-           Boolean isStudent = false;
-           if(s != null){
-                   isStudent = true;
-                   count++;
-           }
-           
-           Boolean isResearcher = false;
-           if(r != null){
-                   isResearcher = true;
-                   count++;
-           }
-           
-           if(u!=null && u.isAdmin()){
-                   count++;
-           }
-           
-           if(count==1){
-                   if(isResearcher){
-                           response.sendRedirect("researcher-profile.jsp");
-                   }
-                   if(isStudent){
-                           response.sendRedirect("profile.jsp");
-                   }
-                   if(u.isAdmin()){ 
-                           response.sendRedirect("admin-searchUser.jsp");
-                   }
-           }
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+        EntityManager em = emf.createEntityManager();
+        
+        String netId = null;
+        
+        if(session.getAttribute("currentUser") != null){
+         netId = (String) session.getAttribute("currentUser");  
+          session.setAttribute("currentUser", netId);
+        }else{
           
-           session.setAttribute("numberOfRoles", count);
-         }
-%>
+          netId = request.getHeader("CUWA_REMOTE_USER");
+          //netId = (String) request.getParameter("netId");
+          session.setAttribute("currentUser", netId);
+        }
+   
+        User u = UserController.findUser(em, netId);
+        if (u != null && u.isAdmin()) {
+           session.setAttribute("adminUser", netId);
+        }
+        Student s = StudentController.getStudentByNetID(em, netId);
+        Researcher r = ResearcherController.getResearcherByNetID(em, netId);
+  
+        if (session.getAttribute("numberOfRoles") == null) {
+          int count = 0;
+          Boolean isStudent = false;
+          if(s != null){
+                  isStudent = true;
+                  count++;
+          }
+          
+          Boolean isResearcher = false;
+          if(r != null){
+                  isResearcher = true;
+                  count++;
+          }
+          
+          if(u!=null && u.isAdmin()){
+                  count++;
+          }
+          
+          if(count==1){
+                  if(isResearcher){
+                          response.sendRedirect("researcher-profile.jsp");
+                  }
+                  if(isStudent){
+                          response.sendRedirect("profile.jsp");
+                  }
+                  if(u.isAdmin()){ 
+                          response.sendRedirect("admin-searchUser.jsp");
+                  }
+          }
+         
+          session.setAttribute("numberOfRoles", count);
+        }
+      %>
       <% 
-		 	String currentUser = (String) session.getAttribute("currentUser");
-		 	//System.out.println("---------------Set by currentUser-------------------");
-		 	Integer numRoles = (Integer) session.getAttribute("numberOfRoles");
-		 	if(currentUser == null){
-		 		//currentUser = request.getParameter("netId");
-		 	        currentUser = request.getHeader("CUWA_REMOTE_USER");
-		 		//System.out.println("---------------Set by currentUser-------------------");
-		 		session.setAttribute("currentUser", currentUser);
-		 	}
-		 	
-		 	String stud_prof = request.getParameter("stud_or_prof");
-		 	//System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
-		 	if(session.getAttribute("adminUser") != null){
-		 		//System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
-		 		currentUser = (String) session.getAttribute("adminUser");
-		 		stud_prof = "admin";
-		 	}
-		 	//System.out.println("currentUser : "+currentUser);
-			if(stud_prof.equals("stud")){ 
-				s = StudentController.getStudentByNetID(em,currentUser);
-				if(s != null){%>
+       String currentUser = (String) session.getAttribute("currentUser");
+       //System.out.println("---------------Set by currentUser-------------------");
+       Integer numRoles = (Integer) session.getAttribute("numberOfRoles");
+       if(currentUser == null){
+         //currentUser = request.getParameter("netId");
+               currentUser = request.getHeader("CUWA_REMOTE_USER");
+         //System.out.println("---------------Set by currentUser-------------------");
+         session.setAttribute("currentUser", currentUser);
+       }
+       
+       String stud_prof = request.getParameter("stud_or_prof");
+       //System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
+       if(session.getAttribute("adminUser") != null){
+         //System.out.println("---------------Set by adminUser-------------------"+session.getAttribute("adminUser"));
+         currentUser = (String) session.getAttribute("adminUser");
+         stud_prof = "admin";
+       }
+       //System.out.println("currentUser : "+currentUser);
+      if(stud_prof.equals("stud")){ 
+        s = StudentController.getStudentByNetID(em,currentUser);
+        if(s != null){%>
       <li>Welcome, <%=s.getName() %> <br> <% if(numRoles > 1) { %>
       <li class="change-role"><a href="select-role.jsp">Change
           Role</a></li>
@@ -133,7 +126,7 @@
       <font size="2"><%=s.getNetID()%>, Student</font>
       </li>
       <%}
-			 } else if(stud_prof.equals("researcher")){ %>
+       } else if(stud_prof.equals("researcher")){ %>
       <% r = ResearcherController.getResearcherByNetID(em,currentUser); %>
 
       <li>Welcome, <%=r.getName()%> <br> <% if(numRoles > 1) { %>
@@ -145,20 +138,20 @@
       </li>
 
       <% } else if(stud_prof.equals("admin")){
-				u = UserController.findUser(em, currentUser);
-				if(u != null){
-			%>
+        u = UserController.findUser(em, currentUser);
+        if(u != null){
+      %>
       <li class="acting-as">
         <% if(session.getAttribute("adminUser")!= null){ %> Acting as User
         : <%
-						if(session.getAttribute("page").equals("adminSearch")){
-							session.setAttribute("page","");	
-						%> None <%}else{
-						User usr = UserController.findUser(em,(String)session.getAttribute("currentUser"));%>
+            if(session.getAttribute("page").equals("adminSearch")){
+              session.setAttribute("page","");  
+            %> None <%}else{
+            User usr = UserController.findUser(em,(String)session.getAttribute("currentUser"));%>
         <%=usr.getName()%> (<%=usr.getNetid() %>) <br> <a
         href="admin-searchUser.jsp"
       >Exit</a> <%}
-					} else{%> <%} %>
+          } else{%> <%} %>
       </li>
       <li>Welcome, <%=u.getName() %></li>
       <br>
@@ -171,19 +164,19 @@
       </li>
       <%}
 
-			} else if(stud_prof.equals("header")){
-				u = UserController.findUser(em, currentUser);
-				if(u != null){
-			%>
+      } else if(stud_prof.equals("header")){
+        u = UserController.findUser(em, currentUser);
+        if(u != null){
+      %>
       <li>Welcome, <%=u.getName() %></li>
       <% }
-				else{ %>
+        else{ %>
       <li>Welcome, New User</li>
       <% }
-			  } 
-			  
-			  
-			  %>
+        } 
+        
+        
+        %>
       <li class="login-link"><a href="signout.jsp">sign out</a></li>
     </ul>
   </div>

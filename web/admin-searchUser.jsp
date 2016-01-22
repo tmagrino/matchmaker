@@ -1,6 +1,6 @@
 <%--
-	 This page is used for the Administrator to search for the users 
-	 The admin can also act as user or can add/delete accounts.
+   This page is used for the Administrator to search for the users 
+   The admin can also act as user or can add/delete accounts.
 --%>
 
 <% session.setAttribute("page", "adminSearch"); %>
@@ -11,64 +11,64 @@
   <jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%
-	//If a netid or name were passed to this page, we will do a search for the user in this code
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	EntityManager em = emf.createEntityManager();
-	String netID = request.getParameter("netID");
-	
-	
-	// Null User fix 
-		User user = UserController.findUser(em, netID);
-	
-		if(user == null && session.getAttribute("adminUser") == null){
-				response.sendRedirect("select-role.jsp");	
-		}
-		
-		// End - Null User fix 
-	
-	String name = request.getParameter("name");
-	
-	Student s = null;
-	User u = null;
-	Researcher r = null;
-	
-	if(netID != null && netID != ""){
-		u = UserController.findUser(em, netID);
-		s = StudentController.getStudentByNetID(em, netID);
-		r = ResearcherController.getResearcherByNetID(em, netID);
-	}
-	else if (name != null){
-		s = StudentController.getStudentByName(em, name);
-		r = ResearcherController.getResearcherByName(em, name);
-		if (s != null){
-			u = UserController.findUser(em, s.getNetID());
-		}
-		else if (r != null){
-			u = UserController.findUser(em, r.getNetID());
-		}
-	}
-	
-	Boolean isStudent = false;
-	if(s!= null){
-		isStudent = true;
-	}
-	
-	Boolean isResearcher = false;
-	if(r != null){
-		isResearcher = true;
-	}
-	
-	Boolean isAdmin = false;
-	if(u != null){
-		if(u.isAdmin()){
-			isAdmin = true;
-		}
-	}
-	
-	Boolean searchCompleted = false;
-	if(!isAdmin && !isStudent && !isResearcher && (netID != null || name != null) ){
-		searchCompleted = true;
-	}
+  //If a netid or name were passed to this page, we will do a search for the user in this code
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  String netID = request.getParameter("netID");
+  
+  
+  // Null User fix 
+    User user = UserController.findUser(em, netID);
+  
+    if(user == null && session.getAttribute("adminUser") == null){
+        response.sendRedirect("select-role.jsp");  
+    }
+    
+    // End - Null User fix 
+  
+  String name = request.getParameter("name");
+  
+  Student s = null;
+  User u = null;
+  Researcher r = null;
+  
+  if(netID != null && netID != ""){
+    u = UserController.findUser(em, netID);
+    s = StudentController.getStudentByNetID(em, netID);
+    r = ResearcherController.getResearcherByNetID(em, netID);
+  }
+  else if (name != null){
+    s = StudentController.getStudentByName(em, name);
+    r = ResearcherController.getResearcherByName(em, name);
+    if (s != null){
+      u = UserController.findUser(em, s.getNetID());
+    }
+    else if (r != null){
+      u = UserController.findUser(em, r.getNetID());
+    }
+  }
+  
+  Boolean isStudent = false;
+  if(s!= null){
+    isStudent = true;
+  }
+  
+  Boolean isResearcher = false;
+  if(r != null){
+    isResearcher = true;
+  }
+  
+  Boolean isAdmin = false;
+  if(u != null){
+    if(u.isAdmin()){
+      isAdmin = true;
+    }
+  }
+  
+  Boolean searchCompleted = false;
+  if(!isAdmin && !isStudent && !isResearcher && (netID != null || name != null) ){
+    searchCompleted = true;
+  }
 %>
 <div class="content">
   <h3 class="subheading">&nbsp;&nbsp;Search User</h3>
@@ -108,8 +108,8 @@
               <h3>Role:</h3> <br>
               <div class="status">
                 <% if(isStudent){
-										session.setAttribute("currentUser", s.getNetID());
-									%>
+                    session.setAttribute("currentUser", s.getNetID());
+                  %>
                 <form action="profile.jsp" method="get">
                   <input type="hidden" name="netId"
                     value="<%=u.getNetid() %>"
@@ -118,8 +118,8 @@
                   />
                 </form>
                 <%} else if(isResearcher){
-							 			session.setAttribute("currentUser", r.getNetID());
-							 		%>
+                     session.setAttribute("currentUser", r.getNetID());
+                   %>
                 <form action="researcher-profile.jsp" method="get">
                   <input type="hidden" name="netId"
                     value="<%=u.getNetid() %>"
@@ -128,8 +128,8 @@
                   />
                 </form>
                 <%} else if(u!= null && u.isAdmin()){
-							 			session.setAttribute("currentUser", u.getNetid());
-							 		%>
+                     session.setAttribute("currentUser", u.getNetid());
+                   %>
                 <form action="admin-searchUser.jsp" method="get">
                   <input type="hidden" name="netId"
                     value="<%=u.getNetid() %>"

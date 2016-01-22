@@ -1,6 +1,6 @@
 <%--
-	This page is uneditable profile page which can be displayed to all the users from
-	the search page.
+  This page is uneditable profile page which can be displayed to all the users from
+  the search page.
  --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="stud" />
@@ -8,13 +8,11 @@
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
-EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-EntityManager em = emf.createEntityManager();
-Project p = ProjectController.getProjectById(em, request.getParameter("pid"));
-String[] attributes = {"Research Area", "Required Skills", "Project URL", "Project Description"};
-
-
- %>
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  Project p = ProjectController.getProjectById(em, request.getParameter("pid"));
+  String[] attributes = {"Research Area", "Required Skills", "Project URL", "Project Description"};
+%>
 <div class="content">
   <form name="profile">
     <table class="info">
@@ -25,14 +23,14 @@ String[] attributes = {"Research Area", "Required Skills", "Project URL", "Proje
         <td class="attr-label">Researcher Name(s):</td>
         <td class="attr-label"><h1>
             <% 
-			for (Researcher r : p.getResearchers()) {
-		%>
+      for (Researcher r : p.getResearchers()) {
+    %>
             <a
               href="researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"
             ><%=r.getName()%></a><br />
             <% 
-        	}
-		%>
+          }
+    %>
           </h1></td>
       </tr>
       <% for(String attr: attributes){ %>
@@ -43,13 +41,14 @@ String[] attributes = {"Research Area", "Required Skills", "Project URL", "Proje
             <% if((attr).equals("Research Area")){ %>
             <%=p.getAreaString() %>
             <% }
-						if((attr).equals("Required Skills")){ %>
+               if((attr).equals("Required Skills")){ %>
             <%=p.getSkillString() %>
-            <%} if((attr).equals("Project URL")){ %>
+            <% } if((attr).equals("Project URL")){ %>
             <a href="//<%=p.getURL() %>"><%=p.getURL()%></a>
-            <%} if((attr).equals("Project Description")){ %>
+            <% } if((attr).equals("Project Description")){ %>
             <%=p.getDescription() %>
-            <%}} %>
+            <% }
+         } %>
           </p>
         </td>
       </tr>

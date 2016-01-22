@@ -1,5 +1,5 @@
 <%--
-	This is editable researcher profile page for the researcher.
+  This is editable researcher profile page for the researcher.
  --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="researcher" />
@@ -8,31 +8,29 @@
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 
 <%
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	EntityManager em = emf.createEntityManager();
-	
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  
 
-	String currentuser = (String) session.getAttribute("currentUser");
-	
-	Researcher r = ResearcherController.getResearcherByNetID(em,currentuser);
-	Set<String> req_attr = new HashSet<String>(Arrays.asList("Email", "URL", "Department")); 
-	String[] attributes = {"Email", "URL", "Department", "Research Area"};
-	// Update Research Area function to retrieve Interest objects.
-	String[] autocomplete_attr = {FieldFactory.DEPARTMENT, FieldFactory.INTEREST};
-	JSONArray jsonArrAll = new JSONArray();
-	JSONArray jsonArrStud = new JSONArray();
-	for(String auto_attr: autocomplete_attr){
-		jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
-		if(r != null)
-	jsonArrStud.put(FieldValueController.getObjectJson(r.getListAttribute(auto_attr)));
-     	User usr = UserController.findUser(em, r.getNetID());
-     	UserController.setName(em, usr, r.getName());
-
-	}
+  String currentuser = (String) session.getAttribute("currentUser");
+  
+  Researcher r = ResearcherController.getResearcherByNetID(em,currentuser);
+  Set<String> req_attr = new HashSet<String>(Arrays.asList("Email", "URL", "Department")); 
+  String[] attributes = {"Email", "URL", "Department", "Research Area"};
+  // Update Research Area function to retrieve Interest objects.
+  String[] autocomplete_attr = {FieldFactory.DEPARTMENT, FieldFactory.INTEREST};
+  JSONArray jsonArrAll = new JSONArray();
+  JSONArray jsonArrStud = new JSONArray();
+  for(String auto_attr: autocomplete_attr){
+    jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
+    if(r != null) jsonArrStud.put(FieldValueController.getObjectJson(r.getListAttribute(auto_attr)));
+    User usr = UserController.findUser(em, r.getNetID());
+    UserController.setName(em, usr, r.getName());
+  }
 %>
 <script type="text/javascript">
-	var autocomplete_attr = Array("department", "research_area");
-	var jsonArrAll = <%= jsonArrAll %>;
+  var autocomplete_attr = Array("department", "research_area");
+  var jsonArrAll = <%= jsonArrAll %>;
     var jsonArrStud = <%= jsonArrStud %>;
 </script>
 <div class="content">
@@ -64,7 +62,7 @@
           </td>
         </tr>
         <% }
-				for(String attr: attributes){ %>
+        for(String attr: attributes){ %>
         <tr <%= req_attr.contains(attr) ? "class=\"required\"" : "" %>>
           <td class="attr-label"><%=attr %>:</td>
           <td class="field">

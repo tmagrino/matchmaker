@@ -1,5 +1,5 @@
 <%--
-	This is an intermediate page for saving session values 
+  This is an intermediate page for saving session values 
 --%>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%

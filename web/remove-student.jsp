@@ -1,5 +1,5 @@
 <%--
-	This page allows you to remove the student from the project.
+  This page allows you to remove the student from the project.
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"
@@ -11,20 +11,18 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-  <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-   EntityManager em = emf.createEntityManager();
-   Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
-   Project p = a.getApplicationProject();
-   Student s = a.getStudentApplicant();
-   ProjectController.removeApplication(em, p, a);
-   StudentController.removeApplication(em, s, a);
-   
-   response.setStatus(response.SC_MOVED_TEMPORARILY);  
-   response.setHeader("Location", "researcher-projects.jsp"); 
-
-	   
- 
-%>
+  <%
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+    EntityManager em = emf.createEntityManager();
+    Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
+    Project p = a.getApplicationProject();
+    Student s = a.getStudentApplicant();
+    ProjectController.removeApplication(em, p, a);
+    StudentController.removeApplication(em, s, a);
+    
+    response.setStatus(response.SC_MOVED_TEMPORARILY);  
+    response.setHeader("Location", "researcher-projects.jsp"); 
+  %>
 
 </body>
 </html>

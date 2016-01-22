@@ -1,12 +1,12 @@
 <%--
-	This page was a temporary login page. It is replaced by CUWebAuth login page on the web server.
+  This page was a temporary login page. It is replaced by CUWebAuth login page on the web server.
  --%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 
 <!--
-	$Id: login.html,v 1.13 2013/04/15 14:34:01 hy93 Exp $
+  $Id: login.html,v 1.13 2013/04/15 14:34:01 hy93 Exp $
 -->
 
 <head>
@@ -19,210 +19,210 @@
 <title>Cornell University Web Login</title>
 
 <script type="text/javascript">
-	<!--
-		function sf() { document.login.netid.focus(); }
-	// -->
-	</script>
+  <!--
+    function sf() { document.login.netid.focus(); }
+  // -->
+  </script>
 <style type="text/css">
 body {
-	margin: 0;
-	padding: 0;
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 63.125%;
-	color: #222;
+  margin: 0;
+  padding: 0;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 63.125%;
+  color: #222;
 }
 
 #cu-identity {
-	height: 75px;
-	background: #b31b1b;
+  height: 75px;
+  background: #b31b1b;
 }
 
 #cu-logo {
-	margin: 0 auto;
-	width: 740px;
-	background: url(banner_1.jpg) no-repeat top left;
+  margin: 0 auto;
+  width: 740px;
+  background: url(banner_1.jpg) no-repeat top left;
 }
 
 hr.banner-separator {
-	display: none;
+  display: none;
 }
 
 #wrap {
-	float: left;
-	width: 100%;
+  float: left;
+  width: 100%;
 }
 
 #content {
-	margin: 0 auto;
-	width: 740px;
-	/* unhack ie5/win */
-	text-align: left;
+  margin: 0 auto;
+  width: 740px;
+  /* unhack ie5/win */
+  text-align: left;
 }
 
 p.reason {
-	padding-bottom: 0px;
-	font-size: 1.3em;
-	color: #b31b1b;
-	width: 25em;
+  padding-bottom: 0px;
+  font-size: 1.3em;
+  color: #b31b1b;
+  width: 25em;
 }
 
 #footer {
-	float: left;
-	width: 100%;
-	font-size: 1.0em;
+  float: left;
+  width: 100%;
+  font-size: 1.0em;
 }
 
 #fc {
-	width: 740px;
-	margin: 0 auto;
+  width: 740px;
+  margin: 0 auto;
 }
 
 #footer-content {
-	margin: 0 auto;
-	padding: 5px 0 1em 0;
-	width: 68em;
-	font-size: .9em;
-	color: #73736c;
-	float: left;
-	margin-top: .5em;
+  margin: 0 auto;
+  padding: 5px 0 1em 0;
+  width: 68em;
+  font-size: .9em;
+  color: #73736c;
+  float: left;
+  margin-top: .5em;
 }
 
 #footer a {
-	font-size: 1.0em;
+  font-size: 1.0em;
 }
 
 p {
-	margin: 0 0 1em 0;
-	font-size: 1.3em;
-	line-height: 1.4em;
+  margin: 0 0 1em 0;
+  font-size: 1.3em;
+  line-height: 1.4em;
 }
 
 #identity {
-	padding: 25px 0;
-	background: #fff;
+  padding: 25px 0;
+  background: #fff;
 }
 
 #identity h1 {
-	margin: 0 auto;
-	width: 740px;
-	/*	font-family: georgia, "times new roman", times, serif;*/
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 2.4em;
-	font-weight: normal;
-	color: #73736c;
+  margin: 0 auto;
+  width: 740px;
+  /*  font-family: georgia, "times new roman", times, serif;*/
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 2.4em;
+  font-weight: normal;
+  color: #73736c;
 }
 
 .first {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 a {
-	color: #b31b1b;
-	text-decoration: none;
-	font-size: .9em;
+  color: #b31b1b;
+  text-decoration: none;
+  font-size: .9em;
 }
 
 a:visited {
-	color: #b37474;
+  color: #b37474;
 }
 
 a:hover {
-	color: #f00;
-	border-color: #f00;
+  color: #f00;
+  border-color: #f00;
 }
 
 a:active {
-	color: #b31b1b;
-	border-color: #e5cfcf;
+  color: #b31b1b;
+  border-color: #e5cfcf;
 }
 
 hr {
-	display: none;
+  display: none;
 }
 
 form {
-	margin: 0 0 15px 0;
-	padding: 0;
-	width: 740px;
-	float: left;
+  margin: 0 0 15px 0;
+  padding: 0;
+  width: 740px;
+  float: left;
 }
 
 fieldset {
-	float: left;
-	margin: 0 auto;
-	padding: 1em 0 1.5em 0;
-	width: 30em;
-	border: none;
-	border-top: 1px solid #e7e7e7;
+  float: left;
+  margin: 0 auto;
+  padding: 1em 0 1.5em 0;
+  width: 30em;
+  border: none;
+  border-top: 1px solid #e7e7e7;
 }
 
 .form-pair {
-	display: inline;
-	float: left;
-	margin: .5em .5em 0 .4em;
-	width: 28em;
+  display: inline;
+  float: left;
+  margin: .5em .5em 0 .4em;
+  width: 28em;
 }
 
 .form-item {
-	float: left;
-	margin-top: 5px;
-	width: 8em;
-	font-size: 1.2em;
-	line-height: 1.5em;
-	text-align: right;
+  float: left;
+  margin-top: 5px;
+  width: 8em;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  text-align: right;
 }
 
 .form-value {
-	float: right;
-	margin-top: 3px;
-	width: 16em;
-	font-size: 1.1em;
-	line-height: 1.5em;
-	margin-right: 0px;
+  float: right;
+  margin-top: 3px;
+  width: 16em;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  margin-right: 0px;
 }
 
 .input-text, select, textarea {
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 1em;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 1em;
 }
 
 .form-submit {
-	border: 1px solid #dbdbd2;
+  border: 1px solid #dbdbd2;
 }
 
 .input-submit, .input-reset {
-	font-family: verdana, arial, helvetica, sans-serif;
-	font-size: 1.1em;
-	border: 1px solid;
-	background: #f0eee4;
-	margin-top: 0px;
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size: 1.1em;
+  border: 1px solid;
+  background: #f0eee4;
+  margin-top: 0px;
 }
 
 .input-submit:hover {
-	background: #dbdbd2;
+  background: #dbdbd2;
 }
 
 #offsetlinks ul {
-	float: left;
-	margin: 0 0 0 0;
-	padding: 0px 0 10px 0;
-	font-size: 1.3em;
-	line-height: 1.4em;
+  float: left;
+  margin: 0 0 0 0;
+  padding: 0px 0 10px 0;
+  font-size: 1.3em;
+  line-height: 1.4em;
 }
 
 #offsetlinks ul li {
-	margin: 0 0 0 25em;
-	padding: 0 0 0 15px; /*was 30*/
-	list-style: none;
+  margin: 0 0 0 25em;
+  padding: 0 0 0 15px; /*was 30*/
+  list-style: none;
 }
 
 #reason ul {
-	font-size: 1.3em;
+  font-size: 1.3em;
 }
 
 #reason ul li {
-	padding: 1em 0 0 0;
-	list-style: none;
+  padding: 1em 0 0 0;
+  list-style: none;
 }
 </style>
 

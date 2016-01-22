@@ -1,5 +1,5 @@
 <%--
-	This page is editable profile page for the project.
+  This page is editable profile page for the project.
  --%>
 <jsp:include page="header.jsp">
   <jsp:param name="stud_or_prof" value="researcher" />
@@ -7,24 +7,24 @@
 </jsp:include>
 <%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <%
-	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	EntityManager em = emf.createEntityManager();
-	JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
-	JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
-	Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
-	Set<String> req_attr = new HashSet<String>(Arrays.asList(ProjectController.TITLE)); 
-	String[] attributes = {ProjectController.TITLE, ProjectController.AREA, 
-			ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};
-	String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
-	JSONArray jsonArrAll = new JSONArray();
-	JSONArray jsonArrStud = new JSONArray();
-	for(String auto_attr: autocomplete_attr){
-		jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
-	}
+  EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
+  EntityManager em = emf.createEntityManager();
+  JSONObject jsonSkills = FieldValueController.getItemJson(em,FieldFactory.SKILL);
+  JSONObject jsonInterest = FieldValueController.getItemJson(em,FieldFactory.INTEREST);
+  Researcher r = ResearcherController.getResearcherByNetID(em,(String) session.getAttribute("currentUser"));
+  Set<String> req_attr = new HashSet<String>(Arrays.asList(ProjectController.TITLE)); 
+  String[] attributes = {ProjectController.TITLE, ProjectController.AREA,
+                         ProjectController.SKILL, ProjectController.URL, ProjectController.DESCRIPTION};
+  String[] autocomplete_attr = {FieldFactory.INTEREST, FieldFactory.SKILL};
+  JSONArray jsonArrAll = new JSONArray();
+  JSONArray jsonArrStud = new JSONArray();
+  for(String auto_attr: autocomplete_attr){
+    jsonArrAll.put(FieldValueController.getItemJson(em, auto_attr));
+  }
 %>
 <script type="text/javascript">
-	var autocomplete_attr = Array("research_area", "required_skills");
-	var jsonArrAll = <%= jsonArrAll %>;
+  var autocomplete_attr = Array("research_area", "required_skills");
+  var jsonArrAll = <%= jsonArrAll %>;
     var jsonArrStud = <%= jsonArrStud %>;
 </script>
 <div class="content">

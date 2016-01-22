@@ -1,6 +1,6 @@
 <%--
-	This is logout page when clicked on signout.
-	The session is expired only when you close the browser - CUWebAuth functionality
+  This is logout page when clicked on signout.
+  The session is expired only when you close the browser - CUWebAuth functionality
  --%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
   pageEncoding="ISO-8859-1"
@@ -31,9 +31,9 @@
     <center>
       <font color="#ffffff"><span class="navlink_course"
         id="navlink_course_overview"
-      > <b>Current Login: <%
-if(session.getAttribute("adminUser") != null){%> <%=session.getAttribute("adminUser")%>
-            <%}else{%> <%=session.getAttribute("currentUser")%> <%}%></b>
+      > <b>Current Login:
+            <% if (session.getAttribute("adminUser") != null) {%> <%=session.getAttribute("adminUser")%>
+            <% } else {%> <%=session.getAttribute("currentUser")%> <%}%></b>
       </span></font>
     </center>
   </div>
@@ -52,14 +52,3 @@ if(session.getAttribute("adminUser") != null){%> <%=session.getAttribute("adminU
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,5 @@
 <%--
-	This page allows you to unhide the students that are hidden
+  This page allows you to unhide the students that are hidden
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"

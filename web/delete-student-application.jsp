@@ -1,5 +1,5 @@
 <%--
-  	This page is used for deleting student applications from the project 
+    This page is used for deleting student applications from the project 
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"
@@ -12,13 +12,13 @@
 </head>
 <body>
   <% EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
-	   EntityManager em = emf.createEntityManager();
-	   Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
-	   ApplicationController.deleteApplication(em, a);
-	
-	   response.setStatus(response.SC_MOVED_TEMPORARILY);
-	   
-	   response.setHeader("Location", "student-projects.jsp"); 
-	%>
+     EntityManager em = emf.createEntityManager();
+     Application a = ApplicationController.getApplicationById(em, request.getParameter("id"));
+     ApplicationController.deleteApplication(em, a);
+  
+     response.setStatus(response.SC_MOVED_TEMPORARILY);
+     
+     response.setHeader("Location", "student-projects.jsp"); 
+  %>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <%--
-	This page allows you to remove the item from the vocabulary.
+  This page allows you to remove the item from the vocabulary.
  --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"
@@ -23,24 +23,24 @@
    List<Student> students = FieldValueController.getStudents(item);
    List<Researcher> researchers = FieldValueController.getResearchers(item);
    if (students != null){
-	   for (Student s : students){
-		   Email.sendDeleteItemMessage(s,description,type);
-	   }
+     for (Student s : students){
+       Email.sendDeleteItemMessage(s,description,type);
+     }
    }
    if (researchers != null){
-	   for (Researcher r : researchers){
-		   Email.sendDeleteItemMessage(r,description,type);
-	   }
+     for (Researcher r : researchers){
+       Email.sendDeleteItemMessage(r,description,type);
+     }
    }
    FieldValueController.removeFieldValue(em, item);
    
    response.setStatus(response.SC_MOVED_TEMPORARILY); 
  
    if (category == null) {
-	   response.setHeader("Location", "latestAdditions.jsp"); 
+     response.setHeader("Location", "latestAdditions.jsp"); 
    }
    else {
-	   response.setHeader("Location", ("latestAdditions.jsp?category="+category)); 
+     response.setHeader("Location", ("latestAdditions.jsp?category="+category)); 
    }
 %>
 
