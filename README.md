@@ -41,6 +41,7 @@ TODO:
 - Make local configuration simpler and less error prone (eg. setting the
   password in a local copy of persistence.xml to avoid committing password to
   the repo...)
+- Factor out emailing functionality in src/model/Email.java.
 
 Backend Notes
 - Major, Minor, Interest, and College classes are all entities in order to make
