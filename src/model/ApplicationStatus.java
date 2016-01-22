@@ -9,8 +9,8 @@ package model;
  */
 
 public enum ApplicationStatus {
-	Pending,
-	Declined,
-	Accepted,
-	Invited
+                               Pending,
+                               Declined,
+                               Accepted,
+                               Invited
 }
