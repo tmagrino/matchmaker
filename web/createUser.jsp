@@ -2,7 +2,7 @@
 	This page is used to check whether user is having any current role.  
 	It is also used to redirect to the profile pages on the basis of the student, researcher. 
 --%>
-<%@page import="java.util.*,model.*, org.json.*,javax.persistence.*" %>
+<%@page import="java.util.*,model.*, org.json.*,javax.persistence.*"%>
 <jsp:include page="header.jsp">
 	<jsp:param name="stud_or_prof" value="header" />
 	<jsp:param name="sidebar_type" value="stud-profile" />
@@ -31,5 +31,5 @@
 	        	 response.sendRedirect("researcher-profile.jsp");
 	         }
          }
-%>        
+%>
 <jsp:include page="footer.jsp"></jsp:include>

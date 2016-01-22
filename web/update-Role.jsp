@@ -8,7 +8,8 @@
 	<jsp:param name="top_selected" value="profile" />
 </jsp:include>
 <%@
-	page import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
+	page
+	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
 %>
 <%
  	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");

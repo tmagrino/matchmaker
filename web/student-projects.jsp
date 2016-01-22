@@ -3,18 +3,20 @@
 	<jsp:param name="top_selected" value="project" />
 </jsp:include>
 <%@page
-	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"%>
+	import="java.util.*,model.Student, model.*, org.json.JSONObject,javax.persistence.*"
+%>
 <div class="apply-form hidden" title="Apply">
 	<form method="post" action="save-student-application.jsp">
-     	<label for="cover-letter">Enter a short paragraph explaining why you would be a good fit for this project.</label>
-         <textarea name="cover-letter" id="cover-letter"></textarea>
-         <input type="hidden" name="id">
-         <input type="hidden" name="app-id">
-         <input type="submit" value="Apply">
-     </form>
- </div>
+		<label for="cover-letter">Enter a short paragraph explaining
+			why you would be a good fit for this project.</label>
+		<textarea name="cover-letter" id="cover-letter"></textarea>
+		<input type="hidden" name="id"> <input type="hidden"
+			name="app-id"
+		> <input type="submit" value="Apply">
+	</form>
+</div>
 <div class="content">
-<%
+	<%
 	EntityManagerFactory emf = Persistence.createEntityManagerFactory("test");
 	EntityManager em = emf.createEntityManager();
 	JSONObject jsonMajor = FieldValueController.getItemJson(em,FieldFactory.MAJOR);
@@ -27,80 +29,91 @@
 	boolean showHidden = "yes".equals(showhide);
 %>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 var majorData = <%=jsonMajor%>;
 var skillsData = <%=jsonSkills%>;
 var interestData = <%=jsonInterest%>;
 </script>
 
-<h1>My Applications</h1><br />
-<table class="project-list searchable" data-empty="No applications found">
-	<jsp:include page="proj-filters.jsp"/>
-	<%
+	<h1>My Applications</h1>
+	<br />
+	<table class="project-list searchable"
+		data-empty="No applications found"
+	>
+		<jsp:include page="proj-filters.jsp" />
+		<%
 					for(Application a : allApplications) {
 			            Project p = a.getApplicationProject();
 			%>
-	<tr>
-		<td class="no-title">
-			<%=a.getStatus()%>&nbsp;
-			<%
+		<tr>
+			<td class="no-title"><%=a.getStatus()%>&nbsp; <%
 				if (a.getStatus() == ApplicationStatus.Invited){
-			%>
-				<a id="a<%=a.getId()%>"class="actionButton apply" href = "#">Apply</a>
-			<%
+			%> <a id="a<%=a.getId()%>" class="actionButton apply" href="#">Apply</a>
+				<%
 				}
-			%>&nbsp;
-			<a class="actionButton delete" href="delete-student-application.jsp?id=<%=a.getId()%>
+			%>&nbsp; <a class="actionButton delete"
+				href="delete-student-application.jsp?id=<%=a.getId()%>
 				<%if (showHidden) {%>&amp;showhidden=yes<%}%>
-			">
-				<img class="delete" src="images/Delete.png" alt="delete" border="0"
-				alt="Delete application" />
-			</a>
-		</td>
-		<td><p><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></p></td>
-		<td>
-		<%
+			"
+			> <img class="delete" src="images/Delete.png" alt="delete"
+					border="0" alt="Delete application"
+				/>
+			</a></td>
+			<td><p>
+					<a href="proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a>
+				</p></td>
+			<td>
+				<%
 			for (Researcher r : p.getResearchers()) {
 		%>
-			<p><a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a></p>
-		<%
+				<p>
+					<a href="researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
+				</p> <%
 			}
 		%>
-		</td>
-		<td><p><a href="//<%=p.getURL()%>"><%=p.getURL()%></a></p></td>
-		<td><p><%=p.getDescription()%></p></td>
-		<td><p><%=p.getAreaString()%></p></td>
-		<td><p><%=p.getSkillString()%></p></td>
-		<%
+			</td>
+			<td><p>
+					<a href="//<%=p.getURL()%>"><%=p.getURL()%></a>
+				</p></td>
+			<td><p><%=p.getDescription()%></p></td>
+			<td><p><%=p.getAreaString()%></p></td>
+			<td><p><%=p.getSkillString()%></p></td>
+			<%
 			}
 		%>
-	</tr>
-</table>
+		</tr>
+	</table>
 
-<h1>Search New Projects</h1>
+	<h1>Search New Projects</h1>
 
-<%
+	<%
 	if (showHidden) {
 %>
-<br />
-<p>
-	<span class="hidden-message">Displaying hidden projects</span> <a class="filter-button hide" href="student-projects.jsp?showhidden=no"> Hide Projects</a></font>
-</p>
-<%
+	<br />
+	<p>
+		<span class="hidden-message">Displaying hidden projects</span> <a
+			class="filter-button hide" href="student-projects.jsp?showhidden=no"
+		> Hide Projects</a></font>
+	</p>
+	<%
 	}
 	else{
 %>
 	<br />
 	<p>
-		<a class="filter-button hide" href="student-projects.jsp?showhidden=yes"> Show hidden projects</a>
+		<a class="filter-button hide"
+			href="student-projects.jsp?showhidden=yes"
+		> Show hidden projects</a>
 	</p>
 	<%
 		}
 	%>
 
-<table class="project-list searchable" data-empty="No available projects">
-	<jsp:include page="proj-filters.jsp" />
-	<%
+	<table class="project-list searchable"
+		data-empty="No available projects"
+	>
+		<jsp:include page="proj-filters.jsp" />
+		<%
 		List<Project> allProjects = ProjectController.getProjectList(em);
 	        List<Long> studProjs = StudentController.getStudentProjects(em,s);
 	        boolean atLeastOne = false;
@@ -124,50 +137,49 @@ var interestData = <%=jsonInterest%>;
 	          	}
 	          	atLeastOne = true;
 	%>
-	<tr>
-		<td class = "buttonTD no-title">
+		<tr>
+			<td class="buttonTD no-title">
 				<% 
 					if (!ProjectController.meetsRequirements(p, s)) {
-						%><p class="req-msg">Requirements not met</p><%
+						%><p class="req-msg">Requirements not met</p> <%
 						
 					}
-				%>
-						<a id="<%=p.getId()%>" class="actionButton apply"
-								href="#">Apply</a>&nbsp;
-						<%
+				%> <a id="<%=p.getId()%>" class="actionButton apply" href="#">Apply</a>&nbsp;
+				<%
 					if (hid && showHidden) {
 				%><a class="actionButton unhide"
-					href="unhideProject.jsp?id=<%=p.getId()%>">Unhide</a>
-				<%
+				href="unhideProject.jsp?id=<%=p.getId()%>"
+			>Unhide</a> <%
 					}
 				    else {
 				%><a class="actionButton hide"
-					href="hideProject.jsp?id=<%=p.getId()%>
+				href="hideProject.jsp?id=<%=p.getId()%>
                       		<%if (showHidden) {%>&amp;showhidden=yes<%}%>
-                      		">Hide</a>
-				<%
+                      		"
+			>Hide</a> <%
 					}
 				%>
-		</td>
-		<td><a href = "proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
-		<td>
-		<%
+			</td>
+			<td><a href="proj-profile-nonedit.jsp?pid=<%=p.getId()%>"><%=p.getName()%></a></td>
+			<td>
+				<%
 			for (Researcher r : p.getResearchers()) {
-		%>
-			<a href = "researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
-		<%
+		%> <a href="researcher-profile-nonedit.jsp?id=<%=r.getNetID()%>"><%=r.getName()%></a>
+				<%
 			}
 		%>
-		</td>
-		<td><p><a href="//<%=p.getURL()%>"><%=p.getURL()%></a></p></td>
-		<td><p><%=p.getDescription()%></p></td>
-		<td><p><%=p.getAreaString()%></p></td>
-		<td><p><%=p.getSkillString()%></p></td>
-	</tr>
+			</td>
+			<td><p>
+					<a href="//<%=p.getURL()%>"><%=p.getURL()%></a>
+				</p></td>
+			<td><p><%=p.getDescription()%></p></td>
+			<td><p><%=p.getAreaString()%></p></td>
+			<td><p><%=p.getSkillString()%></p></td>
+		</tr>
 
-	<% } %>
-	    </tbody>
-</table>
+		<% } %>
+		</tbody>
+	</table>
 </div>
 </div>
 </div>
